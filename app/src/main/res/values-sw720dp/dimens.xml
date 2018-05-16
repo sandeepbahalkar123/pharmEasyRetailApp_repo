@@ -1,0 +1,18 @@
+<resources>
+    <dimen name="dp1">1dp</dimen>
+    <dimen name="dp4">6dp</dimen>
+    <dimen name="dp6">9dp</dimen>
+    <dimen name="dp8">12dp</dimen>
+    <dimen name="dp12">18dp</dimen>
+    <dimen name="dp67">100dp</dimen>
+    <dimen name="dp3">5dp</dimen>
+    <dimen name="dp210">315dp</dimen>
+
+    <dimen name="sp10">15sp</dimen>
+
+    <!--// DMS // -->
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="errorColor" type="color">#BD362F</item>
+    <color name="black">#000000</color>
+    <color name="tagColor">#04abdf</color>
+    <color name="white">#ffffff</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="accent">#FF4081</color>
+    <color name="hint_color_my_appointment">#99ffffff</color>
+    <color name="grey">#b3b3b3</color>
+
+
+    <!--// DMS //-->
+
+</resources>
