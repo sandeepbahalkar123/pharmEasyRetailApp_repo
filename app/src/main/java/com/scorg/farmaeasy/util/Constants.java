@@ -9,8 +9,6 @@ public class Constants {
     public static final String RESCRIBE_LOG_FOLDER = "Rescribe_LOG";
     public static final String RESCRIBE_LOG_FILE = "Rescribe_LOG_FILE.txt";
 
-
-
     public static final String MT_TABLET = "TABLET";
     public static final String MT_SYRUP = "SYRUP";
     public static final String MT_OINTMENT = "OINTMENT";
@@ -77,121 +75,11 @@ public class Constants {
     //Click codes
 
     public static final String TASK_LOGIN = Constants.BLANK + 1;
-    public static final String TASK_SIGN_UP = Constants.BLANK + 2;
-    public static final String TASK_VERIFY_SIGN_UP_OTP = Constants.BLANK + 3;
-    public static final String TASK_LOGIN_WITH_PASSWORD = Constants.BLANK + 4;
-    public static final String TASK_LOGIN_WITH_OTP = Constants.BLANK + 5;
-    public static final String TASK_DOCTOR_CONNECT_CHAT = Constants.BLANK + 6;
-    public static final String TASK_DOCTOR_CONNECT = Constants.BLANK + 7;
-    public static final String TASK_DOCTOR_FILTER_DOCTOR_SPECIALITY_LIST = Constants.BLANK + 8;
-    public static final String TASK_GET_PATIENT_LIST = Constants.BLANK + 9;
-    public static final String SEND_MESSAGE = Constants.BLANK + 10;
-    public static final String CHAT_HISTORY = Constants.BLANK + 11;
-    public static final String CHAT_USERS = Constants.BLANK + 12;
-    public static final String GET_PATIENT_CHAT_LIST = Constants.BLANK + 13;
-
-    public static final String ACTIVE_STATUS = Constants.BLANK + 14;
-    public static final String LOGOUT = Constants.BLANK + 15;
-    public static final String TASK_GET_APPOINTMENT_DATA = BLANK + 16;
-    public static final String TASK_GET_PATIENT_DATA = BLANK + 17;
-    public static final String TASK_ONE_DAY_VISIT = BLANK + 18;
-    public static final String MY_RECORDS_DOCTOR_LIST = Constants.BLANK + 19;
-    public static final String MY_RECORDS_ADD_DOCTOR = Constants.BLANK + 20;
-    public static final String TASK_PATIENT_HISTORY = Constants.BLANK + 21;
-    public static final String TASK_GET_DOCTOR_SMS_TEMPLATE = Constants.BLANK + 22;
-    public static final String TASK_REQUEST_SEND_SMS = Constants.BLANK + 23;
-    public static final String TASK_GET_WAITING_LIST = Constants.BLANK + 24;
-    public static final String TASK_GET_SEARCH_RESULT_MY_PATIENT = Constants.BLANK + 25;
-    public static final String TASK_ADD_TO_WAITING_LIST = Constants.BLANK + 26;
-    public static final String TASK_GET_LOCATION_LIST = Constants.BLANK + 27;
-    public static final String TASK_GET_DASHBOARD_RESPONSE = Constants.BLANK + 28;
-    public static final String TASK_DELETE_WAITING_LIST = Constants.BLANK + 29;
-    public static final String TASK_APPOINTMENT_CANCEL_OR_COMPLETE = Constants.BLANK + 30;
-    public static final String TASK_DARG_DROP = Constants.BLANK + 31;
-    public static final String TASK_GET_COMPLETED_OPD = Constants.BLANK + 32;
-    public static final String TASK_GET_NEW_PATIENT_LIST = Constants.BLANK + 33;
-    public static final String TASK_GET_DOCTOR_PATIENT_CITY = Constants.BLANK + 34;
-    public static final String TASK_ADD_NEW_PATIENT = Constants.BLANK + 35;
-    public static final String TASK_DELETE_PATIENT_OPD_ATTCHMENTS = Constants.BLANK + 36;
-    public static final String TASK_GET_TIME_SLOTS_TO_BOOK_APPOINTMENT = Constants.BLANK + 37;
-    public static final String TASK_CONFIRM_APPOINTMENT = Constants.BLANK + 38;
     public static final String DATA = "DATA";
     public static final Integer SUCCESS = 200;
-
-    //-----------
     public static final String TASK_CHECK_SERVER_CONNECTION = Constants.BLANK + 39;
-    public static final String TASK_PATIENT_LIST = Constants.BLANK + 40;
-    public static final String TASK_ANNOTATIONS_LIST = Constants.BLANK + 41;
-    public static final String TASK_GET_ARCHIVED_LIST = Constants.BLANK + 42;
-    public static final String TASK_GET_PDF_DATA = Constants.BLANK + "PDF_DATA";
-    public static final String TASK_GET_PATIENT_NAME_LIST = Constants.BLANK + 43;
-    public static final String TASK_LOGIN_CODE = Constants.BLANK + 44;
-
-    //-----------
-
-    public static final String TAKEN_DATE = "takenDate";
-    public static final String PATIENT_ADDRESS = "patientAddress";
-    public static final String DOCTOR_NAME = "doctorName";
     public static final String TITLE = "title";
     public static final int MAX_RETRIES = 3;
-
-    public static final String GMAIL_LOGIN = "gmail_login";
-    public static final String FACEBOOK_LOGIN = "facebook_login";
-
-    public static final String UPLOADING_STATUS = "uploading_status";
-    public static final String INVESTIGATION_NOTIFICATION_TIME = "9:00 AM";
-    public static final String APPOINTMENT_NOTIFICATION_TIME = "9:00 AM";
-    public static final String GMAIL_PACKAGE = "com.google.android.gm";
-    public static final String EMAIL = "email";
-    public static final String OPD_ID = "opd_id";
-    public static final String MYRECORDDATAMODEL = "myrecorddatamodel";
-    public static final String CAPTION = "caption";
-    public static final String TYPE_OF_LOGIN = "";
-    public static final String SENDERID = "EMROTP";
-    public static final String IS_URL = "isUrl";
-    public static final String CHAT_REQUEST = "chat_request";
-    public static final String SEARCH__REQUEST = "search_request";
-    public static final String CONNECT_REQUEST = "connect_request";
-    public static final String PATIENT_INFO = "patient_info";
-    public static final int PLACE_PICKER_REQUEST = 99;
-    public static final String APPOINTMENT_DATA = "appointment_data";
-    public static final String DOCTOR_IMAGE_URL = "doctor_iamge_url";
-    public static final String PATIENT_VISIT_DATE = "patient_visit_date";
-    public static final String PATIENT_ID = "patient_id";
-    public static final String NO = "no";
-    public static final String DOCTORS_ID = "doctor_id";
-    public static final String VISIT_DATE = "visitDate";
-    public static final String PATIENT_OBJECT = "patient_object";
-    public static final String PATIENT_NAME = "patient_name";
-    public static final String PREMIUM = "Premium";
-    public static final String LONGPRESSED = "long_pressed";
-    public static final String DATES_LIST = "dates_list";
-    public static final String DATES_INFO = "dates_info";
-    public static final String FILTER_STATUS_LIST = "filter_status_list";
-    public static final String FILTER_CLINIC_LIST = "filter_clinic_list";
-    public static final String APPOINTMENT_LIST = "appointment_list";
-    public static final String SMS_DETAIL_LIST = "sms_detail_list";
-    public static final String WAITING_LIST_INFO = "waiting_list_info";
-    public static final String SMS_PATIENT_LIST_TO_SHOW = "sms_list_to_show";
-    public static final String PATIENT_HOS_PAT_ID = "hos_pat_id";
-    public static final String PATIENT_OPDID = "patient_opdid";
-    public static final String PATIENT_LIST = "patient_list";
-    public static final String LOCATION_ID = "location_id";
-    public static final String CITY_ID = "city_id";
-    public static final String CITY_NAME = "city_name";
-    public static final String TEMPLATE_OBJECT = "template_object";
-    public static final String CLINIC_ID = "clinic_id";
-    public static final String CLINIC_NAME = "clinic_name";
-    public static final String ACTIVITY_LAUNCHED_FROM = "activity_launched_from";
-    public static final String WAITING_LIST = "waiting_list";
-    public static final String HOME_PAGE = "home_page";
-    public static final String OPD_TIME = "opd_time";
-    public static final String IS_CALL_FROM_MY_PATIENTS = "call_from_my_patients_chat";
-    public static final String TEMPLATE_LIST = "template_list";
-    public static final float ZOOM_CAMERA_VALUE = 7.0f;
-    public static final String COMPLETE_OPD = "complete_opd";
-    public static final String NOT_FROM_COMPLETE_OPD = "not_complete_opd";
-    public static final String PATIENT_DETAILS = "patient_details";
 
     public static final String STARTFOREGROUND_ACTION = "com.rescribe.download";
     public static final int FOREGROUND_SERVICE = 21;
@@ -308,23 +196,6 @@ public class Constants {
         String LOC_FILE = "📍 Location";
     }
 
-    public interface PATIENT_OPDS_STATUS {
-        String OPD_COMPLETED = "opd completed";
-        String OPD_SAVED = "opd saved";
-        String ONLY_ATTACHMENTS = "only attachments";
-        String NO_SHOW = "no show";
-    }
-
-
-    public static class PATIENT_LIST_PARAMS {
-        public static final String PATIENT_NAME = "patientName";
-        public static final String FILE_TYPE = "fileType";
-        public static final String DATE_TYPE = "dateType";
-        public static final String FROM_DATE = "fromDate";
-        public static final String TO_DATE = "toDate";
-        public static final String ANNOTATION_TEXT = "annotationText";
-        public static final String DOC_TYPE_ID = "DocTypeId";
-    }
 
 }
 
