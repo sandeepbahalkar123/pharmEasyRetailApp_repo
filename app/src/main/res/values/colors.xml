@@ -10,6 +10,7 @@
     <color name="accent">#FF4081</color>
     <color name="hint_color_my_appointment">#99ffffff</color>
     <color name="grey">#b3b3b3</color>
+    <color name="splashbgcolor">#00b4bf</color>
 
 
     <!--// DMS //-->

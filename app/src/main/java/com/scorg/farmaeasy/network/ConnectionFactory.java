@@ -45,7 +45,7 @@ public class ConnectionFactory extends ConnectRequest {
     public void setHeaderParams() {
 
         Map<String, String> headerParams = new HashMap<>();
-        String authorizationString = PreferencesManager.getString(PreferencesManager.DMS_PREFERENCES_KEY.AUTHTOKEN, mContext);
+        String authorizationString = PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.AUTHTOKEN, mContext);
         headerParams.put(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON);
         headerParams.put(Constants.AUTHORIZATION_TOKEN, authorizationString);
         headerParams.put(Constants.DEVICEID, device.getDeviceId());
@@ -99,7 +99,7 @@ public class ConnectionFactory extends ConnectRequest {
     }
 
     public void setDMSUrl(String url) {
-        String baseUrl = PreferencesManager.getString(PreferencesManager.DMS_PREFERENCES_KEY.SERVER_PATH, mContext);
+        String baseUrl = PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mContext);
 
         this.mURL = baseUrl + url;
         CommonMethods.Log(TAG, "mURL: " + this.mURL);

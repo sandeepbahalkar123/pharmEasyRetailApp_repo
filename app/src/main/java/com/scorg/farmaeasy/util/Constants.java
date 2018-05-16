@@ -6,8 +6,8 @@ package com.scorg.farmaeasy.util;
  */
 public class Constants {
 
-    public static final String RESCRIBE_LOG_FOLDER = "Rescribe_LOG";
-    public static final String RESCRIBE_LOG_FILE = "Rescribe_LOG_FILE.txt";
+    public static final String RESCRIBE_LOG_FOLDER = "PhramEasyRetail_LOG";
+    public static final String RESCRIBE_LOG_FILE = "PhramEasyRetail_LOG_FILE.txt";
 
 
 

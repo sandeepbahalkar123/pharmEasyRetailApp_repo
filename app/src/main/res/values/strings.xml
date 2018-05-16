@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FarmaEasy</string>
+    <string name="app_name">PharmEasyRetail</string>
 
     <string name="internet">Please check your Internet Connection</string>
     <string name="timeout">Timeout error</string>
