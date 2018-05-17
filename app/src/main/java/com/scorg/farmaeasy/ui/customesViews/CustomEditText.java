@@ -36,8 +36,8 @@ public class CustomEditText extends AppCompatEditText {
     }
 
     private void setCustomFont(Context ctx, AttributeSet attrs) {
-        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomEditText);
-        String customFont = a.getString(R.styleable.CustomEditText_customFontEdittext);
+        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomTextView);
+        String customFont = a.getString(R.styleable.CustomTextView_customFont);
         setCustomFont(ctx, customFont);
         a.recycle();
     }

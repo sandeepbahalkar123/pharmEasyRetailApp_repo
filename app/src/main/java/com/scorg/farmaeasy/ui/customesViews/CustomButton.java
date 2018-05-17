@@ -32,8 +32,8 @@ public class CustomButton extends AppCompatButton {
         }
 
     private void setCustomFont(Context ctx, AttributeSet attrs) {
-        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomButton);
-        String customFont = a.getString(R.styleable.CustomButton_customFontButton);
+        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomTextView);
+        String customFont = a.getString(R.styleable.CustomTextView_customFont);
         setCustomFont(ctx, customFont);
         a.recycle();
     }

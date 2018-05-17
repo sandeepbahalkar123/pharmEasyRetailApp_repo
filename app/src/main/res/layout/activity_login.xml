@@ -40,7 +40,7 @@
                 android:drawableStart="@drawable/login_username"
                 android:drawablePadding="@dimen/dp21"
                 android:paddingBottom="@dimen/dp13"
-                app:customFontEdittext="@string/roboto_regular" />
+                app:customFont="@string/roboto_regular" />
             <!--  Email Label -->
             <View
                 android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                 android:drawableEnd="@drawable/login_eyeoutline"
                 android:drawablePadding="@dimen/dp21"
                 android:paddingBottom="@dimen/dp13"
-                app:customFontEdittext="@string/roboto_regular" />
+                app:customFont="@string/roboto_regular" />
 
             <View
                 android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp20"
-                app:customFontButton="@string/roboto_medium" />
+                app:customFont="@string/roboto_medium" />
 
         </LinearLayout>
 
