@@ -54,6 +54,14 @@
         <attr name="customFont" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CustomEditText">
+        <attr name="customFontEdittext" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomButton">
+        <attr name="customFontButton" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="CircularImageView">
         <attr name="border" format="boolean" />
         <attr name="border_width" format="dimension" />

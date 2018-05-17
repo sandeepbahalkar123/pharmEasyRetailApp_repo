@@ -15,6 +15,10 @@ import com.scorg.farmaeasy.util.Constants;
  * Created by Sandeep Bahalkar
  */
 public class CustomButton extends AppCompatButton {
+    private static final String TAG = "Button";
+     public CustomButton(Context context) {
+        super(context);
+    }
     public CustomButton(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -22,17 +26,28 @@ public class CustomButton extends AppCompatButton {
         setTextColor(Color.parseColor(Constants.BUTTON_TEXT_COLOR));
         setCustomFont(context, attrs);
     }
+    public CustomButton(Context context, AttributeSet attrs, int defStyle) {
+            super(context, attrs, defStyle);
+            setCustomFont(context, attrs);
+        }
 
     private void setCustomFont(Context ctx, AttributeSet attrs) {
-        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomTextView);
-        String customFont = a.getString(R.styleable.CustomTextView_customFont);
-
+        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomButton);
+        String customFont = a.getString(R.styleable.CustomButton_customFontButton);
         setCustomFont(ctx, customFont);
         a.recycle();
     }
 
-    public void setCustomFont(Context ctx, String asset) {
-        Typeface typeface = Application.get(ctx, "fonts/" + asset);
-        setTypeface(typeface);
+    public boolean setCustomFont(Context ctx, String asset) {
+        Typeface tf = null;
+        try {
+            tf = Typeface.createFromAsset(ctx.getAssets(), "fonts/" + asset);
+        } catch (Exception e) {
+            com.scorg.farmaeasy.util.CommonMethods.Log(TAG, "Could not get typeface: " + e.getMessage());
+            return false;
+        }
+
+        setTypeface(tf);
+        return true;
     }
 }

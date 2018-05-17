@@ -163,7 +163,7 @@ public class EditTextWithDeleteButton extends LinearLayout {
             f = TextView.class.getDeclaredField("mCursorDrawableRes");
             f.setAccessible(true);
 
-            f.set(editText, R.drawable.cursor_color_white);
+            f.set(editText, R.drawable.cursor_color_themecolor);
 
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();

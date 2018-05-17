@@ -1,28 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splashbgcolor">
+    android:background="@color/white"
+    >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+       >
 
 
         <ImageView
-            android:id="@+id/splashicon"
+            android:id="@+id/login_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/splashicon" />
+            android:layout_marginTop="@dimen/dp80"
+            app:srcCompat="@drawable/login_logo" />
 
-        <ImageView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/splashicon"
-            android:layout_marginTop="@dimen/dp23"
-            android:src="@drawable/splashlogo" />
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp50"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp56"
+            android:paddingRight="@dimen/dp56">
+
+            <com.scorg.farmaeasy.ui.customesViews.CustomEditText
+                android:id="@+id/editTextUserId"
+                style="@style/AppLoginNewMainStyle"
+                android:hint="@string/userid"
+                android:inputType="text"
+                android:maxLength="100"
+                android:drawableLeft="@drawable/login_username"
+                android:drawableStart="@drawable/login_username"
+                android:drawablePadding="@dimen/dp21"
+                android:paddingBottom="@dimen/dp13"
+                app:customFontEdittext="@string/roboto_regular" />
+            <!--  Email Label -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
 
 
-</RelativeLayout>
+            <com.scorg.farmaeasy.ui.customesViews.CustomEditText
+                android:id="@+id/editTextPassword"
+                style="@style/AppLoginNewMainStyle"
+                android:layout_marginTop="@dimen/dp14"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/login_password"
+                android:drawableStart="@drawable/login_password"
+                android:drawableRight="@drawable/login_eyeoutline"
+                android:drawableEnd="@drawable/login_eyeoutline"
+                android:drawablePadding="@dimen/dp21"
+                android:paddingBottom="@dimen/dp13"
+                app:customFontEdittext="@string/roboto_regular" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+            <com.scorg.farmaeasy.ui.customesViews.CustomTextView
+                android:id="@+id/btnOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginBottom="@dimen/dp23"
+                android:layout_marginTop="@dimen/dp23"
+                android:drawablePadding="@dimen/dp4"
+                android:drawableRight="@drawable/enter"
+                android:text="@string/using_otp"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp15"
+                app:customFont="@string/roboto_regular" />
+
+            <com.scorg.farmaeasy.ui.customesViews.CustomButton
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40"
+                android:layout_marginLeft="@dimen/dp13"
+                android:layout_marginRight="@dimen/dp13"
+                android:background="@color/themecolor"
+                android:gravity="center"
+                android:text="@string/log_in"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp20"
+                app:customFontButton="@string/roboto_medium" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+

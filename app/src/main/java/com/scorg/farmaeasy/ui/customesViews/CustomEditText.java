@@ -10,11 +10,15 @@ import android.util.AttributeSet;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.singleton.Application;
 import com.scorg.farmaeasy.util.Constants;
-
+import com.scorg.farmaeasy.util.CommonMethods;
 /**
  * Created by Sandeep Bahalkar
  */
 public class CustomEditText extends AppCompatEditText {
+    private static final String TAG = "EditText";
+    public CustomEditText(Context context) {
+        super(context);
+    }
     public CustomEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -26,16 +30,28 @@ public class CustomEditText extends AppCompatEditText {
         setCustomFont(context, attrs);
     }
 
-    private void setCustomFont(Context ctx, AttributeSet attrs) {
-        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomTextView);
-        String customFont = a.getString(R.styleable.CustomTextView_customFont);
+      public CustomEditText(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        setCustomFont(context, attrs);
+    }
 
+    private void setCustomFont(Context ctx, AttributeSet attrs) {
+        TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomEditText);
+        String customFont = a.getString(R.styleable.CustomEditText_customFontEdittext);
         setCustomFont(ctx, customFont);
         a.recycle();
     }
 
-    public void setCustomFont(Context ctx, String asset) {
-        Typeface typeface = Application.get(ctx, "fonts/" + asset);
-        setTypeface(typeface);
+    public boolean setCustomFont(Context ctx, String asset) {
+        Typeface tf = null;
+        try {
+            tf = Typeface.createFromAsset(ctx.getAssets(), "fonts/" + asset);
+        } catch (Exception e) {
+           CommonMethods.Log(TAG, "Could not get typeface: " + e.getMessage());
+            return false;
+        }
+
+        setTypeface(tf);
+        return true;
     }
 }
