@@ -25,8 +25,8 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.LOGIN_STATUS, mContext).equals(Constants.YES)) {
-//                    Intent intentObj = new Intent(SplashActivity.this, HomeActivity.class);
-//                    startActivity(intentObj);
+                    Intent intentObj = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(intentObj);
                 } else {
                     Intent intentObj = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intentObj);
