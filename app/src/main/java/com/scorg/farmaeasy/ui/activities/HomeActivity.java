@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.bottom_menus.BottomMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BottomMenuActivity {
 
     @BindView(R.id.bannerLayout)
     RelativeLayout bannerLayout;

@@ -1,23 +1,22 @@
 package com.scorg.farmaeasy.ui.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.helpers.login.LoginHelper;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
-import com.scorg.farmaeasy.ui.customesViews.CustomButton;
-import com.scorg.farmaeasy.ui.customesViews.CustomEditText;
-import com.scorg.farmaeasy.ui.customesViews.CustomTextView;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
-import com.scorg.farmaeasy.preference.PreferencesManager;
 
 import java.util.Locale;
 
@@ -25,17 +24,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements HelperResponse{
+public class LoginActivity extends AppCompatActivity implements HelperResponse {
     @BindView(R.id.editTextUserId)
-    CustomEditText editTextUserId;
+    EditText editTextUserId;
     @BindView(R.id.editTextPassword)
-    CustomEditText editTextPassword;
+    EditText editTextPassword;
     @BindView(R.id.btnOtp)
-    CustomTextView btnOtp;
+    TextView btnOtp;
     @BindView(R.id.btn_login)
-    CustomButton btnLogin;
+    Button btnLogin;
+    @BindView(R.id.showPassword)
+    ImageButton showPassword;
     private Context mContext;
-    private static final String TAG="LoginActivity";
+    private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,5 +141,14 @@ public class LoginActivity extends AppCompatActivity implements HelperResponse{
     @Override
     public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
         CommonMethods.showToast(mContext, serverErrorMessage);
+    }
+
+    @OnClick(R.id.showPassword)
+    public void onViewClicked() {
+        if (editTextPassword.getTransformationMethod() == null)
+            editTextPassword.setTransformationMethod(new PasswordTransformationMethod());
+        else editTextPassword.setTransformationMethod(null);
+
+        editTextPassword.setSelection(editTextPassword.getText().length());
     }
 }

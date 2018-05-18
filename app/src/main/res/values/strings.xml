@@ -36,6 +36,10 @@
     <string name="enter_user_id">User ID</string>
     <string name="enter_password">Password</string>
     <string name="error_too_small_password">Password should be 6 characters long. </string>
+    <string name="title_activity_books">BooksActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_pager">PagerActivity</string>
     <!--<string name="template_list">Template List</string>-->
 
 

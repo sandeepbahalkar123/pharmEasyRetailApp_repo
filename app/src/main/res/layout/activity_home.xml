@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.activities.HomeActivity">
 
@@ -31,8 +30,8 @@
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/shopSelection"
                 android:layout_width="wrap_content"
-                android:background="@drawable/shape_drop_down_normal"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_drop_down_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,9 +41,9 @@
                 android:paddingEnd="24dp"
                 android:paddingStart="24dp"
                 android:paddingTop="@dimen/dp8"
+                android:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp16"
-                android:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030" />
+                android:textSize="@dimen/sp16" />
 
         </LinearLayout>
 

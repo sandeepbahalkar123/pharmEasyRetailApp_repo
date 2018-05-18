@@ -22,14 +22,11 @@ import butterknife.ButterKnife;
 public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.ListViewHolder> {
 
     private static final String DRAWABLE = "drawable";
-    private final Context mContext;
     private OnBottomMenuClickListener mBottomMenuListClickListener;
     private ArrayList<BottomMenu> bottomMenus;
-    static int appIconIndex;
 
     BottomMenuAdapter(Context mContext, ArrayList<BottomMenu> bottomMenus) {
         this.bottomMenus = bottomMenus;
-        this.mContext = mContext;
 
         try {
             this.mBottomMenuListClickListener = ((OnBottomMenuClickListener) mContext);
@@ -65,25 +62,13 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Li
             }
         });
 
-        if (bottomMenu.getMenuName().equalsIgnoreCase(mContext.getString(R.string.home))) {
-            holder.menuBottomIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.home));
-        } else if (bottomMenu.getMenuName().equalsIgnoreCase(mContext.getString(R.string.profile))) {
-            holder.menuBottomIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.profile_icon));
-        } else if (bottomMenu.getMenuName().equalsIgnoreCase(mContext.getString(R.string.app_logo))) {
-            holder.menuBottomIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.logo));
-        } else if (bottomMenu.getMenuName().equalsIgnoreCase(mContext.getString(R.string.support))) {
-            holder.menuBottomIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.support));
-        } else if (bottomMenu.getMenuName().equalsIgnoreCase(mContext.getString(R.string.settings))) {
-            holder.menuBottomIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.settings));
-        }
-
+        holder.menuBottomIcon.setImageDrawable(bottomMenu.getMenuIcon());
 
 //for app logo
         if (bottomMenu.isAppIcon()) {
             holder.bottomMenuName.setVisibility(View.GONE);
             holder.bottomMenuTab.setVisibility(View.GONE);
 
-            appIconIndex = position;
             if (bottomMenu.getNotificationCount() > 0) {
                 holder.showCountTextView.setText(String.valueOf(bottomMenu.getNotificationCount()));
                 holder.showCountTextView.setVisibility(View.VISIBLE);

@@ -13,6 +13,7 @@
     <color name="menu_color">#007d85</color>
     <color name="themecolor">#00b4bf</color>
     <color name="viewlinecolor">#00baff</color>
+    <color name="transparent">#00000000</color>
 
 
     <!--// DMS //-->

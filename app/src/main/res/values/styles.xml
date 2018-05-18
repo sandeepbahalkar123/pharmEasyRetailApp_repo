@@ -32,11 +32,26 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:paddingBottom">@dimen/dp4</item>
         <item name="android:gravity">bottom|left</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColorHint">@color/themecolor</item>
         <item name="android:textColor">@color/themecolor</item>
         <item name="android:textSize">@dimen/sp17</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp38</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="tabLayout" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="toolbarTitle" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/sp20</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
 
 </resources>
