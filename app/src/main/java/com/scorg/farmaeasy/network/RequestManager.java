@@ -29,8 +29,10 @@ import com.scorg.farmaeasy.helpers.database.AppDBHelper;
 import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.Connector;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
+import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.ui.customesViews.CustomProgressDialog;
 import com.scorg.farmaeasy.util.CommonMethods;
+import com.scorg.farmaeasy.util.Constants;
 import com.scorg.farmaeasy.util.NetworkUtil;
 
 import org.json.JSONException;
@@ -419,10 +421,10 @@ public class RequestManager extends ConnectRequest implements Connector, Request
 
                 switch (this.mDataTag) {
                     // Need to add
-                  /*  case DMSConstants.TASK_LOGIN: //This is for get archived list
-                        LoginModel loginModel = gson.fromJson(data, LoginModel.class);
-                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, loginModel, mOldDataTag);
-                        break;*/
+                    case Constants.TASK_LOGIN: //This is for get archived list
+                        LoginResponseModel loginResponseModel = gson.fromJson(data, LoginResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, loginResponseModel, mOldDataTag);
+                        break;
                 }
             }
 
