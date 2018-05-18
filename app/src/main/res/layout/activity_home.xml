@@ -297,6 +297,8 @@
                     android:textColor="@color/menu_color"
                     android:textSize="@dimen/sp14" />
 
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/nearExpiry2"
                 android:layout_width="0dp"

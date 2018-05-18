@@ -40,6 +40,18 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_pager">PagerActivity</string>
+    <string name="select_date">Select Date</string>
+    <string name="particular">Particular</string>
+    <string name="debit">Debit</string>
+    <string name="credit">Credit</string>
+    <string name="openingBalance">Opening Balance</string>
+    <string name="cashSale">Cash Sale</string>
+    <string name="creditSale">Credit Sale</string>
+    <string name="creditCardSale">Credit Card Sale</string>
+    <string name="cashPurchase">Cash purcase</string>
+    <string name="creditPurchase">Credit purcase</string>
+    <string name="total">Total</string>
+    <string name="closingBalance">Closing Balance</string>
     <!--<string name="template_list">Template List</string>-->
 
 
