@@ -25,11 +25,6 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="spinnerTheme" parent="android:Theme">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:backgroundTint">@color/white</item>
-    </style>
-
     <style name="AppLoginNewMainStyle">
         <item name="android:textCursorDrawable">@drawable/cursor_color_themecolor</item>
         <item name="android:cursorVisible">true</item>

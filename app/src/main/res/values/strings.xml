@@ -44,9 +44,4 @@
     <!-- Strings related to login -->
 
     <!--********Tree view holder icon codes****************-->
-
-    <string-array name="dummy_array">
-        <item>Mediplus Drug Point</item>
-        <item>Om Sai Drug Point</item>
-    </string-array>
 </resources>

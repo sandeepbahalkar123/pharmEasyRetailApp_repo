@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.activities.HomeActivity">
 
@@ -24,23 +25,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/shopSelection"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/spinnerTheme"
-                android:entries="@array/dummy_array"/>
+                android:background="@drawable/shape_drop_down_normal"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
                 android:gravity="center"
-                android:paddingStart="24dp"
                 android:paddingEnd="24dp"
-                tools:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030"
-                android:textColor="@color/white"/>
+                android:paddingStart="24dp"
+                android:paddingTop="@dimen/dp8"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                android:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030" />
 
         </LinearLayout>
 
@@ -60,22 +64,62 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/expiredProduct"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/first"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="305"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Expired Product"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/nearExpiry"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="10"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Near Expiry"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
@@ -88,22 +132,62 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/todaysCheque"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="52"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Today's Cheque"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/depositCheque"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/second"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="405"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Deposit Cheque"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
@@ -117,22 +201,63 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/pendingOnlinePurchase"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/third"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="302"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Pending Online Purchase"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pendingOrders"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="1"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Pending Orders"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
@@ -146,22 +271,62 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/expiredProduct2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/cursor_color_white"
-                android:orientation="horizontal">
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="17"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Expired Product"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/nearExpiry2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/four"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp5"
+                    android:text="24"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp8"
+                    android:text="Near Expiry"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
