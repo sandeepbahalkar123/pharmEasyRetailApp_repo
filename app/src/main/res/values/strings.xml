@@ -32,6 +32,10 @@
     <string name="roboto_regular">roboto_regular.ttf</string>
     <string name="roboto_bold">roboto_bold.ttf</string>
     <string name="roboto_medium">roboto_medium.ttf</string>
+    <string name="enter">Enter&#160;</string>
+    <string name="enter_user_id">User ID</string>
+    <string name="enter_password">Password</string>
+    <string name="error_too_small_password">Password should be 6 characters long. </string>
     <!--<string name="template_list">Template List</string>-->
 
 
