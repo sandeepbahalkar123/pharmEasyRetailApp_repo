@@ -111,10 +111,16 @@ public class LoginActivity extends AppCompatActivity implements HelperResponse{
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_LOGIN)) {
             //After login user navigated to HomeActivity
             LoginResponseModel receivedModel = (LoginResponseModel) customResponse;
+            PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.LOGIN_STATUS, Constants.YES, mContext);
+             Intent intent = new Intent(mContext, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+
+
 //            if (receivedModel.getCommon().isSuccess()) {
 //                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.LOGIN_STATUS, Constants.YES, getActivity());
-//
-//
 //                Intent intent = new Intent(mContext, HomeActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
