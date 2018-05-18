@@ -9,7 +9,7 @@ public class Config {
     public static final String HTTP = "http://";
     public static final String API = "/api/";
     public static final String TOKEN_TYPE = "Bearer";
-    public static final String LOGIN_URL = "authApi/authenticate/doctorLogin";
+    public static final String LOGIN_URL = "PhEasyService.svc/login";
     public static final String VERIFY_SIGN_UP_OTP = "authApi/authenticate/verifyOTP";
     public static final String SIGN_UP_URL = "authApi/authenticate/signUp";
     public static final String ONE_DAY_VISIT_URL = "api/patient/getPatientOneDayVisit?opdId=";
@@ -31,28 +31,15 @@ public class Config {
     public static final String CONFIRM_APPOINTMENT = "api/patient/bookAppointment";
     public static final String UPLOAD_PROFILE_PHOTO = "api/upload/uploadDoctorImage";
 
-    //---------------LOCAL SERVER URL START-----------------------
-    /*public static String BASE_URL = "http://172.16.100.219:3003/";
-    public static final String FORGOT_PASSWORD_URL = "http://172.16.100.219:3003/app.html#/access/forgotPassword";
-    public static final String ADD_NEW_PATIENT_WEB_URL = "http://172.16.100.219:3003/app.html#/addpatientmobile/";
-    public static final String BROKER = "tcp://172.16.100.219:1883";//"tcp://52.66.154.249:1883"; // Dr Rescribe.com IP QA
-    */
-    //---------------LOCAL SERVER URL END-----------------------
 
-    //---------------QA SERVER URL START-----------------------
+    //---------------QA SERVER Internet URL START-----------------------
 
-    public static String BASE_URL = "http://drrescribe.com:3003/";
-    public static final String FORGOT_PASSWORD_URL = "https://drrescribe.com/app.html#/access/forgotPassword";
-    public static final String ADD_NEW_PATIENT_WEB_URL = "https://drrescribe.com/app.html#/addpatientmobile/";
-    public static final String BROKER = "tcp://drrescribe.com:1883";//"tcp://52.66.154.249:1883"; // Dr Rescribe.com IP QA
-    //---------------QA SERVER URL END-----------------------
+    public static String BASE_URL = "http://172.16.100.83:8099/";
+    //---------------QA SERVER Internet URL END-----------------------
 
-    //---------------LIVE URL START-----------------------
+    //---------------LIVE Internet URL START-----------------------
 //    public static String BASE_URL = "http://rescribe.in:3003/";
-//    public static final String FORGOT_PASSWORD_URL = "https://rescribe.in/app.html#/access/forgotPassword";
-//    public static final String ADD_NEW_PATIENT_WEB_URL = "https://rescribe.in/app.html#/addpatientmobile/";
-//    public static final String BROKER = "tcp://rescribe.in:1883";// "tcp://52.66.154.249:1883"; // Rescribe.in IP LIVE
-    //---------------LIVE URL ENDS-----------------------
+    //---------------LIVE Internet URL ENDS-----------------------
 
     public static final String MY_RECORDS_DOCTOR_LIST = "api/doctors/getDoctorsWithPatientVisits";
     public static final String MY_RECORDS_ADD_DOCTOR = "api/doctors/addDoctor";

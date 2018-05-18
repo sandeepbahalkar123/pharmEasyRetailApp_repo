@@ -67,7 +67,7 @@ public class RequestManager extends ConnectRequest implements Connector, Request
         this.mProgressDialog = new CustomProgressDialog(mContext);
         this.connectionType = connectionType;
         this.isOffline = isOffline;
-        this.dbHelper = new AppDBHelper(mContext);
+        //this.dbHelper = new AppDBHelper(mContext);
     }
 
     @Override
@@ -95,14 +95,14 @@ public class RequestManager extends ConnectRequest implements Connector, Request
             }
         } else {
 
-            if (isOffline) {
-                if (getOfflineData() != null)
-                    succesResponse(getOfflineData(), false);
-                else
-                    mConnectionListener.onResponse(ConnectionListener.NO_INTERNET, null, mOldDataTag);
-            } else {
+//            if (isOffline) {
+//                if (getOfflineData() != null)
+//                    succesResponse(getOfflineData(), false);
+//                else
+//                    mConnectionListener.onResponse(ConnectionListener.NO_INTERNET, null, mOldDataTag);
+//            } else {
                 mConnectionListener.onResponse(ConnectionListener.NO_INTERNET, null, mOldDataTag);
-            }
+//            }
 
             if (mViewById != null)
                 CommonMethods.showSnack(mViewById, mContext.getString(R.string.internet));
@@ -132,8 +132,8 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                     @Override
                     public void onResponse(JSONObject response) {
                         succesResponse(response.toString(), isTokenExpired);
-                        if (isOffline)
-                            dbHelper.insertData(mDataTag, response.toString());
+//                        if (isOffline)
+//                            dbHelper.insertData(mDataTag, response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -182,8 +182,8 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                     @Override
                     public void onResponse(JSONObject response) {
                         succesResponse(response.toString(), false);
-                        if (isOffline)
-                            dbHelper.insertData(mDataTag, response.toString());
+//                        if (isOffline)
+//                            dbHelper.insertData(mDataTag, response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -218,8 +218,8 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                     @Override
                     public void onResponse(String response) {
                         succesResponse(response, isTokenExpired);
-                        if (isOffline)
-                            dbHelper.insertData(mDataTag, response);
+//                        if (isOffline)
+//                            dbHelper.insertData(mDataTag, response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -330,11 +330,11 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                 }
             } else if (error instanceof NetworkError) {
 
-                if (isOffline) {
-                    succesResponse(getOfflineData(), false);
-                } else {
+//                if (isOffline) {
+//                    succesResponse(getOfflineData(), false);
+//                } else {
                     mConnectionListener.onResponse(ConnectionListener.NO_INTERNET, null, mOldDataTag);
-                }
+//                }
 
                 if (mViewById != null)
                     CommonMethods.showSnack(mViewById, mContext.getString(R.string.internet));
