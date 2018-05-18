@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/selectdatelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp80"
+            android:layout_marginTop="@dimen/dp10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/select_date"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/dateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_weight="2.0"
+                android:drawableLeft="@drawable/login_username"
+                android:drawablePadding="@dimen/dp6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/viewlinecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="17/05/2018" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@color/grey" />
+
+        <LinearLayout
+            android:id="@+id/particularlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp23"
+            android:layout_marginTop="@dimen/dp10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.8"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/particular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp23"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/debit"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp32"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/credit"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp12"
+            android:background="@color/themecolor"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dp7"
+                android:paddingTop="@dimen/dp7"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/openingBalance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/openingbalnaceDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12"
+                tools:text="100000.00" />
+
+            <TextView
+                android:id="@+id/openingbalnaceCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12"
+                tools:text="" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="@dimen/dp7"
+                android:paddingTop="@dimen/dp7"
+                android:text="@string/cashSale"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/cashsaleDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="2000.00" />
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/cashsaleCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="@dimen/dp7"
+                android:paddingTop="@dimen/dp7"
+                android:text="@string/creditSale"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/creditsaleDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="2000.00" />
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/creditsaleCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="@dimen/dp7"
+                android:paddingTop="@dimen/dp7"
+                android:text="@string/creditCardSale"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/creditcardsaleDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="2000.00" />
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/creditcardsaleCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="@dimen/dp7"
+                android:paddingTop="@dimen/dp23"
+                android:text="@string/cashPurchase"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp50"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/cashPurchaseDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="" />
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp50"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/cashPurchaseCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="2000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="@dimen/dp17"
+                android:paddingTop="@dimen/dp7"
+                android:text="@string/creditPurchase"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp40"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/creditPurchaseDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="" />
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp40"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/creditPurchaseCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="2000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/themecolor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="@dimen/dp7"
+                android:paddingTop="@dimen/dp7"
+                android:text="@string/total"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/totalDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="7000.00" />
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp30"
+                android:background="@color/themecolor" />
+
+            <TextView
+                android:id="@+id/totalCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp12"
+                tools:text="4000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/themecolor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="@dimen/dp7"
+                android:paddingTop="@dimen/dp7"
+                android:text="@string/closingBalance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12" />
+
+
+
+            <TextView
+                android:id="@+id/closingBalnceDebitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12"
+                tools:text="3000.00" />
+
+
+            <TextView
+                android:id="@+id/closingBalnceCreditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingLeft="@dimen/dp20"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12"
+                tools:text="" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</RelativeLayout>

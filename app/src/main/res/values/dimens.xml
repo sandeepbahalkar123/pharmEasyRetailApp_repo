@@ -70,5 +70,6 @@
     <dimen name="sp8">8sp</dimen>
 
     <dimen name="dp38">38dp</dimen>
+    <dimen name="dp90">90dp</dimen>
 
 </resources>
