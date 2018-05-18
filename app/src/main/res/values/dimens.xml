@@ -69,8 +69,6 @@
     <dimen name="dp62">72dp</dimen>
     <dimen name="sp8">8sp</dimen>
 
-    <!--// DMS //-->
-
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="dp38">38dp</dimen>
 
 </resources>

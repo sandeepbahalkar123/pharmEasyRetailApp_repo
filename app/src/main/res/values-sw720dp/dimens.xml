@@ -65,4 +65,6 @@
     <dimen name="dialog_waitinglist_okbtn_width">110dp</dimen>
     <dimen name="sp22">22sp</dimen>
     <dimen name="dp62">112dp</dimen>
+
+    <dimen name="dp38">54dp</dimen>
 </resources>

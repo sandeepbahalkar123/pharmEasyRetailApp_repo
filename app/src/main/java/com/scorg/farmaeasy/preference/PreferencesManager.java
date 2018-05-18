@@ -222,7 +222,7 @@ public class PreferencesManager {
     }
 
 
-    public interface DMS_PREFERENCES_KEY {
+    public interface PREFERENCES_KEY {
 
         String EMAIL = "email";
         String AUTHTOKEN = "authToken";

@@ -4,13 +4,15 @@
     <color name="black">#000000</color>
     <color name="tagColor">#04abdf</color>
     <color name="white">#ffffff</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="accent">#FF4081</color>
+    <color name="colorPrimary">#00b4bf</color>
+    <color name="colorPrimaryDark">#00b4bf</color>
+    <color name="colorAccent">#00b4bf</color>
+    <color name="accent">#00b4bf</color>
     <color name="hint_color_my_appointment">#99ffffff</color>
     <color name="grey">#b3b3b3</color>
     <color name="menu_color">#007d85</color>
+    <color name="themecolor">#00b4bf</color>
+    <color name="viewlinecolor">#00baff</color>
 
 
     <!--// DMS //-->

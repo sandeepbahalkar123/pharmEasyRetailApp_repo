@@ -63,4 +63,6 @@
     <dimen name="sp22">22sp</dimen>
     <dimen name="dp62">92dp</dimen>
 
+    <dimen name="dp38">38dp</dimen>
+
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FarmaEasy</string>
+    <string name="app_name">PharmEasyRetail</string>
 
     <string name="internet">Please check your Internet Connection</string>
     <string name="timeout">Timeout error</string>
@@ -25,6 +25,13 @@
     <string name="app_logo">AppLogo</string>
     <string name="settings">Settings</string>
     <string name="support">Support</string>
+    <string name="userid">User ID</string>
+    <string name="password">Password</string>
+    <string name="log_in">Login</string>
+    <string name="using_otp">Using OTP</string>
+    <string name="roboto_regular">roboto_regular.ttf</string>
+    <string name="roboto_bold">roboto_bold.ttf</string>
+    <string name="roboto_medium">roboto_medium.ttf</string>
     <!--<string name="template_list">Template List</string>-->
 
 
@@ -33,9 +40,4 @@
     <!-- Strings related to login -->
 
     <!--********Tree view holder icon codes****************-->
-
-    <string-array name="dummy_array">
-        <item>Mediplus Drug Point</item>
-        <item>Om Sai Drug Point</item>
-    </string-array>
 </resources>
