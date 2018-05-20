@@ -14,6 +14,11 @@
     <color name="themecolor">#00b4bf</color>
     <color name="viewlinecolor">#00baff</color>
     <color name="transparent">#00000000</color>
+    <color name="dividercolor">#dddddd</color>
+    <color name="dayBookTextColor">#017c84</color>
+    <color name="daybooklightgreycolor">#edefee</color>
+
+
 
 
     <!--// DMS //-->
