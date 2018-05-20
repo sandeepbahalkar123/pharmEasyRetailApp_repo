@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.scorg.farmaeasy.R;
@@ -95,7 +96,8 @@ public class BottomMenuActivity extends AppCompatActivity implements BottomMenuA
 
     @Override
     public void onBottomMenuClick(BottomMenu bottomMenu) {
-
+        if (bottomMenu.getMenuName().equalsIgnoreCase("Book"))
+            Toast.makeText(mContext, "Book pressed", Toast.LENGTH_LONG).show();
     }
 
     @Override

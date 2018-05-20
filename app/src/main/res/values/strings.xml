@@ -52,6 +52,10 @@
     <string name="creditPurchase">Credit purcase</string>
     <string name="total">Total</string>
     <string name="closingBalance">Closing Balance</string>
+    <string name="toDate">To</string>
+    <string name="products">Products</string>
+    <string name="quantity">QTY</string>
+
     <!--<string name="template_list">Template List</string>-->
 
 

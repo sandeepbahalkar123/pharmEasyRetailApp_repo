@@ -40,6 +40,7 @@
     <dimen name="dp3">3dp</dimen>
     <dimen name="dp100">100dp</dimen>
     <dimen name="dp17">17dp</dimen>
+    <dimen name="dp19">19dp</dimen>
     <dimen name="dp23">23dp</dimen>
     <dimen name="sp10">10sp</dimen>
     <dimen name="dp28">28dp</dimen>
@@ -75,5 +76,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="dp90">90dp</dimen>
+    <dimen name="dp15">15dp</dimen>
+    <dimen name="dp45">45dp</dimen>
 
 </resources>

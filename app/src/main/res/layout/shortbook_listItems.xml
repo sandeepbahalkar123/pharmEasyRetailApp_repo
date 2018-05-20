@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/daybooklightgreycolor">
+
+    <LinearLayout
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10">
+
+            <TextView
+                android:id="@+id/productname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15"
+                tools:text="Combiflam 400mg" />
+
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/productname"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingLeft="@dimen/dp5"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15"
+                tools:text="10 Tab's" />
+
+
+            <TextView
+                android:id="@+id/totalQTY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp45"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15"
+                tools:text="50" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/particularlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp3">
+
+            <TextView
+                android:id="@+id/compShortName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp12"
+                tools:text="SVF - DVP" />
+
+            <TextView
+                android:id="@+id/noOfQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/compShortName"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingLeft="@dimen/dp5"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp12"
+                tools:text="5 Strips" />
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginTop="@dimen/dp8"
+            android:background="@color/dividercolor" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

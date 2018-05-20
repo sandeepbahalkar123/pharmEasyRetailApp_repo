@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp80"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp17"
             android:orientation="horizontal">
 
             <TextView
@@ -48,16 +48,15 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp1"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp16"
             android:background="@color/dividercolor" />
 
         <LinearLayout
             android:id="@+id/particularlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp10"
             android:layout_marginLeft="@dimen/dp23"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp17"
             android:orientation="horizontal">
 
             <TextView
@@ -94,7 +93,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp12"
+            android:layout_marginTop="@dimen/dp17"
             android:background="@color/themecolor"
             android:orientation="horizontal"
             >
@@ -102,8 +101,8 @@
             <TextView
                 android:layout_width="@dimen/dp90"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
+                android:paddingBottom="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
                 android:layout_marginLeft="@dimen/dp23"
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_medium"
@@ -120,7 +119,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp15"
-                tools:text="100000.00" />
+                tools:text="999567.80" />
 
             <TextView
                 android:id="@+id/openingbalnaceCreditValue"
@@ -409,8 +408,8 @@
                 android:layout_marginLeft="@dimen/dp23"
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_medium"
-                android:paddingBottom="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
+                android:paddingBottom="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
                 android:text="@string/total"
                 android:textColor="@color/dayBookTextColor"
                 android:textSize="@dimen/sp15" />
@@ -459,8 +458,8 @@
                 android:layout_marginLeft="@dimen/dp23"
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_medium"
-                android:paddingBottom="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
+                android:paddingBottom="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
                 android:text="@string/closingBalance"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp15" />

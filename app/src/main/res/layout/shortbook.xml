@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/selectdatelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp17"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/select_date"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:id="@+id/selectdateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_weight="0.2"
+                android:drawableLeft="@drawable/login_username"
+                android:drawablePadding="@dimen/dp6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp13"
+                tools:text="17/05/2018" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/toDate"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:id="@+id/todateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_weight="0.4"
+                android:drawableLeft="@drawable/login_username"
+                android:drawablePadding="@dimen/dp6"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/themecolor"
+                android:textSize="@dimen/sp13"
+                tools:text="17/05/2018" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginTop="@dimen/dp16"
+            android:background="@color/dividercolor" />
+
+        <RelativeLayout
+            android:id="@+id/particularlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp17">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/products"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp45"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/quantity"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginTop="@dimen/dp16"
+            android:background="@color/dividercolor" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shortBookList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
