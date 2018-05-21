@@ -114,25 +114,26 @@ public class LoginActivity extends AppCompatActivity implements HelperResponse {
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_LOGIN)) {
             //After login user navigated to HomeActivity
             LoginResponseModel receivedModel = (LoginResponseModel) customResponse;
-            PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.LOGIN_STATUS, Constants.YES, mContext);
-             Intent intent = new Intent(mContext, HomeActivity.class);
+            if (receivedModel.getCommon().getSuccess()) {
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.LOGIN_STATUS, Constants.YES, mContext);
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.AUTHTOKEN, receivedModel.getData().getAuthToken(), mContext);
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.EMPNAME, receivedModel.getData().getEmployeeData().getEmpName(), mContext);
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.USERNAME, receivedModel.getData().getEmployeeData().getUserName(), mContext);
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.EMPID, receivedModel.getData().getEmployeeData().getEmpId(), mContext);
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.USERTYPE, receivedModel.getData().getEmployeeData().getUserType(), mContext);
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, receivedModel.getData().getEmployeeData().getShopName(), mContext);
+                PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, receivedModel.getData().getEmployeeData().getShopId(), mContext);
+
+
+                Intent intent = new Intent(mContext, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
 
-
-//            if (receivedModel.getCommon().isSuccess()) {
-//                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.LOGIN_STATUS, Constants.YES, getActivity());
-//                Intent intent = new Intent(mContext, HomeActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
-//                finish();
-//
-//            } else {
-//                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
-//            }
+            } else {
+                CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
+            }
         }
     }
 

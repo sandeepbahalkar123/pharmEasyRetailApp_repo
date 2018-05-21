@@ -2,12 +2,12 @@ package com.scorg.farmaeasy.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.scorg.farmaeasy.interfaces.CustomResponse;
 
-public class Common implements Parcelable, CustomResponse{
+public class Common implements Parcelable
+{
 
     @SerializedName("success")
     @Expose
@@ -25,20 +25,26 @@ public class Common implements Parcelable, CustomResponse{
                 "unchecked"
         })
         public Common createFromParcel(Parcel in) {
-            Common instance = new Common();
-            instance.success = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-            instance.statusCode = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.statusMessage = ((String) in.readValue((String.class.getClassLoader())));
-            return instance;
+            return new Common(in);
         }
 
         public Common[] newArray(int size) {
             return (new Common[size]);
         }
 
-    };
+    }
+            ;
 
-    public Boolean isSuccess() {
+    protected Common(Parcel in) {
+        this.success = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+        this.statusCode = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.statusMessage = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Common() {
+    }
+
+    public Boolean getSuccess() {
         return success;
     }
 

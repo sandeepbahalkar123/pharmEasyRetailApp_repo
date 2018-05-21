@@ -223,11 +223,17 @@ public class PreferencesManager {
 
 
     public interface PREFERENCES_KEY {
+        String LOGIN_STATUS = "login_status";
+        String AUTHTOKEN = "authToken";
+        String EMPNAME = "empName";
+        String USERNAME = "userName";
+        String EMPID = "empId";
+        String USERTYPE = "userType";
+        String SHOPNAME = "shopName";
+        String SHOPID = "shopId";
 
         String EMAIL = "email";
-        String AUTHTOKEN = "authToken";
         String DOC_ID = "docId";
-        String LOGIN_STATUS = "login_status";
         String MOBILE_NUMBER = "mobileNumber";
         String LOGIN_OR_SIGNUP = "signup_login";
         String COACHMARK = "coachmark";
