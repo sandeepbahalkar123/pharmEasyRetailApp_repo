@@ -64,6 +64,7 @@
     <string name="doctorMobileNo">Mobile No :</string>
     <string name="totalUnits">Total Units :&#160;</string>
     <string name="totalAmount">Total Amt :&#160;</string>
+    <string name="sortBy">Sort By</string>
 
 
     <!--<string name="template_list">Template List</string>-->
