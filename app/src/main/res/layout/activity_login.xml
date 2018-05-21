@@ -27,7 +27,7 @@
             android:paddingLeft="@dimen/dp56"
             android:paddingRight="@dimen/dp56">
 
-            <com.scorg.farmaeasy.ui.customesViews.CustomEditText
+            <EditText
                 android:id="@+id/editTextUserId"
                 style="@style/AppLoginNewMainStyle"
                 android:drawableLeft="@drawable/login_username"
@@ -37,7 +37,7 @@
                 android:inputType="text"
                 android:maxLength="100"
                 android:paddingBottom="@dimen/dp13"
-                app:customFont="@string/roboto_regular" />
+                 />
             <!--  Email Label -->
             <View
                 android:layout_width="match_parent"

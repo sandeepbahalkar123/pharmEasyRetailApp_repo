@@ -55,6 +55,16 @@
     <string name="toDate">To</string>
     <string name="products">Products</string>
     <string name="quantity">QTY</string>
+    <string name="patientName">Patient Name :</string>
+    <string name="patientAddress">Address :</string>
+    <string name="patientMobileNo">Mobile No :</string>
+    <string name="patientGstNo">Patient GST No :</string>
+    <string name="doctorName">Doctor Name :</string>
+    <string name="doctorClinicAddress">Clinic Address :</string>
+    <string name="doctorMobileNo">Mobile No :</string>
+    <string name="totalUnits">Total Units :&#160;</string>
+    <string name="totalAmount">Total Amt :&#160;</string>
+
 
     <!--<string name="template_list">Template List</string>-->
 

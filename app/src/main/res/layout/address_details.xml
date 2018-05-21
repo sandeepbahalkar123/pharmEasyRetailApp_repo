@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/daybooklightgreycolor">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/patientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/patientName"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/editTextPatientName"
+                style="@style/AddressDetailsStyle"
+                android:inputType="text"
+                tools:text="Rohit Patil" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+            <TextView
+                android:id="@+id/patientAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/patientAddress"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/editTextPatientAddress"
+                style="@style/AddressDetailsStyle"
+                android:inputType="text"
+                tools:text="A-401,Grrenlands,Pimple Saudagar,Pune" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+            <TextView
+                android:id="@+id/patientMobileNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/patientMobileNo"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/editTextPatientMobileNo"
+                style="@style/AddressDetailsStyle"
+                android:inputType="text"
+                tools:text="9898989898" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+            <TextView
+                android:id="@+id/patientGstNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/patientGstNo"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/editTextPatientGstNo"
+                style="@style/AddressDetailsStyle"
+                android:inputType="text"
+                tools:text="27AABCBHJUT678" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+
+            <TextView
+                android:id="@+id/doctorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp25"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/doctorName"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/editTextDoctorName"
+                style="@style/AddressDetailsStyle"
+                android:inputType="text"
+                tools:text="Dr.Parag Khare" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+            <TextView
+                android:id="@+id/doctorClinicAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/doctorClinicAddress"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/editTextDoctorClinicAddress"
+                style="@style/AddressDetailsStyle"
+                android:inputType="text"
+                tools:text="Sai Clinic, 40/A Gangdhar lane ,Kothrud,Pune" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+            <TextView
+                android:id="@+id/doctorMobileNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/doctorMobileNo"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/editTextDoctorMobileNo"
+                style="@style/AddressDetailsStyle"
+                android:inputType="text"
+                tools:text="9819898198" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/viewlinecolor" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dayBookTextColor"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/totalUnits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingTop="@dimen/dp8"
+                    android:text="@string/totalUnits"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18" />
+
+                <TextView
+                    android:id="@+id/totalUnitsValue"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18"
+                    tools:text="120" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:background="@color/dividercolor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp10"
+                >
+
+                <TextView
+                    android:id="@+id/totalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingTop="@dimen/dp8"
+                    android:text="@string/totalAmount"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18" />
+
+                <TextView
+                    android:id="@+id/totalAmountValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18"
+                    tools:text="Rs 647/-" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
