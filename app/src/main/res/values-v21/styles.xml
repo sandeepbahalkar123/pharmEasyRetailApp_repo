@@ -54,4 +54,20 @@
         <item name="android:layout_height">@dimen/dp30</item>
     </style>
 
+    <style name="SaleProductsQuantityStyle">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color_batchquantitycolor</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingBottom">@dimen/dp0</item>
+        <item name="android:gravity">bottom|left</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textColorHint">@color/searchProducts_HighligtedTextColor</item>
+        <item name="android:textColor">@color/searchProducts_HighligtedTextColor</item>
+        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:layout_width">@dimen/dp40</item>
+        <item name="android:layout_height">@dimen/dp18</item>
+    </style>
+
 </resources>
