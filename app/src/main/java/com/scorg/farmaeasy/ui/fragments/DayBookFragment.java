@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
 
@@ -13,11 +12,6 @@ import com.scorg.farmaeasy.R;
  * A placeholder fragment containing a simple view.
  */
 public class DayBookFragment extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
-    private static final String ARG_SECTION_NUMBER = "section_number";
 
     public DayBookFragment() {
     }
@@ -26,12 +20,8 @@ public class DayBookFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static DayBookFragment newInstance(int sectionNumber) {
-        DayBookFragment fragment = new DayBookFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static DayBookFragment newInstance() {
+        return new DayBookFragment();
     }
 
     @Override

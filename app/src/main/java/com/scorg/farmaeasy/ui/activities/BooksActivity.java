@@ -45,8 +45,8 @@ public class BooksActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(DayBookFragment.newInstance(1), "DAY BOOK");
-        adapter.addFragment(ShortBookFragment.newInstance(1), "SHORT BOOK");
+        adapter.addFragment(DayBookFragment.newInstance(), "DAY BOOK");
+        adapter.addFragment(ShortBookFragment.newInstance(), "SHORT BOOK");
         viewPager.setAdapter(adapter);
     }
 

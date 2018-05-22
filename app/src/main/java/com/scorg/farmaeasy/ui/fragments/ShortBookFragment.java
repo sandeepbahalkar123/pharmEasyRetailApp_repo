@@ -13,11 +13,6 @@ import com.scorg.farmaeasy.R;
  * A placeholder fragment containing a simple view.
  */
 public class ShortBookFragment extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
-    private static final String ARG_SECTION_NUMBER = "section_number";
 
     public ShortBookFragment() {
     }
@@ -26,12 +21,8 @@ public class ShortBookFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static ShortBookFragment newInstance(int sectionNumber) {
-        ShortBookFragment fragment = new ShortBookFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static ShortBookFragment newInstance() {
+        return new ShortBookFragment();
     }
 
     @Override

@@ -13,11 +13,6 @@ import com.scorg.farmaeasy.R;
  * A placeholder fragment containing a simple view.
  */
 public class ProductFragment extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
-    private static final String ARG_SECTION_NUMBER = "section_number";
 
     public ProductFragment() {
     }
@@ -26,12 +21,8 @@ public class ProductFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static ProductFragment newInstance(int sectionNumber) {
-        ProductFragment fragment = new ProductFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static ProductFragment newInstance() {
+        return new ProductFragment();
     }
 
     @Override
