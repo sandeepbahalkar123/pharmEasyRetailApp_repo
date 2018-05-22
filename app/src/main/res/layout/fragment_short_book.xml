@@ -1,22 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/daybooklightgreycolor">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+    <LinearLayout
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_marginTop="@dimen/dp17"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/select_date"
+            android:textColor="@color/dayBookTextColor"
+            android:textSize="@dimen/sp15" />
+
+        <LinearLayout
+            android:id="@+id/selectDatelayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp58"
+            android:layout_marginLeft="@dimen/dp14"
+            android:layout_marginTop="@dimen/dp14"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/fromDateMainLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@color/white">
+
+                <View
+                    android:layout_width="@dimen/dp6"
+                    android:layout_height="wrap_content"
+                    android:background="@color/themecolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp13"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:id="@+id/fromDateValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp13"
+                    android:paddingEnd="@dimen/dp48"
+                    android:paddingRight="@dimen/dp48"
+                    android:paddingTop="@dimen/dp13"
+                    android:textColor="@color/themecolor"
+                    android:textSize="@dimen/sp13"
+                    tools:text="Tuesday, \n17 May 18" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/toDateMainLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp14"
+                android:layout_marginRight="@dimen/dp14"
+                android:layout_weight="1.0"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp13"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:id="@+id/toDateValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp13"
+                    android:paddingEnd="@dimen/dp48"
+                    android:paddingRight="@dimen/dp48"
+                    android:paddingTop="@dimen/dp13"
+                    android:textColor="@color/themecolor"
+                    android:textSize="@dimen/sp13"
+                    tools:text="Tuesday, \n17 May 18" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginTop="@dimen/dp16"
+            android:background="@color/dividercolor" />
+
+        <LinearLayout
+            android:id="@+id/productslayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.0"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
+                android:text="@string/products"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:id="@+id/sortBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
+                android:text="@string/sortBy"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
+                android:text="@string/quantity"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp15" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginTop="@dimen/dp16"
+            android:background="@color/dividercolor" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shortBookList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

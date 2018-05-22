@@ -37,16 +37,70 @@
         android:id="@+id/tabs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/fixedBottomLayout"
         android:layout_centerHorizontal="true"
-        app:tabGravity="fill"
-        app:tabPaddingStart="0dp"
-        android:layout_marginTop="@dimen/dp8"
         android:layout_marginBottom="@dimen/dp8"
-        app:tabPaddingEnd="0dp"
-        app:tabIndicatorColor="@color/transparent"
+        android:layout_marginTop="@dimen/dp8"
         app:tabBackground="@color/transparent"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/transparent"
         app:tabMode="fixed"
+        app:tabPaddingEnd="0dp"
+        app:tabPaddingStart="0dp"
         app:tabTextAppearance="@style/tabLayout" />
+
+    <LinearLayout
+        android:id="@+id/fixedBottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dayBookTextColor"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/totalUnits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="6 Items"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="@dimen/dp1"
+            android:layout_height="@dimen/dp32"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:background="@color/dividercolor" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.6">
+
+            <TextView
+                android:id="@+id/totalAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Total ₹ 00,76,676.00"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

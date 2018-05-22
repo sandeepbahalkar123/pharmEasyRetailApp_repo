@@ -96,8 +96,7 @@ public class BottomMenuActivity extends AppCompatActivity implements BottomMenuA
 
     @Override
     public void onBottomMenuClick(BottomMenu bottomMenu) {
-        if (bottomMenu.getMenuName().equalsIgnoreCase("Book"))
-            Toast.makeText(mContext, "Book pressed", Toast.LENGTH_LONG).show();
+
     }
 
     @Override

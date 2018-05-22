@@ -28,7 +28,7 @@ public class AddDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_day_book, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_address_details, container, false);
 
         return rootView;
     }

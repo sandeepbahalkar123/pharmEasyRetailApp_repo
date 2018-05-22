@@ -40,6 +40,12 @@ public class PagerActivity extends AppCompatActivity {
             R.drawable.billing_selected
     };
 
+    private String[] titles = {
+            "Product",
+            "Add Details",
+            "Billing"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +53,7 @@ public class PagerActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add Details");
+        getSupportActionBar().setTitle(titles[0]);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
@@ -65,6 +71,7 @@ public class PagerActivity extends AppCompatActivity {
                 ImageView tabIconOne = customView.findViewById(R.id.icon);
                 tabIconOne.setImageResource(tabIconsSelected[tab.getPosition()]);
                 tabIconOne.setBackgroundResource(R.drawable.selected_back);
+                getSupportActionBar().setTitle(titles[tab.getPosition()]);
             }
 
             @Override

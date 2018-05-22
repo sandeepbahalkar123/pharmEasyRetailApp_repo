@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp12"
-            android:layout_marginTop="@dimen/dp17"
+            android:layout_marginTop="@dimen/dp14"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/select_date"
             android:textColor="@color/dayBookTextColor"
@@ -25,7 +25,7 @@
         <LinearLayout
             android:id="@+id/selectDatelayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp58"
+            android:layout_height="@dimen/dp56"
             android:layout_marginLeft="@dimen/dp14"
             android:layout_marginTop="@dimen/dp14"
             android:orientation="horizontal">
@@ -102,7 +102,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp1"
-            android:layout_marginTop="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp14"
             android:background="@color/dividercolor" />
 
         <LinearLayout
@@ -118,10 +118,10 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.8"
                 android:fontFamily="@font/roboto_bold"
-                android:paddingBottom="@dimen/dp17"
+                android:paddingBottom="@dimen/dp14"
                 android:paddingLeft="@dimen/dp23"
                 android:paddingStart="@dimen/dp23"
-                android:paddingTop="@dimen/dp17"
+                android:paddingTop="@dimen/dp14"
                 android:text="@string/particular"
                 android:textColor="@color/dayBookTextColor"
                 android:textSize="@dimen/sp15" />
@@ -131,9 +131,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/roboto_bold"
-                android:paddingBottom="@dimen/dp17"
+                android:paddingBottom="@dimen/dp14"
                 android:paddingLeft="@dimen/dp23"
-                android:paddingTop="@dimen/dp17"
+                android:paddingTop="@dimen/dp14"
                 android:text="@string/debit"
                 android:textColor="@color/dayBookTextColor"
                 android:textSize="@dimen/sp15" />
@@ -143,9 +143,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/roboto_bold"
-                android:paddingBottom="@dimen/dp17"
+                android:paddingBottom="@dimen/dp14"
                 android:paddingLeft="@dimen/dp32"
-                android:paddingTop="@dimen/dp17"
+                android:paddingTop="@dimen/dp14"
                 android:text="@string/credit"
                 android:textColor="@color/dayBookTextColor"
                 android:textSize="@dimen/sp15" />
@@ -163,8 +163,8 @@
                 android:layout_marginLeft="@dimen/dp23"
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_medium"
-                android:paddingBottom="@dimen/dp17"
-                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp14"
+                android:paddingTop="@dimen/dp14"
                 android:text="@string/openingBalance"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp15" />
@@ -425,7 +425,7 @@
                     android:layout_marginLeft="@dimen/dp23"
                     android:layout_weight="0.4"
                     android:fontFamily="@font/roboto_regular"
-                    android:paddingBottom="@dimen/dp17"
+                    android:paddingBottom="@dimen/dp14"
                     android:paddingTop="@dimen/dp7"
                     android:text="@string/creditPurchase"
                     android:textColor="@color/dayBookTextColor"
@@ -492,8 +492,8 @@
                 android:layout_marginLeft="@dimen/dp23"
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_medium"
-                android:paddingBottom="@dimen/dp17"
-                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp14"
+                android:paddingTop="@dimen/dp14"
                 android:text="@string/total"
                 android:textColor="@color/dayBookTextColor"
                 android:textSize="@dimen/sp15" />
@@ -543,8 +543,8 @@
                 android:layout_marginLeft="@dimen/dp23"
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_medium"
-                android:paddingBottom="@dimen/dp17"
-                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp14"
+                android:paddingTop="@dimen/dp14"
                 android:text="@string/closingBalance"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp15" />
