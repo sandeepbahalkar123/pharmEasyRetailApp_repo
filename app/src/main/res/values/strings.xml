@@ -65,6 +65,8 @@
     <string name="totalUnits">Total Units :&#160;</string>
     <string name="totalAmount">Total Amt :&#160;</string>
     <string name="sortBy">Sort By</string>
+    <string name="stock">STOCK</string>
+    <string name="estimatedPrice">Estimated Price :&#160;</string>
 
 
     <!--<string name="template_list">Template List</string>-->

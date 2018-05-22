@@ -80,5 +80,6 @@
     <dimen name="dp15">15dp</dimen>
     <dimen name="dp45">45dp</dimen>
     <dimen name="dp64">64dp</dimen>
+    <dimen name="dp39">39dp</dimen>
 
 </resources>

@@ -21,6 +21,8 @@
     <color name="searchProducts_TextColor">#969696</color>
     <color name="searchProducts_HighligtedTextColor">#2e7d84</color>
     <color name="searchProducts_expiryDateTextColor">#458e93</color>
+    <color name="productsList_unitTextColor">#43b6c0</color>
+
 
 
 
