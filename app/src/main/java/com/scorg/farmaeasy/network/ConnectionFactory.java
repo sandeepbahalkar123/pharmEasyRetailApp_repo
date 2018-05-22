@@ -47,7 +47,7 @@ public class ConnectionFactory extends ConnectRequest {
         Map<String, String> headerParams = new HashMap<>();
         String authorizationString = PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.AUTHTOKEN, mContext);
         headerParams.put(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON);
-//        headerParams.put(Constants.AUTHORIZATION_TOKEN, authorizationString);
+        headerParams.put(Constants.AUTHORIZATION_TOKEN, authorizationString);
 //        headerParams.put(Constants.DEVICEID, device.getDeviceId());
 //        headerParams.put(Constants.OS, device.getOS());
 //        headerParams.put(Constants.OSVERSION, device.getOSVersion());

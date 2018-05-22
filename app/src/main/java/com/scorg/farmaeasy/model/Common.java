@@ -5,8 +5,9 @@ import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.scorg.farmaeasy.interfaces.CustomResponse;
 
-public class Common implements Parcelable
+public class Common implements Parcelable, CustomResponse
 {
 
     @SerializedName("success")
