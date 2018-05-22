@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/daybooklightgreycolor">
 
     <LinearLayout
-        android:id="@+id/mainlayout"
+        android:id="@+id/topLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -194,272 +193,292 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/daybooklightgreycolor"
-            android:orientation="horizontal">
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="@dimen/dp90"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp23"
-                android:layout_weight="0.4"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingBottom="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
-                android:text="@string/cashSale"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15" />
 
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp30"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/cashsaleDebitValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp16"
-                android:layout_weight="0.6"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="2000.00" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp30"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/cashsaleCreditValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingLeft="@dimen/dp20"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="" />
-        </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomLayout"
+        android:layout_below="@+id/topLayout"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/mainlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/daybooklightgreycolor"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="@dimen/dp90"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp23"
-                android:layout_weight="0.4"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingBottom="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
-                android:text="@string/creditSale"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp30"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/creditsaleDebitValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp16"
-                android:layout_weight="0.6"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="2000.00" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp30"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/creditsaleCreditValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingLeft="@dimen/dp20"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/daybooklightgreycolor"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/dp90"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp23"
-                android:layout_weight="0.4"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingBottom="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
-                android:text="@string/creditCardSale"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp30"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/creditcardsaleDebitValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp16"
-                android:layout_weight="0.6"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="2000.00" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp30"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/creditcardsaleCreditValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingLeft="@dimen/dp20"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/daybooklightgreycolor"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/dp90"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp23"
-                android:layout_weight="0.4"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingBottom="@dimen/dp7"
-                android:paddingTop="@dimen/dp23"
-                android:text="@string/cashPurchase"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp50"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/cashPurchaseDebitValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp16"
-                android:layout_weight="0.6"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp50"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/cashPurchaseCreditValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingLeft="@dimen/dp20"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="2000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/daybooklightgreycolor"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/dp90"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp23"
-                android:layout_weight="0.4"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingBottom="@dimen/dp17"
-                android:paddingTop="@dimen/dp7"
-                android:text="@string/creditPurchase"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp40"
-                android:background="@color/daybooklightgreycolor" />
-
-            <TextView
-                android:id="@+id/creditPurchaseDebitValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp16"
-                android:layout_weight="0.6"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="" />
-
-            <View
-                android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp40"
-                android:background="@color/dividercolor" />
-
-            <TextView
-                android:id="@+id/creditPurchaseCreditValue"
-                android:layout_width="@dimen/dp44"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingLeft="@dimen/dp20"
-                android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="2000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/daybooklightgreycolor"
-            android:orientation="horizontal">
-
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp1"
-                android:background="@color/dividercolor" />
+                android:layout_height="wrap_content"
+                android:background="@color/daybooklightgreycolor"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp90"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp23"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp7"
+                    android:paddingTop="@dimen/dp7"
+                    android:text="@string/cashSale"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp30"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/cashsaleDebitValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:layout_weight="0.6"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="2000.00" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp30"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/cashsaleCreditValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingLeft="@dimen/dp20"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/daybooklightgreycolor"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp90"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp23"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp7"
+                    android:paddingTop="@dimen/dp7"
+                    android:text="@string/creditSale"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp30"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/creditsaleDebitValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:layout_weight="0.6"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="2000.00" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp30"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/creditsaleCreditValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingLeft="@dimen/dp20"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/daybooklightgreycolor"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp90"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp23"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp7"
+                    android:paddingTop="@dimen/dp7"
+                    android:text="@string/creditCardSale"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp30"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/creditcardsaleDebitValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:layout_weight="0.6"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="2000.00" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp30"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/creditcardsaleCreditValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingLeft="@dimen/dp20"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/daybooklightgreycolor"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp90"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp23"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp7"
+                    android:paddingTop="@dimen/dp23"
+                    android:text="@string/cashPurchase"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp50"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/cashPurchaseDebitValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:layout_weight="0.6"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp50"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/cashPurchaseCreditValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingLeft="@dimen/dp20"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="2000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/daybooklightgreycolor"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp90"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp23"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp17"
+                    android:paddingTop="@dimen/dp7"
+                    android:text="@string/creditPurchase"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp40"
+                    android:background="@color/daybooklightgreycolor" />
+
+                <TextView
+                    android:id="@+id/creditPurchaseDebitValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:layout_weight="0.6"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp40"
+                    android:background="@color/dividercolor" />
+
+                <TextView
+                    android:id="@+id/creditPurchaseCreditValue"
+                    android:layout_width="@dimen/dp44"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingLeft="@dimen/dp20"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="2000" />
+            </LinearLayout>
+
         </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/dividercolor" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -481,7 +500,7 @@
 
             <View
                 android:layout_width="@dimen/dp1"
-                android:layout_height="@dimen/dp30"
+                android:layout_height="@dimen/dp45"
                 android:background="@color/dividercolor" />
 
             <TextView
@@ -555,6 +574,6 @@
                 tools:text="" />
         </LinearLayout>
 
-
     </LinearLayout>
+
 </RelativeLayout>
