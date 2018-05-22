@@ -23,7 +23,7 @@
             android:textSize="@dimen/sp15" />
 
         <LinearLayout
-            android:id="@+id/selectdatelayout"
+            android:id="@+id/selectDatelayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp58"
             android:layout_marginLeft="@dimen/dp14"
@@ -31,7 +31,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/toDateMainLayout"
+                android:id="@+id/fromDateMainLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
@@ -50,7 +50,7 @@
                     android:src="@drawable/calendar" />
 
                 <TextView
-                    android:id="@+id/toDateValue"
+                    android:id="@+id/fromDateValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -66,7 +66,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fromDateMainLayout"
+                android:id="@+id/toDateMainLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp14"
@@ -82,7 +82,7 @@
                     android:src="@drawable/calendar" />
 
                 <TextView
-                    android:id="@+id/fromDateValue"
+                    android:id="@+id/toDateValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

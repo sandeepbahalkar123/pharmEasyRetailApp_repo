@@ -17,6 +17,14 @@
     <color name="dividercolor">#dddddd</color>
     <color name="dayBookTextColor">#017c84</color>
     <color name="daybooklightgreycolor">#edefee</color>
+    <color name="shortBookTextColor">#00b7c2</color>
+    <color name="searchProducts_TextColor">#969696</color>
+    <color name="searchProducts_HighligtedTextColor">#2e7d84</color>
+    <color name="searchProducts_expiryDateTextColor">#458e93</color>
+
+
+
+
 
 
 

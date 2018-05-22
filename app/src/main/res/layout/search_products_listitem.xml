@@ -23,21 +23,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/shortBookTextColor"
-                android:textSize="@dimen/sp13"
-                tools:text="Combiflam 400mg" />
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/searchProducts_TextColor"
+                android:textSize="@dimen/sp16"
+                tools:text="Combiflam" />
 
             <TextView
                 android:id="@+id/unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/productname"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/roboto_regular"
                 android:paddingLeft="@dimen/dp5"
-                android:textColor="@color/shortBookTextColor"
-                android:textSize="@dimen/sp13"
-                tools:text="10 Tab's" />
+                android:textColor="@color/searchProducts_TextColor"
+                android:textSize="@dimen/sp16"
+                tools:text="20 Tab's" />
 
 
             <TextView
@@ -45,11 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dp45"
+                android:layout_marginRight="@dimen/dp15"
                 android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/shortBookTextColor"
+                android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp12"
-                tools:text="50" />
+                tools:text="QTY : 50" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -60,25 +60,36 @@
             android:layout_marginTop="@dimen/dp3">
 
             <TextView
-                android:id="@+id/compShortName"
+                android:id="@+id/expiryDateInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/shortBookTextColor"
+                android:textColor="@color/searchProducts_expiryDateTextColor"
                 android:textSize="@dimen/sp12"
-                tools:text="SVF - DVP" />
+                tools:text="SVF - 11/19 -" />
 
             <TextView
-                android:id="@+id/noOfQty"
+                android:id="@+id/rateInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/compShortName"
+                android:layout_toRightOf="@+id/expiryDateInfo"
                 android:fontFamily="@font/roboto_regular"
                 android:paddingLeft="@dimen/dp5"
-                android:textColor="@color/shortBookTextColor"
-                android:textSize="@dimen/sp11"
-                tools:text="5 Strips" />
+                android:textColor="@color/searchProducts_expiryDateTextColor"
+                android:textSize="@dimen/sp12"
+                tools:text="Rs 27.50/-" />
+
+            <TextView
+                android:id="@+id/batchInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp15"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/searchProducts_HighligtedTextColor"
+                android:textSize="@dimen/sp12"
+                tools:text="2 Batch" />
 
         </RelativeLayout>
 
