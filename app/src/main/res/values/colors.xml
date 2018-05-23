@@ -24,6 +24,9 @@
     <color name="searchProducts_HighligtedTextColor">#2e7d84</color>
     <color name="searchProducts_expiryDateTextColor">#458e93</color>
     <color name="productsList_unitTextColor">#43b6c0</color>
-    <!--// DMS //-->
+
+    <color name="lightgreycolor_billingdetails">#edefed</color>
+    <color name="dividercolor_billingdetails">#dcdcdc</color>
+    <color name="qtyAmountTextColor_billingdetails">#626262</color>
 
 </resources>

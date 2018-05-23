@@ -19,9 +19,9 @@ import com.scorg.farmaeasy.util.Constants;
  */
 
 public class LoginHelper implements ConnectionListener {
-    String TAG = this.getClass().getName();
-    Context mContext;
-    HelperResponse mHelperResponseManager;
+    private String TAG = this.getClass().getName();
+    private Context mContext;
+    private HelperResponse mHelperResponseManager;
 
     public LoginHelper(Context context, HelperResponse loginActivity) {
         this.mContext = context;
@@ -40,7 +40,6 @@ public class LoginHelper implements ConnectionListener {
                         LoginResponseModel loginResponseModel = (LoginResponseModel) customResponse;
                         mHelperResponseManager.onSuccess(mOldDataTag, loginResponseModel);
                         break;
-                   
                 }
                 break;
             case ConnectionListener.PARSE_ERR0R:

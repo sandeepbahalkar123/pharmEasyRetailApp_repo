@@ -43,6 +43,10 @@
         <activity
             android:name=".ui.activities.PagerActivity"
             android:label="@string/title_activity_pager"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activities.ProductsActivity"
+            android:label="@string/title_activity_products"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

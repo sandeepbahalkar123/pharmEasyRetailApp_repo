@@ -64,9 +64,14 @@
     <string name="doctorMobileNo">Mobile No :</string>
     <string name="totalUnits">Total Units :&#160;</string>
     <string name="totalAmount">Total Amt :&#160;</string>
+    <string name="Amount">AMT</string>
     <string name="sortBy">Sort By</string>
     <string name="stock">STOCK</string>
     <string name="estimatedPrice">Estimated Price :&#160;</string>
+    <string name="discount">Discount</string>
+    <string name="title_activity_products">Product</string>
+    <string name="search_hint">Search Products</string>
+    <string name="menu_search">Search</string>
 
 
     <!--<string name="template_list">Template List</string>-->

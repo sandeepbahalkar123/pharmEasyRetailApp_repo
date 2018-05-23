@@ -98,7 +98,7 @@ public class HomeActivity extends BottomMenuActivity {
             Intent intentObj = new Intent(mContext, BooksActivity.class);
             startActivity(intentObj);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Sale")) {
-            Intent intentObj = new Intent(mContext, PagerActivity.class);
+            Intent intentObj = new Intent(mContext, ProductsActivity.class);
             startActivity(intentObj);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Support")) {
             Log.d(TAG, "Support");
