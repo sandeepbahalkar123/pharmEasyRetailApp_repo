@@ -8,6 +8,9 @@
     tools:context=".ui.activities.ProductsActivity"
     tools:showIn="@layout/activity_products">
 
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/productList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
