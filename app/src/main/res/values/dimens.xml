@@ -81,5 +81,8 @@
     <dimen name="dp45">45dp</dimen>
     <dimen name="dp64">64dp</dimen>
     <dimen name="dp39">39dp</dimen>
+    <dimen name="dp160">160dp</dimen>
+    <dimen name="dp200">200dp</dimen>
+    <dimen name="dp185">185dp</dimen>
 
 </resources>
