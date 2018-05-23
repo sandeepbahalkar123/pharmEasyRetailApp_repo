@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgreycolor_billingdetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/mainlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/productslayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp185"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.2"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp17"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingTop="@dimen/dp17"
+                    android:text="@string/products"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp17"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingTop="@dimen/dp17"
+                    android:text="@string/quantity"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingBottom="@dimen/dp17"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingTop="@dimen/dp17"
+                    android:text="@string/Amount"
+                    android:textColor="@color/dayBookTextColor"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp160" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp30"
+                android:background="@color/dividercolor_billingdetails" />
+
+            <LinearLayout
+                android:id="@+id/totallayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp185"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.2"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp22"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingTop="@dimen/dp19"
+                    android:text="@string/total"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp64"
+                    android:background="@color/dividercolor_billingdetails" />
+
+
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp22"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingTop="@dimen/dp19"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="7250" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp64"
+                    android:background="@color/dividercolor_billingdetails" />
+
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp22"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingTop="@dimen/dp19"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="84659.06" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/discountlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp185"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/dp185"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/discount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:paddingBottom="@dimen/dp12"
+                            android:paddingLeft="@dimen/dp15"
+                            android:paddingStart="@dimen/dp15"
+                            android:text="@string/discount"
+                            android:textColor="@color/searchProducts_HighligtedTextColor"
+                            android:textSize="@dimen/sp15" />
+
+                        <EditText
+                            android:id="@+id/editTextDiscount"
+                            style="@style/BillDiscountStyle"
+                            android:layout_alignBaseline="@+id/discount"
+                            android:layout_marginLeft="@dimen/dp30"
+                            android:layout_toRightOf="@+id/discount"
+                            android:drawableEnd="@drawable/percentage"
+                            android:drawableRight="@drawable/percentage"
+                            android:inputType="number"
+                            tools:text="10" />
+
+                        <View
+                            android:layout_width="@dimen/dp35"
+                            android:layout_height="@dimen/dp1"
+                            android:layout_alignLeft="@+id/editTextDiscount"
+                            android:layout_alignStart="@+id/editTextDiscount"
+                            android:layout_below="@+id/editTextDiscount"
+                            android:background="@color/searchProducts_HighligtedTextColor" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp40"
+                    android:background="@color/dividercolor_billingdetails" />
+
+
+                <TextView
+                    android:id="@+id/quantity_discount"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp40"
+                    android:background="@color/dividercolor_billingdetails" />
+
+
+                <TextView
+                    android:id="@+id/amount_discount"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="8465.90" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/dividercolor_billingdetails" />
+
+            <LinearLayout
+                android:id="@+id/netamountlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp185"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.2"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingTop="@dimen/dp12"
+                    android:text="@string/netamt"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp48"
+                    android:background="@color/dividercolor_billingdetails" />
+
+
+                <TextView
+                    android:id="@+id/quantity_netamount"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingTop="@dimen/dp12"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="7250" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/dp48"
+                    android:background="@color/dividercolor_billingdetails" />
+
+
+                <TextView
+                    android:id="@+id/amount_netamount"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingTop="@dimen/dp12"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15"
+                    tools:text="84659.06" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/dividercolor_billingdetails" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/transationMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingTop="@dimen/dp12"
+                    android:text="@string/transactionmode"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_border">
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/shopSelection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_drop_down_blue"
+                        android:entries="@array/spinnerArray"
+                        android:paddingRight="@dimen/dp45" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp40"
+                android:layout_marginBottom="@dimen/dp40"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/print"
+                    android:layout_width="@dimen/dp120"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/dp35"
+                    android:layout_marginRight="@dimen/dp45"
+                    android:background="@color/searchProducts_HighligtedTextColor"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/print"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15" />
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="@dimen/dp120"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp35"
+                    android:background="@drawable/rectangle_border"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/save"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -69,6 +69,15 @@
     <string name="stock">STOCK</string>
     <string name="estimatedPrice">Estimated Price :&#160;</string>
     <string name="discount">Discount</string>
+    <string name="netamt">Net Amt</string>
+    <string name="transactionmode">Transation Mode</string>
+    <string name="print">PRINT</string>
+    <string name="save">SAVE</string>
+
+    <array name="spinnerArray">
+        <item >Cash</item>
+        <item >Credit</item>
+    </array>
 
 
     <!--<string name="template_list">Template List</string>-->
