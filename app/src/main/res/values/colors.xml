@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="colorPrimary">#00b4bf</color>
+    <color name="colorPrimaryDark">#017b83</color>
+    <color name="colorAccent">#00b4bf</color>
+
     <item name="errorColor" type="color">#BD362F</item>
     <color name="black">#000000</color>
     <color name="tagColor">#04abdf</color>
     <color name="white">#ffffff</color>
-    <color name="colorPrimary">#00b4bf</color>
-    <color name="colorPrimaryDark">#00b4bf</color>
-    <color name="colorAccent">#00b4bf</color>
     <color name="accent">#00b4bf</color>
     <color name="hint_color_my_appointment">#99ffffff</color>
     <color name="grey">#b3b3b3</color>
@@ -22,15 +24,6 @@
     <color name="searchProducts_HighligtedTextColor">#2e7d84</color>
     <color name="searchProducts_expiryDateTextColor">#458e93</color>
     <color name="productsList_unitTextColor">#43b6c0</color>
-
-
-
-
-
-
-
-
-
     <!--// DMS //-->
 
 </resources>

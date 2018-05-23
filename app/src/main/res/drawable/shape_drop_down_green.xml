@@ -13,6 +13,7 @@
     <item>
         <bitmap
             android:gravity="end"
-            android:src="@drawable/shape_green" />
+            android:src="@drawable/shape_green"
+            android:tint="@color/menu_color"/>
     </item>
 </layer-list>

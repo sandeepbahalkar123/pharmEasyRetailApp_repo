@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/daybooklightgreycolor">
@@ -16,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp12"
+            android:layout_marginStart="@dimen/dp12"
             android:layout_marginTop="@dimen/dp14"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/select_date"
@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp56"
             android:layout_marginLeft="@dimen/dp14"
+            android:layout_marginStart="@dimen/dp14"
             android:layout_marginTop="@dimen/dp14"
             android:orientation="horizontal">
 
@@ -59,9 +60,9 @@
                     android:paddingEnd="@dimen/dp48"
                     android:paddingRight="@dimen/dp48"
                     android:paddingTop="@dimen/dp13"
+                    android:text="Tuesday, \n17 May 18"
                     android:textColor="@color/themecolor"
-                    android:textSize="@dimen/sp13"
-                    tools:text="Tuesday, \n17 May 18" />
+                    android:textSize="@dimen/sp13" />
 
             </LinearLayout>
 
@@ -91,9 +92,9 @@
                     android:paddingEnd="@dimen/dp48"
                     android:paddingRight="@dimen/dp48"
                     android:paddingTop="@dimen/dp13"
+                    android:text="Tuesday, \n17 May 18"
                     android:textColor="@color/themecolor"
-                    android:textSize="@dimen/sp13"
-                    tools:text="Tuesday, \n17 May 18" />
+                    android:textSize="@dimen/sp13" />
 
             </LinearLayout>
 
@@ -176,9 +177,9 @@
                 android:layout_marginLeft="@dimen/dp16"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_medium"
+                android:text="999567.80"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp15"
-                tools:text="999567.80" />
+                android:textSize="@dimen/sp15" />
 
             <TextView
                 android:id="@+id/openingbalnaceCreditValue"
@@ -187,9 +188,9 @@
                 android:layout_weight="0.8"
                 android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="@dimen/dp20"
+                android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp15"
-                tools:text="" />
+                android:textSize="@dimen/sp15" />
         </LinearLayout>
 
 
@@ -239,9 +240,9 @@
                     android:layout_marginLeft="@dimen/dp16"
                     android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="2000.00"
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="2000.00" />
+                    android:textSize="@dimen/sp15" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -255,9 +256,9 @@
                     android:layout_weight="0.8"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingLeft="@dimen/dp20"
+                    android:text=""
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="" />
+                    android:textSize="@dimen/sp15" />
             </LinearLayout>
 
             <LinearLayout
@@ -270,6 +271,7 @@
                     android:layout_width="@dimen/dp90"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp23"
+                    android:layout_marginStart="@dimen/dp23"
                     android:layout_weight="0.4"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingBottom="@dimen/dp7"
@@ -288,11 +290,12 @@
                     android:layout_width="@dimen/dp44"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp16"
+                    android:layout_marginStart="@dimen/dp16"
                     android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="2000.00"
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="2000.00" />
+                    android:textSize="@dimen/sp15" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -306,9 +309,9 @@
                     android:layout_weight="0.8"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingLeft="@dimen/dp20"
+                    android:text=""
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="" />
+                    android:textSize="@dimen/sp15" />
             </LinearLayout>
 
             <LinearLayout
@@ -321,6 +324,7 @@
                     android:layout_width="@dimen/dp90"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp23"
+                    android:layout_marginStart="@dimen/dp23"
                     android:layout_weight="0.4"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingBottom="@dimen/dp7"
@@ -339,11 +343,12 @@
                     android:layout_width="@dimen/dp44"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp16"
+                    android:layout_marginStart="@dimen/dp16"
                     android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="2000.00"
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="2000.00" />
+                    android:textSize="@dimen/sp15" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -357,9 +362,9 @@
                     android:layout_weight="0.8"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingLeft="@dimen/dp20"
+                    android:text=""
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="" />
+                    android:textSize="@dimen/sp15" />
             </LinearLayout>
 
             <LinearLayout
@@ -372,6 +377,7 @@
                     android:layout_width="@dimen/dp90"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp23"
+                    android:layout_marginStart="@dimen/dp23"
                     android:layout_weight="0.4"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingBottom="@dimen/dp7"
@@ -390,11 +396,12 @@
                     android:layout_width="@dimen/dp44"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp16"
+                    android:layout_marginStart="@dimen/dp16"
                     android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
+                    android:text=""
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="" />
+                    android:textSize="@dimen/sp15" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -408,9 +415,9 @@
                     android:layout_weight="0.8"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingLeft="@dimen/dp20"
+                    android:text="2000"
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="2000" />
+                    android:textSize="@dimen/sp15" />
             </LinearLayout>
 
             <LinearLayout
@@ -423,6 +430,7 @@
                     android:layout_width="@dimen/dp90"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp23"
+                    android:layout_marginStart="@dimen/dp23"
                     android:layout_weight="0.4"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingBottom="@dimen/dp14"
@@ -441,11 +449,12 @@
                     android:layout_width="@dimen/dp44"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp16"
+                    android:layout_marginStart="@dimen/dp16"
                     android:layout_weight="0.6"
                     android:fontFamily="@font/roboto_regular"
+                    android:text=""
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="" />
+                    android:textSize="@dimen/sp15" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -459,9 +468,9 @@
                     android:layout_weight="0.8"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingLeft="@dimen/dp20"
+                    android:text="2000"
                     android:textColor="@color/dayBookTextColor"
-                    android:textSize="@dimen/sp15"
-                    tools:text="2000" />
+                    android:textSize="@dimen/sp15" />
             </LinearLayout>
 
         </LinearLayout>
@@ -490,6 +499,7 @@
                 android:layout_width="@dimen/dp90"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp23"
+                android:layout_marginStart="@dimen/dp23"
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_medium"
                 android:paddingBottom="@dimen/dp14"
@@ -508,11 +518,12 @@
                 android:layout_width="@dimen/dp44"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginStart="@dimen/dp16"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_medium"
+                android:text="7000.00"
                 android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="7000.00" />
+                android:textSize="@dimen/sp15" />
 
             <View
                 android:layout_width="@dimen/dp1"
@@ -526,9 +537,9 @@
                 android:layout_weight="0.8"
                 android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="@dimen/dp20"
+                android:text="4000"
                 android:textColor="@color/dayBookTextColor"
-                android:textSize="@dimen/sp15"
-                tools:text="4000" />
+                android:textSize="@dimen/sp15" />
         </LinearLayout>
 
         <LinearLayout
@@ -555,11 +566,12 @@
                 android:layout_width="@dimen/dp44"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginStart="@dimen/dp16"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_medium"
+                android:text="3000.00"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp15"
-                tools:text="3000.00" />
+                android:textSize="@dimen/sp15" />
 
 
             <TextView
@@ -569,9 +581,9 @@
                 android:layout_weight="0.8"
                 android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="@dimen/dp20"
+                android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp15"
-                tools:text="" />
+                android:textSize="@dimen/sp15" />
         </LinearLayout>
 
     </LinearLayout>
