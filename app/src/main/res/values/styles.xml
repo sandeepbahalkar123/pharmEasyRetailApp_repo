@@ -74,7 +74,6 @@
     <style name="BillDiscountStyle">
         <item name="android:textCursorDrawable">@drawable/cursor_color_batchquantitycolor</item>
         <item name="android:cursorVisible">true</item>
-        <item name="android:maxLength">3</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:paddingTop">@dimen/dp0</item>
@@ -83,7 +82,7 @@
         <item name="android:textColorHint">@color/searchProducts_HighligtedTextColor</item>
         <item name="android:textColor">@color/searchProducts_HighligtedTextColor</item>
         <item name="android:textSize">@dimen/sp15</item>
-        <item name="android:layout_width">@dimen/dp35</item>
+        <item name="android:layout_width">@dimen/dp60</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 

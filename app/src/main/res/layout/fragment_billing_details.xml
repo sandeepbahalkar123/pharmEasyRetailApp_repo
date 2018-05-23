@@ -116,7 +116,7 @@
                     android:paddingTop="@dimen/dp19"
                     android:textColor="@color/searchProducts_HighligtedTextColor"
                     android:textSize="@dimen/sp15"
-                    tools:text="7250" />
+                    tools:text="" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -178,10 +178,10 @@
                             android:drawableEnd="@drawable/percentage"
                             android:drawableRight="@drawable/percentage"
                             android:inputType="number"
-                            tools:text="10" />
+                            tools:text="10.00" />
 
                         <View
-                            android:layout_width="@dimen/dp35"
+                            android:layout_width="@dimen/dp60"
                             android:layout_height="@dimen/dp1"
                             android:layout_alignLeft="@+id/editTextDiscount"
                             android:layout_alignStart="@+id/editTextDiscount"

@@ -86,5 +86,6 @@
     <dimen name="dp185">185dp</dimen>
     <dimen name="dp22">22dp</dimen>
     <dimen name="dp55">55dp</dimen>
+    <dimen name="dp140">140dp</dimen>
 
 </resources>

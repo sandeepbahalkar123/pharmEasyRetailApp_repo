@@ -101,7 +101,8 @@ public class HomeActivity extends BottomMenuActivity {
             Intent intentObj = new Intent(mContext, PagerActivity.class);
             startActivity(intentObj);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Support")) {
-            Log.d(TAG, "Support");
+            Intent intentObj = new Intent(mContext, SupportActivity.class);
+            startActivity(intentObj);
         }
 
         super.onBottomMenuClick(bottomMenu);

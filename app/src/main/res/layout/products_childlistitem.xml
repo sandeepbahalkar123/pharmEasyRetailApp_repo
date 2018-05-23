@@ -101,7 +101,7 @@
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/productsList_unitTextColor"
             android:textSize="@dimen/sp11"
-            android:text="@string/estimatedPrice" />
+            android:text="@string/salePrice" />
 
             <TextView
                 android:id="@+id/estimatedPriceValue"
@@ -111,7 +111,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp11"
-                tools:text="Rs 34/-" />
+                tools:text="Rs 34.00" />
         </RelativeLayout>
 
 

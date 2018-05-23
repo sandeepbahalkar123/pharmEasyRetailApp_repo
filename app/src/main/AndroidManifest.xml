@@ -38,12 +38,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activities.BooksActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_books"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activities.PagerActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_pager"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activities.SupportActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_support_activity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
     </application>
 
 </manifest>
