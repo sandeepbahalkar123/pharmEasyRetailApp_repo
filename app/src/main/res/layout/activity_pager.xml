@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activities.PagerActivity">
+    tools:context=".ui.activities.PagerActivity"
+    android:background="@color/lightgreycolor_billingdetails">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -68,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="6 Items"
+                android:text="6 Products"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp16"/>

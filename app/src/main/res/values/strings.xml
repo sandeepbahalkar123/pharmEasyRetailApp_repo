@@ -40,6 +40,7 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_pager">PagerActivity</string>
+    <string name="title_support_activity">Support</string>
     <string name="select_date">Select Date</string>
     <string name="particular">Particular</string>
     <string name="debit">Debit</string>
@@ -72,6 +73,20 @@
     <string name="title_activity_products">Product</string>
     <string name="search_hint">Search Products</string>
     <string name="menu_search">Search</string>
+    <string name="netamt">Net Amt</string>
+    <string name="transactionmode">Transation Mode</string>
+    <string name="print">PRINT</string>
+    <string name="save">SAVE</string>
+    <string name="salePrice">Sale Price</string>
+    <string name="needSomeHelp">Need Some Help?</string>
+    <string name="feelfreetext">Feel free to get in touch with us</string>
+    <string name="call">Call</string>
+    <string name="email">Email</string>
+
+    <array name="spinnerArray">
+        <item>Cash</item>
+        <item>Credit</item>
+    </array>
 
 
     <!--<string name="template_list">Template List</string>-->

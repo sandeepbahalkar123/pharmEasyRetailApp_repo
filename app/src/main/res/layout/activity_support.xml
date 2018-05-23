@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/daybooklightgreycolor">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/userimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        android:layout_marginLeft="@dimen/dp60"
+        android:layout_marginRight="@dimen/dp60"
+        android:adjustViewBounds="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp40"
+        android:src="@drawable/artwork" />
+
+    <TextView
+        android:id="@+id/needsomehelp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userimage"
+        android:layout_marginTop="@dimen/dp30"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="@string/needSomeHelp"
+        android:textColor="@color/dayBookTextColor"
+        android:textSize="@dimen/sp19" />
+
+    <TextView
+        android:id="@+id/feelfreetouch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/needsomehelp"
+        android:layout_marginTop="@dimen/dp10"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="@string/feelfreetext"
+        android:textColor="@color/support_textcolor"
+        android:textSize="@dimen/sp15" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feelfreetouch"
+        android:layout_marginTop="@dimen/dp28"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/call_button"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingBottom="@dimen/dp8"
+            android:text="@string/call"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
+        <Button
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/email_button"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingBottom="@dimen/dp8"
+            android:text="@string/email"
+            android:textAllCaps="false"
+            android:textColor="@color/support_textcolor"
+            android:textSize="@dimen/sp16" />
+
+    </LinearLayout>
+
+</RelativeLayout>

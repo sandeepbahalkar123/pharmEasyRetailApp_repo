@@ -10,31 +10,12 @@ public class Config {
     public static final String API = "/api/";
     public static final String TOKEN_TYPE = "Bearer";
     public static final String LOGIN_URL = "PhEasyService.svc/login";
-    public static final String VERIFY_SIGN_UP_OTP = "authApi/authenticate/verifyOTP";
-    public static final String SIGN_UP_URL = "authApi/authenticate/signUp";
-    public static final String ONE_DAY_VISIT_URL = "api/patient/getPatientOneDayVisit?opdId=";
-    public static final String GET_MY_APPOINTMENTS_LIST = "doctor/api/appointment/getAppointmentList";
-    public static final String GET_SMS_TEMPLATE = "doctor/api/appointment/getDoctorSmsTemplate?docId=";
-    public static final String GET__WAITING_LIST = "doctor/api/appointment/getWaitingList";
-    public static final String GET_MY_PATIENTS_LIST = "doctor/api/patient/getPatientList";
-    public static final String GET_PATIENT_HISTORY = "doctor/api/patient/getPatientOpdHistory";
-    public static final String ADD_TO_WAITING_LIST = "doctor/api/appointment/addToWaitingList";
-    public static final String GET_CLINIC_LOCATION_LIST = "doctor/api/appointment/getDoctorLocationList?docId=";
-    public static final String GET_DASHBOARD_DATA = "doctor/api/dashboard/getDashboard";
-    public static final String DELETE_WAITING_LIST = "doctor/api/appointment/deleteFromWaitingList";
-    public static final String CANCEL_OR_COMPLETE_APPOINTMENT = "api/patient/updateAppointmentStatus";
-    public static final String DRAG_AND_DROP_API = "doctor/api/appointment/dragDropPatientWaiting";
-    public static final String GET_COMPELTED_OPD_URL = "doctor/api/appointment/getCompletedOpd";
-    public static final String GET_NEW_PATIENTS_URL = "doctor/api/appointment/getNewPatients";
-    public static final String DELETE_PATIENT_OPD_ATTCHMENTS = "doctor/api/patient/deletePatientOpdAttachment";
-    public static final String TIME_SLOT_TO_BOOK_APPOINTMENT = "api/doctors/getDocOpenTimeSlots?";
-    public static final String CONFIRM_APPOINTMENT = "api/patient/bookAppointment";
-    public static final String UPLOAD_PROFILE_PHOTO = "api/upload/uploadDoctorImage";
+    public static final String GET_DASHBOARD_DATA = "PhEasyService.svc/GetDashBoardData";
 
 
     //---------------QA SERVER Internet URL START-----------------------
 
-    public static String BASE_URL = "http://172.16.100.83:8099/";
+    public static String BASE_URL = "http://172.16.100.221/";
     //---------------QA SERVER Internet URL END-----------------------
 
     //---------------LIVE Internet URL START-----------------------

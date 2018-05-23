@@ -75,6 +75,8 @@ public class Constants {
     //Click codes
 
     public static final String TASK_LOGIN = Constants.BLANK + 1;
+    public static final String TASK_DASHBOARD = Constants.BLANK + 2;
+
     public static final String DATA = "DATA";
     public static final Integer SUCCESS = 200;
     public static final String TASK_CHECK_SERVER_CONNECTION = Constants.BLANK + 39;

@@ -2,13 +2,13 @@ package com.scorg.farmaeasy.model.responseModel.dashboard;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.model.Common;
 
-public class DashboardResponseModel implements Parcelable
-{
+public class DashboardResponseModel implements Parcelable, CustomResponse {
 
     @SerializedName("common")
     @Expose
@@ -30,8 +30,7 @@ public class DashboardResponseModel implements Parcelable
             return (new DashboardResponseModel[size]);
         }
 
-    }
-            ;
+    };
 
     protected DashboardResponseModel(Parcel in) {
         this.common = ((Common) in.readValue((Common.class.getClassLoader())));

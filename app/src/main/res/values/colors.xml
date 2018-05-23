@@ -28,5 +28,7 @@
     <color name="lightgreycolor_billingdetails">#edefed</color>
     <color name="dividercolor_billingdetails">#dcdcdc</color>
     <color name="qtyAmountTextColor_billingdetails">#626262</color>
+    <color name="support_textcolor">#54b1bd</color>
+
 
 </resources>

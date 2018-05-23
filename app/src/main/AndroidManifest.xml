@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ui.activities.SplashActivity"
             android:screenOrientation="portrait"
@@ -39,15 +40,24 @@
         <activity
             android:name=".ui.activities.BooksActivity"
             android:label="@string/title_activity_books"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activities.PagerActivity"
             android:label="@string/title_activity_pager"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ui.activities.ProductsActivity"
             android:label="@string/title_activity_products"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.activities.SupportActivity"
+            android:label="@string/title_support_activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

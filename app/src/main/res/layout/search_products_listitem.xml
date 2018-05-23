@@ -78,7 +78,7 @@
                 android:paddingLeft="@dimen/dp5"
                 android:textColor="@color/searchProducts_expiryDateTextColor"
                 android:textSize="@dimen/sp12"
-                tools:text="Rs 27.50/-" />
+                tools:text="Rs 27.50" />
 
             <TextView
                 android:id="@+id/batchInfo"

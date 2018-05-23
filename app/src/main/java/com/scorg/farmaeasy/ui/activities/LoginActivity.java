@@ -101,11 +101,7 @@ public class LoginActivity extends AppCompatActivity implements HelperResponse {
             editTextPassword.setError(message);
             editTextPassword.requestFocus();
         }
-        if (message != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return message != null;
     }
 
 
