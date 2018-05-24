@@ -42,6 +42,15 @@ public class DashboardData {
     @Expose
     private String recordDate;
 
+    @SerializedName("visitingPatients")
+    @Expose
+    private int visitingPatients;
+    @SerializedName("todaysBirthday")
+    @Expose
+    private int todaysBirthday;
+
+
+
     public int getShopId() {
         return shopId;
     }
@@ -122,4 +131,19 @@ public class DashboardData {
         this.recordDate = recordDate;
     }
 
+    public int getVisitingPatients() {
+        return visitingPatients;
+    }
+
+    public void setVisitingPatients(int visitingPatients) {
+        this.visitingPatients = visitingPatients;
+    }
+
+    public int getTodaysBirthday() {
+        return todaysBirthday;
+    }
+
+    public void setTodaysBirthday(int todaysBirthday) {
+        this.todaysBirthday = todaysBirthday;
+    }
 }

@@ -20,6 +20,18 @@
             android:scaleType="centerCrop"
             android:src="@drawable/banner" />
 
+        <ImageButton
+            android:id="@+id/menusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/dp6"
+            android:layout_marginRight="@dimen/dp6"
+            android:background="@color/transparent"
+            android:padding="@dimen/dp16"
+            android:src="@drawable/action_menu" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,9 +54,9 @@
                 android:paddingEnd="24dp"
                 android:paddingStart="24dp"
                 android:paddingTop="@dimen/dp8"
-                tools:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp16" />
+                android:textSize="@dimen/sp16"
+                tools:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030" />
 
         </LinearLayout>
 
@@ -287,7 +299,7 @@
                 android:padding="@dimen/dp8">
 
                 <TextView
-                    android:id="@+id/expiredProduct2Text"
+                    android:id="@+id/visitingPatientsText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
@@ -301,7 +313,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingBottom="@dimen/dp8"
-                    android:text="Expired Product"
+                    android:text="Visiting Patients"
                     android:textColor="@color/menu_color"
                     android:textSize="@dimen/sp14" />
 
@@ -318,7 +330,7 @@
                 android:padding="@dimen/dp8">
 
                 <TextView
-                    android:id="@+id/nearExpiry2Text"
+                    android:id="@+id/todaysBirthdayText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
@@ -332,7 +344,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingBottom="@dimen/dp8"
-                    android:text="Near Expiry"
+                    android:text="Today's Birthdate"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp14" />
 

@@ -22,12 +22,12 @@ import java.util.ArrayList;
 
 public class AppDBHelper extends SQLiteOpenHelper {
 
-    private final String TAG = "PhramEasyRetail/AppDBHelper";
+    private final String TAG = "AppDBHelper";
 
-    private static final String DATABASE_NAME = "PhramEasyRetail.sqlite";
+    private static final String DATABASE_NAME = "AppData.sqlite";
     private static final String DB_PATH_SUFFIX = "/data/data/com.scorg.farmaeasy/databases/"; // Change
     private static final int DB_VERSION = 2;
-    public static final String APP_DATA_TABLE = "PrescriptionData";
+    public static final String APP_DATA_TABLE = "offlineData";
     public static final String COLUMN_ID = "dataId";
     public static final String COLUMN_DATA = "data";
 

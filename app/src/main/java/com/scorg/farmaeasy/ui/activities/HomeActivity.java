@@ -1,12 +1,17 @@
 package com.scorg.farmaeasy.ui.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,9 +35,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeActivity extends BottomMenuActivity implements HelperResponse {
+public class HomeActivity extends BottomMenuActivity implements HelperResponse, PopupMenu.OnMenuItemClickListener {
 
     private static final String TAG = "Home";
+
+    private static final int LOGOUT = 1;
+    private static final int USER = 2;
+
+    @BindView(R.id.menusButton)
+    ImageButton menusButton;
 
     @BindView(R.id.bannerLayout)
     RelativeLayout bannerLayout;
@@ -79,8 +90,14 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
     @BindView(R.id.pendingOrdersText)
     TextView pendingOrdersText;
 
+    @BindView(R.id.visitingPatientsText)
+    TextView visitingPatientsText;
+    @BindView(R.id.todaysBirthdayText)
+    TextView todaysBirthdayText;
+
     private Context mContext;
     private DashboardHelper dashboardHelper;
+    private List<ShopList> shopList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,24 +109,22 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
         dashboardHelper.doGetDashboardData(PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, mContext));
     }
 
-    @OnClick({R.id.expiredProduct, R.id.nearExpiry, R.id.todaysCheque, R.id.depositCheque, R.id.pendingOnlinePurchase, R.id.pendingOrders, R.id.expiredProduct2, R.id.nearExpiry2})
+    @SuppressLint("RestrictedApi")
+    @OnClick({R.id.menusButton})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.expiredProduct:
-                break;
-            case R.id.nearExpiry:
-                break;
-            case R.id.todaysCheque:
-                break;
-            case R.id.depositCheque:
-                break;
-            case R.id.pendingOnlinePurchase:
-                break;
-            case R.id.pendingOrders:
-                break;
-            case R.id.expiredProduct2:
-                break;
-            case R.id.nearExpiry2:
+            case R.id.menusButton:
+                PopupMenu popup = new PopupMenu(this, menusButton);
+                popup.setOnMenuItemClickListener(this);// to implement on click event on items of menu
+
+                popup.getMenu().add(1, USER, 0, PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.USERNAME, mContext)).setIcon(R.drawable.user_icon);
+                popup.getMenu().add(1, LOGOUT, 1, "Logout").setIcon(R.drawable.logout_icon);
+                if (popup.getMenu() instanceof MenuBuilder) {
+                    MenuBuilder m = (MenuBuilder) popup.getMenu();
+                    m.setOptionalIconsVisible(true);
+                }
+
+                popup.show();
                 break;
         }
     }
@@ -140,7 +155,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
             if (receivedModel.getCommon().getSuccess()) {
 
                 DashboardData dashboardData = receivedModel.getData().getDashboardData();
-                List<ShopList> shopList = receivedModel.getData().getShopList();
+                shopDetailsText.setText(dashboardData.getShopAddress());
 
                 expiredProductText.setText(String.valueOf(dashboardData.getExpiredProduct()));
                 nearExpiryText.setText(String.valueOf(dashboardData.getNearExpiry()));
@@ -149,28 +164,44 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
                 pendingOnlinePurchaseText.setText(String.valueOf(dashboardData.getPendingPurchase()));
                 pendingOrdersText.setText(String.valueOf(dashboardData.getPendingOrder()));
 
-                if (shopList != null) {
-                    // Last two menu need to confirm
-                    if (!shopList.isEmpty()) {
+                visitingPatientsText.setText(String.valueOf(dashboardData.getVisitingPatients()));
+                todaysBirthdayText.setText(String.valueOf(dashboardData.getTodaysBirthday()));
 
-                        shopDetailsText.setText(shopList.get(0).getShopAddress());
-                        //Creating the ArrayAdapter instance having the country list
-                        ArrayAdapter<ShopList> aa = new ArrayAdapter<ShopList>(this, R.layout.simple_spinner_item, shopList);
-                        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-                        //Setting the ArrayAdapter data on the Spinner
-                        shopSelection.setAdapter(aa);
+                if (shopList == null) {
+                    shopList = receivedModel.getData().getShopList();
 
-                        shopSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                dashboardHelper.doGetDashboardData(shopList.get(position).getShopId());
+                    if (shopList != null) {
+                        // Last two menu need to confirm
+                        if (!shopList.isEmpty()) {
+                            //Creating the ArrayAdapter instance having the country list
+                            ArrayAdapter<ShopList> aa = new ArrayAdapter<ShopList>(this, R.layout.simple_spinner_item, shopList);
+                            aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+                            //Setting the ArrayAdapter data on the Spinner
+                            shopSelection.setAdapter(aa);
+
+                            int selectedPosition = 0;
+                            for (ShopList shopL : shopList) {
+                                if (shopL.getShopId() == PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, mContext)) {
+                                    selectedPosition = shopList.indexOf(shopL);
+                                }
                             }
 
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
+                            shopSelection.setSelection(selectedPosition, false);
 
-                            }
-                        });
+                            shopSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                    dashboardHelper.doGetDashboardData(shopList.get(position).getShopId());
+                                    shopDetailsText.setText(dashboardData.getShopAddress());
+                                    PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, shopList.get(position).getShopId(), mContext);
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+
+                                }
+                            });
+                        }
                     }
                 }
 
@@ -193,5 +224,18 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
     @Override
     public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
         CommonMethods.showToast(mContext, serverErrorMessage);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == LOGOUT) {
+            PreferencesManager.clearSharedPref(mContext);
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+            finishAffinity();
+        } else if (item.getItemId() == USER) {
+
+        }
+        return false;
     }
 }
