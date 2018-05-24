@@ -36,7 +36,7 @@ public class BooksActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Anant Medical Store");
+        getSupportActionBar().setTitle(PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, mContext));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
 

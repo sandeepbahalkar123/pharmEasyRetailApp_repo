@@ -47,23 +47,13 @@ public class Constants {
     public static final String TRUE = "true";
     public static final String FALSE = "false";
 
-    public static final String APPOINTMENT_TIME = "appointment_time";
-    public static final String NOTIFICATION_TIME = "notification_time";
-    public static final String APPOINTMENT_DATE = "appointment_date";
-    public static final String NOTIFICATION_DATE = "notification_date";
     public static final String TIME = "time";
 
     // Connection codes
     public static final String MONTH = "month";
     public static final String YEAR = "year";
     public static final String DATE = "date";
-    public static final String MEDICINE_NAME = "medicine_name";
-    public static final String MEDICINE_SLOT = "edicine_slot";
-    public static final String MEDICINE_TYPE = "medicine_type";
-    public static final String NOTIFICATION_ID = "notification_id";
 
-    public static final String APPOINTMENT_NOTIFICATION_ID = "appointment_notification_id";
-    public static final String APPOINTMENT_MESSAGE = "appointment_message";
     public static final String BLANK = "";
     //Click codes
 
@@ -87,65 +77,12 @@ public class Constants {
     public static String HEADER_COLOR = "#E4422C";
     public static String BUTTON_TEXT_COLOR = "#FFFFFF";
     public static String TEXT_COLOR = "#000000";
-
-    public static final String[] SALUTATION = {"Mr. ", "Mrs. ", "Miss ", ""};
-    public static final String[] GENDER = {"MALE", "FEMALE", "TRANSGENDER"};
-    public static String OT_AND_OPD = "ot_and_opd";
-    public static String OPD = "opd";
-    public static String OT = "ot";
-
-    public interface APPOINTMENT_STATUS {
-        int BOOKED = 1;
-        int CONFIRM = 2;
-        int COMPLETED = 3;
-        int CANCEL = 4;
-        int NO_SHOW = 5;
-        int OTHER = 6;
-        int IN_CONSULTATION = 7;
-        int IN_QUEUE = 8;
-        int COMING = 9;
-    }
+    public static final String STORE_NAME = "store_name";
 
     public interface USER_TYPE {
         String Operator = "Operator";
         String Owner = "Owner";
     }
-
-    public interface USER_STATUS {
-        String ONLINE = "Online";
-        String OFFLINE = "Offline";
-        String TYPING = "Typing";
-        String IDLE = "Idle";
-    }
-
-    // change
-    public interface MESSAGE_STATUS {
-        String SEEN = "seen";
-        String REACHED = "reached";
-        String SENT = "sent";
-        String PENDING = "pending";
-
-        int READ = 1;
-        int UNREAD = 0;
-    }
-
-    public interface FILE_STATUS {
-        int UPLOADING = 1;
-        int DOWNLOADING = 1;
-        int FAILED = 0;
-        int COMPLETED = 3;
-    }
-
-    public interface PRESCRIPTION_LIST_PARAMS {
-        String PATIENT_NAME = "User-ID";
-        String FILE_TYPE = "fileType";
-        String DATE_TYPE = "dateType";
-        String FROM_DATE = "fromDate";
-        String TO_DATE = "toDate";
-        String ANNOTATION_TEXT = "annotationText";
-        String DOC_TYPE_ID = "DocTypeId";
-    }
-
 
     public interface DATE_PATTERN {
         String YYYY_MM_DD_hh_mm_a = "yyyy-MM-dd hh:mm a";

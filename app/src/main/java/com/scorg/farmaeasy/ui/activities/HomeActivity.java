@@ -194,6 +194,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                                     dashboardHelper.doGetDashboardData(shopList.get(position).getShopId());
                                     shopDetailsText.setText(dashboardData.getShopAddress());
                                     PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, shopList.get(position).getShopId(), mContext);
+                                    PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, shopList.get(position).getShopName(), mContext);
                                 }
 
                                 @Override
