@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,12 +20,10 @@ import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardData;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardResponseModel;
 import com.scorg.farmaeasy.model.responseModel.dashboard.ShopList;
-import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -58,24 +57,30 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
 
     @BindView(R.id.shopSelection)
     AppCompatSpinner shopSelection;
+
     @BindView(R.id.shopDetailsText)
     TextView shopDetailsText;
+
     @BindView(R.id.expiredProductText)
     TextView expiredProductText;
+
     @BindView(R.id.nearExpiryText)
     TextView nearExpiryText;
+
     @BindView(R.id.todaysChequeText)
     TextView todaysChequeText;
+
     @BindView(R.id.depositChequeText)
     TextView depositChequeText;
+
     @BindView(R.id.pendingOnlinePurchaseText)
     TextView pendingOnlinePurchaseText;
-    @BindView(R.id.expiredProduct2Text)
-    TextView expiredProduct2Text;
-    @BindView(R.id.nearExpiry2Text)
-    TextView nearExpiry2Text;
+
+    @BindView(R.id.pendingOrdersText)
+    TextView pendingOrdersText;
 
     private Context mContext;
+    private DashboardHelper dashboardHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +88,8 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         mContext = this;
-        DashboardHelper dashboardHelper = new DashboardHelper(mContext, this);
-        dashboardHelper.doGetDashboardData(-1);
+        dashboardHelper = new DashboardHelper(mContext, this);
+        dashboardHelper.doGetDashboardData(PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, mContext));
     }
 
     @OnClick({R.id.expiredProduct, R.id.nearExpiry, R.id.todaysCheque, R.id.depositCheque, R.id.pendingOnlinePurchase, R.id.pendingOrders, R.id.expiredProduct2, R.id.nearExpiry2})
@@ -137,11 +142,37 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
                 DashboardData dashboardData = receivedModel.getData().getDashboardData();
                 List<ShopList> shopList = receivedModel.getData().getShopList();
 
-                //Creating the ArrayAdapter instance having the country list
-                ArrayAdapter<ShopList> aa = new ArrayAdapter<ShopList>(this, R.layout.simple_spinner_item, shopList);
-                aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-                //Setting the ArrayAdapter data on the Spinner
-                shopSelection.setAdapter(aa);
+                expiredProductText.setText(String.valueOf(dashboardData.getExpiredProduct()));
+                nearExpiryText.setText(String.valueOf(dashboardData.getNearExpiry()));
+                todaysChequeText.setText(String.valueOf(dashboardData.getTodayCheque()));
+                depositChequeText.setText(String.valueOf(dashboardData.getDepositCheque()));
+                pendingOnlinePurchaseText.setText(String.valueOf(dashboardData.getPendingPurchase()));
+                pendingOrdersText.setText(String.valueOf(dashboardData.getPendingOrder()));
+
+                if (shopList != null) {
+                    // Last two menu need to confirm
+                    if (!shopList.isEmpty()) {
+
+                        shopDetailsText.setText(shopList.get(0).getShopAddress());
+                        //Creating the ArrayAdapter instance having the country list
+                        ArrayAdapter<ShopList> aa = new ArrayAdapter<ShopList>(this, R.layout.simple_spinner_item, shopList);
+                        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+                        //Setting the ArrayAdapter data on the Spinner
+                        shopSelection.setAdapter(aa);
+
+                        shopSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                dashboardHelper.doGetDashboardData(shopList.get(position).getShopId());
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+                }
 
             } else {
                 CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());

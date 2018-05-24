@@ -1,18 +1,20 @@
 package com.scorg.farmaeasy.ui.activities;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.ui.fragments.DayBookFragment;
 import com.scorg.farmaeasy.ui.fragments.ShortBookFragment;
+import com.scorg.farmaeasy.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +26,13 @@ public class BooksActivity extends AppCompatActivity {
      */
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
+        mContext = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,7 +49,9 @@ public class BooksActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(DayBookFragment.newInstance(), "DAY BOOK");
+        String userType = PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.USERTYPE, mContext);
+        if (Constants.USER_TYPE.Owner.equals(userType))
+            adapter.addFragment(DayBookFragment.newInstance(), "DAY BOOK");
         adapter.addFragment(ShortBookFragment.newInstance(), "SHORT BOOK");
         viewPager.setAdapter(adapter);
     }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.util.CommonMethods;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,6 +58,7 @@ public class ProductsActivity extends AppCompatActivity {
                     searchView.setVisibility(View.GONE);
                     toolbar.setVisibility(View.VISIBLE);
                     searchTextView.setEnabled(false);
+                    CommonMethods.hideKeyboard(this);
                 } else searchTextView.setText("");
                 break;
         }

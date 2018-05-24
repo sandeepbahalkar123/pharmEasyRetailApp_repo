@@ -9,7 +9,6 @@
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/searchTextView"
-        android:fontFamily="@font/roboto_medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
@@ -17,10 +16,12 @@
         android:layout_marginRight="4dp"
         android:layout_marginStart="24dp"
         android:background="@color/transparent"
+        android:fontFamily="@font/roboto_medium"
         android:hint="@string/search_hint"
         android:inputType="textFilter"
-        android:textCursorDrawable="@drawable/white_cursor"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
+        android:textCursorDrawable="@drawable/white_cursor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/clearButton"
         app:layout_constraintStart_toEndOf="@+id/searchBackButton"

@@ -42,7 +42,7 @@
                 android:paddingEnd="24dp"
                 android:paddingStart="24dp"
                 android:paddingTop="@dimen/dp8"
-                android:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030"
+                tools:text="Shop No. 7, Sadashiv Peth, Opp Yes Bank, Pune, Maharashtra 411030"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp16" />
 
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="305"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="10"
+                    android:text="0"
                     android:textColor="@color/menu_color"
                     android:textSize="@dimen/sp16" />
 
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="52"
+                    android:text="0"
                     android:textColor="@color/menu_color"
                     android:textSize="@dimen/sp16" />
 
@@ -180,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="405"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
@@ -221,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="302"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
@@ -247,12 +247,12 @@
                 android:padding="@dimen/dp8">
 
                 <TextView
-                    android:id="@+id/pendingOrders"
+                    android:id="@+id/pendingOrdersText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="@color/menu_color"
                     android:textSize="@dimen/sp16" />
 
@@ -292,7 +292,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="17"
+                    android:text="0"
                     android:textColor="@color/menu_color"
                     android:textSize="@dimen/sp16" />
 
@@ -323,7 +323,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:paddingBottom="@dimen/dp5"
-                    android:text="24"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 

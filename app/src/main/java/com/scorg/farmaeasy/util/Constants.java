@@ -9,14 +9,7 @@ public class Constants {
     public static final String RESCRIBE_LOG_FOLDER = "PhramEasyRetail_LOG";
     public static final String RESCRIBE_LOG_FILE = "PhramEasyRetail_LOG_FILE.txt";
 
-    public static final String MT_TABLET = "TABLET";
-    public static final String MT_SYRUP = "SYRUP";
-    public static final String MT_OINTMENT = "OINTMENT";
     public static final String YES = "yes";
-    public static final String DOCUMENTS = "documents";
-    public static final String ATTACHMENTS_LIST = "ATTACHMENTS_LIST";
-    public static final String ALERT = "alert";
-    public static final String ID = "_id";
     public static final String USER_ID = "User-ID";
     public static final String DEVICEID = "Device-Id";
     public static final String OS = "OS";
@@ -111,6 +104,11 @@ public class Constants {
         int IN_CONSULTATION = 7;
         int IN_QUEUE = 8;
         int COMING = 9;
+    }
+
+    public interface USER_TYPE {
+        String Operator = "Operator";
+        String Owner = "Owner";
     }
 
     public interface USER_STATUS {
