@@ -197,7 +197,7 @@
     </LinearLayout>
 
 
-    <ScrollView
+   <!-- <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottomLayout"
@@ -476,6 +476,15 @@
         </LinearLayout>
 
     </ScrollView>
+-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp245"
+        android:layout_above="@+id/bottomLayout"
+        android:layout_below="@+id/topLayout">
+
+    </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/bottomLayout"

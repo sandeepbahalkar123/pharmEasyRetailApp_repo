@@ -47,24 +47,6 @@ public class LoginActivity extends AppCompatActivity implements HelperResponse {
         mContext = LoginActivity.this;
         ButterKnife.bind(this);
 
-//        editTextPassword.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                final int DRAWABLE_LEFT = 0;
-//                final int DRAWABLE_TOP = 1;
-//                final int DRAWABLE_RIGHT = 2;
-//                final int DRAWABLE_BOTTOM = 3;
-//
-//                if(event.getAction() == MotionEvent.ACTION_UP) {
-//                    if(event.getRawX() >= (editTextPassword.getRight() - editTextPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-//                        // your action here
-//                        CommonMethods.Log(TAG,"Eye icon clicked");
-//                        return true;
-//                    }
-//                }
-//                return false;
-//            }
-//        });
     }
 
     @OnClick({R.id.btnOtp, R.id.btn_login})

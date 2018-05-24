@@ -84,7 +84,8 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
         ButterKnife.bind(this);
         mContext = this;
         DashboardHelper dashboardHelper = new DashboardHelper(mContext, this);
-        dashboardHelper.doGetDashboardData(-1);
+        Integer shopId=PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID,mContext);
+        dashboardHelper.doGetDashboardData(shopId);
     }
 
     @OnClick({R.id.expiredProduct, R.id.nearExpiry, R.id.todaysCheque, R.id.depositCheque, R.id.pendingOnlinePurchase, R.id.pendingOrders, R.id.expiredProduct2, R.id.nearExpiry2})
