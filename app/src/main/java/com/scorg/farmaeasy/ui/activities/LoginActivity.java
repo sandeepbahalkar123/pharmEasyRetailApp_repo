@@ -120,7 +120,6 @@ public class LoginActivity extends AppCompatActivity implements HelperResponse {
                 PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, receivedModel.getData().getEmployeeData().getShopName(), mContext);
                 PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, receivedModel.getData().getEmployeeData().getShopId(), mContext);
 
-
                 Intent intent = new Intent(mContext, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

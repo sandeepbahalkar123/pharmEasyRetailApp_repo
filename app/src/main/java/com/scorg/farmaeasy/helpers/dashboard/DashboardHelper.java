@@ -72,6 +72,7 @@ public class DashboardHelper implements ConnectionListener {
         mConnectionFactory.setHeaderParams();
         DashboardRequest dashboardRequest = new DashboardRequest();
         dashboardRequest.setShopId(type);
+        mConnectionFactory.setPostParams(dashboardRequest);
         mConnectionFactory.setUrl(Config.GET_DASHBOARD_DATA);
         mConnectionFactory.createConnection(Constants.TASK_DASHBOARD);
     }

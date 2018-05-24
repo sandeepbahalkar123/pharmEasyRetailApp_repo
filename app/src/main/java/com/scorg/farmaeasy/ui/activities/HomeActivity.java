@@ -18,6 +18,7 @@ import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardData;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardResponseModel;
+import com.scorg.farmaeasy.model.responseModel.dashboard.ShopList;
 import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
@@ -134,12 +135,10 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse {
             if (receivedModel.getCommon().getSuccess()) {
 
                 DashboardData dashboardData = receivedModel.getData().getDashboardData();
-                List<String> spinnerArray = new ArrayList<String>();
-                spinnerArray.add("Mediplus Drug Point");
-                spinnerArray.add("Om Sai Drug Point");
+                List<ShopList> shopList = receivedModel.getData().getShopList();
 
                 //Creating the ArrayAdapter instance having the country list
-                ArrayAdapter<String> aa = new ArrayAdapter<String>(this, R.layout.simple_spinner_item, spinnerArray);
+                ArrayAdapter<ShopList> aa = new ArrayAdapter<ShopList>(this, R.layout.simple_spinner_item, shopList);
                 aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
                 //Setting the ArrayAdapter data on the Spinner
                 shopSelection.setAdapter(aa);

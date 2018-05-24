@@ -66,7 +66,7 @@ public class LoginHelper implements ConnectionListener {
 
     //Do login using userId and password
     public void doLogin(String userId, String password) {
-        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true,Constants.TASK_LOGIN, Request.Method.POST, true);
+        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true,Constants.TASK_LOGIN, Request.Method.POST, false);
         mConnectionFactory.setHeaderParams();
         LoginRequestModel loginRequestModel = new LoginRequestModel();
         loginRequestModel.setUserId(userId);
