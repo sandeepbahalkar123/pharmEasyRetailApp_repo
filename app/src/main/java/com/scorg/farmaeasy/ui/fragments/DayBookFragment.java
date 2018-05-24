@@ -1,6 +1,6 @@
 package com.scorg.farmaeasy.ui.fragments;
 
-import android.content.Intent;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,22 +20,23 @@ import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.daybook.DayBookList;
 import com.scorg.farmaeasy.model.responseModel.daybook.DayBookResponseModel;
-import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.preference.PreferencesManager;
-import com.scorg.farmaeasy.ui.activities.HomeActivity;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class DayBookFragment extends Fragment implements HelperResponse {
+public class DayBookFragment extends Fragment implements HelperResponse, DatePickerDialog.OnDateSetListener {
 
 
     Unbinder unbinder;
@@ -92,12 +94,18 @@ public class DayBookFragment extends Fragment implements HelperResponse {
         return rootView;
     }
 
-    public void init(){
-        String fromDate = "5/21/2018";
-        String toDate = fromDate;
-        Integer shopId= PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID,getActivity());
+    private void init() {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
+        fromDateValue.setText(formatedDate);
+        toDateValue.setText(formatedDate);
+        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
         DayBookHelper loginHelper = new DayBookHelper(getActivity(), this);
-        loginHelper.doDayBook(shopId,fromDate,toDate);
+        loginHelper.doDayBook(shopId, month + "/" + dayOfMonth + "/" + year, month + "/" + dayOfMonth + "/" + year);
 
     }
 
@@ -114,46 +122,45 @@ public class DayBookFragment extends Fragment implements HelperResponse {
             //After login user navigated to HomeActivity
             DayBookResponseModel dayBookResponseModel = (DayBookResponseModel) customResponse;
             if (dayBookResponseModel.getCommon().getSuccess()) {
-                if(dayBookResponseModel.getData().getOpeningBal().getDbAmount()!=0)
-                    openingbalnaceDebitValue.setText(""+dayBookResponseModel.getData().getOpeningBal().getDbAmount());
+                if (dayBookResponseModel.getData().getOpeningBal().getDbAmount() != 0)
+                    openingbalnaceDebitValue.setText("" + dayBookResponseModel.getData().getOpeningBal().getDbAmount());
                 else
                     openingbalnaceDebitValue.setText("");
 
-                if(dayBookResponseModel.getData().getOpeningBal().getCrAmount()!=0)
-                    openingbalnaceCreditValue.setText(""+dayBookResponseModel.getData().getOpeningBal().getCrAmount());
+                if (dayBookResponseModel.getData().getOpeningBal().getCrAmount() != 0)
+                    openingbalnaceCreditValue.setText("" + dayBookResponseModel.getData().getOpeningBal().getCrAmount());
                 else
                     openingbalnaceCreditValue.setText("");
 
-                if(dayBookResponseModel.getData().getTotal().getDbAmount()!=0)
-                    totalDebitValue.setText(""+dayBookResponseModel.getData().getTotal().getDbAmount());
+                if (dayBookResponseModel.getData().getTotal().getDbAmount() != 0)
+                    totalDebitValue.setText("" + dayBookResponseModel.getData().getTotal().getDbAmount());
                 else
                     totalDebitValue.setText("");
 
-                if(dayBookResponseModel.getData().getTotal().getCrAmount()!=0)
-                    totalCreditValue.setText(""+dayBookResponseModel.getData().getTotal().getCrAmount());
+                if (dayBookResponseModel.getData().getTotal().getCrAmount() != 0)
+                    totalCreditValue.setText("" + dayBookResponseModel.getData().getTotal().getCrAmount());
                 else
                     totalCreditValue.setText("");
 
-                if(dayBookResponseModel.getData().getClosingBal().getDbAmount()!=0)
-                    closingBalnceDebitValue.setText(""+dayBookResponseModel.getData().getClosingBal().getDbAmount());
+                if (dayBookResponseModel.getData().getClosingBal().getDbAmount() != 0)
+                    closingBalnceDebitValue.setText("" + dayBookResponseModel.getData().getClosingBal().getDbAmount());
                 else
                     closingBalnceDebitValue.setText("");
 
-                if(dayBookResponseModel.getData().getClosingBal().getCrAmount()!=0)
-                    closingBalnceCreditValue.setText(""+dayBookResponseModel.getData().getClosingBal().getCrAmount());
+                if (dayBookResponseModel.getData().getClosingBal().getCrAmount() != 0)
+                    closingBalnceCreditValue.setText("" + dayBookResponseModel.getData().getClosingBal().getCrAmount());
                 else
                     closingBalnceCreditValue.setText("");
 
-                mDayBookList=dayBookResponseModel.getData().getDayBookList();
-                mAdapter = new DayBookParticularListAdapter(getActivity(),mDayBookList);
+                mDayBookList = dayBookResponseModel.getData().getDayBookList();
+                mAdapter = new DayBookParticularListAdapter(getActivity(), mDayBookList);
                 LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(linearlayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(mAdapter);
 
-            } else {
+            } else
                 CommonMethods.showToast(getActivity(), dayBookResponseModel.getCommon().getStatusMessage());
-            }
         }
     }
 
@@ -170,5 +177,25 @@ public class DayBookFragment extends Fragment implements HelperResponse {
     @Override
     public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
         CommonMethods.showToast(getActivity(), serverErrorMessage);
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month += 1;
+        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
+        fromDateValue.setText(formatedDate);
+        toDateValue.setText(formatedDate);
+        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
+        DayBookHelper loginHelper = new DayBookHelper(getActivity(), this);
+        loginHelper.doDayBook(shopId, month + "/" + dayOfMonth + "/" + year, month + "/" + dayOfMonth + "/" + year);
+    }
+
+    @OnClick(R.id.fromDateMainLayout)
+    public void onViewClicked() {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        DatePickerDialog dialog = new DatePickerDialog(getContext(), this,
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
     }
 }

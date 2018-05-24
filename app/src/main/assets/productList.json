@@ -1,0 +1,75 @@
+{
+  "common": {
+    "success": true,
+    "statusCode": 200,
+    "statusMessage": "Product List"
+  },
+  "data": {
+    "productList": [
+      {
+        "productName": "Combiflam 20's Tab",
+        "totalQTY": 120,
+        "expiryDateInfo": "SVF - 11/19",
+        "rateInfo": 27.5,
+        "batchInfo": "2 Batch",
+        "content": "Ibuprofen/paracetamol"
+      },
+      {
+        "productName": "Combiflam Icy Hot Gel 15 gm",
+        "totalQTY": 60,
+        "expiryDateInfo": "Mid - 02/20",
+        "rateInfo": 80.6,
+        "batchInfo": "6789",
+        "content": "paracetamol"
+      },
+      {
+        "productName": "Combiflam Icy Hot Spray 55 gm",
+        "totalQTY": 60,
+        "expiryDateInfo": "Mid - 07/19",
+        "rateInfo": 55.45,
+        "batchInfo": "3 Batch",
+        "content": "Ibuprofen"
+      },
+      {
+        "productName": "Combiflam Paed Susp 60 ml",
+        "totalQTY": 5,
+        "expiryDateInfo": "Mid - 11/18",
+        "rateInfo": 140.45,
+        "batchInfo": "4 Batch",
+        "content": "Ibuprofen/paracetamol"
+      },
+      {
+        "productName": "Combiflam 30's Tab",
+        "totalQTY": 10,
+        "expiryDateInfo": "SVF - 06/19",
+        "rateInfo": 27.5,
+        "batchInfo": "5 Batch",
+        "content": "Ibuprofen/paracetamol"
+      },
+      {
+        "productName": "Combiflam Icy Hot Gel 15 gm",
+        "totalQTY": 20,
+        "expiryDateInfo": "Mid - 02/20",
+        "rateInfo": 180.6,
+        "batchInfo": "347",
+        "content": "Ibuprofen/paracetamol"
+      },
+      {
+        "productName": "Combiflam Icy Hot Spray 100 gm",
+        "totalQTY": 125,
+        "expiryDateInfo": "Mid - 12/20",
+        "rateInfo": 85.65,
+        "batchInfo": "6 Batch",
+        "content": "paracetamol"
+      },
+      {
+        "productName": "Combiflam Paed Susp 60 ml",
+        "totalQTY": 15,
+        "expiryDateInfo": "Mid - 11/19",
+        "rateInfo": 120.45,
+        "batchInfo": "2 Batch",
+        "content": "Ibuprofen/paracetamol"
+      }
+    ]
+  }
+}

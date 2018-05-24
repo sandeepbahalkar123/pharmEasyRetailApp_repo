@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/daybooklightgreycolor">
 
     <LinearLayout
@@ -56,10 +57,10 @@
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/roboto_medium"
                     android:paddingBottom="@dimen/dp13"
-                    android:paddingEnd="@dimen/dp48"
-                    android:paddingRight="@dimen/dp48"
-                    android:paddingTop="@dimen/dp13"
-                    android:text="Tuesday, \n17 May 18"
+                    android:paddingEnd="@dimen/dp16"
+                    android:paddingRight="@dimen/dp16"
+                    android:paddingTop="@dimen/dp10"
+                    tools:text="Tuesday, \n17 May 18"
                     android:textColor="@color/themecolor"
                     android:textSize="@dimen/sp13" />
 
@@ -88,10 +89,10 @@
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/roboto_medium"
                     android:paddingBottom="@dimen/dp13"
-                    android:paddingEnd="@dimen/dp48"
-                    android:paddingRight="@dimen/dp48"
-                    android:paddingTop="@dimen/dp13"
-                    android:text="Tuesday, \n17 May 18"
+                    android:paddingEnd="@dimen/dp16"
+                    android:paddingRight="@dimen/dp16"
+                    android:paddingTop="@dimen/dp10"
+                    tools:text="Tuesday, \n17 May 18"
                     android:textColor="@color/themecolor"
                     android:textSize="@dimen/sp13" />
 
