@@ -30,6 +30,7 @@ import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.Connector;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardResponseModel;
+import com.scorg.farmaeasy.model.responseModel.daybook.DayBookResponseModel;
 import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.ui.customesViews.CustomProgressDialog;
 import com.scorg.farmaeasy.util.CommonMethods;
@@ -430,6 +431,11 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                     case Constants.TASK_DASHBOARD: //This is for get archived list
                         DashboardResponseModel dashboardResponseModel = gson.fromJson(data, DashboardResponseModel.class);
                         this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, dashboardResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_DAYBOOK: //This is for get archived list
+                        DayBookResponseModel dayBookResponseModel = gson.fromJson(data, DayBookResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, dayBookResponseModel, mOldDataTag);
                         break;
                 }
             }

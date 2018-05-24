@@ -1,18 +1,31 @@
 package com.scorg.farmaeasy.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.adapter.daybook.DayBookParticularListAdapter;
+import com.scorg.farmaeasy.helpers.daybook.DayBookHelper;
+import com.scorg.farmaeasy.interfaces.CustomResponse;
+import com.scorg.farmaeasy.interfaces.HelperResponse;
+import com.scorg.farmaeasy.model.responseModel.daybook.DayBookList;
+import com.scorg.farmaeasy.model.responseModel.daybook.DayBookResponseModel;
+import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
+import com.scorg.farmaeasy.preference.PreferencesManager;
+import com.scorg.farmaeasy.ui.activities.HomeActivity;
+import com.scorg.farmaeasy.util.CommonMethods;
+import com.scorg.farmaeasy.util.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,8 +34,10 @@ import butterknife.Unbinder;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class DayBookFragment extends Fragment {
+public class DayBookFragment extends Fragment implements HelperResponse {
 
+
+    Unbinder unbinder;
     @BindView(R.id.fromDateValue)
     TextView fromDateValue;
     @BindView(R.id.fromDateMainLayout)
@@ -41,28 +56,8 @@ public class DayBookFragment extends Fragment {
     TextView openingbalnaceCreditValue;
     @BindView(R.id.topLayout)
     LinearLayout topLayout;
-    @BindView(R.id.cashsaleDebitValue)
-    TextView cashsaleDebitValue;
-    @BindView(R.id.cashsaleCreditValue)
-    TextView cashsaleCreditValue;
-    @BindView(R.id.creditsaleDebitValue)
-    TextView creditsaleDebitValue;
-    @BindView(R.id.creditsaleCreditValue)
-    TextView creditsaleCreditValue;
-    @BindView(R.id.creditcardsaleDebitValue)
-    TextView creditcardsaleDebitValue;
-    @BindView(R.id.creditcardsaleCreditValue)
-    TextView creditcardsaleCreditValue;
-    @BindView(R.id.cashPurchaseDebitValue)
-    TextView cashPurchaseDebitValue;
-    @BindView(R.id.cashPurchaseCreditValue)
-    TextView cashPurchaseCreditValue;
-    @BindView(R.id.creditPurchaseDebitValue)
-    TextView creditPurchaseDebitValue;
-    @BindView(R.id.creditPurchaseCreditValue)
-    TextView creditPurchaseCreditValue;
-    @BindView(R.id.mainlayout)
-    LinearLayout mainlayout;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
     @BindView(R.id.totalDebitValue)
     TextView totalDebitValue;
     @BindView(R.id.totalCreditValue)
@@ -73,7 +68,9 @@ public class DayBookFragment extends Fragment {
     TextView closingBalnceCreditValue;
     @BindView(R.id.bottomLayout)
     LinearLayout bottomLayout;
-    Unbinder unbinder;
+
+    private ArrayList<DayBookList> mDayBookList = new ArrayList<>();
+    private DayBookParticularListAdapter mAdapter;
 
     public DayBookFragment() {
     }
@@ -89,15 +86,89 @@ public class DayBookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_day_book, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_daybook, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-
+        init();
         return rootView;
     }
+
+    public void init(){
+        String fromDate = "5/21/2018";
+        String toDate = fromDate;
+        Integer shopId= PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID,getActivity());
+        DayBookHelper loginHelper = new DayBookHelper(getActivity(), this);
+        loginHelper.doDayBook(shopId,fromDate,toDate);
+
+    }
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
+        if (mOldDataTag.equalsIgnoreCase(Constants.TASK_DAYBOOK)) {
+            //After login user navigated to HomeActivity
+            DayBookResponseModel dayBookResponseModel = (DayBookResponseModel) customResponse;
+            if (dayBookResponseModel.getCommon().getSuccess()) {
+                if(dayBookResponseModel.getData().getOpeningBal().getDbAmount()!=0)
+                    openingbalnaceDebitValue.setText(""+dayBookResponseModel.getData().getOpeningBal().getDbAmount());
+                else
+                    openingbalnaceDebitValue.setText("");
+
+                if(dayBookResponseModel.getData().getOpeningBal().getCrAmount()!=0)
+                    openingbalnaceCreditValue.setText(""+dayBookResponseModel.getData().getOpeningBal().getCrAmount());
+                else
+                    openingbalnaceCreditValue.setText("");
+
+                if(dayBookResponseModel.getData().getTotal().getDbAmount()!=0)
+                    totalDebitValue.setText(""+dayBookResponseModel.getData().getTotal().getDbAmount());
+                else
+                    totalDebitValue.setText("");
+
+                if(dayBookResponseModel.getData().getTotal().getCrAmount()!=0)
+                    totalCreditValue.setText(""+dayBookResponseModel.getData().getTotal().getCrAmount());
+                else
+                    totalCreditValue.setText("");
+
+                if(dayBookResponseModel.getData().getClosingBal().getDbAmount()!=0)
+                    closingBalnceDebitValue.setText(""+dayBookResponseModel.getData().getClosingBal().getDbAmount());
+                else
+                    closingBalnceDebitValue.setText("");
+
+                if(dayBookResponseModel.getData().getClosingBal().getCrAmount()!=0)
+                    closingBalnceCreditValue.setText(""+dayBookResponseModel.getData().getClosingBal().getCrAmount());
+                else
+                    closingBalnceCreditValue.setText("");
+
+                mDayBookList=dayBookResponseModel.getData().getDayBookList();
+                mAdapter = new DayBookParticularListAdapter(getActivity(),mDayBookList);
+                LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(linearlayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(mAdapter);
+
+            } else {
+                CommonMethods.showToast(getActivity(), dayBookResponseModel.getCommon().getStatusMessage());
+            }
+        }
+    }
+
+    @Override
+    public void onParseError(String mOldDataTag, String errorMessage) {
+        CommonMethods.showToast(getActivity(), errorMessage);
+    }
+
+    @Override
+    public void onServerError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(getActivity(), serverErrorMessage);
+    }
+
+    @Override
+    public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(getActivity(), serverErrorMessage);
     }
 }

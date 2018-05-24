@@ -69,6 +69,7 @@ public class Constants {
 
     public static final String TASK_LOGIN = Constants.BLANK + 1;
     public static final String TASK_DASHBOARD = Constants.BLANK + 2;
+    public static final String TASK_DAYBOOK = Constants.BLANK + 3;
 
     public static final String DATA = "DATA";
     public static final Integer SUCCESS = 200;
