@@ -17,7 +17,7 @@ public class Config {
 
     //---------------QA SERVER Internet URL START-----------------------
 
-    public static String BASE_URL = "http://172.16.100.221/";
+    public static String BASE_URL = "http://125.99.46.208/";//http://172.16.100.221/";
     //---------------QA SERVER Internet URL END-----------------------
 
     //---------------LIVE Internet URL START-----------------------
