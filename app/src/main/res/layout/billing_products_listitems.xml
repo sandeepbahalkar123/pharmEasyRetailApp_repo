@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/lightgreycolor_billingdetails">
-
 
     <LinearLayout
         android:id="@+id/productslistlayout"
@@ -22,52 +20,47 @@
             android:fontFamily="@font/roboto_regular"
             android:paddingLeft="@dimen/dp15"
             android:paddingStart="@dimen/dp15"
-            android:paddingTop="@dimen/dp14"
-            android:paddingBottom="@dimen/dp18"
             android:textColor="@color/searchProducts_HighligtedTextColor"
             android:textSize="@dimen/sp15"
             tools:text="1.Antab 5mg Tab 10's" />
 
         <View
             android:layout_width="@dimen/dp1"
-            android:layout_height="@dimen/dp48"
+            android:layout_height="@dimen/dp40"
             android:background="@color/dividercolor_billingdetails" />
 
 
         <TextView
             android:id="@+id/quantity"
-            android:layout_gravity="center_horizontal|center"
             android:layout_width="@dimen/dp50"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
             android:layout_weight="0.4"
             android:fontFamily="@font/roboto_regular"
             android:paddingLeft="@dimen/dp10"
             android:paddingStart="@dimen/dp10"
-            android:paddingTop="@dimen/dp14"
-            android:paddingBottom="@dimen/dp18"
-            tools:text="1130"
             android:textColor="@color/qtyAmountTextColor_billingdetails"
-            android:textSize="@dimen/sp13" />
+            android:textSize="@dimen/sp13"
+            tools:text="1130" />
+
         <View
             android:layout_width="@dimen/dp1"
-            android:layout_height="@dimen/dp48"
+            android:layout_height="@dimen/dp40"
             android:background="@color/dividercolor_billingdetails" />
 
 
         <TextView
             android:id="@+id/amount"
-            android:layout_gravity="center_horizontal|center"
             android:layout_width="@dimen/dp80"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
             android:layout_weight="0.5"
             android:fontFamily="@font/roboto_regular"
             android:paddingLeft="@dimen/dp10"
             android:paddingStart="@dimen/dp10"
-            android:paddingTop="@dimen/dp14"
-            android:paddingBottom="@dimen/dp18"
-            tools:text="32440.00"
             android:textColor="@color/qtyAmountTextColor_billingdetails"
-            android:textSize="@dimen/sp13" />
+            android:textSize="@dimen/sp13"
+            tools:text="32440.00" />
     </LinearLayout>
 
 

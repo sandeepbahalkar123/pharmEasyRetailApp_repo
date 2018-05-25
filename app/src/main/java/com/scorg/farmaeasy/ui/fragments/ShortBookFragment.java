@@ -4,16 +4,25 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.adapter.shortbook.ShortBookProductsListAdapter;
+import com.scorg.farmaeasy.helpers.shortbook.ShortBookHelper;
+import com.scorg.farmaeasy.interfaces.CustomResponse;
+import com.scorg.farmaeasy.interfaces.HelperResponse;
+import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookList;
+import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookResponseModel;
 import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
@@ -31,7 +40,8 @@ import butterknife.Unbinder;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ShortBookFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+
+public class ShortBookFragment extends Fragment implements HelperResponse, DatePickerDialog.OnDateSetListener {
 
     @BindView(R.id.fromDateValue)
     TextView fromDateValue;
@@ -47,10 +57,13 @@ public class ShortBookFragment extends Fragment implements DatePickerDialog.OnDa
     AppCompatSpinner sortingSpinner;
     @BindView(R.id.productslayout)
     LinearLayout productslayout;
-    @BindView(R.id.shortBookList)
-    RecyclerView shortBookList;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     Unbinder unbinder;
+
+    private ArrayList<ShortBookList> mShortBookList = new ArrayList<>();
+    private ShortBookProductsListAdapter mAdapter;
 
     public ShortBookFragment() {
     }
@@ -66,9 +79,9 @@ public class ShortBookFragment extends Fragment implements DatePickerDialog.OnDa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_short_book, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_shortbook, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        init();
+        init("");
 
         List<String> spinnerArray = new ArrayList<String>();
 
@@ -84,10 +97,23 @@ public class ShortBookFragment extends Fragment implements DatePickerDialog.OnDa
         //Setting the ArrayAdapter data on the Spinner
         sortingSpinner.setAdapter(aa);
 
+        sortingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0)
+                    init(spinnerArray.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         return rootView;
     }
 
-    private void init() {
+    private void init(String sortBy) {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;
@@ -96,8 +122,10 @@ public class ShortBookFragment extends Fragment implements DatePickerDialog.OnDa
         String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
         fromDateValue.setText(formatedDate);
         toDateValue.setText(formatedDate);
-        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
+//        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
 
+        ShortBookHelper shortBookHelper = new ShortBookHelper(getActivity(), this);
+        shortBookHelper.doShortBook(sortBy, month + "/" + dayOfMonth + "/" + year, month + "/" + dayOfMonth + "/" + year);
     }
 
     @Override
@@ -105,6 +133,7 @@ public class ShortBookFragment extends Fragment implements DatePickerDialog.OnDa
         super.onDestroyView();
         unbinder.unbind();
     }
+
 
     @OnClick(R.id.fromDateMainLayout)
     public void onViewClicked() {
@@ -121,6 +150,41 @@ public class ShortBookFragment extends Fragment implements DatePickerDialog.OnDa
         String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
         fromDateValue.setText(formatedDate);
         toDateValue.setText(formatedDate);
-        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
+//        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
+        init(sortingSpinner.getSelectedItemPosition() == 0 ? "" : sortingSpinner.getSelectedItem().toString());
+    }
+
+    @Override
+    public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
+        if (mOldDataTag.equalsIgnoreCase(Constants.TASK_SHORTBOOK)) {
+            //After login user navigated to HomeActivity
+            ShortBookResponseModel shortBookResponseModel = (ShortBookResponseModel) customResponse;
+            if (shortBookResponseModel.getCommon().getSuccess()) {
+                mShortBookList = shortBookResponseModel.getData().getShortBookList();
+                mAdapter = new ShortBookProductsListAdapter(getActivity(), mShortBookList);
+                LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(linearlayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(mAdapter);
+
+            } else {
+                CommonMethods.showToast(getActivity(), shortBookResponseModel.getCommon().getStatusMessage());
+            }
+        }
+    }
+
+    @Override
+    public void onParseError(String mOldDataTag, String errorMessage) {
+        CommonMethods.showToast(getActivity(), errorMessage);
+    }
+
+    @Override
+    public void onServerError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(getActivity(), serverErrorMessage);
+    }
+
+    @Override
+    public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(getActivity(), serverErrorMessage);
     }
 }

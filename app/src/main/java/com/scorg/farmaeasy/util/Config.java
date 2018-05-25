@@ -12,6 +12,7 @@ public class Config {
     public static final String LOGIN_URL = "PhEasyService.svc/login";
     public static final String GET_DASHBOARD_DATA = "PhEasyService.svc/GetDashBoardData";
     public static final String GET_DAYBOOK_DATA = "PhEasyService.svc/GetDayBook";
+    public static final String GET_SHORTBOOK_DATA = "PhEasyService.svc/GetShortBook";
 
 
     //---------------QA SERVER Internet URL START-----------------------

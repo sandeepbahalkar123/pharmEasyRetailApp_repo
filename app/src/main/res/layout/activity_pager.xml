@@ -5,9 +5,9 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightgreycolor_billingdetails"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activities.PagerActivity"
-    android:background="@color/lightgreycolor_billingdetails">
+    tools:context=".ui.activities.PagerActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -55,52 +55,76 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/dayBookTextColor"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/fixedBottomAmtLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1">
+            android:background="@color/dayBookTextColor"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/totalUnits"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="6 Products"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp16"/>
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/totalUnits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="6 Products"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp32"
+                android:layout_marginBottom="@dimen/dp8"
+                android:layout_marginTop="@dimen/dp8"
+                android:background="@color/dividercolor" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.6">
+
+                <TextView
+                    android:id="@+id/totalAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="Total ₹ 00,76,676.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/fixedBottomHomeDelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:visibility="gone"
+            android:background="@color/lightgreycolor_billingdetails"
+            android:orientation="horizontal">
 
-        <View
-            android:layout_width="@dimen/dp1"
-            android:layout_height="@dimen/dp32"
-            android:layout_marginTop="@dimen/dp8"
-            android:layout_marginBottom="@dimen/dp8"
-            android:background="@color/dividercolor" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1.6">
-
-            <TextView
-                android:id="@+id/totalAmount"
-                android:layout_width="match_parent"
+            <CheckBox
+                android:id="@+id/homeDeliveryCheckbBox"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Total ₹ 00,76,676.00"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp16" />
+                android:text="@string/home_delivery" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

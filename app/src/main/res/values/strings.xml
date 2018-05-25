@@ -69,7 +69,7 @@
     <string name="sortBy">Sort By</string>
     <string name="stock">STOCK</string>
     <string name="estimatedPrice">Estimated Price :&#160;</string>
-    <string name="discount">Discount</string>
+    <string name="discount">Discount   10.00%</string>
     <string name="title_activity_products">Product</string>
     <string name="search_hint">Search Products</string>
     <string name="menu_search">Search</string>
@@ -82,6 +82,7 @@
     <string name="feelfreetext">Feel free to get in touch with us</string>
     <string name="call">Call</string>
     <string name="email">Email</string>
+    <string name="home_delivery">Do you need Home Delivery</string>
 
     <array name="spinnerArray">
         <item>Cash</item>

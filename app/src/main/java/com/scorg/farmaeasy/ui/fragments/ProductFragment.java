@@ -27,7 +27,7 @@ import butterknife.Unbinder;
 public class ProductFragment extends Fragment {
 
     @BindView(R.id.productList)
-    ExpandableListView productList;
+    ExpandableListView productListExpand;
 
     Unbinder unbinder;
 
@@ -52,10 +52,10 @@ public class ProductFragment extends Fragment {
         ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
 
         List<ProductList> productList = productResponseModel.getData().getProductList();
-
-        ExpandableListAdapter listAdapter = new ExpandableListAdapter(this, productList);
+        ExpandableListAdapter listAdapter = new ExpandableListAdapter(getContext(), productList);
         // setting list adapter
-        this.productList.setAdapter(listAdapter);
+        productListExpand.setAdapter(listAdapter);
+        productListExpand.expandGroup(0);
 
         return rootView;
     }
