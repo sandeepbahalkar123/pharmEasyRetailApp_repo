@@ -67,9 +67,9 @@ public class ShortBookProductsListAdapter extends RecyclerView.Adapter<ShortBook
     public void onBindViewHolder(ListViewHolder holder, int position) {
         ShortBookList shortBookList = shortBookLists.get(position);
         holder.productname.setText(shortBookList.getProdName());
-        holder.totalQTY.setText(shortBookList.getOrderQuantity());
+        holder.totalQTY.setText(""+shortBookList.getOrderQuantity());
         holder.compShortName.setText(shortBookList.getProdCompShortName());
-        holder.noOfQty.setText(shortBookList.getProdLoosePack()+" "+shortBookList.getProdpacktype());
+        holder.noOfQty.setText(""+shortBookList.getProdLoosePack()+" "+shortBookList.getProdpacktype());
 
 
 

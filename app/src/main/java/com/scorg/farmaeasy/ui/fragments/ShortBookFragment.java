@@ -102,9 +102,9 @@ public class ShortBookFragment extends Fragment implements HelperResponse{
     private void init(){
         String fromDate = "5/24/2018";
         String toDate = fromDate;
-        String orderBy= "Qunatity";
+        String orderBy= "Products";
         ShortBookHelper shortBookHelper = new ShortBookHelper(getActivity(), this);
-        shortBookHelper.doShortBook(orderBy,fromDate,toDate);
+        shortBookHelper.doShortBook(fromDate,toDate,orderBy);
 
     }
 
