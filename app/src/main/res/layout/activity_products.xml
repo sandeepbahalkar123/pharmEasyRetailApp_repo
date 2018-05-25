@@ -13,7 +13,7 @@
 
         <include
             android:id="@+id/searchView"
-            layout="@layout/voice_toolbar"
+            layout="@layout/search_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"

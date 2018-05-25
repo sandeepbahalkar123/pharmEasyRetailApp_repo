@@ -137,7 +137,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
             Intent intentObj = new Intent(mContext, BooksActivity.class);
             startActivity(intentObj);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Sale")) {
-            Intent intentObj = new Intent(mContext, ProductsActivity.class);
+            Intent intentObj = new Intent(mContext, PagerActivity.class);
             startActivity(intentObj);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Support")) {
             Intent intentObj = new Intent(mContext, SupportActivity.class);

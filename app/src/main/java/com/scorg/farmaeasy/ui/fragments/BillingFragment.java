@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.requestModel.daybook.DayBookRequestModel;
+import com.scorg.farmaeasy.model.responseModel.batch.BatchResponseModel;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,8 +34,7 @@ public class BillingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_billing_details, container, false);
-        String json = loadJSONFromAsset("batchList.json");
-//        new Gson().fromJson(json, DayBookRequestModel.class);
+
         return rootView;
     }
 
