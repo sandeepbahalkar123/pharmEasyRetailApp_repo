@@ -23,7 +23,6 @@ import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookList;
 import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookResponseModel;
-import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
@@ -36,6 +35,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -64,6 +65,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
 
     private ArrayList<ShortBookList> mShortBookList = new ArrayList<>();
     private ShortBookProductsListAdapter mAdapter;
+    private int year, month, dayOfMonth;
 
     public ShortBookFragment() {
     }
@@ -81,12 +83,21 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_shortbook, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        init("");
+
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH) + 1;
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
+        fromDateValue.setText(formatedDate);
+        toDateValue.setText(formatedDate);
+
+        getProducts("");
 
         List<String> spinnerArray = new ArrayList<String>();
 
         spinnerArray.add("Sort By");
-        spinnerArray.add("Product");
+        spinnerArray.add("Products");
         spinnerArray.add("Company");
         spinnerArray.add("Supplier");
         spinnerArray.add("Quantity");
@@ -101,31 +112,23 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0)
-                    init(spinnerArray.get(position));
+                    getProducts(spinnerArray.get(position));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
         return rootView;
     }
 
-    private void init(String sortBy) {
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+    private void getProducts(String sortBy) {
 
-        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
-        fromDateValue.setText(formatedDate);
-        toDateValue.setText(formatedDate);
 //        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
 
         ShortBookHelper shortBookHelper = new ShortBookHelper(getActivity(), this);
-        shortBookHelper.doShortBook(sortBy, month + "/" + dayOfMonth + "/" + year, month + "/" + dayOfMonth + "/" + year);
+        shortBookHelper.doShortBook(month + "/" + dayOfMonth + "/" + year, month + "/" + dayOfMonth + "/" + year, sortBy);
     }
 
     @Override
@@ -146,12 +149,16 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        this.year = year;
+        this.month = month;
+        this.dayOfMonth = dayOfMonth;
+
         month += 1;
         String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
         fromDateValue.setText(formatedDate);
         toDateValue.setText(formatedDate);
 //        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
-        init(sortingSpinner.getSelectedItemPosition() == 0 ? "" : sortingSpinner.getSelectedItem().toString());
+        getProducts(sortingSpinner.getSelectedItemPosition() == 0 ? "" : sortingSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -159,7 +166,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_SHORTBOOK)) {
             //After login user navigated to HomeActivity
             ShortBookResponseModel shortBookResponseModel = (ShortBookResponseModel) customResponse;
-            if (shortBookResponseModel.getCommon().getSuccess()) {
+            if (shortBookResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 mShortBookList = shortBookResponseModel.getData().getShortBookList();
                 mAdapter = new ShortBookProductsListAdapter(getActivity(), mShortBookList);
                 LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

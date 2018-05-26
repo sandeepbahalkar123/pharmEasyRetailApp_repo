@@ -1,6 +1,7 @@
 package com.scorg.farmaeasy.ui.activities;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.bottom_menus.BottomMenu;
 import com.scorg.farmaeasy.bottom_menus.BottomMenuActivity;
 import com.scorg.farmaeasy.helpers.dashboard.DashboardHelper;
+import com.scorg.farmaeasy.interfaces.CheckIpConnection;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardData;
@@ -34,6 +36,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 public class HomeActivity extends BottomMenuActivity implements HelperResponse, PopupMenu.OnMenuItemClickListener {
 
@@ -137,8 +141,20 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
             Intent intentObj = new Intent(mContext, BooksActivity.class);
             startActivity(intentObj);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Sale")) {
-            Intent intentObj = new Intent(mContext, PagerActivity.class);
-            startActivity(intentObj);
+            if (PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mContext).equals("")) {
+                CommonMethods.showIPAlertDialog(mContext, "Enter IP Address", new CheckIpConnection() {
+                    @Override
+                    public void onOkButtonClickListner(String serverPath, Context context, Dialog dialog) {
+                        PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, serverPath, mContext);
+                        Intent intentObj = new Intent(mContext, PagerActivity.class);
+                        startActivity(intentObj);
+                        dialog.dismiss();
+                    }
+                });
+            } else {
+                Intent intentObj = new Intent(mContext, PagerActivity.class);
+                startActivity(intentObj);
+            }
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Support")) {
             Intent intentObj = new Intent(mContext, SupportActivity.class);
             startActivity(intentObj);
@@ -152,7 +168,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_DASHBOARD)) {
             //After login user navigated to HomeActivity
             DashboardResponseModel receivedModel = (DashboardResponseModel) customResponse;
-            if (receivedModel.getCommon().getSuccess()) {
+            if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
 
                 DashboardData dashboardData = receivedModel.getData().getDashboardData();
                 shopDetailsText.setText(dashboardData.getShopAddress());

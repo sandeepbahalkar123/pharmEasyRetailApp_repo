@@ -1,12 +1,15 @@
 package com.scorg.farmaeasy.util;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.util.Base64;
@@ -16,10 +19,13 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -64,6 +70,45 @@ public class CommonMethods {
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
     }
 
+    public static Dialog showIPAlertDialog(Context activity, String dialogHeader, CheckIpConnection checkIpConnection) {
+        final Context mContext = activity;
+        mCheckIpConnection = checkIpConnection;
+        final Dialog dialog = new Dialog(activity);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_ok_cancel);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        if (dialogHeader != null)
+            ((TextView) dialog.findViewById(R.id.textView_dialog_heading)).setText(dialogHeader);
+
+        dialog.findViewById(R.id.button_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditText etServerPath = (EditText) dialog.findViewById(R.id.et_server_path);
+
+                if (isValidIP(etServerPath.getText().toString())) {
+                    String mServerPath =  Config.HTTP + etServerPath.getText().toString() + Config.API;
+                    Log.e(TAG, "SERVER PATH===" + mServerPath);
+                    mCheckIpConnection.onOkButtonClickListner(mServerPath, mContext, dialog);
+                } else {
+                    Toast.makeText(mContext, R.string.error_in_ip, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        dialog.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+//                ((Activity) mContext).finish();
+            }
+        });
+        dialog.show();
+
+        return dialog;
+    }
 
     public static String toCamelCase(String input) {
         if (input == null)

@@ -33,6 +33,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.scorg.farmaeasy.util.Constants.SUCCESS;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -121,7 +123,7 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_DAYBOOK)) {
             //After login user navigated to HomeActivity
             DayBookResponseModel dayBookResponseModel = (DayBookResponseModel) customResponse;
-            if (dayBookResponseModel.getCommon().getSuccess()) {
+            if (dayBookResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 if (dayBookResponseModel.getData().getOpeningBal().getDbAmount() != 0)
                     openingbalnaceDebitValue.setText("" + dayBookResponseModel.getData().getOpeningBal().getDbAmount());
                 else
@@ -160,7 +162,7 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
                 recyclerView.setAdapter(mAdapter);
 
             } else
-                CommonMethods.showToast(getActivity(), dayBookResponseModel.getCommon().getStatusMessage());
+                CommonMethods.showToast(getContext(), dayBookResponseModel.getCommon().getStatusMessage());
         }
     }
 

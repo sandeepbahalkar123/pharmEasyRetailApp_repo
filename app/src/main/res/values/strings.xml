@@ -83,11 +83,15 @@
     <string name="call">Call</string>
     <string name="email">Email</string>
     <string name="home_delivery">Do you need Home Delivery</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
     <array name="spinnerArray">
         <item>Cash</item>
         <item>Credit</item>
     </array>
+
+    <string name="error_in_ip">Please enter valid IP address</string>
 
 
     <!--<string name="template_list">Template List</string>-->
