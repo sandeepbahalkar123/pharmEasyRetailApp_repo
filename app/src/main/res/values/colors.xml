@@ -3,7 +3,7 @@
 
     <color name="colorPrimary">#00b4bf</color>
     <color name="colorPrimaryDark">#017b83</color>
-    <color name="colorAccent">#00b4bf</color>
+    <color name="colorAccent">#9c00b4bf</color>
 
     <item name="errorColor" type="color">#BD362F</item>
     <color name="black">#000000</color>
@@ -30,5 +30,6 @@
     <color name="qtyAmountTextColor_billingdetails">#626262</color>
     <color name="support_textcolor">#54b1bd</color>
 
+    <color name="grey_500">#9E9E9E</color>
 
 </resources>

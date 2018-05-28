@@ -1,0 +1,43 @@
+{
+  "common": {
+    "success": true,
+    "statusCode": 200,
+    "statusMessage": "Batch List"
+  },
+  "data": {
+    "batchList": [
+      {
+        "batchInfo": "2398",
+        "stock": 6000,
+        "totalQTY": 0,
+        "expiryDateInfo": "MSU - 09/18",
+        "packType": "Tab",
+        "rateInfo": 34.00
+      },
+      {
+        "batchInfo": "SV579",
+        "stock": 1200,
+        "totalQTY": 0,
+        "expiryDateInfo": "SGT - 02/19",
+        "packType": "Tab",
+        "rateInfo": 31.05
+      },
+      {
+        "batchInfo": "2092",
+        "stock": 2030,
+        "totalQTY": 0,
+        "expiryDateInfo": "OUM - 02/20",
+        "packType": "Tab",
+        "rateInfo": 38.46
+      },
+      {
+        "batchInfo": "30974",
+        "stock": 1203,
+        "totalQTY": 0,
+        "expiryDateInfo": "MSL - 03/20",
+        "packType": "Tab",
+        "rateInfo": 34.80
+      }
+    ]
+  }
+}

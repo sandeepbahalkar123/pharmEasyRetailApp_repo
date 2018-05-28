@@ -26,6 +26,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.scorg.farmaeasy.util.Constants.SUCCESS;
+
 public class LoginActivity extends AppCompatActivity implements HelperResponse {
     @BindView(R.id.editTextUserId)
     EditText editTextUserId;
@@ -92,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements HelperResponse {
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_LOGIN)) {
             //After login user navigated to HomeActivity
             LoginResponseModel receivedModel = (LoginResponseModel) customResponse;
-            if (receivedModel.getCommon().getSuccess()) {
+            if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.LOGIN_STATUS, Constants.YES, mContext);
                 PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.AUTHTOKEN, receivedModel.getData().getAuthToken(), mContext);
                 PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.EMPNAME, receivedModel.getData().getEmployeeData().getEmpName(), mContext);

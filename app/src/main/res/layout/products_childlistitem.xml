@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/daybooklightgreycolor">
 
     <LinearLayout
-        android:id="@+id/mainlayout"
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/dp15"
+        android:paddingStart="@dimen/dp15"
+        android:paddingTop="@dimen/dp8">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp19">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/batchInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp16"
@@ -35,22 +35,24 @@
                 android:layout_alignBaseline="@+id/batchInfo"
                 android:inputType="number"
                 tools:text="30341" />
+
             <View
-                android:layout_alignParentRight="true"
-                android:layout_alignEnd="@+id/editTextQty"
-                android:layout_alignRight="@+id/editTextQty"
-                android:layout_below="@+id/editTextQty"
                 android:layout_width="@dimen/dp40"
                 android:layout_height="@dimen/dp1"
-                android:background="@color/searchProducts_HighligtedTextColor"
-                />
+                android:layout_alignEnd="@+id/editTextQty"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/editTextQty"
+                android:layout_below="@+id/editTextQty"
+                android:background="@color/searchProducts_HighligtedTextColor" />
 
             <TextView
                 android:id="@+id/stock"
-                android:layout_alignBaseline="@+id/batchInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/batchInfo"
                 android:layout_toLeftOf="@+id/editTextQty"
+                android:layout_toStartOf="@+id/editTextQty"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingRight="@dimen/dp40"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
@@ -63,23 +65,24 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp3"
-            android:layout_marginRight="@dimen/dp19">
+            android:layout_marginTop="@dimen/dp3">
 
             <TextView
                 android:id="@+id/expiryDateInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="@color/productsList_unitTextColor"
                 android:textSize="@dimen/sp11"
                 tools:text="MSU - 09/18 - " />
+
             <TextView
                 android:id="@+id/packingType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/expiryDateInfo"
                 android:layout_toRightOf="@+id/expiryDateInfo"
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="@color/productsList_unitTextColor"
@@ -91,38 +94,38 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp3"
-            android:layout_marginRight="@dimen/dp19">
-        <TextView
-            android:id="@+id/estimatedPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/productsList_unitTextColor"
-            android:textSize="@dimen/sp11"
-            android:text="@string/salePrice" />
+            android:layout_marginTop="@dimen/dp3">
+
+            <TextView
+                android:id="@+id/estimatedPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingEnd="@dimen/dp6"
+                android:paddingRight="@dimen/dp6"
+                android:text="@string/salePrice"
+                android:textColor="@color/productsList_unitTextColor"
+                android:textSize="@dimen/sp11" />
 
             <TextView
                 android:id="@+id/estimatedPriceValue"
-                android:layout_toRightOf="@+id/estimatedPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/estimatedPrice"
+                android:layout_toRightOf="@+id/estimatedPrice"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp11"
                 tools:text="Rs 34.00" />
         </RelativeLayout>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp1"
-            android:layout_marginTop="@dimen/dp8"
-            android:background="@color/dividercolor" />
-
-
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_below="@+id/mainLayout"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/dividercolor" />
 
 </RelativeLayout>
