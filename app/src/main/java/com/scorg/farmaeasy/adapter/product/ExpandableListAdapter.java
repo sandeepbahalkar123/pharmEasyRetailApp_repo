@@ -20,10 +20,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<ProductList> productList;
+    private List<ProductList> productParentList;
 
-    public ExpandableListAdapter(Context context, List<ProductList> productList) {
+    public ExpandableListAdapter(Context context, List<ProductList> productParentList, List<ProductList> productList) {
         this._context = context;
         this.productList = productList;
+        this.productParentList = productParentList;
     }
 
     @Override
@@ -68,12 +70,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getGroup(int groupPosition) {
-        return this.productList.get(groupPosition);
+        return this.productParentList.get(groupPosition);
     }
 
     @Override
     public int getGroupCount() {
-        return this.productList.size();
+        return this.productParentList.size();
     }
 
     @Override

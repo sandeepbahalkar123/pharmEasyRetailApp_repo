@@ -15,11 +15,14 @@ import com.scorg.farmaeasy.model.responseModel.product.ProductResponseModel;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -52,7 +55,10 @@ public class ProductFragment extends Fragment {
         ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
 
         List<ProductList> productList = productResponseModel.getData().getProductList();
-        ExpandableListAdapter listAdapter = new ExpandableListAdapter(getContext(), productList);
+        List<ProductList> productParentList = new ArrayList<>();
+        productParentList.add(productList.get(getArguments().getInt(INDEX)));
+
+        ExpandableListAdapter listAdapter = new ExpandableListAdapter(getContext(),productParentList,  productList);
         // setting list adapter
         productListExpand.setAdapter(listAdapter);
         productListExpand.expandGroup(0);

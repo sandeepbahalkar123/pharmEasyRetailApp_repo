@@ -1,6 +1,5 @@
 package com.scorg.farmaeasy.ui.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,8 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -31,6 +28,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PagerActivity extends AppCompatActivity {
+
+    public static final String INDEX = "index";
 
     @BindView(R.id.fixedBottomHomeDelLayout)
     RelativeLayout fixedBottomHomeDelLayout;
@@ -71,7 +70,8 @@ public class PagerActivity extends AppCompatActivity {
             "Add Details",
             "Billing"
     };
-    private MenuItem item;
+
+   /* private MenuItem item;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -91,7 +91,7 @@ public class PagerActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         item = menu.getItem(0);
         return true;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +127,7 @@ public class PagerActivity extends AppCompatActivity {
                     fixedBottomHomeDelLayout.setVisibility(View.GONE);
                 }
 
-                item.setVisible(tab.getPosition() == 0);
+//                item.setVisible(tab.getPosition() == 0);
             }
 
             @Override
@@ -176,9 +176,17 @@ public class PagerActivity extends AppCompatActivity {
 
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(ProductFragment.newInstance(), "Product");
+
+        ProductFragment productFragment = ProductFragment.newInstance();
+        Bundle bundle = new Bundle();
+        bundle.putInt(INDEX, getIntent().getIntExtra(INDEX, 0));
+        productFragment.setArguments(bundle);
+        adapter.addFragment(productFragment, "Product");
+
         adapter.addFragment(AddDetailsFragment.newInstance(), "Add Details");
+
         adapter.addFragment(BillingFragment.newInstance(), "Billing");
+
         viewPager.setAdapter(adapter);
     }
 

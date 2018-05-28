@@ -13,18 +13,20 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.adapter.daybook.DayBookParticularListAdapter;
 import com.scorg.farmaeasy.adapter.product.BillingProductsListAdapter;
 import com.scorg.farmaeasy.model.responseModel.product.ProductList;
 import com.scorg.farmaeasy.model.responseModel.product.ProductResponseModel;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -69,6 +71,7 @@ public class BillingFragment extends Fragment {
         String jsonString = loadJSONFromAsset("productList.json");
         ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
         List<ProductList> productList = productResponseModel.getData().getProductList();
+
         BillingProductsListAdapter mAdapter = new BillingProductsListAdapter(getContext(), productList);
         LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         productListRecycler.setLayoutManager(linearlayoutManager);

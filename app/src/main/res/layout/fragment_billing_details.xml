@@ -87,7 +87,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="@dimen/dp185"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1.2"
@@ -107,7 +107,7 @@
 
             <TextView
                 android:id="@+id/quantity"
-                android:layout_width="@dimen/dp50"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_weight="0.4"
@@ -116,7 +116,7 @@
                 android:paddingLeft="@dimen/dp10"
                 android:paddingStart="@dimen/dp10"
                 android:paddingTop="@dimen/dp12"
-                android:text="7250"
+                android:text=""
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp15" />
 
@@ -128,7 +128,7 @@
 
             <TextView
                 android:id="@+id/amount"
-                android:layout_width="@dimen/dp80"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_weight="0.5"
@@ -148,19 +148,35 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="@dimen/dp185"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1.2"
-                android:fontFamily="@font/roboto_medium"
-                android:paddingBottom="@dimen/dp8"
-                android:paddingLeft="@dimen/dp15"
-                android:paddingStart="@dimen/dp15"
-                android:paddingTop="@dimen/dp12"
-                android:text="@string/discount"
-                android:textColor="@color/searchProducts_HighligtedTextColor"
-                android:textSize="@dimen/sp15" />
+                android:layout_weight="1.2">
+
+                <TextView
+                    android:id="@+id/discountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingBottom="@dimen/dp8"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingEnd="@dimen/dp15"
+                    android:paddingTop="@dimen/dp12"
+                    android:text="@string/discount"
+                    android:textColor="@color/searchProducts_HighligtedTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <EditText
+                    android:id="@+id/percentEditText"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="wrap_content"
+                    android:text="10.00%"
+                    android:textSize="@dimen/sp14"
+                    android:layout_toEndOf="@+id/discountLabel"
+                    android:layout_toRightOf="@+id/discountLabel" />
+
+            </RelativeLayout>
 
             <View
                 android:layout_width="@dimen/dp1"
@@ -170,7 +186,7 @@
 
             <TextView
                 android:id="@+id/quantity_discount"
-                android:layout_width="@dimen/dp50"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_weight="0.4"
@@ -191,7 +207,7 @@
 
             <TextView
                 android:id="@+id/amount_discount"
-                android:layout_width="@dimen/dp80"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_weight="0.5"
@@ -213,7 +229,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="@dimen/dp185"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1.2"
@@ -233,7 +249,7 @@
 
 
             <TextView
-                android:layout_width="@dimen/dp50"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_weight="0.4"
@@ -254,7 +270,7 @@
 
             <TextView
                 android:id="@+id/netAmount"
-                android:layout_width="@dimen/dp80"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_weight="0.5"

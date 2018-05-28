@@ -146,13 +146,13 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                     @Override
                     public void onOkButtonClickListner(String serverPath, Context context, Dialog dialog) {
                         PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, serverPath, mContext);
-                        Intent intentObj = new Intent(mContext, PagerActivity.class);
+                        Intent intentObj = new Intent(mContext, ProductsActivity.class);
                         startActivity(intentObj);
                         dialog.dismiss();
                     }
                 });
             } else {
-                Intent intentObj = new Intent(mContext, PagerActivity.class);
+                Intent intentObj = new Intent(mContext, ProductsActivity.class);
                 startActivity(intentObj);
             }
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Support")) {

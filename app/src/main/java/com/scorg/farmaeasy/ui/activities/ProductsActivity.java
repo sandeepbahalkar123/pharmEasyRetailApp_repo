@@ -1,6 +1,7 @@
 package com.scorg.farmaeasy.ui.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
@@ -8,12 +9,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.adapter.product.BillingProductsListAdapter;
 import com.scorg.farmaeasy.adapter.product.SearchProductsListAdapter;
 import com.scorg.farmaeasy.model.responseModel.product.ProductList;
 import com.scorg.farmaeasy.model.responseModel.product.ProductResponseModel;
@@ -27,7 +29,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProductsActivity extends AppCompatActivity {
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
+
+public class ProductsActivity extends AppCompatActivity implements SearchProductsListAdapter.ProductClick {
 
     private Context mContext;
 
@@ -54,13 +58,10 @@ public class ProductsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
-        toolbar.setVisibility(View.GONE);
-        searchView.setVisibility(View.VISIBLE);
-
         String jsonString = loadJSONFromAsset("productList.json");
         ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
         List<ProductList> productList = productResponseModel.getData().getProductList();
-        SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, productList);
+        SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, productList, this);
         LinearLayoutManager linearlayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         productListRecycler.setLayoutManager(linearlayoutManager);
         productListRecycler.setItemAnimator(new DefaultItemAnimator());
@@ -91,22 +92,29 @@ public class ProductsActivity extends AppCompatActivity {
                 searchTextView.setText("");
                 break;
             case R.id.searchBackButton:
-                /*if (searchTextView.getText().toString().isEmpty()) {
+                if (searchTextView.getText().toString().isEmpty()) {
                     searchView.setVisibility(View.GONE);
                     toolbar.setVisibility(View.VISIBLE);
                     searchTextView.setEnabled(false);
                     CommonMethods.hideKeyboard(this);
-                } else searchTextView.setText("");*/
+                } else searchTextView.setText("");
 
-                if (searchTextView.getText().toString().isEmpty())
+               /* if (searchTextView.getText().toString().isEmpty())
                     onBackPressed();
-                else searchTextView.setText("");
+                else searchTextView.setText("");*/
 
                 break;
         }
     }
 
-    /*@Override
+    @Override
+    public void onClick(int shortBookList) {
+        Intent intent = new Intent(mContext, PagerActivity.class);
+        intent.putExtra(INDEX, shortBookList);
+        startActivity(intent);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
@@ -125,6 +133,6 @@ public class ProductsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
-    }*/
+    }
 
 }

@@ -17,12 +17,14 @@ import butterknife.ButterKnife;
 
 public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProductsListAdapter.ListViewHolder> {
 
+    private final ProductClick productClick;
     private List<ProductList> shortBookLists;
     private Context mContext;
 
-    public SearchProductsListAdapter(Context mContext, List<ProductList> shortBookLists) {
+    public SearchProductsListAdapter(Context mContext, List<ProductList> shortBookLists, ProductClick productClick) {
         this.shortBookLists = shortBookLists;
         this.mContext = mContext;
+        this.productClick = productClick;
     }
 
     @Override
@@ -40,6 +42,13 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
 
         holder.expiryDateInfo.setText(String.valueOf(shortBookList.getExpiryDateInfo()));
         holder.batchInfo.setText(String.valueOf(shortBookList.getBatchInfo()));
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productClick.onClick(position);
+            }
+        });
 
     }
 
@@ -62,9 +71,16 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
         @BindView(R.id.batchInfo)
         TextView batchInfo;
 
+        View view;
+
         ListViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            this.view = view;
         }
+    }
+
+    public interface ProductClick {
+        void onClick(int shortBookList);
     }
 }
