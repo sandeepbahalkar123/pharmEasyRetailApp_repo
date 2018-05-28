@@ -72,6 +72,8 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
     TextView closingBalnceCreditValue;
     @BindView(R.id.bottomLayout)
     LinearLayout bottomLayout;
+    @BindView(R.id.noRecordsFound)
+    TextView noRecordsFound;
 
     private ArrayList<DayBookList> mDayBookList = new ArrayList<>();
     private DayBookParticularListAdapter mAdapter;
@@ -154,16 +156,27 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
                 else
                     closingBalnceCreditValue.setText("");
 
-                mDayBookList = dayBookResponseModel.getData().getDayBookList();
-                mAdapter = new DayBookParticularListAdapter(getActivity(), mDayBookList);
-                LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                recyclerView.setLayoutManager(linearlayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(mAdapter);
+                if(dayBookResponseModel.getData().getDayBookList().size()>0) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    noRecordsFound.setVisibility(View.GONE);
+                    mDayBookList = dayBookResponseModel.getData().getDayBookList();
+                    mAdapter = new DayBookParticularListAdapter(getActivity(), mDayBookList);
+                    LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                    recyclerView.setLayoutManager(linearlayoutManager);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(mAdapter);
+                }else{
+                    recyclerView.setVisibility(View.GONE);
+                    noRecordsFound.setVisibility(View.VISIBLE);
+                }
 
-            } else
-                CommonMethods.showToast(getContext(), dayBookResponseModel.getCommon().getStatusMessage());
+            } else {
+                recyclerView.setVisibility(View.GONE);
+                noRecordsFound.setVisibility(View.VISIBLE);
+//                CommonMethods.showToast(getContext(), dayBookResponseModel.getCommon().getStatusMessage());
+            }
         }
+
     }
 
     @Override

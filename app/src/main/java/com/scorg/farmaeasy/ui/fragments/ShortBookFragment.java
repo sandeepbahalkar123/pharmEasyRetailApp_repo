@@ -60,8 +60,13 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     LinearLayout productslayout;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.partitionView)
+    View partitionView;
+    @BindView(R.id.noRecordsFound)
+    TextView noRecordsFound;
 
     Unbinder unbinder;
+
 
     private ArrayList<ShortBookList> mShortBookList = new ArrayList<>();
     private ShortBookProductsListAdapter mAdapter;
@@ -166,15 +171,27 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
             //After login user navigated to HomeActivity
             ShortBookResponseModel shortBookResponseModel = (ShortBookResponseModel) customResponse;
             if (shortBookResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
-                mShortBookList = shortBookResponseModel.getData().getShortBookList();
-                mAdapter = new ShortBookProductsListAdapter(getActivity(), mShortBookList);
-                LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                recyclerView.setLayoutManager(linearlayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(mAdapter);
+                if(shortBookResponseModel.getData().getShortBookList().size()>0) {
+                    partitionView.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    noRecordsFound.setVisibility(View.GONE);
+                    mShortBookList = shortBookResponseModel.getData().getShortBookList();
+                    mAdapter = new ShortBookProductsListAdapter(getActivity(), mShortBookList);
+                    LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                    recyclerView.setLayoutManager(linearlayoutManager);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(mAdapter);
+                }else {
+                    partitionView.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.GONE);
+                    noRecordsFound.setVisibility(View.VISIBLE);
+                }
 
             } else {
-                CommonMethods.showToast(getActivity(), shortBookResponseModel.getCommon().getStatusMessage());
+                partitionView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                noRecordsFound.setVisibility(View.VISIBLE);
+//                CommonMethods.showToast(getActivity(), shortBookResponseModel.getCommon().getStatusMessage());
             }
         }
     }

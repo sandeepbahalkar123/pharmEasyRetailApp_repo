@@ -92,6 +92,7 @@
     </array>
 
     <string name="error_in_ip">Please enter valid IP address</string>
+    <string name="norecordsfound">No Records Found</string>
 
 
     <!--<string name="template_list">Template List</string>-->

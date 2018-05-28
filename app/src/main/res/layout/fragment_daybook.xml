@@ -179,7 +179,7 @@
                 android:layout_marginLeft="@dimen/dp16"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_medium"
-                android:text="0000.00"
+                android:text="0.00"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp15" />
 
@@ -204,6 +204,18 @@
         android:layout_below="@+id/topLayout">
 
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/noRecordsFound"
+        android:layout_above="@+id/bottomLayout"
+        android:layout_below="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/norecordsfound"
+        android:textColor="@color/dayBookTextColor"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="@dimen/sp19" />
 
     <LinearLayout
         android:id="@+id/bottomLayout"
@@ -249,7 +261,7 @@
                 android:layout_marginStart="@dimen/dp16"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_medium"
-                android:text="0000.00"
+                android:text="0.00"
                 android:textColor="@color/dayBookTextColor"
                 android:textSize="@dimen/sp15" />
 
@@ -265,7 +277,7 @@
                 android:layout_weight="0.8"
                 android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="@dimen/dp20"
-                android:text="0000.00"
+                android:text="0.00"
                 android:textColor="@color/dayBookTextColor"
                 android:textSize="@dimen/sp15" />
         </LinearLayout>
@@ -297,7 +309,7 @@
                 android:layout_marginStart="@dimen/dp16"
                 android:layout_weight="0.6"
                 android:fontFamily="@font/roboto_medium"
-                android:text="0000.00"
+                android:text="0.00"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp15" />
 
