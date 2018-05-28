@@ -14,8 +14,8 @@ public class Config {
     public static final String GET_DAYBOOK_DATA = "GetDayBook";
     public static final String GET_SHORTBOOK_DATA = "GetShortBook";
 
-    public static String BASE_URL = "http://172.16.100.221/pheasyservice.svc/";
-//    public static String BASE_URL = "http://125.99.46.208/pheasyservice.svc/";
+//    public static String BASE_URL = "http://172.16.100.221/pheasyservice.svc/";
+    public static String BASE_URL = "http://125.99.46.208/pheasyservice.svc/";
     public static final String URL_CHECK_SERVER_CONNECTION = "connectionCheck";
 
 }

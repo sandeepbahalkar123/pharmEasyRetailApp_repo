@@ -142,7 +142,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
             startActivity(intentObj);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Sale")) {
             if (PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mContext).equals("")) {
-                CommonMethods.showIPAlertDialog(mContext, "Enter IP Address", new CheckIpConnection() {
+                CommonMethods.showIPAlertDialog(mContext, mContext.getString(R.string.enteripaddress), new CheckIpConnection() {
                     @Override
                     public void onOkButtonClickListner(String serverPath, Context context, Dialog dialog) {
                         PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, serverPath, mContext);
