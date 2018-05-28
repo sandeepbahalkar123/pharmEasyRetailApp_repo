@@ -150,11 +150,10 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         this.year = year;
-        this.month = month;
+        this.month = month + 1;
         this.dayOfMonth = dayOfMonth;
 
-        month += 1;
-        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
+        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
         fromDateValue.setText(formatedDate);
         toDateValue.setText(formatedDate);
 //        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());

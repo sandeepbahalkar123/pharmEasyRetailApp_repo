@@ -70,7 +70,7 @@ public class CommonMethods {
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
     }
 
-    public static Dialog showIPAlertDialog(Context activity, String dialogHeader, CheckIpConnection checkIpConnection) {
+    public static void showIPAlertDialog(Context activity, String dialogHeader, CheckIpConnection checkIpConnection) {
         final Context mContext = activity;
         mCheckIpConnection = checkIpConnection;
         final Dialog dialog = new Dialog(activity);
@@ -107,7 +107,6 @@ public class CommonMethods {
         });
         dialog.show();
 
-        return dialog;
     }
 
     public static String toCamelCase(String input) {
