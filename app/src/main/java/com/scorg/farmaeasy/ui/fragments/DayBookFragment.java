@@ -129,32 +129,32 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
                 if (dayBookResponseModel.getData().getOpeningBal().getDbAmount() != 0)
                     openingbalnaceDebitValue.setText("" + dayBookResponseModel.getData().getOpeningBal().getDbAmount());
                 else
-                    openingbalnaceDebitValue.setText("");
+                    openingbalnaceDebitValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getOpeningBal().getCrAmount() != 0)
                     openingbalnaceCreditValue.setText("" + dayBookResponseModel.getData().getOpeningBal().getCrAmount());
-                else
-                    openingbalnaceCreditValue.setText("");
+//                else
+//                    openingbalnaceCreditValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getTotal().getDbAmount() != 0)
                     totalDebitValue.setText("" + dayBookResponseModel.getData().getTotal().getDbAmount());
                 else
-                    totalDebitValue.setText("");
+                    totalDebitValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getTotal().getCrAmount() != 0)
                     totalCreditValue.setText("" + dayBookResponseModel.getData().getTotal().getCrAmount());
                 else
-                    totalCreditValue.setText("");
+                    totalCreditValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getClosingBal().getDbAmount() != 0)
                     closingBalnceDebitValue.setText("" + dayBookResponseModel.getData().getClosingBal().getDbAmount());
                 else
-                    closingBalnceDebitValue.setText("");
+                    closingBalnceDebitValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getClosingBal().getCrAmount() != 0)
                     closingBalnceCreditValue.setText("" + dayBookResponseModel.getData().getClosingBal().getCrAmount());
-                else
-                    closingBalnceCreditValue.setText("");
+//                else
+//                    closingBalnceCreditValue.setText("0.00");
 
                 if(dayBookResponseModel.getData().getDayBookList().size()>0) {
                     recyclerView.setVisibility(View.VISIBLE);
@@ -173,6 +173,10 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
             } else {
                 recyclerView.setVisibility(View.GONE);
                 noRecordsFound.setVisibility(View.VISIBLE);
+                openingbalnaceDebitValue.setText("0.00");
+                totalDebitValue.setText("0.00");
+                totalCreditValue.setText("0.00");
+                closingBalnceDebitValue.setText("0.00");
 //                CommonMethods.showToast(getContext(), dayBookResponseModel.getCommon().getStatusMessage());
             }
         }
