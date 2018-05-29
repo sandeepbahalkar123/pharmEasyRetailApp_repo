@@ -14,10 +14,10 @@ public class OpeningBal implements Parcelable
 private String particularName;
 @SerializedName("dbAmount")
 @Expose
-private Integer dbAmount;
+private double dbAmount;
 @SerializedName("crAmount")
 @Expose
-private Integer crAmount;
+private double crAmount;
 public final static Parcelable.Creator<OpeningBal> CREATOR = new Creator<OpeningBal>() {
 
 
@@ -37,8 +37,8 @@ return (new OpeningBal[size]);
 
 protected OpeningBal(Parcel in) {
 this.particularName = ((String) in.readValue((String.class.getClassLoader())));
-this.dbAmount = ((Integer) in.readValue((Integer.class.getClassLoader())));
-this.crAmount = ((Integer) in.readValue((Integer.class.getClassLoader())));
+this.dbAmount = ((double) in.readValue((double.class.getClassLoader())));
+this.crAmount = ((double) in.readValue((double.class.getClassLoader())));
 }
 
 public OpeningBal() {
@@ -52,19 +52,19 @@ public void setParticularName(String particularName) {
 this.particularName = particularName;
 }
 
-public Integer getDbAmount() {
+public double getDbAmount() {
 return dbAmount;
 }
 
-public void setDbAmount(Integer dbAmount) {
+public void setDbAmount(double dbAmount) {
 this.dbAmount = dbAmount;
 }
 
-public Integer getCrAmount() {
+public double getCrAmount() {
 return crAmount;
 }
 
-public void setCrAmount(Integer crAmount) {
+public void setCrAmount(double crAmount) {
 this.crAmount = crAmount;
 }
 

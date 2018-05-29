@@ -24,6 +24,7 @@ import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -125,34 +126,35 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_DAYBOOK)) {
             //After login user navigated to HomeActivity
             DayBookResponseModel dayBookResponseModel = (DayBookResponseModel) customResponse;
+            DecimalFormat precision = new DecimalFormat("#.00");
             if (dayBookResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 if (dayBookResponseModel.getData().getOpeningBal().getDbAmount() != 0)
-                    openingbalnaceDebitValue.setText("" + dayBookResponseModel.getData().getOpeningBal().getDbAmount());
+                    openingbalnaceDebitValue.setText("" + precision.format(dayBookResponseModel.getData().getOpeningBal().getDbAmount()) );
                 else
                     openingbalnaceDebitValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getOpeningBal().getCrAmount() != 0)
-                    openingbalnaceCreditValue.setText("" + dayBookResponseModel.getData().getOpeningBal().getCrAmount());
+                    openingbalnaceCreditValue.setText("" + precision.format(dayBookResponseModel.getData().getOpeningBal().getCrAmount()));
 //                else
 //                    openingbalnaceCreditValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getTotal().getDbAmount() != 0)
-                    totalDebitValue.setText("" + dayBookResponseModel.getData().getTotal().getDbAmount());
+                    totalDebitValue.setText("" + precision.format(dayBookResponseModel.getData().getTotal().getDbAmount()));
                 else
                     totalDebitValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getTotal().getCrAmount() != 0)
-                    totalCreditValue.setText("" + dayBookResponseModel.getData().getTotal().getCrAmount());
+                    totalCreditValue.setText("" + precision.format(dayBookResponseModel.getData().getTotal().getCrAmount()));
                 else
                     totalCreditValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getClosingBal().getDbAmount() != 0)
-                    closingBalnceDebitValue.setText("" + dayBookResponseModel.getData().getClosingBal().getDbAmount());
+                    closingBalnceDebitValue.setText("" + precision.format(dayBookResponseModel.getData().getClosingBal().getDbAmount()));
                 else
                     closingBalnceDebitValue.setText("0.00");
 
                 if (dayBookResponseModel.getData().getClosingBal().getCrAmount() != 0)
-                    closingBalnceCreditValue.setText("" + dayBookResponseModel.getData().getClosingBal().getCrAmount());
+                    closingBalnceCreditValue.setText("" + precision.format(dayBookResponseModel.getData().getClosingBal().getCrAmount()));
 //                else
 //                    closingBalnceCreditValue.setText("0.00");
 

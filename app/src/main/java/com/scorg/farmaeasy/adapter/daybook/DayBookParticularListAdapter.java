@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.responseModel.daybook.DayBookList;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -55,12 +56,13 @@ public class DayBookParticularListAdapter extends RecyclerView.Adapter<DayBookPa
     public void onBindViewHolder(ListViewHolder holder, int position) {
         DayBookList dayBookList = dayBookLists.get(position);
         holder.particularName.setText(dayBookList.getParticularName());
+        DecimalFormat precision = new DecimalFormat("#.00");
         if(dayBookList.getDbAmount()!=0)
-            holder.debitValue.setText(""+dayBookList.getDbAmount());
+            holder.debitValue.setText(""+precision.format(dayBookList.getDbAmount()));
         else
             holder.debitValue.setText("");
         if(dayBookList.getCrAmount()!=0)
-            holder.creditValue.setText(""+dayBookList.getCrAmount());
+            holder.creditValue.setText(""+precision.format(dayBookList.getCrAmount()));
         else
             holder.creditValue.setText("");
     }
