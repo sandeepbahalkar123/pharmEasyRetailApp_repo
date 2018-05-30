@@ -58,31 +58,31 @@ public class ConnectionFactory extends ConnectRequest {
 
 
     //THis is done for now, as DMS API IS NOT AVAILABLE RIGHT NOW
-    public void setDMSHeaderParams() {
-
-        Map<String, String> headerParams = new HashMap<>();
-
-        String authorizationString = "";
-        String contentType = PreferencesManager.getString(Constants.LOGIN_SUCCESS, mContext);
-
-        if (contentType.equalsIgnoreCase(Constants.TRUE)) {
-            authorizationString = PreferencesManager.getString(Constants.TOKEN_TYPE, mContext)
-                    + " " + PreferencesManager.getString(Constants.ACCESS_TOKEN, mContext);
-            headerParams.put(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON);
-        } else {
-            headerParams.put(Constants.CONTENT_TYPE, Constants.APPLICATION_URL_ENCODED);
-        }
-
-        headerParams.put(Constants.AUTHORIZATION, authorizationString);
-        headerParams.put(Constants.DEVICEID, device.getDeviceId());
-
-        headerParams.put(Constants.OS, device.getOS());
-        headerParams.put(Constants.DMS_OSVERSION, device.getOSVersion());
-        //  headerParams.put(Constants.DEVICETYPE, device.getDeviceType());
-//        headerParams.put(Constants.ACCESS_TOKEN, "");
-        CommonMethods.Log(TAG, "setHeaderParams:" + headerParams.toString());
-        this.mHeaderParams = headerParams;
-    }
+//    public void setDMSHeaderParams() {
+//
+//        Map<String, String> headerParams = new HashMap<>();
+//
+//        String authorizationString = "";
+//        String contentType = PreferencesManager.getString(Constants.LOGIN_SUCCESS, mContext);
+//
+//        if (contentType.equalsIgnoreCase(Constants.TRUE)) {
+//            authorizationString = PreferencesManager.getString(Constants.TOKEN_TYPE, mContext)
+//                    + " " + PreferencesManager.getString(Constants.ACCESS_TOKEN, mContext);
+//            headerParams.put(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON);
+//        } else {
+//            headerParams.put(Constants.CONTENT_TYPE, Constants.APPLICATION_URL_ENCODED);
+//        }
+//
+//        headerParams.put(Constants.AUTHORIZATION, authorizationString);
+//        headerParams.put(Constants.DEVICEID, device.getDeviceId());
+//
+//        headerParams.put(Constants.OS, device.getOS());
+//        headerParams.put(Constants.DMS_OSVERSION, device.getOSVersion());
+//        //  headerParams.put(Constants.DEVICETYPE, device.getDeviceType());
+////        headerParams.put(Constants.ACCESS_TOKEN, "");
+//        CommonMethods.Log(TAG, "setHeaderParams:" + headerParams.toString());
+//        this.mHeaderParams = headerParams;
+//    }
 
 
     public void setPostParams(CustomResponse customResponse) {
@@ -98,11 +98,10 @@ public class ConnectionFactory extends ConnectRequest {
         CommonMethods.Log(TAG, "mURL: " + this.mURL);
     }
 
-    public void setDMSUrl(String url) {
-        String baseUrl = PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mContext);
-
+    public void setIntranetUrl(String serverPath,String url) {
+        String baseUrl = Config.HTTP+ serverPath+Config.SERVICE_NAME;
         this.mURL = baseUrl + url;
-        CommonMethods.Log(TAG, "mURL: " + this.mURL);
+        CommonMethods.Log(TAG, "mIntranetURL: " + this.mURL);
     }
 
     public Connector createConnection(String type) {

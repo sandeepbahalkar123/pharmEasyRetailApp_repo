@@ -1,0 +1,172 @@
+package com.scorg.farmaeasy.model.responseModel.productsearch;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class ProductList implements Parcelable
+{
+
+    @SerializedName("productID")
+    @Expose
+    private String productID;
+    @SerializedName("productName")
+    @Expose
+    private String productName;
+    @SerializedName("prodLoosePack")
+    @Expose
+    private Integer prodLoosePack;
+    @SerializedName("prodPack")
+    @Expose
+    private String prodPack;
+    @SerializedName("prodPackType")
+    @Expose
+    private String prodPackType;
+    @SerializedName("totalQTY")
+    @Expose
+    private Integer totalQTY;
+    @SerializedName("prodCompShortName")
+    @Expose
+    private String prodCompShortName;
+    @SerializedName("shelfNo")
+    @Expose
+    private String shelfNo;
+    @SerializedName("rateInfo")
+    @Expose
+    private Double rateInfo;
+    @SerializedName("batchInfo")
+    @Expose
+    private String batchInfo;
+    public final static Parcelable.Creator<ProductList> CREATOR = new Creator<ProductList>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public ProductList createFromParcel(Parcel in) {
+            return new ProductList(in);
+        }
+
+        public ProductList[] newArray(int size) {
+            return (new ProductList[size]);
+        }
+
+    }
+            ;
+
+    protected ProductList(Parcel in) {
+        this.productID = ((String) in.readValue((String.class.getClassLoader())));
+        this.productName = ((String) in.readValue((String.class.getClassLoader())));
+        this.prodLoosePack = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.prodPack = ((String) in.readValue((String.class.getClassLoader())));
+        this.prodPackType = ((String) in.readValue((String.class.getClassLoader())));
+        this.totalQTY = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.prodCompShortName = ((String) in.readValue((String.class.getClassLoader())));
+        this.shelfNo = ((String) in.readValue((String.class.getClassLoader())));
+        this.rateInfo = ((Double) in.readValue((Double.class.getClassLoader())));
+        this.batchInfo = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public ProductList() {
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Integer getProdLoosePack() {
+        return prodLoosePack;
+    }
+
+    public void setProdLoosePack(Integer prodLoosePack) {
+        this.prodLoosePack = prodLoosePack;
+    }
+
+    public String getProdPack() {
+        return prodPack;
+    }
+
+    public void setProdPack(String prodPack) {
+        this.prodPack = prodPack;
+    }
+
+    public String getProdPackType() {
+        return prodPackType;
+    }
+
+    public void setProdPackType(String prodPackType) {
+        this.prodPackType = prodPackType;
+    }
+
+    public Integer getTotalQTY() {
+        return totalQTY;
+    }
+
+    public void setTotalQTY(Integer totalQTY) {
+        this.totalQTY = totalQTY;
+    }
+
+    public String getProdCompShortName() {
+        return prodCompShortName;
+    }
+
+    public void setProdCompShortName(String prodCompShortName) {
+        this.prodCompShortName = prodCompShortName;
+    }
+
+    public String getShelfNo() {
+        return shelfNo;
+    }
+
+    public void setShelfNo(String shelfNo) {
+        this.shelfNo = shelfNo;
+    }
+
+    public Double getRateInfo() {
+        return rateInfo;
+    }
+
+    public void setRateInfo(Double rateInfo) {
+        this.rateInfo = rateInfo;
+    }
+
+    public String getBatchInfo() {
+        return batchInfo;
+    }
+
+    public void setBatchInfo(String batchInfo) {
+        this.batchInfo = batchInfo;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(productID);
+        dest.writeValue(productName);
+        dest.writeValue(prodLoosePack);
+        dest.writeValue(prodPack);
+        dest.writeValue(prodPackType);
+        dest.writeValue(totalQTY);
+        dest.writeValue(prodCompShortName);
+        dest.writeValue(shelfNo);
+        dest.writeValue(rateInfo);
+        dest.writeValue(batchInfo);
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+}

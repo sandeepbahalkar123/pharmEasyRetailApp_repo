@@ -1,4 +1,4 @@
-package com.scorg.farmaeasy.helpers.login;
+package com.scorg.farmaeasy.helpers.batchlist;
 
 import android.content.Context;
 
@@ -6,10 +6,12 @@ import com.android.volley.Request;
 import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
-import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
-import com.scorg.farmaeasy.model.requestModel.login.LoginRequestModel;
+import com.scorg.farmaeasy.model.requestModel.addressdetailssearchtext.AddressDetailsRequestModel;
+import com.scorg.farmaeasy.model.requestModel.batchlist.BatchListRequestModel;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.network.ConnectRequest;
 import com.scorg.farmaeasy.network.ConnectionFactory;
+import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Config;
 import com.scorg.farmaeasy.util.Constants;
@@ -18,14 +20,14 @@ import com.scorg.farmaeasy.util.Constants;
  * Created by sandeepBahalkar on 18/05/2018.
  */
 
-public class LoginHelper implements ConnectionListener {
+public class BatchListHelper implements ConnectionListener {
     private String TAG = this.getClass().getName();
     private Context mContext;
     private HelperResponse mHelperResponseManager;
 
-    public LoginHelper(Context context, HelperResponse loginActivity) {
+    public BatchListHelper(Context context, HelperResponse helperResponse) {
         this.mContext = context;
-        this.mHelperResponseManager = loginActivity;
+        this.mHelperResponseManager = helperResponse;
     }
 
 
@@ -36,9 +38,9 @@ public class LoginHelper implements ConnectionListener {
         switch (responseResult) {
             case ConnectionListener.RESPONSE_OK:
                 switch (mOldDataTag) {
-                    case Constants.TASK_LOGIN:
-                        LoginResponseModel loginResponseModel = (LoginResponseModel) customResponse;
-                        mHelperResponseManager.onSuccess(mOldDataTag, loginResponseModel);
+                    case Constants.TASK_BATCHLIST:
+                        BatchListResponseModel batchListResponseModel = (BatchListResponseModel) customResponse;
+                        mHelperResponseManager.onSuccess(mOldDataTag, batchListResponseModel);
                         break;
                 }
                 break;
@@ -64,15 +66,15 @@ public class LoginHelper implements ConnectionListener {
 
     }
 
-    //Do login using userId and password
-    public void doLogin(String userId, String password) {
-        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true,Constants.TASK_LOGIN, Request.Method.POST, false);
+    public void doBatchList(String productId) {
+        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true,Constants.TASK_BATCHLIST, Request.Method.POST, false);
         mConnectionFactory.setHeaderParams();
-        LoginRequestModel loginRequestModel = new LoginRequestModel();
-        loginRequestModel.setUserId(userId);
-        loginRequestModel.setPassword(password);
-        mConnectionFactory.setPostParams(loginRequestModel);
-        mConnectionFactory.setUrl(Config.URL_LOGIN);
-        mConnectionFactory.createConnection(Constants.TASK_LOGIN);
+        BatchListRequestModel batchListRequestModel = new BatchListRequestModel();
+        batchListRequestModel.setProductID(productId);
+        mConnectionFactory.setPostParams(batchListRequestModel);
+        mConnectionFactory.setIntranetUrl(PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH,mContext),Config.URL_GET_BATCHLIST);
+        mConnectionFactory.createConnection(Constants.TASK_BATCHLIST);
     }
+
+
 }

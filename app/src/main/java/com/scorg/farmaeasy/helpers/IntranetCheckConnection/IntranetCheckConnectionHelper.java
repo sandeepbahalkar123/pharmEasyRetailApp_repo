@@ -1,4 +1,4 @@
-package com.scorg.farmaeasy.helpers.login;
+package com.scorg.farmaeasy.helpers.IntranetCheckConnection;
 
 import android.content.Context;
 
@@ -6,8 +6,7 @@ import com.android.volley.Request;
 import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
-import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
-import com.scorg.farmaeasy.model.requestModel.login.LoginRequestModel;
+import com.scorg.farmaeasy.model.responseModel.intranetcheckconnection.IntranetCheckConnectionResponseModel;
 import com.scorg.farmaeasy.network.ConnectRequest;
 import com.scorg.farmaeasy.network.ConnectionFactory;
 import com.scorg.farmaeasy.util.CommonMethods;
@@ -18,14 +17,14 @@ import com.scorg.farmaeasy.util.Constants;
  * Created by sandeepBahalkar on 18/05/2018.
  */
 
-public class LoginHelper implements ConnectionListener {
+public class IntranetCheckConnectionHelper implements ConnectionListener {
     private String TAG = this.getClass().getName();
     private Context mContext;
     private HelperResponse mHelperResponseManager;
 
-    public LoginHelper(Context context, HelperResponse loginActivity) {
+    public IntranetCheckConnectionHelper(Context context, HelperResponse helperResponse) {
         this.mContext = context;
-        this.mHelperResponseManager = loginActivity;
+        this.mHelperResponseManager = helperResponse;
     }
 
 
@@ -36,9 +35,9 @@ public class LoginHelper implements ConnectionListener {
         switch (responseResult) {
             case ConnectionListener.RESPONSE_OK:
                 switch (mOldDataTag) {
-                    case Constants.TASK_LOGIN:
-                        LoginResponseModel loginResponseModel = (LoginResponseModel) customResponse;
-                        mHelperResponseManager.onSuccess(mOldDataTag, loginResponseModel);
+                    case Constants.TASK_INTRANET_CHECKCONNECTION:
+                        IntranetCheckConnectionResponseModel intranetCheckConnectionResponseModel = (IntranetCheckConnectionResponseModel) customResponse;
+                        mHelperResponseManager.onSuccess(mOldDataTag, intranetCheckConnectionResponseModel);
                         break;
                 }
                 break;
@@ -65,14 +64,10 @@ public class LoginHelper implements ConnectionListener {
     }
 
     //Do login using userId and password
-    public void doLogin(String userId, String password) {
-        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true,Constants.TASK_LOGIN, Request.Method.POST, false);
-        mConnectionFactory.setHeaderParams();
-        LoginRequestModel loginRequestModel = new LoginRequestModel();
-        loginRequestModel.setUserId(userId);
-        loginRequestModel.setPassword(password);
-        mConnectionFactory.setPostParams(loginRequestModel);
-        mConnectionFactory.setUrl(Config.URL_LOGIN);
-        mConnectionFactory.createConnection(Constants.TASK_LOGIN);
+    public void doIntranetCheckConnectionHelper(String serverPath) {
+        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true,Constants.TASK_INTRANET_CHECKCONNECTION, Request.Method.GET, false);
+        mConnectionFactory.setIntranetUrl(serverPath,Config.URL_CHECK_INTRANET_CONNECTION);
+        mConnectionFactory.createConnection(Constants.TASK_INTRANET_CHECKCONNECTION);
     }
+
 }

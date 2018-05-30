@@ -90,8 +90,8 @@ public class CommonMethods {
                 EditText etServerPath = (EditText) dialog.findViewById(R.id.et_server_path);
 
                 if (isValidIP(etServerPath.getText().toString())) {
-                    String mServerPath =  Config.HTTP + etServerPath.getText().toString() + Config.API;
-                    Log.e(TAG, "SERVER PATH===" + mServerPath);
+                    String mServerPath = etServerPath.getText().toString();
+                    Log.e(TAG, "INTRANET SERVER PATH===" + mServerPath);
                     mCheckIpConnection.onOkButtonClickListner(mServerPath, mContext, dialog);
                 } else {
                     Toast.makeText(mContext, R.string.error_in_ip, Toast.LENGTH_LONG).show();
@@ -669,7 +669,7 @@ public class CommonMethods {
 
     private static boolean isValidIP(String ipAddr) {
 
-        Pattern ptn = Pattern.compile("(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\.(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\.(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\.(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\:(\\d{1,4})$");
+        Pattern ptn = Pattern.compile("(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\.(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\.(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\.(\\b(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b)\\:(\\d{1,5})$");
         Matcher mtch = ptn.matcher(ipAddr);
         return mtch.find();
     }

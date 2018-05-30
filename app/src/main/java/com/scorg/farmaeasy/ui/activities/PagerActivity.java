@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.ui.fragments.AddDetailsFragment;
+import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
 
@@ -183,7 +183,7 @@ public class PagerActivity extends AppCompatActivity {
         productFragment.setArguments(bundle);
         adapter.addFragment(productFragment, "Product");
 
-        adapter.addFragment(AddDetailsFragment.newInstance(), "Add Details");
+        adapter.addFragment(AddressDetailsFragment.newInstance(), "Add Details");
 
         adapter.addFragment(BillingFragment.newInstance(), "Billing");
 

@@ -6,9 +6,7 @@ import com.android.volley.Request;
 import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
-import com.scorg.farmaeasy.model.requestModel.daybook.DayBookRequestModel;
 import com.scorg.farmaeasy.model.requestModel.shortbook.ShortBookRequestModel;
-import com.scorg.farmaeasy.model.responseModel.daybook.DayBookResponseModel;
 import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookResponseModel;
 import com.scorg.farmaeasy.network.ConnectRequest;
 import com.scorg.farmaeasy.network.ConnectionFactory;
@@ -75,7 +73,7 @@ public class ShortBookHelper implements ConnectionListener {
         shortBookRequestModel.setToDate(toDate);
         shortBookRequestModel.setOrderBy(orderBy);
         mConnectionFactory.setPostParams(shortBookRequestModel);
-        mConnectionFactory.setUrl(Config.GET_SHORTBOOK_DATA);
+        mConnectionFactory.setUrl(Config.URL_GET_SHORTBOOK_DATA);
         mConnectionFactory.createConnection(Constants.TASK_SHORTBOOK);
     }
 }
