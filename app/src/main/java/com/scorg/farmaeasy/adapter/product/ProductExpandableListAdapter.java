@@ -16,13 +16,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ExpandableListAdapter extends BaseExpandableListAdapter {
+public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<ProductList> productList;
     private List<ProductList> productParentList;
 
-    public ExpandableListAdapter(Context context, List<ProductList> productParentList, List<ProductList> productList) {
+    public ProductExpandableListAdapter(Context context, List<ProductList> productParentList, List<ProductList> productList) {
         this._context = context;
         this.productList = productList;
         this.productParentList = productParentList;

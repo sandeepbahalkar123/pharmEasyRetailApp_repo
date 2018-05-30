@@ -15,12 +15,15 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.adapter.product.ProductExpandableListAdapter;
+import com.scorg.farmaeasy.adapter.shortbook.ShortBookExpandableListAdapter;
 import com.scorg.farmaeasy.adapter.shortbook.ShortBookProductsListAdapter;
 import com.scorg.farmaeasy.helpers.shortbook.ShortBookHelper;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
@@ -66,7 +69,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     @BindView(R.id.productslayout)
     LinearLayout productslayout;
     @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+    ExpandableListView recyclerView;
     @BindView(R.id.partitionView)
     View partitionView;
     @BindView(R.id.noRecordsFound)
@@ -200,11 +203,17 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
                     recyclerView.setVisibility(View.VISIBLE);
                     noRecordsFound.setVisibility(View.GONE);
                     mShortBookList = shortBookResponseModel.getData().getShortBookList();
-                    mAdapter = new ShortBookProductsListAdapter(getActivity(), mShortBookList);
+
+                    ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), mShortBookList,  mShortBookList);
+                    // setting list adapter
+                    recyclerView.setAdapter(listAdapter);
+                    recyclerView.expandGroup(0);
+
+                    /*mAdapter = new ShortBookProductsListAdapter(getActivity(), mShortBookList);
                     LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(linearlayoutManager);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(mAdapter);
+                    recyclerView.setAdapter(mAdapter);*/
                 } else {
                     partitionView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.GONE);

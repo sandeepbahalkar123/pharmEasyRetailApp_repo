@@ -19,8 +19,6 @@ import butterknife.ButterKnife;
 
 public class ShortBookProductsListAdapter extends RecyclerView.Adapter<ShortBookProductsListAdapter.ListViewHolder> {
 
-
-
     private ArrayList<ShortBookList> shortBookLists;
     private Context mContext;
 

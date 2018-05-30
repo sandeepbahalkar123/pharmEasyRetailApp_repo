@@ -9,7 +9,7 @@ import android.widget.ExpandableListView;
 
 import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.adapter.product.ExpandableListAdapter;
+import com.scorg.farmaeasy.adapter.product.ProductExpandableListAdapter;
 import com.scorg.farmaeasy.model.responseModel.product.ProductList;
 import com.scorg.farmaeasy.model.responseModel.product.ProductResponseModel;
 
@@ -58,7 +58,7 @@ public class ProductFragment extends Fragment {
         List<ProductList> productParentList = new ArrayList<>();
         productParentList.add(productList.get(getArguments().getInt(INDEX)));
 
-        ExpandableListAdapter listAdapter = new ExpandableListAdapter(getContext(),productParentList,  productList);
+        ProductExpandableListAdapter listAdapter = new ProductExpandableListAdapter(getContext(),productParentList,  productList);
         // setting list adapter
         productListExpand.setAdapter(listAdapter);
         productListExpand.expandGroup(0);
