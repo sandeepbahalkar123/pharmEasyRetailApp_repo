@@ -53,7 +53,7 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
-        viewHolderChild.productname.setText("Batch No : " + shortBookList.getProdName());
+        viewHolderChild.productname.setText(shortBookList.getProdName());
         viewHolderChild.avlStock.setText(String.valueOf(shortBookList.getAvailableStock()));
         viewHolderChild.compShortName.setText(shortBookList.getAccShortName());
         viewHolderChild.noOfQtyTabs.setText(String.valueOf(shortBookList.getSchemeQuantity()));

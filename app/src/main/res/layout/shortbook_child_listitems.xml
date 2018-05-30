@@ -11,15 +11,15 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:padding="@dimen/dp15"
-        android:src="@drawable/tablet_icon"/>
+        android:src="@drawable/tablet_icon" />
 
     <LinearLayout
         android:id="@+id/mainlayout"
         android:layout_width="match_parent"
-        android:layout_toRightOf="@id/tabletIcon"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_toEndOf="@id/tabletIcon">
+        android:layout_toEndOf="@id/tabletIcon"
+        android:layout_toRightOf="@id/tabletIcon"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -132,13 +132,13 @@
 
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp1"
-            android:layout_marginTop="@dimen/dp8"
-            android:background="@color/dividercolor" />
-
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"
+        android:layout_below="@+id/mainlayout"
+        android:layout_marginTop="@dimen/dp8"
+        android:background="@color/dividercolor_billingdetails" />
 
 </RelativeLayout>
