@@ -61,10 +61,18 @@ public class Constants {
     public static final String TASK_DASHBOARD = Constants.BLANK + 2;
     public static final String TASK_DAYBOOK = Constants.BLANK + 3;
     public static final String TASK_SHORTBOOK = Constants.BLANK + 4;
+    public static final String TASK_INTRANET_CHECKCONNECTION = Constants.BLANK + 5;
+    public static final String TASK_ADDRESSDETAILS_PATIENTDATA = Constants.BLANK + 6;
+    public static final String TASK_ADDRESSDETAILS_PATIENTADDRESS = Constants.BLANK + 7;
+    public static final String TASK_ADDRESSDETAILS_DOCTORDATA = Constants.BLANK + 8;
+    public static final String TASK_ADDRESSDETAILS_DOCTORADDRESS = Constants.BLANK + 9;
+
+    public static final String TASK_PRODUCT_SEARCH = Constants.BLANK + 10;
+    public static final String TASK_BATCHLIST = Constants.BLANK + 11;
+
 
     public static final String DATA = "DATA";
     public static final Integer SUCCESS = 200;
-    public static final String TASK_CHECK_SERVER_CONNECTION = Constants.BLANK + 39;
     public static final String TITLE = "title";
     public static final int MAX_RETRIES = 3;
 

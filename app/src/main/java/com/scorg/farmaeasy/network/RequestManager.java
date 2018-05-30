@@ -29,9 +29,15 @@ import com.scorg.farmaeasy.helpers.database.AppDBHelper;
 import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.Connector;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
+import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.AddressResponseModel;
+import com.scorg.farmaeasy.model.responseModel.addressdetailsdoctordata.DoctorDataResponseModel;
+import com.scorg.farmaeasy.model.responseModel.addressdetailspatientdata.PatientDataResponseModel;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardResponseModel;
 import com.scorg.farmaeasy.model.responseModel.daybook.DayBookResponseModel;
+import com.scorg.farmaeasy.model.responseModel.intranetcheckconnection.IntranetCheckConnectionResponseModel;
 import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductSearchResponseModel;
 import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookResponseModel;
 import com.scorg.farmaeasy.ui.customesViews.CustomProgressDialog;
 import com.scorg.farmaeasy.util.CommonMethods;
@@ -443,6 +449,41 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                         ShortBookResponseModel shortBookResponseModel = gson.fromJson(data, ShortBookResponseModel.class);
                         this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, shortBookResponseModel, mOldDataTag);
                         break;
+
+                    case Constants.TASK_INTRANET_CHECKCONNECTION: //This is for get archived list
+                        IntranetCheckConnectionResponseModel intranetCheckConnectionResponseModel = gson.fromJson(data, IntranetCheckConnectionResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, intranetCheckConnectionResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_ADDRESSDETAILS_PATIENTDATA: //This is for get archived list
+                        PatientDataResponseModel patientDataResponseModel = gson.fromJson(data, PatientDataResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, patientDataResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_ADDRESSDETAILS_PATIENTADDRESS: //This is for get archived list
+                        AddressResponseModel patientaddressResponseModel = gson.fromJson(data, AddressResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, patientaddressResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_ADDRESSDETAILS_DOCTORDATA: //This is for get archived list
+                        DoctorDataResponseModel doctorDataResponseModel = gson.fromJson(data, DoctorDataResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, doctorDataResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_ADDRESSDETAILS_DOCTORADDRESS: //This is for get archived list
+                        AddressResponseModel doctoraddressResponseModel = gson.fromJson(data, AddressResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, doctoraddressResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_PRODUCT_SEARCH: //This is for get archived list
+                        ProductSearchResponseModel productSearchResponseModel = gson.fromJson(data, ProductSearchResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, productSearchResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_BATCHLIST: //This is for get archived list
+                        BatchListResponseModel batchListResponseModel = gson.fromJson(data, BatchListResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, batchListResponseModel, mOldDataTag);
+                        break;
                 }
             }
 
@@ -518,7 +559,7 @@ public class RequestManager extends ConnectRequest implements Connector, Request
 
 //    private void loginRequest() {
 //        CommonMethods.Log(TAG, "Refresh token while sending refresh token api: ");
-//        String url = Config.BASE_URL + Config.LOGIN_URL;
+//        String url = Config.BASE_URL + Config.URL_LOGIN;
 //
 //        LoginRequestModel loginRequestModel = new LoginRequestModel();
 //

@@ -7,9 +7,7 @@ import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.requestModel.dashboard.DashboardRequest;
-import com.scorg.farmaeasy.model.requestModel.login.LoginRequestModel;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardResponseModel;
-import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.network.ConnectRequest;
 import com.scorg.farmaeasy.network.ConnectionFactory;
 import com.scorg.farmaeasy.util.CommonMethods;
@@ -73,7 +71,7 @@ public class DashboardHelper implements ConnectionListener {
         DashboardRequest dashboardRequest = new DashboardRequest();
         dashboardRequest.setShopId(type);
         mConnectionFactory.setPostParams(dashboardRequest);
-        mConnectionFactory.setUrl(Config.GET_DASHBOARD_DATA);
+        mConnectionFactory.setUrl(Config.URL_GET_DASHBOARD_DATA);
         mConnectionFactory.createConnection(Constants.TASK_DASHBOARD);
     }
 }

@@ -7,9 +7,7 @@ import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.requestModel.daybook.DayBookRequestModel;
-import com.scorg.farmaeasy.model.requestModel.login.LoginRequestModel;
 import com.scorg.farmaeasy.model.responseModel.daybook.DayBookResponseModel;
-import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.network.ConnectRequest;
 import com.scorg.farmaeasy.network.ConnectionFactory;
 import com.scorg.farmaeasy.util.CommonMethods;
@@ -75,7 +73,7 @@ public class DayBookHelper implements ConnectionListener {
         dayBookRequestModel.setFromDate(fromDate);
         dayBookRequestModel.setToDate(toDate);
         mConnectionFactory.setPostParams(dayBookRequestModel);
-        mConnectionFactory.setUrl(Config.GET_DAYBOOK_DATA);
+        mConnectionFactory.setUrl(Config.URL_GET_DAYBOOK_DATA);
         mConnectionFactory.createConnection(Constants.TASK_DAYBOOK);
     }
 }

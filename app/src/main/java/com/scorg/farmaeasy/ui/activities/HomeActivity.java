@@ -20,13 +20,16 @@ import android.widget.TextView;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.bottom_menus.BottomMenu;
 import com.scorg.farmaeasy.bottom_menus.BottomMenuActivity;
+import com.scorg.farmaeasy.helpers.IntranetCheckConnection.IntranetCheckConnectionHelper;
 import com.scorg.farmaeasy.helpers.dashboard.DashboardHelper;
+import com.scorg.farmaeasy.helpers.login.LoginHelper;
 import com.scorg.farmaeasy.interfaces.CheckIpConnection;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardData;
 import com.scorg.farmaeasy.model.responseModel.dashboard.DashboardResponseModel;
 import com.scorg.farmaeasy.model.responseModel.dashboard.ShopList;
+import com.scorg.farmaeasy.model.responseModel.intranetcheckconnection.IntranetCheckConnectionResponseModel;
 import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
@@ -102,6 +105,8 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
     private Context mContext;
     private DashboardHelper dashboardHelper;
     private List<ShopList> shopList;
+    public String mServerPath;
+    public Dialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,12 +149,13 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Sale")) {
             if (PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mContext).equals("")) {
                 CommonMethods.showIPAlertDialog(mContext, mContext.getString(R.string.enteripaddress), new CheckIpConnection() {
+
                     @Override
                     public void onOkButtonClickListner(String serverPath, Context context, Dialog dialog) {
-                        PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, serverPath, mContext);
-                        Intent intentObj = new Intent(mContext, ProductsActivity.class);
-                        startActivity(intentObj);
-                        dialog.dismiss();
+                        mDialog=dialog;
+                        mServerPath=serverPath;
+                        IntranetCheckConnectionHelper intranetCheckConnectionHelper = new IntranetCheckConnectionHelper(mContext, HomeActivity.this);
+                        intranetCheckConnectionHelper.doIntranetCheckConnectionHelper(mServerPath);
                     }
                 });
             } else {
@@ -163,6 +169,8 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
 
         super.onBottomMenuClick(bottomMenu);
     }
+
+
 
     @Override
     public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
@@ -226,6 +234,18 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
             } else {
                 CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
             }
+        }else if(mOldDataTag.equalsIgnoreCase(Constants.TASK_INTRANET_CHECKCONNECTION)){
+            IntranetCheckConnectionResponseModel receivedModel = (IntranetCheckConnectionResponseModel) customResponse;
+            if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
+                PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mServerPath, mContext);
+                CommonMethods.Log("mServerPath=>",mServerPath);
+                Intent intentObj = new Intent(mContext, ProductsActivity.class);
+                startActivity(intentObj);
+                mDialog.dismiss();
+            }else{
+                CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
+            }
+
         }
     }
 

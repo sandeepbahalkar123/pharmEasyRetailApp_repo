@@ -164,12 +164,6 @@
                 android:textSize="@dimen/sp15" />
         </LinearLayout>
 
-        <View
-            android:id="@+id/partitionView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp1"
-            android:layout_marginTop="@dimen/dp16"
-            android:background="@color/dividercolor" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -5,24 +5,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class AddDetailsFragment extends Fragment {
+public class AddressDetailsFragment extends Fragment {
 
-    public AddDetailsFragment() {
+    public AddressDetailsFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static AddDetailsFragment newInstance() {
-        return new AddDetailsFragment();
+    public static AddressDetailsFragment newInstance() {
+        return new AddressDetailsFragment();
     }
 
     @Override
