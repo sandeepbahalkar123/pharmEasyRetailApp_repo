@@ -96,6 +96,8 @@
     <string name="enteripaddress">Enter System IP Address \n e.g.172.16.100.221:84</string>
     <string name="title_barcode_scanner_activity">Barcode Scanner</string>
 
+    <integer name="mobileNumberLength">10</integer>
+
 
     <!--<string name="template_list">Template List</string>-->
 
