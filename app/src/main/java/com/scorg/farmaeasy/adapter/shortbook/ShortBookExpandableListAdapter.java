@@ -20,17 +20,15 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<ShortBookList> shortBookList;
-    private List<ShortBookList> productParentList;
 
-    public ShortBookExpandableListAdapter(Context context, List<ShortBookList> productParentList, List<ShortBookList> shortBookList) {
+    public ShortBookExpandableListAdapter(Context context, List<ShortBookList> shortBookList) {
         this._context = context;
         this.shortBookList = shortBookList;
-        this.productParentList = productParentList;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        return this.shortBookList.get(childPosititon);
+        return this.shortBookList.get(groupPosition); // same as a parent
     }
 
     @Override
@@ -54,28 +52,34 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
 
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
         viewHolderChild.productname.setText(shortBookList.getProdName());
-        viewHolderChild.avlStock.setText(String.valueOf(shortBookList.getAvailableStock()));
-        viewHolderChild.compShortName.setText(shortBookList.getAccShortName());
-        viewHolderChild.noOfQtyTabs.setText(String.valueOf(shortBookList.getSchemeQuantity()));
-        viewHolderChild.totalQTY.setText(String.valueOf(shortBookList.getSchemeQuantity()));
+        viewHolderChild.compShortName.setText(shortBookList.getProdCompShortName());
+
+        viewHolderChild.noOfQtyTabs.setText(shortBookList.getProdLoosePack() + " " +shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
+//        viewHolderChild.avlStockStrips.setText();
+
+        if(!shortBookList.getAccShortName().isEmpty())
+            viewHolderChild.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype() + " Supl:" + shortBookList.getAccShortName());
+        else
+            viewHolderChild.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
+
+        viewHolderChild.avlStock.setText(" [ Avl.Stk:" + shortBookList.getAvailableStock()+" ]");
 
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.shortBookList
-                .size();
+        return 1; // same as a parent
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return this.productParentList.get(groupPosition);
+        return this.shortBookList.get(groupPosition);
     }
 
     @Override
     public int getGroupCount() {
-        return this.productParentList.size();
+        return this.shortBookList.size();
     }
 
     @Override
@@ -98,13 +102,16 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         ViewHolderParent viewHolderParent = (ViewHolderParent) convertView.getTag();
-        viewHolderParent.productname.setText(shortBookList.getProdName());
-        viewHolderParent.avlStock.setText(String.valueOf(shortBookList.getAvailableStock()));
-        viewHolderParent.compShortName.setText(shortBookList.getAccShortName());
-        viewHolderParent.noOfQty.setText(String.valueOf(shortBookList.getOrderQuantity()));
-//        viewHolderParent.unit.setText();
-//        viewHolderParent.totalQTY.setText(shortBookList.getOrderQuantity());
 
+        viewHolderParent.productname.setText(shortBookList.getProdName());
+        viewHolderParent.totalQTY.setText(String.valueOf(shortBookList.getOrderQuantity()));
+        viewHolderParent.compShortName.setText(shortBookList.getProdCompShortName());
+        if(!shortBookList.getAccShortName().isEmpty())
+            viewHolderParent.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype() + " Supl:" + shortBookList.getAccShortName());
+        else
+            viewHolderParent.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
+
+//        viewHolderParent.avlStock.setText(" [ Avl.Stk:" + shortBookList.getAvailableStock()+" ]");
 
         return convertView;
     }

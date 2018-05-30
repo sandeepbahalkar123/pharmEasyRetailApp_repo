@@ -68,8 +68,8 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
 
     @BindView(R.id.productslayout)
     LinearLayout productslayout;
-    @BindView(R.id.recyclerView)
-    ExpandableListView recyclerView;
+    @BindView(R.id.shortBookList)
+    ExpandableListView shortBookList;
     @BindView(R.id.partitionView)
     View partitionView;
     @BindView(R.id.noRecordsFound)
@@ -79,7 +79,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
 
 
     private ArrayList<ShortBookList> mShortBookList = new ArrayList<>();
-    private ShortBookProductsListAdapter mAdapter;
+//    private ShortBookProductsListAdapter mAdapter;
     private int year, month, dayOfMonth;
     private String selected = "";
     private PopupWindow popup;
@@ -200,29 +200,30 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
             if (shortBookResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 if (shortBookResponseModel.getData().getShortBookList().size() > 0) {
                     partitionView.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.VISIBLE);
+                    shortBookList.setVisibility(View.VISIBLE);
                     noRecordsFound.setVisibility(View.GONE);
                     mShortBookList = shortBookResponseModel.getData().getShortBookList();
 
-                    ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), mShortBookList,  mShortBookList);
+                    ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), mShortBookList);
                     // setting list adapter
-                    recyclerView.setAdapter(listAdapter);
-                    recyclerView.expandGroup(0);
+                    shortBookList.setAdapter(listAdapter);
+//                    shortBookList.expandGroup(0);
+                    
 
                     /*mAdapter = new ShortBookProductsListAdapter(getActivity(), mShortBookList);
                     LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(linearlayoutManager);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(mAdapter);*/
+                    shortBookList.setLayoutManager(linearlayoutManager);
+                    shortBookList.setItemAnimator(new DefaultItemAnimator());
+                    shortBookList.setAdapter(mAdapter);*/
                 } else {
                     partitionView.setVisibility(View.GONE);
-                    recyclerView.setVisibility(View.GONE);
+                    shortBookList.setVisibility(View.GONE);
                     noRecordsFound.setVisibility(View.VISIBLE);
                 }
 
             } else {
                 partitionView.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.GONE);
+                shortBookList.setVisibility(View.GONE);
                 noRecordsFound.setVisibility(View.VISIBLE);
 //                CommonMethods.showToast(getActivity(), shortBookResponseModel.getCommon().getStatusMessage());
             }
