@@ -70,8 +70,6 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     LinearLayout productslayout;
     @BindView(R.id.shortBookList)
     ExpandableListView shortBookList;
-    @BindView(R.id.partitionView)
-    View partitionView;
     @BindView(R.id.noRecordsFound)
     TextView noRecordsFound;
 
@@ -199,7 +197,6 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
             ShortBookResponseModel shortBookResponseModel = (ShortBookResponseModel) customResponse;
             if (shortBookResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 if (shortBookResponseModel.getData().getShortBookList().size() > 0) {
-                    partitionView.setVisibility(View.VISIBLE);
                     shortBookList.setVisibility(View.VISIBLE);
                     noRecordsFound.setVisibility(View.GONE);
                     mShortBookList = shortBookResponseModel.getData().getShortBookList();
@@ -216,13 +213,11 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
                     shortBookList.setItemAnimator(new DefaultItemAnimator());
                     shortBookList.setAdapter(mAdapter);*/
                 } else {
-                    partitionView.setVisibility(View.GONE);
                     shortBookList.setVisibility(View.GONE);
                     noRecordsFound.setVisibility(View.VISIBLE);
                 }
 
             } else {
-                partitionView.setVisibility(View.GONE);
                 shortBookList.setVisibility(View.GONE);
                 noRecordsFound.setVisibility(View.VISIBLE);
 //                CommonMethods.showToast(getActivity(), shortBookResponseModel.getCommon().getStatusMessage());
