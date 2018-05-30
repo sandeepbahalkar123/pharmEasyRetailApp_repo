@@ -67,7 +67,7 @@
         <item name="android:textColorHint">@color/searchProducts_HighligtedTextColor</item>
         <item name="android:textColor">@color/searchProducts_HighligtedTextColor</item>
         <item name="android:textSize">@dimen/sp13</item>
-        <item name="android:layout_width">@dimen/dp40</item>
+        <item name="android:layout_width">@dimen/dp28</item>
         <item name="android:layout_height">@dimen/dp18</item>
     </style>
 
@@ -82,7 +82,7 @@
         <item name="android:textColorHint">@color/searchProducts_HighligtedTextColor</item>
         <item name="android:textColor">@color/searchProducts_HighligtedTextColor</item>
         <item name="android:textSize">@dimen/sp15</item>
-        <item name="android:layout_width">@dimen/dp60</item>
+        <item name="android:layout_width">@dimen/dp50</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 

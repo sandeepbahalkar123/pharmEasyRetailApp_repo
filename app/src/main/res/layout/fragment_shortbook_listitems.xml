@@ -66,7 +66,7 @@
                 android:layout_alignParentLeft="true"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/shortBookTextColor"
-                android:textSize="@dimen/sp12"
+                android:textSize="@dimen/sp11"
                 tools:text="SVF - DVP" />
 
             <TextView
@@ -78,7 +78,18 @@
                 android:paddingLeft="@dimen/dp5"
                 android:textColor="@color/shortBookTextColor"
                 android:textSize="@dimen/sp11"
-                tools:text="5 Strips" />
+                tools:text="5 Tab-Strips" />
+
+            <TextView
+                android:id="@+id/avlStock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/noOfQty"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingLeft="@dimen/dp5"
+                android:textColor="@color/dayBookTextColor"
+                android:textSize="@dimen/sp11"
+                tools:text="[ Avl Stk:100 ]" />
 
         </RelativeLayout>
 

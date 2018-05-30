@@ -34,15 +34,13 @@
                 style="@style/SaleProductsQuantityStyle"
                 android:layout_alignBaseline="@+id/batchInfo"
                 android:inputType="number"
-                tools:text="30341" />
+                tools:text="3034" />
 
             <View
-                android:layout_width="@dimen/dp40"
+                android:layout_width="@dimen/dp28"
                 android:layout_height="@dimen/dp1"
-                android:layout_alignEnd="@+id/editTextQty"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignRight="@+id/editTextQty"
                 android:layout_below="@+id/editTextQty"
                 android:background="@color/searchProducts_HighligtedTextColor" />
 

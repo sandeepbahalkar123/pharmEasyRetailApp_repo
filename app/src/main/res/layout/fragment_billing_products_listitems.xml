@@ -37,8 +37,8 @@
             android:layout_gravity="center_horizontal|center"
             android:layout_weight="0.4"
             android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="@dimen/dp10"
-            android:paddingStart="@dimen/dp10"
+            android:paddingLeft="@dimen/dp25"
+            android:paddingStart="@dimen/dp25"
             android:textColor="@color/qtyAmountTextColor_billingdetails"
             android:textSize="@dimen/sp13"
             tools:text="1130" />

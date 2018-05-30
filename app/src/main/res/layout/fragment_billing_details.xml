@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/lightgreycolor_billingdetails">
 
     <LinearLayout
@@ -39,8 +40,8 @@
                 android:layout_weight="0.4"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingBottom="@dimen/dp14"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingStart="@dimen/dp10"
+                android:paddingLeft="@dimen/dp18"
+                android:paddingStart="@dimen/dp18"
                 android:paddingTop="@dimen/dp14"
                 android:text="@string/quantity"
                 android:textColor="@color/dayBookTextColor"
@@ -49,12 +50,11 @@
             <TextView
                 android:layout_width="@dimen/dp80"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingBottom="@dimen/dp14"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingStart="@dimen/dp10"
+                android:paddingLeft="@dimen/dp40"
+                android:paddingStart="@dimen/dp40"
                 android:paddingTop="@dimen/dp14"
                 android:text="@string/Amount"
                 android:textColor="@color/dayBookTextColor"
@@ -137,7 +137,7 @@
                 android:paddingLeft="@dimen/dp10"
                 android:paddingStart="@dimen/dp10"
                 android:paddingTop="@dimen/dp12"
-                android:text="84659.06"
+                android:text="846595.06"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp15" />
         </LinearLayout>
@@ -169,12 +169,24 @@
 
                 <EditText
                     android:id="@+id/percentEditText"
-                    android:layout_width="@dimen/dp80"
-                    android:layout_height="wrap_content"
-                    android:text="10.00%"
-                    android:textSize="@dimen/sp14"
+                    style="@style/BillDiscountStyle"
+                    android:layout_alignBaseline="@+id/discountLabel"
+                    android:inputType="number"
+                    android:text="10.00"
+                    android:maxLength="5"
+                    android:drawableRight="@drawable/percentage"
+                    android:drawableEnd="@drawable/percentage"
                     android:layout_toEndOf="@+id/discountLabel"
                     android:layout_toRightOf="@+id/discountLabel" />
+
+
+                <View
+                    android:layout_toEndOf="@+id/discountLabel"
+                    android:layout_toRightOf="@+id/discountLabel"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_below="@+id/percentEditText"
+                    android:background="@color/searchProducts_HighligtedTextColor" />
 
             </RelativeLayout>
 
@@ -279,7 +291,7 @@
                 android:paddingLeft="@dimen/dp10"
                 android:paddingStart="@dimen/dp10"
                 android:paddingTop="@dimen/dp12"
-                android:text="76193.15"
+                android:text="376193.15"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp15" />
 
@@ -290,6 +302,50 @@
             android:layout_height="@dimen/dp1"
             android:background="@color/dividercolor_billingdetails" />
 
+
+        <LinearLayout
+            android:id="@+id/transactionModeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/transactionMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingBottom="@dimen/dp9"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingStart="@dimen/dp10"
+                android:paddingTop="@dimen/dp9"
+                android:text="@string/transactionmode"
+                android:textColor="@color/searchProducts_HighligtedTextColor"
+                android:textSize="@dimen/sp15" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_border"
+                android:layout_marginRight="@dimen/dp5">
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/transactionModeSelection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_drop_down_blue"
+                    android:entries="@array/spinnerArray"
+                    android:paddingRight="@dimen/dp45" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -299,7 +355,7 @@
 
             <Button
                 android:id="@+id/printButton"
-                android:layout_width="@dimen/dp100"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp48"
                 android:layout_marginEnd="@dimen/dp12"
                 android:layout_marginRight="@dimen/dp12"
@@ -313,7 +369,7 @@
 
             <Button
                 android:id="@+id/saveButton"
-                android:layout_width="@dimen/dp100"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp48"
                 android:layout_marginLeft="@dimen/dp12"
                 android:layout_marginStart="@dimen/dp12"

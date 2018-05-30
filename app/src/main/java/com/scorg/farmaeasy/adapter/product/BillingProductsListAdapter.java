@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.responseModel.product.ProductList;
-import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,7 +27,7 @@ public class BillingProductsListAdapter extends RecyclerView.Adapter<BillingProd
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.billing_products_listitems, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_billing_products_listitems, parent, false);
         return new ListViewHolder(itemView);
     }
 

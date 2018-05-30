@@ -13,6 +13,11 @@ public class Config {
     public static final String GET_DASHBOARD_DATA = "GetDashBoardData";
     public static final String GET_DAYBOOK_DATA = "GetDayBook";
     public static final String GET_SHORTBOOK_DATA = "GetShortBook";
+    public static final String CHECK_INTRANET_CONNECTION = "CheckConnection";
+    public static final String GET_PATIENT_DATA = "GetPatient";
+    public static final String GET_PATIENT_ADDRESS = "GetAddress";
+    public static final String GET_DOCTOR_DATA = "GetDoctor";
+    public static final String GET_DOCTOR_ADDRESS = "GetShortBook";
 
 //    public static String BASE_URL = "http://172.16.100.221/pheasyservice.svc/";
     public static String BASE_URL = "http://125.99.46.208/pheasyservice.svc/";

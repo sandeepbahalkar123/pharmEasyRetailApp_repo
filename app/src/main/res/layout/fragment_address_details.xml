@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/daybooklightgreycolor">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -15,6 +12,7 @@
             android:layout_marginLeft="@dimen/dp15"
             android:layout_marginRight="@dimen/dp15"
             android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp20"
             android:orientation="vertical">
 
             <TextView
@@ -71,7 +69,7 @@
             <EditText
                 android:id="@+id/editTextPatientMobileNo"
                 style="@style/AddressDetailsStyle"
-                android:inputType="text"
+                android:inputType="number"
                 tools:text="9898989898" />
 
             <View
@@ -156,7 +154,7 @@
             <EditText
                 android:id="@+id/editTextDoctorMobileNo"
                 style="@style/AddressDetailsStyle"
-                android:inputType="text"
+                android:inputType="number"
                 tools:text="9819898198" />
 
             <View
@@ -166,5 +164,3 @@
 
         </LinearLayout>
     </ScrollView>
-
-</RelativeLayout>

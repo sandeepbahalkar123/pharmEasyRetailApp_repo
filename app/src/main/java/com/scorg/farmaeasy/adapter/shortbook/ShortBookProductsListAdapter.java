@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 public class ShortBookProductsListAdapter extends RecyclerView.Adapter<ShortBookProductsListAdapter.ListViewHolder> {
 
 
+
     private ArrayList<ShortBookList> shortBookLists;
     private Context mContext;
 
@@ -35,10 +36,14 @@ public class ShortBookProductsListAdapter extends RecyclerView.Adapter<ShortBook
         TextView compShortName;
         @BindView(R.id.noOfQty)
         TextView noOfQty;
+        @BindView(R.id.avlStock)
+        TextView avlStock;
         @BindView(R.id.compShortCodelayout)
         RelativeLayout compShortCodelayout;
         @BindView(R.id.mainlayout)
         LinearLayout mainlayout;
+
+
         View view;
 
         public ListViewHolder(View view) {
@@ -68,7 +73,12 @@ public class ShortBookProductsListAdapter extends RecyclerView.Adapter<ShortBook
         holder.productname.setText(shortBookList.getProdName());
         holder.totalQTY.setText(String.valueOf(shortBookList.getOrderQuantity()));
         holder.compShortName.setText(shortBookList.getProdCompShortName());
-        holder.noOfQty.setText(shortBookList.getProdLoosePack()+" "+shortBookList.getProdpacktype());
+       if(!shortBookList.getAccShortName().isEmpty())
+            holder.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype() + " Supl:" + shortBookList.getAccShortName());
+       else
+           holder.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
+
+       holder.avlStock.setText(" [ Avl.Stk:" + shortBookList.getAvailableStock()+" ]");
     }
 
     @Override
