@@ -1,19 +1,23 @@
 package com.scorg.farmaeasy.ui.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
@@ -28,7 +32,6 @@ import com.scorg.farmaeasy.util.Constants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.TimeZone;
 
 import butterknife.BindView;
@@ -54,8 +57,12 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     LinearLayout toDateMainLayout;
     @BindView(R.id.selectDatelayout)
     LinearLayout selectDatelayout;
-    @BindView(R.id.sortingSpinner)
-    AppCompatSpinner sortingSpinner;
+
+    @BindView(R.id.sortByButton)
+    Button sortByButton;
+    @BindView(R.id.sortLayout)
+    RelativeLayout sortLayout;
+
     @BindView(R.id.productslayout)
     LinearLayout productslayout;
     @BindView(R.id.recyclerView)
@@ -71,6 +78,8 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     private ArrayList<ShortBookList> mShortBookList = new ArrayList<>();
     private ShortBookProductsListAdapter mAdapter;
     private int year, month, dayOfMonth;
+    private String selected = "";
+    private PopupWindow popup;
 
     public ShortBookFragment() {
     }
@@ -99,33 +108,58 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
 
         getProducts("");
 
-        List<String> spinnerArray = new ArrayList<String>();
-
-        spinnerArray.add("Sort By");
-        spinnerArray.add("Products");
-        spinnerArray.add("Company");
-        spinnerArray.add("Supplier");
-        spinnerArray.add("Quantity");
-
-        //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter<String> aa = new ArrayAdapter<String>(getContext(), R.layout.sorting_spinner_item, spinnerArray);
-        aa.setDropDownViewResource(R.layout.sorting_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        sortingSpinner.setAdapter(aa);
-
-        sortingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0)
-                    getProducts(spinnerArray.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        createSortMenu();
 
         return rootView;
+    }
+
+    private void createSortMenu() {
+        View popupContent = getLayoutInflater().inflate(R.layout.popup, null);
+
+        Button productButton = popupContent.findViewById(R.id.productButton);
+        productButton.setOnClickListener(v -> {
+            selected = productButton.getText().toString();
+            getProducts(selected);
+            popup.dismiss();
+        });
+
+        Button companyButton = popupContent.findViewById(R.id.companyButton);
+        companyButton.setOnClickListener(v -> {
+            selected = companyButton.getText().toString();
+            getProducts(selected);
+            popup.dismiss();
+        });
+
+        Button supplierButton = popupContent.findViewById(R.id.supplierButton);
+        supplierButton.setOnClickListener(v -> {
+            selected = supplierButton.getText().toString();
+            getProducts(selected);
+            popup.dismiss();
+        });
+
+        Button quantityButton = popupContent.findViewById(R.id.quantityButton);
+        quantityButton.setOnClickListener(v -> {
+            selected = quantityButton.getText().toString();
+            getProducts(selected);
+            popup.dismiss();
+        });
+
+        popup = new PopupWindow();
+        //popup should wrap content view
+        popup.setWindowLayoutMode(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT);
+        //set content and background
+        popup.setBackgroundDrawable(new BitmapDrawable());
+        popup.setContentView(popupContent);
+        popup.setFocusable(true);
+        popup.setOutsideTouchable(true);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        popup.dismiss();
     }
 
     private void getProducts(String sortBy) {
@@ -142,16 +176,6 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
         unbinder.unbind();
     }
 
-
-    @OnClick(R.id.fromDateMainLayout)
-    public void onViewClicked() {
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        DatePickerDialog dialog = new DatePickerDialog(getContext(), this,
-                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
-        dialog.show();
-    }
-
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         this.year = year;
@@ -162,7 +186,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
         fromDateValue.setText(formatedDate);
         toDateValue.setText(formatedDate);
 //        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
-        getProducts(sortingSpinner.getSelectedItemPosition() == 0 ? "" : sortingSpinner.getSelectedItem().toString());
+        getProducts(selected.isEmpty() ? "" : selected);
     }
 
     @Override
@@ -171,7 +195,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
             //After login user navigated to HomeActivity
             ShortBookResponseModel shortBookResponseModel = (ShortBookResponseModel) customResponse;
             if (shortBookResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
-                if(shortBookResponseModel.getData().getShortBookList().size()>0) {
+                if (shortBookResponseModel.getData().getShortBookList().size() > 0) {
                     partitionView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.VISIBLE);
                     noRecordsFound.setVisibility(View.GONE);
@@ -181,7 +205,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
                     recyclerView.setLayoutManager(linearlayoutManager);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(mAdapter);
-                }else {
+                } else {
                     partitionView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.GONE);
                     noRecordsFound.setVisibility(View.VISIBLE);
@@ -209,5 +233,31 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     @Override
     public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
         CommonMethods.showToast(getActivity(), serverErrorMessage);
+    }
+
+    @SuppressLint("RestrictedApi")
+    @OnClick({R.id.fromDateMainLayout, R.id.sortByButton})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fromDateMainLayout:
+
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), this,
+                        calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH));
+                dialog.show();
+
+                break;
+            case R.id.sortByButton:
+                if (popup.isShowing()) {
+                    popup.dismiss();
+                } else {
+                    //Show the PopupWindow anchored to the button we
+                    //pressed. It will be displayed below the button
+                    //if there's room, otherwise above.
+                    popup.showAsDropDown(sortLayout);
+                }
+                break;
+        }
     }
 }

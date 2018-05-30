@@ -42,15 +42,12 @@ public class ShortBookProductsListAdapter extends RecyclerView.Adapter<ShortBook
         RelativeLayout compShortCodelayout;
         @BindView(R.id.mainlayout)
         LinearLayout mainlayout;
-
-
         View view;
 
         public ListViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             this.view = view;
-
         }
     }
 
