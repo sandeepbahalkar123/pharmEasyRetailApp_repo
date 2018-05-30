@@ -99,6 +99,8 @@
     <string name="supplier">Supplier</string>
     <string name="quantity_menu">Quantity</string>
 
+    <integer name="mobileNumberLength">10</integer>
+
 
     <!--<string name="template_list">Template List</string>-->
 

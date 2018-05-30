@@ -315,11 +315,10 @@
                 android:id="@+id/transactionMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
                 android:fontFamily="@font/roboto_medium"
                 android:paddingBottom="@dimen/dp9"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingStart="@dimen/dp10"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingStart="@dimen/dp15"
                 android:paddingTop="@dimen/dp9"
                 android:text="@string/transactionmode"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
@@ -329,7 +328,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rectangle_border"
-                android:layout_marginRight="@dimen/dp5">
+                android:layout_marginLeft="@dimen/dp90">
 
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/transactionModeSelection"

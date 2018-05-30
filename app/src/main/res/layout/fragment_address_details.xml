@@ -66,7 +66,8 @@
             android:id="@+id/editTextPatientMobileNo"
             style="@style/AddressDetailsStyle"
             android:inputType="number"
-            tools:text="9898989898" />
+            tools:text="9898989898"
+            android:maxLength="@integer/mobileNumberLength"/>
 
         <View
             android:layout_width="match_parent"
@@ -151,7 +152,8 @@
             android:id="@+id/editTextDoctorMobileNo"
             style="@style/AddressDetailsStyle"
             android:inputType="number"
-            tools:text="9819898198" />
+            tools:text="9819898198"
+            android:maxLength="@integer/mobileNumberLength"/>
 
         <View
             android:layout_width="match_parent"
