@@ -77,7 +77,7 @@
     <string name="transactionmode">Transation Mode</string>
     <string name="print">PRINT</string>
     <string name="save">SAVE</string>
-    <string name="salePrice">Sale Price</string>
+    <string name="salePrice">Sale Price:</string>
     <string name="needSomeHelp">Need Some Help?</string>
     <string name="feelfreetext">Feel free to get in touch with us</string>
     <string name="call">Call</string>

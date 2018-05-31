@@ -8,21 +8,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.model.responseModel.product.ProductList;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
-import java.util.List;
-
+import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProductsListAdapter.ListViewHolder> {
 
     private final ProductClick productClick;
-    private List<ProductList> shortBookLists;
+    private ArrayList<ProductList> productLists;
     private Context mContext;
 
-    public SearchProductsListAdapter(Context mContext, List<ProductList> shortBookLists, ProductClick productClick) {
-        this.shortBookLists = shortBookLists;
+    public SearchProductsListAdapter(Context mContext, ArrayList<ProductList> productLists, ProductClick productClick) {
+        this.productLists = productLists;
         this.mContext = mContext;
         this.productClick = productClick;
     }
@@ -35,18 +34,17 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
 
     @Override
     public void onBindViewHolder(ListViewHolder holder, int position) {
-        ProductList shortBookList = shortBookLists.get(position);
-        holder.productname.setText(shortBookList.getProductName());
-        holder.totalQTY.setText("QTY : " + String.valueOf(shortBookList.getTotalQTY()));
-        holder.rateInfo.setText(String.valueOf(shortBookList.getRateInfo()));
-
-        holder.expiryDateInfo.setText(String.valueOf(shortBookList.getExpiryDateInfo()));
-        holder.batchInfo.setText(String.valueOf(shortBookList.getBatchInfo()));
+        ProductList productList = productLists.get(position);
+        holder.productname.setText(productList.getProductName());
+        holder.totalQTY.setText("QTY : " + String.valueOf(productList.getTotalQTY()));
+        holder.rateInfo.setText("Rs "+String.valueOf(productList.getRateInfo()));
+        holder.compShortNameShelfNoInfo.setText(productList.getProdCompShortName()+" - "+productList.getShelfNo());
+        holder.batchInfo.setText(productList.getBatchInfo()+" Batch");
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                productClick.onClick(position);
+                productClick.onClick(productList.getProductID(),position,productLists.get(position));
             }
         });
 
@@ -54,7 +52,7 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
 
     @Override
     public int getItemCount() {
-        return shortBookLists.size();
+        return productLists.size();
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
@@ -64,8 +62,8 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
         TextView unit;
         @BindView(R.id.totalQTY)
         TextView totalQTY;
-        @BindView(R.id.expiryDateInfo)
-        TextView expiryDateInfo;
+        @BindView(R.id.compShortNameShelfNoInfo)
+        TextView compShortNameShelfNoInfo;
         @BindView(R.id.rateInfo)
         TextView rateInfo;
         @BindView(R.id.batchInfo)
@@ -81,6 +79,6 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
     }
 
     public interface ProductClick {
-        void onClick(int shortBookList);
+        void onClick(String productId,int position,ProductList productList);
     }
 }

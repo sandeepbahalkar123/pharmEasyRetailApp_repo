@@ -9,8 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.model.responseModel.product.ProductList;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,18 +21,18 @@ import butterknife.ButterKnife;
 public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
-    private List<ProductList> productList;
-    private List<ProductList> productParentList;
+    private ArrayList<BatchList> productChidList;
+    private ArrayList<ProductList> productParentList;
 
-    public ProductExpandableListAdapter(Context context, List<ProductList> productParentList, List<ProductList> productList) {
+    public ProductExpandableListAdapter(Context context, ArrayList<ProductList> productParentList, ArrayList<BatchList> productChidList) {
         this._context = context;
-        this.productList = productList;
+        this.productChidList = productChidList;
         this.productParentList = productParentList;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        return this.productList.get(childPosititon);
+        return this.productChidList.get(childPosititon);
     }
 
     @Override
@@ -42,7 +44,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final ProductList productList = (ProductList) getChild(groupPosition, childPosition);
+        final BatchList batchList = (BatchList) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -53,18 +55,20 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
-        viewHolderChild.batchInfo.setText("Batch No : " + productList.getBatchInfo());
-        viewHolderChild.editTextQty.setText(String.valueOf(productList.getTotalQTY()));
-        viewHolderChild.estimatedPriceValue.setText(String.valueOf(productList.getRateInfo()));
-        viewHolderChild.expiryDateInfo.setText(productList.getExpiryDateInfo());
-        viewHolderChild.stock.setText("400"); // hardcoded
+        viewHolderChild.batchInfo.setText("Batch No : " + batchList.getBatchNumber());
+        viewHolderChild.editTextQty.setText("0");
+        viewHolderChild.estimatedPriceValue.setText(" Rs "+String.valueOf(batchList.getSaleRate()));
+        viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName()+" - "+batchList.getExpiry()+" - ");
+        viewHolderChild.packingType.setText(batchList.getProdpack());
+        viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
+
 
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.productList
+        return this.productChidList
                 .size();
     }
 
@@ -99,7 +103,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
         ViewHolderParent viewHolderParent = (ViewHolderParent) convertView.getTag();
         viewHolderParent.productname.setText(productList.getProductName());
-        viewHolderParent.contentInfo.setText(productList.getContent());
+        viewHolderParent.contentInfo.setText("XYZ");
 
         return convertView;
     }

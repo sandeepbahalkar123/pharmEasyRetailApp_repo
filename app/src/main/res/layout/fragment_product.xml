@@ -11,4 +11,13 @@
         android:divider="@null"
         android:layout_height="match_parent" />
 
+    <ImageView
+        android:id="@+id/addProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/add_product"
+        android:layout_marginRight="@dimen/dp15"/>
+
 </RelativeLayout>

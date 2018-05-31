@@ -9,29 +9,39 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.SearchProductsListAdapter;
-import com.scorg.farmaeasy.model.responseModel.product.ProductList;
-import com.scorg.farmaeasy.model.responseModel.product.ProductResponseModel;
+import com.scorg.farmaeasy.helpers.productsearch.ProductSearchHelper;
+import com.scorg.farmaeasy.interfaces.CustomResponse;
+import com.scorg.farmaeasy.interfaces.HelperResponse;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductSearchResponseModel;
 import com.scorg.farmaeasy.util.CommonMethods;
+import com.scorg.farmaeasy.util.Constants;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTSELECTEDITEMDATA;
+import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
-public class ProductsActivity extends AppCompatActivity implements SearchProductsListAdapter.ProductClick {
+public class ProductsActivity extends AppCompatActivity implements HelperResponse, SearchProductsListAdapter.ProductClick {
+
 
     private Context mContext;
 
@@ -47,6 +57,10 @@ public class ProductsActivity extends AppCompatActivity implements SearchProduct
     View searchView;
     @BindView(R.id.searchBackButton)
     ImageButton backButton;
+    @BindView(R.id.noRecordsFound)
+    TextView noRecordsFound;
+    private ArrayList<ProductList> productLists;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +72,40 @@ public class ProductsActivity extends AppCompatActivity implements SearchProduct
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
-        String jsonString = loadJSONFromAsset("productList.json");
-        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
-        List<ProductList> productList = productResponseModel.getData().getProductList();
-        SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, productList, this);
+//        String jsonString = loadJSONFromAsset("productList.json");
+//        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
+//        List<ProductList> productList = productResponseModel.getData().getProductList();
+
         LinearLayoutManager linearlayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         productListRecycler.setLayoutManager(linearlayoutManager);
         productListRecycler.setItemAnimator(new DefaultItemAnimator());
-        productListRecycler.setAdapter(mAdapter);
+
+        ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, this);
+        productSearchHelper.doProductSearch("");
+
+        searchTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().length() > 3) {
+                    ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, ProductsActivity.this);
+                    productSearchHelper.doProductSearch(s.toString());
+                } else if (s.toString().length() < 1) {
+                    ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, ProductsActivity.this);
+                    productSearchHelper.doProductSearch("");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     public String loadJSONFromAsset(String fileName) {
@@ -107,12 +147,16 @@ public class ProductsActivity extends AppCompatActivity implements SearchProduct
         }
     }
 
+
     @Override
-    public void onClick(int shortBookList) {
+    public void onClick(String productId, int position,ProductList productList) {
         Intent intent = new Intent(mContext, PagerActivity.class);
-        intent.putExtra(INDEX, shortBookList);
+        intent.putExtra(PRODUCTID, productId);
+        intent.putExtra(INDEX, position);
+        intent.putExtra(PRODUCTSELECTEDITEMDATA,productList);
         startActivity(intent);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -135,4 +179,40 @@ public class ProductsActivity extends AppCompatActivity implements SearchProduct
         return true;
     }
 
+    @Override
+    public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
+
+        if (mOldDataTag.equalsIgnoreCase(Constants.TASK_PRODUCT_SEARCH)) {
+            //After login user navigated to HomeActivity
+            ProductSearchResponseModel receivedModel = (ProductSearchResponseModel) customResponse;
+            if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
+                productLists=receivedModel.getData().getProductList();
+                SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, receivedModel.getData().getProductList(), this);
+                productListRecycler.setAdapter(mAdapter);
+                productListRecycler.setVisibility(View.VISIBLE);
+                noRecordsFound.setVisibility(View.GONE);
+            } else {
+                productListRecycler.setVisibility(View.GONE);
+                noRecordsFound.setVisibility(View.VISIBLE);
+//               CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
+            }
+        }
+
+
+    }
+
+    @Override
+    public void onParseError(String mOldDataTag, String errorMessage) {
+        CommonMethods.showToast(mContext, errorMessage);
+    }
+
+    @Override
+    public void onServerError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(mContext, serverErrorMessage);
+    }
+
+    @Override
+    public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(mContext, serverErrorMessage);
+    }
 }

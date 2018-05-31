@@ -6,32 +6,43 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 
-import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.ProductExpandableListAdapter;
-import com.scorg.farmaeasy.model.responseModel.product.ProductList;
-import com.scorg.farmaeasy.model.responseModel.product.ProductResponseModel;
+import com.scorg.farmaeasy.helpers.batchlist.BatchListHelper;
+import com.scorg.farmaeasy.interfaces.CustomResponse;
+import com.scorg.farmaeasy.interfaces.HelperResponse;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.util.CommonMethods;
+import com.scorg.farmaeasy.util.Constants;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTSELECTEDITEMDATA;
+import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ProductFragment extends Fragment {
+public class ProductFragment extends Fragment implements HelperResponse {
 
+
+    private String TAG=this.getClass().getName();
     @BindView(R.id.productList)
     ExpandableListView productListExpand;
-
+    @BindView(R.id.addProducts)
+    ImageView addProducts;
     Unbinder unbinder;
 
     public ProductFragment() {
@@ -50,18 +61,19 @@ public class ProductFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_product, container, false);
         unbinder = ButterKnife.bind(this, rootView);
+//        String jsonString = loadJSONFromAsset("productList.json");
+//        ProductSearchResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductSearchResponseModel.class);
+//        List<ProductList> productChildList = productResponseModel.getData().getProductList();
+//        ArrayList<ProductList> productParentList = new ArrayList<>();
+//        productParentList.add(productChildList.get(getArguments().getInt(INDEX)));
+//
+//        ProductExpandableListAdapter listAdapter = new ProductExpandableListAdapter(getContext(),productParentList,  productChildList);
+//        // setting list adapter
+//        productListExpand.setAdapter(listAdapter);
+//        productListExpand.expandGroup(0);
 
-        String jsonString = loadJSONFromAsset("productList.json");
-        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
-
-        List<ProductList> productList = productResponseModel.getData().getProductList();
-        List<ProductList> productParentList = new ArrayList<>();
-        productParentList.add(productList.get(getArguments().getInt(INDEX)));
-
-        ProductExpandableListAdapter listAdapter = new ProductExpandableListAdapter(getContext(),productParentList,  productList);
-        // setting list adapter
-        productListExpand.setAdapter(listAdapter);
-        productListExpand.expandGroup(0);
+        BatchListHelper batchListHelper = new BatchListHelper(getActivity(), this);
+        batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
 
         return rootView;
     }
@@ -86,5 +98,44 @@ public class ProductFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
+        if (mOldDataTag.equalsIgnoreCase(Constants.TASK_BATCHLIST)) {
+            //After login user navigated to HomeActivity
+            BatchListResponseModel receivedModel = (BatchListResponseModel) customResponse;
+            if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
+                ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
+                ArrayList<ProductList> productParentList = new ArrayList<>();
+                productParentList.add(0, getArguments().getParcelable(PRODUCTSELECTEDITEMDATA));
+                ProductExpandableListAdapter expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, productChildList);
+                // setting list adapter
+                productListExpand.setAdapter(expandableListAdapter);
+                productListExpand.expandGroup(0);
+            } else {
+                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
+            }
+        }
+    }
+
+    @Override
+    public void onParseError(String mOldDataTag, String errorMessage) {
+        CommonMethods.showToast(getActivity(), errorMessage);
+    }
+
+    @Override
+    public void onServerError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(getActivity(), serverErrorMessage);
+    }
+
+    @Override
+    public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
+        CommonMethods.showToast(getActivity(), serverErrorMessage);
+    }
+
+    @OnClick(R.id.addProducts)
+    public void onViewClicked() {
+       CommonMethods.Log(TAG,"addProducts clicked");
     }
 }
