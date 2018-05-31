@@ -5,6 +5,9 @@ import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
+
+import java.util.ArrayList;
 
 public class ProductList implements Parcelable
 {
@@ -39,6 +42,11 @@ public class ProductList implements Parcelable
     @SerializedName("batchInfo")
     @Expose
     private String batchInfo;
+
+    @SerializedName("batchList")
+    @Expose
+    private ArrayList<BatchList> batchList=new ArrayList<>();
+
     public final static Parcelable.Creator<ProductList> CREATOR = new Creator<ProductList>() {
 
 
@@ -67,6 +75,7 @@ public class ProductList implements Parcelable
         this.shelfNo = ((String) in.readValue((String.class.getClassLoader())));
         this.rateInfo = ((Double) in.readValue((Double.class.getClassLoader())));
         this.batchInfo = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.batchList, (com.scorg.farmaeasy.model.responseModel.batchlist.BatchList.class.getClassLoader()));
     }
 
     public ProductList() {
@@ -152,6 +161,14 @@ public class ProductList implements Parcelable
         this.batchInfo = batchInfo;
     }
 
+    public ArrayList<BatchList> getBatchList() {
+        return batchList;
+    }
+
+    public void setBatchList(ArrayList<BatchList> batchList) {
+        this.batchList = batchList;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(productID);
         dest.writeValue(productName);
@@ -163,6 +180,7 @@ public class ProductList implements Parcelable
         dest.writeValue(shelfNo);
         dest.writeValue(rateInfo);
         dest.writeValue(batchInfo);
+        dest.writeList(batchList);
     }
 
     public int describeContents() {

@@ -31,6 +31,7 @@ public class PagerActivity extends AppCompatActivity {
     public static final String INDEX="index";
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
+    public static final String FROM_HOME_ACTIVITY = "from_home_activity";
 
 
     @BindView(R.id.fixedBottomHomeDelLayout)

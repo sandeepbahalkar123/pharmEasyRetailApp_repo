@@ -21,18 +21,16 @@ import butterknife.ButterKnife;
 public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
-    private ArrayList<BatchList> productChidList;
     private ArrayList<ProductList> productParentList;
 
-    public ProductExpandableListAdapter(Context context, ArrayList<ProductList> productParentList, ArrayList<BatchList> productChidList) {
+    public ProductExpandableListAdapter(Context context, ArrayList<ProductList> productParentList) {
         this._context = context;
-        this.productChidList = productChidList;
         this.productParentList = productParentList;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        return this.productChidList.get(childPosititon);
+        return this.productParentList.get(groupPosition).getBatchList().get(childPosititon);
     }
 
     @Override
@@ -68,8 +66,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.productChidList
-                .size();
+        return this.productParentList.get(groupPosition).getBatchList().size();
     }
 
     @Override
