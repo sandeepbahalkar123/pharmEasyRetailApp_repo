@@ -1,7 +1,5 @@
 package com.scorg.farmaeasy.util;
 
-import android.content.Context;
-
 /**
  * Created by Sandeep Bahalkar
  */
@@ -21,8 +19,8 @@ public class Config {
     public static final String URL_GET_BATCHLIST = "GetBatchList";
 
 
-    //    public static String BASE_URL = "http://172.16.100.221"+SERVICE_NAME;
-    public static String BASE_URL = "http://125.99.46.208"+SERVICE_NAME;
+        public static String BASE_URL = "http://172.16.100.221"+SERVICE_NAME;
+//    public static String BASE_URL = "http://172.16.100.221:35560" + SERVICE_NAME;
 
 }
 

@@ -41,7 +41,7 @@
             android:textColor="@color/dayBookTextColor"
             android:textSize="@dimen/sp15" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/editTextPatientAddress"
             style="@style/AddressDetailsStyle"
             android:inputType="text"
@@ -127,7 +127,7 @@
             android:textColor="@color/dayBookTextColor"
             android:textSize="@dimen/sp15" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/editTextDoctorClinicAddress"
             style="@style/AddressDetailsStyle"
             android:inputType="text"

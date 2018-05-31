@@ -75,7 +75,6 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
 
     Unbinder unbinder;
 
-
     private ArrayList<ShortBookList> mShortBookList = new ArrayList<>();
 //    private ShortBookProductsListAdapter mAdapter;
     private int year, month, dayOfMonth;

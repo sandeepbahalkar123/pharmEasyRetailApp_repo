@@ -2,6 +2,8 @@
 <android.support.v7.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:fontFamily="@font/roboto_regular"
     android:padding="@dimen/dp8"
+    tools:text="Hello"
     android:textSize="@dimen/sp16" />

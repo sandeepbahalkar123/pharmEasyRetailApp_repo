@@ -3,12 +3,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:drawableEnd="@drawable/sort"
-    android:drawableRight="@drawable/sort"
     android:fontFamily="@font/roboto_regular"
-    android:drawablePadding="@dimen/dp4"
     android:padding="@dimen/dp8"
     tools:text="Text Sort"
     android:gravity="center"
     android:textColor="@color/menu_color"
-    android:textSize="@dimen/sp14" />
+    android:textSize="@dimen/sp15" />

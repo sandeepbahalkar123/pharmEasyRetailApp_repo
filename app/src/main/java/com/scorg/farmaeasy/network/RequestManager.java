@@ -29,7 +29,8 @@ import com.scorg.farmaeasy.helpers.database.AppDBHelper;
 import com.scorg.farmaeasy.interfaces.ConnectionListener;
 import com.scorg.farmaeasy.interfaces.Connector;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
-import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.AddressResponseModel;
+import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.DoctorAddressResponseModel;
+import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.PatientAddressResponseModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailsdoctordata.DoctorDataResponseModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailspatientdata.PatientDataResponseModel;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
@@ -461,8 +462,8 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                         break;
 
                     case Constants.TASK_ADDRESSDETAILS_PATIENTADDRESS: //This is for get archived list
-                        AddressResponseModel patientaddressResponseModel = gson.fromJson(data, AddressResponseModel.class);
-                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, patientaddressResponseModel, mOldDataTag);
+                        PatientAddressResponseModel patientaddressResponseModelDoctor = gson.fromJson(data, PatientAddressResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, patientaddressResponseModelDoctor, mOldDataTag);
                         break;
 
                     case Constants.TASK_ADDRESSDETAILS_DOCTORDATA: //This is for get archived list
@@ -471,8 +472,8 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                         break;
 
                     case Constants.TASK_ADDRESSDETAILS_DOCTORADDRESS: //This is for get archived list
-                        AddressResponseModel doctoraddressResponseModel = gson.fromJson(data, AddressResponseModel.class);
-                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, doctoraddressResponseModel, mOldDataTag);
+                        DoctorAddressResponseModel doctoraddressResponseModelDoctor = gson.fromJson(data, DoctorAddressResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, doctoraddressResponseModelDoctor, mOldDataTag);
                         break;
 
                     case Constants.TASK_PRODUCT_SEARCH: //This is for get archived list

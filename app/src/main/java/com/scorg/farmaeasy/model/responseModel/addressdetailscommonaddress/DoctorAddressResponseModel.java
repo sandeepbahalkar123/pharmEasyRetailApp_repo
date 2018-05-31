@@ -1,4 +1,4 @@
-package com.scorg.farmaeasy.model.responseModel.addressdetailspatientdata;
+package com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,36 +9,36 @@ import com.google.gson.annotations.SerializedName;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.model.Common;
 
-public class PatientDataResponseModel implements CustomResponse {
+public class DoctorAddressResponseModel implements CustomResponse {
 
     @SerializedName("common")
     @Expose
     private Common common;
     @SerializedName("data")
     @Expose
-    private Data data;
-    public final static Parcelable.Creator<PatientDataResponseModel> CREATOR = new Creator<PatientDataResponseModel>() {
+    private DoctorData data;
+    public final static Parcelable.Creator<DoctorAddressResponseModel> CREATOR = new Creator<DoctorAddressResponseModel>() {
 
 
         @SuppressWarnings({
                 "unchecked"
         })
-        public PatientDataResponseModel createFromParcel(Parcel in) {
-            return new PatientDataResponseModel(in);
+        public DoctorAddressResponseModel createFromParcel(Parcel in) {
+            return new DoctorAddressResponseModel(in);
         }
 
-        public PatientDataResponseModel[] newArray(int size) {
-            return (new PatientDataResponseModel[size]);
+        public DoctorAddressResponseModel[] newArray(int size) {
+            return (new DoctorAddressResponseModel[size]);
         }
 
     };
 
-    protected PatientDataResponseModel(Parcel in) {
+    protected DoctorAddressResponseModel(Parcel in) {
         this.common = ((Common) in.readValue((Common.class.getClassLoader())));
-        this.data = ((Data) in.readValue((Data.class.getClassLoader())));
+        this.data = ((DoctorData) in.readValue((DoctorData.class.getClassLoader())));
     }
 
-    public PatientDataResponseModel() {
+    public DoctorAddressResponseModel() {
     }
 
     public Common getCommon() {
@@ -49,11 +49,11 @@ public class PatientDataResponseModel implements CustomResponse {
         this.common = common;
     }
 
-    public Data getData() {
+    public DoctorData getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(DoctorData data) {
         this.data = data;
     }
 
