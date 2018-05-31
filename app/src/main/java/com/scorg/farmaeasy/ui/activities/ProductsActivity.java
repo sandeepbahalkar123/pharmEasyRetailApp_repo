@@ -35,9 +35,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.COLLECTEDPRODUCTSLIST;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTSELECTEDITEMDATA;
 import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 public class ProductsActivity extends AppCompatActivity implements HelperResponse, SearchProductsListAdapter.ProductClick {
@@ -71,6 +70,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
+
 
 //        String jsonString = loadJSONFromAsset("productList.json");
 //        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
@@ -150,10 +150,14 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
     @Override
     public void onClick(String productId, int position,ProductList productList) {
+        ArrayList<ProductList> totalProductList=new ArrayList<>();
+        if(getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST)!=null) {
+            totalProductList.addAll(getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
+        }
+        totalProductList.add(productList);
         Intent intent = new Intent(mContext, PagerActivity.class);
         intent.putExtra(PRODUCTID, productId);
-        intent.putExtra(INDEX, position);
-        intent.putExtra(PRODUCTSELECTEDITEMDATA,productList);
+        intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST,totalProductList);
         startActivity(intent);
     }
 

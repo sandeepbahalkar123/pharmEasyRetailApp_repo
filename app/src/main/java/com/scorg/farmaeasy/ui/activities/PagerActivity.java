@@ -28,10 +28,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PagerActivity extends AppCompatActivity {
-
-    public static final String INDEX = "index";
+    public static final String INDEX="index";
     public static final String PRODUCTID = "productid";
-    public static final String PRODUCTSELECTEDITEMDATA = "productselecteditemdata";
+    public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
+
 
     @BindView(R.id.fixedBottomHomeDelLayout)
     RelativeLayout fixedBottomHomeDelLayout;
@@ -181,9 +181,8 @@ public class PagerActivity extends AppCompatActivity {
 
         ProductFragment productFragment = ProductFragment.newInstance();
         Bundle bundle = new Bundle();
-        bundle.putInt(INDEX, getIntent().getIntExtra(INDEX, 0));
         bundle.putString(PRODUCTID,getIntent().getStringExtra(PRODUCTID));
-        bundle.putParcelable(PRODUCTSELECTEDITEMDATA,getIntent().getParcelableExtra(PRODUCTSELECTEDITEMDATA));
+        bundle.putParcelableArrayList(COLLECTEDPRODUCTSLIST,getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
         productFragment.setArguments(bundle);
         adapter.addFragment(productFragment, "Product");
 

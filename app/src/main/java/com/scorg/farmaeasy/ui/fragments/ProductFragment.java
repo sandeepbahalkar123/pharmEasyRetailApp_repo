@@ -1,5 +1,6 @@
 package com.scorg.farmaeasy.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.ui.activities.PagerActivity;
+import com.scorg.farmaeasy.ui.activities.ProductsActivity;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
@@ -28,8 +31,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.COLLECTEDPRODUCTSLIST;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTSELECTEDITEMDATA;
 import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 /**
@@ -44,6 +47,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     @BindView(R.id.addProducts)
     ImageView addProducts;
     Unbinder unbinder;
+    private ArrayList<ProductList> productParentList=new ArrayList<>();;
 
     public ProductFragment() {
     }
@@ -107,8 +111,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
             BatchListResponseModel receivedModel = (BatchListResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
-                ArrayList<ProductList> productParentList = new ArrayList<>();
-                productParentList.add(0, getArguments().getParcelable(PRODUCTSELECTEDITEMDATA));
+                productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
                 ProductExpandableListAdapter expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, productChildList);
                 // setting list adapter
                 productListExpand.setAdapter(expandableListAdapter);
@@ -137,5 +140,9 @@ public class ProductFragment extends Fragment implements HelperResponse {
     @OnClick(R.id.addProducts)
     public void onViewClicked() {
        CommonMethods.Log(TAG,"addProducts clicked");
+
+        Intent intent = new Intent(getActivity(), ProductsActivity.class);
+        intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST,productParentList);
+        startActivity(intent);
     }
 }
