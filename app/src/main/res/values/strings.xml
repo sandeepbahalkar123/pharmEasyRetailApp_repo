@@ -88,8 +88,6 @@
 
     <array name="spinnerArray">
         <item>Cash</item>
-        <item>Voucher</item>
-        <item>Credit</item>
     </array>
 
     <string name="error_in_ip">Please enter valid IP address</string>

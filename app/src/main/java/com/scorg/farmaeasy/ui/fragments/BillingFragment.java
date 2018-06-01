@@ -2,12 +2,14 @@ package com.scorg.farmaeasy.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,8 +27,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -50,6 +50,8 @@ public class BillingFragment extends Fragment {
     @BindView(R.id.saveButton)
     Button saveButton;
     Unbinder unbinder;
+    @BindView(R.id.transactionModeSelection)
+    AppCompatSpinner transactionModeSelection;
 
     public BillingFragment() {
     }
@@ -77,6 +79,11 @@ public class BillingFragment extends Fragment {
         productListRecycler.setLayoutManager(linearlayoutManager);
         productListRecycler.setItemAnimator(new DefaultItemAnimator());
         productListRecycler.setAdapter(mAdapter);
+
+        ArrayList<String> spinnerArray = new ArrayList<String>();
+        spinnerArray.add("Cash");
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.mode_spinner_item, spinnerArray);
+        transactionModeSelection.setAdapter(spinnerArrayAdapter);
 
         return rootView;
     }
