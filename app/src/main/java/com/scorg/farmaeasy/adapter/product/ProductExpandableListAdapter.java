@@ -1,6 +1,8 @@
 package com.scorg.farmaeasy.adapter.product;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.util.CommonMethods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +54,6 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             ViewHolderChild viewHolderChild = new ViewHolderChild(convertView);
             convertView.setTag(viewHolderChild);
         }
-
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
         viewHolderChild.batchInfo.setText("Batch No : " + batchList.getBatchNumber());
         viewHolderChild.editTextQty.setText("0");
@@ -59,7 +61,6 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName()+" - "+batchList.getExpiry()+" - ");
         viewHolderChild.packingType.setText(batchList.getProdpack());
         viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
-
 
         return convertView;
     }
@@ -152,4 +153,5 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             ButterKnife.bind(this, view);
         }
     }
+
 }

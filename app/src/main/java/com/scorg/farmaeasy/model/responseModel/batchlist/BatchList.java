@@ -30,6 +30,9 @@ public class BatchList implements Parcelable {
     @SerializedName("prodpack")
     @Expose
     private String prodpack;
+    @SerializedName("saleQTY")
+    @Expose
+    private String saleQTY;
     public final static Parcelable.Creator<BatchList> CREATOR = new Creator<BatchList>() {
 
 
@@ -54,6 +57,8 @@ public class BatchList implements Parcelable {
         this.expiry = ((String) in.readValue((String.class.getClassLoader())));
         this.prodCompShortName = ((String) in.readValue((String.class.getClassLoader())));
         this.prodpack = ((String) in.readValue((String.class.getClassLoader())));
+        this.saleQTY = ((String) in.readValue((String.class.getClassLoader())));
+
     }
 
     public BatchList() {
@@ -115,6 +120,14 @@ public class BatchList implements Parcelable {
         this.prodpack = prodpack;
     }
 
+    public String getSaleQTY() {
+        return saleQTY;
+    }
+
+    public void setSaleQTY(String saleQTY) {
+        this.saleQTY = saleQTY;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(stockID);
         dest.writeValue(batchNumber);
@@ -123,6 +136,7 @@ public class BatchList implements Parcelable {
         dest.writeValue(expiry);
         dest.writeValue(prodCompShortName);
         dest.writeValue(prodpack);
+        dest.writeValue(saleQTY);
     }
 
     public int describeContents() {

@@ -99,6 +99,7 @@
     <string name="company">Company</string>
     <string name="supplier">Supplier</string>
     <string name="quantity_menu">Quantity</string>
+    <string name="nobatchavailable">No batch available for this product.</string>
 
     <integer name="mobileNumberLength">10</integer>
 

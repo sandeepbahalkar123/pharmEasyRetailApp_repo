@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.SearchProductsListAdapter;
@@ -149,21 +150,29 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
 
     @Override
-    public void onClick(String productId, int position, ProductList productList) {
+    public void onClick(String productId,String totalBatch,int position, ProductList productList) {
         ArrayList<ProductList> totalProductList = new ArrayList<>();
         totalProductList.add(productList);
 
         if (getIntent().getBooleanExtra(PagerActivity.FROM_HOME_ACTIVITY, false)) {
-            Intent intent = new Intent(mContext, PagerActivity.class);
-            intent.putExtra(PRODUCTID, productId);
-            intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
-            startActivity(intent);
+           if(!totalBatch.equalsIgnoreCase("0")) {
+               Intent intent = new Intent(mContext, PagerActivity.class);
+               intent.putExtra(PRODUCTID, productId);
+               intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+               startActivity(intent);
+           }else{
+               CommonMethods.showToast(mContext, mContext.getString(R.string.nobatchavailable));
+           }
         } else {
-            Intent intent = new Intent();
-            intent.putExtra(PRODUCTID, productId);
-            intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
-            setResult(Activity.RESULT_OK, intent);
-            finish();
+            if(!totalBatch.equalsIgnoreCase("0")) {
+                Intent intent = new Intent();
+                intent.putExtra(PRODUCTID, productId);
+                intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            }else{
+                CommonMethods.showToast(mContext, mContext.getString(R.string.nobatchavailable));
+            }
         }
     }
 

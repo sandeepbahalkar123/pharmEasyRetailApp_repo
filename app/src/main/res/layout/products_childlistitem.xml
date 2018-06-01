@@ -32,8 +32,8 @@
             <EditText
                 android:id="@+id/editTextQty"
                 style="@style/SaleProductsQuantityStyle"
-                android:layout_alignBaseline="@+id/batchInfo"
-                android:inputType="number"
+                android:layout_marginTop="@dimen/dp3"
+                android:inputType="numberDecimal"
                 tools:text="3034" />
 
             <View
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:paddingRight="@dimen/dp40"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
-                android:textSize="@dimen/sp13"
+                android:textSize="@dimen/sp16"
                 tools:text="6000" />
 
 

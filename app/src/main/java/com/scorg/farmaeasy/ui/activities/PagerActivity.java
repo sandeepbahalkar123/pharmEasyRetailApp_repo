@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
@@ -26,6 +27,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.scorg.farmaeasy.ui.fragments.ProductFragment.getProctctSize;
+import static com.scorg.farmaeasy.ui.fragments.ProductFragment.getTotalAmount;
 
 public class PagerActivity extends AppCompatActivity {
     public static final String INDEX="index";
@@ -108,6 +112,7 @@ public class PagerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
+
         setupViewPager();
 
         tabs.setupWithViewPager(viewPager);
@@ -146,7 +151,12 @@ public class PagerActivity extends AppCompatActivity {
 
             }
         });
+
+
+
     }
+
+
 
     private void setupTabIcons() {
 
@@ -220,4 +230,6 @@ public class PagerActivity extends AppCompatActivity {
             return null;
         }
     }
+
+
 }

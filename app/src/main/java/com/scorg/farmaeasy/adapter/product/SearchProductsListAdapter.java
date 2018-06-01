@@ -44,7 +44,7 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                productClick.onClick(productList.getProductID(),position,productLists.get(position));
+                productClick.onClick(productList.getProductID(),productList.getBatchInfo(),position,productLists.get(position));
             }
         });
 
@@ -79,6 +79,6 @@ public class SearchProductsListAdapter extends RecyclerView.Adapter<SearchProduc
     }
 
     public interface ProductClick {
-        void onClick(String productId,int position,ProductList productList);
+        void onClick(String productId,String totalBatch,int position,ProductList productList);
     }
 }

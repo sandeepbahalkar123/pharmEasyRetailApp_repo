@@ -42,14 +42,13 @@ import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 public class ProductFragment extends Fragment implements HelperResponse {
 
 
-    private String TAG = this.getClass().getName();
+    private static final String TAG = "ProductFragment";
     @BindView(R.id.productList)
     ExpandableListView productListExpand;
     @BindView(R.id.addProducts)
     ImageView addProducts;
     Unbinder unbinder;
-    private ArrayList<ProductList> productParentList = new ArrayList<>();
-    ;
+    private static ArrayList<ProductList> productParentList = new ArrayList<>();
     private BatchListHelper batchListHelper;
     private ProductExpandableListAdapter expandableListAdapter;
 
@@ -124,16 +123,12 @@ public class ProductFragment extends Fragment implements HelperResponse {
                     productListExpand.expandGroup(0);
                 } else expandableListAdapter.notifyDataSetChanged();
             } else {
-//                ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
-//                productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
-//                ProductExpandableListAdapter expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, productChildList);
-//                // setting list adapter
-//                productListExpand.setAdapter(expandableListAdapter);
-//                productListExpand.expandGroup(0);
-                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
+//                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
             }
         }
     }
+
+
 
     @Override
     public void onParseError(String mOldDataTag, String errorMessage) {
@@ -166,4 +161,28 @@ public class ProductFragment extends Fragment implements HelperResponse {
             }
         }
     }
+
+
+    public static Double getTotalAmount(){
+        CommonMethods.Log(TAG,"productParentList.size():"+productParentList.size());
+        Double totalValue=0.0;
+        for(int i=0;i<productParentList.size();i++){
+            for(BatchList batchList:productParentList.get(i).getBatchList()){
+                CommonMethods.Log(TAG,"batchList.size():"+productParentList.get(i).getBatchList().size());
+                CommonMethods.Log(TAG,"\nbatchList.getSaleRate():"+batchList.getSaleRate());
+                CommonMethods.Log(TAG,"Integer.parseInt(totalQTY):"+Integer.parseInt(batchList.getSaleQTY()));
+                totalValue+=batchList.getSaleRate()*Integer.parseInt(batchList.getSaleQTY());
+                CommonMethods.Log(TAG,"TotalValue:"+totalValue);
+
+            }
+        }
+
+        return totalValue;
+    }
+
+    public static int getProctctSize(){
+        return productParentList.size();
+    }
+
+
 }
