@@ -12,6 +12,8 @@ import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,7 +138,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         @BindView(R.id.batchInfo)
         TextView batchInfo;
         @BindView(R.id.editTextQty)
-        EditText editTextQty;
+        TextView editTextQty;
         @BindView(R.id.stock)
         TextView stock;
         @BindView(R.id.expiryDateInfo)
