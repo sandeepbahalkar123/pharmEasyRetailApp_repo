@@ -1,5 +1,7 @@
 package com.scorg.farmaeasy.ui.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +18,8 @@ import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.ui.activities.PagerActivity;
+import com.scorg.farmaeasy.ui.activities.ProductsActivity;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
@@ -28,8 +32,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.COLLECTEDPRODUCTSLIST;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTSELECTEDITEMDATA;
 import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 /**
@@ -38,12 +42,16 @@ import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 public class ProductFragment extends Fragment implements HelperResponse {
 
 
-    private String TAG=this.getClass().getName();
+    private String TAG = this.getClass().getName();
     @BindView(R.id.productList)
     ExpandableListView productListExpand;
     @BindView(R.id.addProducts)
     ImageView addProducts;
     Unbinder unbinder;
+    private ArrayList<ProductList> productParentList = new ArrayList<>();
+    ;
+    private BatchListHelper batchListHelper;
+    private ProductExpandableListAdapter expandableListAdapter;
 
     public ProductFragment() {
     }
@@ -72,7 +80,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
 //        productListExpand.setAdapter(listAdapter);
 //        productListExpand.expandGroup(0);
 
-        BatchListHelper batchListHelper = new BatchListHelper(getActivity(), this);
+        productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
+        batchListHelper = new BatchListHelper(getActivity(), this);
         batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
 
         return rootView;
@@ -107,13 +116,20 @@ public class ProductFragment extends Fragment implements HelperResponse {
             BatchListResponseModel receivedModel = (BatchListResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
-                ArrayList<ProductList> productParentList = new ArrayList<>();
-                productParentList.add(0, getArguments().getParcelable(PRODUCTSELECTEDITEMDATA));
-                ProductExpandableListAdapter expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, productChildList);
-                // setting list adapter
-                productListExpand.setAdapter(expandableListAdapter);
-                productListExpand.expandGroup(0);
+                productParentList.get(productParentList.size() - 1).setBatchList(productChildList);
+                if (expandableListAdapter == null) {
+                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList);
+                    // setting list adapter
+                    productListExpand.setAdapter(expandableListAdapter);
+                    productListExpand.expandGroup(0);
+                } else expandableListAdapter.notifyDataSetChanged();
             } else {
+//                ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
+//                productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
+//                ProductExpandableListAdapter expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, productChildList);
+//                // setting list adapter
+//                productListExpand.setAdapter(expandableListAdapter);
+//                productListExpand.expandGroup(0);
                 CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
             }
         }
@@ -136,6 +152,18 @@ public class ProductFragment extends Fragment implements HelperResponse {
 
     @OnClick(R.id.addProducts)
     public void onViewClicked() {
-       CommonMethods.Log(TAG,"addProducts clicked");
+        CommonMethods.Log(TAG, "addProducts clicked");
+        Intent intent = new Intent(getActivity(), ProductsActivity.class);
+        startActivityForResult(intent, 100);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 100) {
+                productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
+                batchListHelper.doBatchList(data.getStringExtra(PRODUCTID));
+            }
+        }
     }
 }

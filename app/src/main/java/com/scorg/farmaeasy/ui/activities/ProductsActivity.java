@@ -1,5 +1,6 @@
 package com.scorg.farmaeasy.ui.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,13 +36,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.INDEX;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.COLLECTEDPRODUCTSLIST;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
-import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTSELECTEDITEMDATA;
 import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 public class ProductsActivity extends AppCompatActivity implements HelperResponse, SearchProductsListAdapter.ProductClick {
-
 
     private Context mContext;
 
@@ -71,6 +70,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
+
 
 //        String jsonString = loadJSONFromAsset("productList.json");
 //        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
@@ -149,12 +149,22 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
 
     @Override
-    public void onClick(String productId, int position,ProductList productList) {
-        Intent intent = new Intent(mContext, PagerActivity.class);
-        intent.putExtra(PRODUCTID, productId);
-        intent.putExtra(INDEX, position);
-        intent.putExtra(PRODUCTSELECTEDITEMDATA,productList);
-        startActivity(intent);
+    public void onClick(String productId, int position, ProductList productList) {
+        ArrayList<ProductList> totalProductList = new ArrayList<>();
+        totalProductList.add(productList);
+
+        if (getIntent().getBooleanExtra(PagerActivity.FROM_HOME_ACTIVITY, false)) {
+            Intent intent = new Intent(mContext, PagerActivity.class);
+            intent.putExtra(PRODUCTID, productId);
+            intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent();
+            intent.putExtra(PRODUCTID, productId);
+            intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
+        }
     }
 
 
@@ -186,7 +196,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             //After login user navigated to HomeActivity
             ProductSearchResponseModel receivedModel = (ProductSearchResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
-                productLists=receivedModel.getData().getProductList();
+                productLists = receivedModel.getData().getProductList();
                 SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, receivedModel.getData().getProductList(), this);
                 productListRecycler.setAdapter(mAdapter);
                 productListRecycler.setVisibility(View.VISIBLE);

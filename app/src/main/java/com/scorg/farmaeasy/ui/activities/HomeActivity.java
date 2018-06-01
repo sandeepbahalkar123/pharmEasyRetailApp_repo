@@ -160,6 +160,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                 });
             } else {
                 Intent intentObj = new Intent(mContext, ProductsActivity.class);
+                intentObj.putExtra(PagerActivity.FROM_HOME_ACTIVITY, true);
                 startActivity(intentObj);
             }
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Support")) {
