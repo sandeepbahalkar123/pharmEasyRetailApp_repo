@@ -110,6 +110,7 @@ public class PagerActivity extends AppCompatActivity {
 
         setupViewPager();
 
+        viewPager.setOffscreenPageLimit(3);
         tabs.setupWithViewPager(viewPager);
         setupTabIcons();
 

@@ -4,21 +4,23 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.ProductExpandableListAdapter;
 import com.scorg.farmaeasy.helpers.batchlist.BatchListHelper;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
+import com.scorg.farmaeasy.model.requestModel.sale.SaleRequestModel;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
-import com.scorg.farmaeasy.ui.activities.PagerActivity;
 import com.scorg.farmaeasy.ui.activities.ProductsActivity;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
@@ -123,6 +125,10 @@ public class ProductFragment extends Fragment implements HelperResponse {
                     productListExpand.setAdapter(expandableListAdapter);
                     productListExpand.expandGroup(0);
                 } else expandableListAdapter.notifyDataSetChanged();
+
+//                SaleRequestModel saleRequestModel = new SaleRequestModel();
+//                saleRequestModel.setProductParentList(productParentList);
+
             } else {
 //                ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
 //                productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
