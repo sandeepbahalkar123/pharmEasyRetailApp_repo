@@ -99,6 +99,11 @@
     <string name="company">Company</string>
     <string name="supplier">Supplier</string>
     <string name="quantity_menu">Quantity</string>
+    <string name="nobatchavailable">No batch available for this product.</string>
+    <string name="enter_quantity">Please Enter Quantity</string>
+    <string name="enter_quantity_message">Please enter at least one quantity.</string>
+    <string name="total_with_rs">Total ₹</string>
+    <string name="input_sale_quantity_message">Sale quantity should be less then or equals stock value.</string>
 
     <integer name="mobileNumberLength">10</integer>
 

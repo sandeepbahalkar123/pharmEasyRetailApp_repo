@@ -46,9 +46,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp45"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/shortBookTextColor"
-                android:textSize="@dimen/sp12"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/searchProducts_HighligtedTextColor"
+                android:textSize="@dimen/sp15"
                 tools:text="50" />
         </RelativeLayout>
 

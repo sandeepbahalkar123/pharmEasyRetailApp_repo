@@ -21,14 +21,15 @@ import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PagerActivity extends AppCompatActivity {
-    public static final String INDEX="index";
+public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction {
+    public static final String INDEX = "index";
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
@@ -108,6 +109,7 @@ public class PagerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
+
         setupViewPager();
 
         viewPager.setOffscreenPageLimit(3);
@@ -147,7 +149,10 @@ public class PagerActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
+
 
     private void setupTabIcons() {
 
@@ -183,8 +188,8 @@ public class PagerActivity extends AppCompatActivity {
 
         ProductFragment productFragment = ProductFragment.newInstance();
         Bundle bundle = new Bundle();
-        bundle.putString(PRODUCTID,getIntent().getStringExtra(PRODUCTID));
-        bundle.putParcelableArrayList(COLLECTEDPRODUCTSLIST,getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
+        bundle.putString(PRODUCTID, getIntent().getStringExtra(PRODUCTID));
+        bundle.putParcelableArrayList(COLLECTEDPRODUCTSLIST, getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
         productFragment.setArguments(bundle);
         adapter.addFragment(productFragment, "Product");
 
@@ -193,6 +198,17 @@ public class PagerActivity extends AppCompatActivity {
         adapter.addFragment(BillingFragment.newInstance(), "Billing");
 
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void setTotalAmount(double amount) {
+        DecimalFormat precision = new DecimalFormat("#0.00");
+        totalAmount.setText(getString(R.string.total_with_rs) + " " + precision.format(amount));
+    }
+
+    @Override
+    public void setTotalProducts(int size) {
+        totalUnits.setText(String.valueOf(size) + " " + getString(R.string.products));
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -221,4 +237,6 @@ public class PagerActivity extends AppCompatActivity {
             return null;
         }
     }
+
+
 }

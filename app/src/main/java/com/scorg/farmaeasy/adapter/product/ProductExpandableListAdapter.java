@@ -5,29 +5,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
+    private final OnItemClickListener onItemClickListener;
     private Context _context;
     private ArrayList<ProductList> productParentList;
 
-    public ProductExpandableListAdapter(Context context, ArrayList<ProductList> productParentList) {
+    public ProductExpandableListAdapter(Context context, ArrayList<ProductList> productParentList, OnItemClickListener onItemClickListener) {
         this._context = context;
         this.productParentList = productParentList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -53,15 +51,20 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             ViewHolderChild viewHolderChild = new ViewHolderChild(convertView);
             convertView.setTag(viewHolderChild);
         }
-
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
         viewHolderChild.batchInfo.setText("Batch No : " + batchList.getBatchNumber());
-        viewHolderChild.editTextQty.setText("0");
-        viewHolderChild.estimatedPriceValue.setText(" Rs "+String.valueOf(batchList.getSaleRate()));
-        viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName()+" - "+batchList.getExpiry()+" - ");
+        viewHolderChild.editTextQty.setText(String.valueOf(batchList.getSaleQTY()));
+        viewHolderChild.estimatedPriceValue.setText(" Rs " + String.valueOf(batchList.getSaleRate()));
+        viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName() + " - " + batchList.getExpiry() + " - ");
         viewHolderChild.packingType.setText(batchList.getProdpack());
         viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
 
+        viewHolderChild.editTextQty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onQuantityClick(batchList);
+            }
+        });
 
         return convertView;
     }
@@ -154,4 +157,9 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             ButterKnife.bind(this, view);
         }
     }
+
+    public interface OnItemClickListener {
+        void onQuantityClick(BatchList batchList);
+    }
+
 }

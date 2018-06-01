@@ -65,7 +65,7 @@
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textColorHint">@color/searchProducts_HighligtedTextColor</item>
         <item name="android:textColor">@color/searchProducts_HighligtedTextColor</item>
-        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:textSize">@dimen/sp16</item>
         <item name="android:layout_width">@dimen/dp28</item>
         <item name="android:layout_height">@dimen/dp18</item>
     </style>

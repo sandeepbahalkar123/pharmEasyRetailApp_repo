@@ -24,6 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/stock"
+                android:layout_toStartOf="@+id/stock"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp16"
@@ -31,29 +33,43 @@
 
             <TextView
                 android:id="@+id/editTextQty"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
-                android:layout_alignBaseline="@+id/batchInfo"
+                android:layout_width="@dimen/dp48"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="end"
+                android:paddingEnd="@dimen/dp4"
+                android:paddingStart="@dimen/dp4"
+                android:textColor="@color/searchProducts_HighligtedTextColor"
+                android:textSize="@dimen/sp16"
                 tools:text="3034" />
 
             <View
-                android:layout_width="@dimen/dp28"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp1"
+                android:layout_alignEnd="@+id/editTextQty"
+                android:layout_alignLeft="@+id/editTextQty"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/editTextQty"
+                android:layout_alignStart="@+id/editTextQty"
                 android:layout_below="@+id/editTextQty"
                 android:background="@color/searchProducts_HighligtedTextColor" />
 
             <TextView
                 android:id="@+id/stock"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp80"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/batchInfo"
                 android:layout_toLeftOf="@+id/editTextQty"
                 android:layout_toStartOf="@+id/editTextQty"
                 android:fontFamily="@font/roboto_bold"
-                android:paddingRight="@dimen/dp40"
+                android:gravity="end"
+                android:paddingEnd="@dimen/dp14"
+                android:paddingStart="@dimen/dp14"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
-                android:textSize="@dimen/sp13"
+                android:textSize="@dimen/sp16"
                 tools:text="6000" />
 
 

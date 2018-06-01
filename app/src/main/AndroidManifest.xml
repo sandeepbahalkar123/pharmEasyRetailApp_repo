@@ -49,7 +49,7 @@
         <activity
             android:name=".ui.activities.ProductsActivity"
             android:label="@string/title_activity_products"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.activities.SupportActivity"
             android:label="@string/title_support_activity"

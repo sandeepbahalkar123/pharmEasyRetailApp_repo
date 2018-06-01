@@ -1,23 +1,21 @@
 package com.scorg.farmaeasy.ui.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
-import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.ProductExpandableListAdapter;
 import com.scorg.farmaeasy.helpers.batchlist.BatchListHelper;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
-import com.scorg.farmaeasy.model.requestModel.sale.SaleRequestModel;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
@@ -44,16 +42,16 @@ import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 public class ProductFragment extends Fragment implements HelperResponse {
 
 
-    private String TAG = this.getClass().getName();
+    private static final String TAG = "ProductFragment";
     @BindView(R.id.productList)
     ExpandableListView productListExpand;
     @BindView(R.id.addProducts)
     ImageView addProducts;
     Unbinder unbinder;
-    private ArrayList<ProductList> productParentList = new ArrayList<>();
-    ;
+    private static ArrayList<ProductList> productParentList = new ArrayList<>();
     private BatchListHelper batchListHelper;
     private ProductExpandableListAdapter expandableListAdapter;
+    private OnProductFragmentInteraction onProductFragmentInteraction;
 
     public ProductFragment() {
     }
@@ -120,26 +118,36 @@ public class ProductFragment extends Fragment implements HelperResponse {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
                 productParentList.get(productParentList.size() - 1).setBatchList(productChildList);
                 if (expandableListAdapter == null) {
-                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList);
+                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, batchList -> showInputDialog(batchList));
                     // setting list adapter
                     productListExpand.setAdapter(expandableListAdapter);
                     productListExpand.expandGroup(0);
                 } else expandableListAdapter.notifyDataSetChanged();
 
+                onProductFragmentInteraction.setTotalProducts(productParentList.size());
+                onProductFragmentInteraction.setTotalAmount(getTotalAmount());
+
 //                SaleRequestModel saleRequestModel = new SaleRequestModel();
 //                saleRequestModel.setProductParentList(productParentList);
 
             } else {
-//                ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
-//                productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
-//                ProductExpandableListAdapter expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, productChildList);
-//                // setting list adapter
-//                productListExpand.setAdapter(expandableListAdapter);
-//                productListExpand.expandGroup(0);
-                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
+//                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
             }
         }
     }
+
+    private void showInputDialog(BatchList batchList) {
+        CommonMethods.showInputDialog(getContext(), getString(R.string.enter_quantity_message), batchList, quantity -> {
+            batchList.setSaleQTY(quantity);
+            expandableListAdapter.notifyDataSetChanged();
+            onProductFragmentInteraction.setTotalAmount(getTotalAmount());
+        });
+    }
+
+    public interface DialogInputListener {
+        void inputValue(int value);
+    }
+
 
     @Override
     public void onParseError(String mOldDataTag, String errorMessage) {
@@ -170,6 +178,36 @@ public class ProductFragment extends Fragment implements HelperResponse {
                 productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
                 batchListHelper.doBatchList(data.getStringExtra(PRODUCTID));
             }
+        }
+    }
+
+
+    public static double getTotalAmount() {
+        CommonMethods.Log(TAG, "productParentList.size():" + productParentList.size());
+        double totalValue = 0.0;
+        for (ProductList productList : productParentList) {
+            for (BatchList batchList : productList.getBatchList()) {
+                CommonMethods.Log(TAG, "\nbatchList.getSaleRate():" + batchList.getSaleRate());
+                CommonMethods.Log(TAG, "Integer.parseInt(totalQTY):" + batchList.getSaleQTY());
+                totalValue += batchList.getSaleRate() * batchList.getSaleQTY();
+                CommonMethods.Log(TAG, "TotalValue:" + totalValue);
+            }
+        }
+
+        return totalValue;
+    }
+
+    public interface OnProductFragmentInteraction {
+        void setTotalAmount(double amount);
+
+        void setTotalProducts(int size);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnProductFragmentInteraction) {
+            onProductFragmentInteraction = (OnProductFragmentInteraction) context;
         }
     }
 }

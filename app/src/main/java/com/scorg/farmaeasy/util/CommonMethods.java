@@ -33,6 +33,8 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.interfaces.CheckIpConnection;
 import com.scorg.farmaeasy.interfaces.DatePickerDialogListener;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
+import com.scorg.farmaeasy.ui.fragments.ProductFragment;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -105,6 +107,37 @@ public class CommonMethods {
 //                ((Activity) mContext).finish();
             }
         });
+        dialog.show();
+
+    }
+
+    public static void showInputDialog(Context context, String message, BatchList batchList, ProductFragment.DialogInputListener dialogInputListener) {
+        final Dialog dialog = new Dialog(context);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.input_dialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        EditText inputBox = ((EditText) dialog.findViewById(R.id.editTextQuantity));
+        if (batchList.getSaleQTY() != 0) {
+            inputBox.setText(String.valueOf(batchList.getSaleQTY()));
+            inputBox.setSelection(String.valueOf(batchList.getSaleQTY()).length());
+        }
+
+        dialog.findViewById(R.id.button_ok).setOnClickListener(v -> {
+            if (!inputBox.getText().toString().isEmpty()) {
+                int saleQuantity = Integer.parseInt(inputBox.getText().toString());
+                if (batchList.getClosingStock() < saleQuantity)
+                    CommonMethods.showToast(context, context.getString(R.string.input_sale_quantity_message));
+                else {
+                    dialogInputListener.inputValue(saleQuantity);
+                    dialog.dismiss();
+                }
+            } else
+                CommonMethods.showToast(context, message);
+        });
+        dialog.findViewById(R.id.button_cancel).setOnClickListener(v -> dialog.dismiss());
         dialog.show();
 
     }

@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:text="6 Products"
+                    tools:text="6 Products"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:text="Total ₹ 00,76,676.00"
+                    tools:text="Total ₹ 00,76,676.00"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
