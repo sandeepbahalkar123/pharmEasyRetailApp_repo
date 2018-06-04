@@ -11,12 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
+import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
@@ -27,12 +30,17 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.util.CommonMethods;
 
-public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction {
+public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction{
     public static final String INDEX = "index";
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
+    public static final String TOTALPRODUCTSLIST = "totalproductslist";
+    public static final String HOMEDELIVERYFLAG = "homedeliveryflag";
+    private static final String TAG = "PagerActivity";
 
 
     @BindView(R.id.fixedBottomHomeDelLayout)
@@ -53,6 +61,8 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     LinearLayout fixedBottomAmtLayout;
     @BindView(R.id.homeDeliveryCheckbBox)
     CheckBox homeDeliveryCheckbBox;
+    private ArrayList<ProductList> productParentList=new ArrayList<>();
+    private boolean homeDeliveryCheckFlag=false;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -74,6 +84,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
             "Add Details",
             "Billing"
     };
+
 
    /* private MenuItem item;
 
@@ -186,6 +197,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
+       //ProductFragment Info
         ProductFragment productFragment = ProductFragment.newInstance();
         Bundle bundle = new Bundle();
         bundle.putString(PRODUCTID, getIntent().getStringExtra(PRODUCTID));
@@ -193,23 +205,66 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         productFragment.setArguments(bundle);
         adapter.addFragment(productFragment, "Product");
 
+        //AddressDetailsFragment Info
         adapter.addFragment(AddressDetailsFragment.newInstance(), "Add Details");
 
+        //BillingFragment Info
         adapter.addFragment(BillingFragment.newInstance(), "Billing");
+
+
+
 
         viewPager.setAdapter(adapter);
     }
 
+    private boolean getHomedeliveryFlag() {
+        homeDeliveryCheckbBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    homeDeliveryCheckFlag=true;
+                }else{
+                    homeDeliveryCheckFlag=false;
+                }
+                CommonMethods.Log(TAG,"homeDeliveryCheckFlag>>>"+homeDeliveryCheckFlag);
+            }
+        });
+            return homeDeliveryCheckFlag;
+    }
+
     @Override
-    public void setTotalAmount(double amount) {
+    public void setTotalAmount(double amount,ArrayList<ProductList> productLists) {
         DecimalFormat precision = new DecimalFormat("#0.00");
         totalAmount.setText(getString(R.string.total_with_rs) + " " + precision.format(amount));
+        CommonMethods.Log(TAG,"productLists.size()>>>>>>"+productLists.size());
+        getIndividualProductTotalBatchDetails(productLists);
     }
 
     @Override
     public void setTotalProducts(int size) {
         totalUnits.setText(String.valueOf(size) + " " + getString(R.string.products));
+
     }
+
+
+    private void getIndividualProductTotalBatchDetails(ArrayList<ProductList> productList) {
+        Integer batchListqty;
+        double batchListamount;
+        for(ProductList productList1:productList){
+            batchListqty=0;
+            batchListamount=0.0;
+            for(BatchList batchList:productList1.getBatchList()){
+                batchListqty+=batchList.getSaleQTY();
+                batchListamount+=batchList.getSaleRate()*batchList.getSaleQTY();
+            }
+            productList1.setIndividualProductTotalBatchQty(batchListqty);
+            productList1.setIndividualProductTotalBatchAmount(batchListamount);
+        }
+
+    }
+
+
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

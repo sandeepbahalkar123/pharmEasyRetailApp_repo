@@ -8,20 +8,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.model.responseModel.product.ProductList;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class BillingProductsListAdapter extends RecyclerView.Adapter<BillingProductsListAdapter.ListViewHolder> {
 
-    private List<ProductList> shortBookLists;
+    private ArrayList<ProductList> productLists;
     private Context mContext;
 
-    public BillingProductsListAdapter(Context mContext, List<ProductList> shortBookLists) {
-        this.shortBookLists = shortBookLists;
+    public BillingProductsListAdapter(Context mContext, ArrayList<ProductList> productLists) {
+        this.productLists = productLists;
         this.mContext = mContext;
     }
 
@@ -33,15 +33,15 @@ public class BillingProductsListAdapter extends RecyclerView.Adapter<BillingProd
 
     @Override
     public void onBindViewHolder(ListViewHolder holder, int position) {
-        ProductList shortBookList = shortBookLists.get(position);
-        holder.productName.setText(shortBookList.getProductName());
-        holder.quantity.setText(String.valueOf(shortBookList.getTotalQTY()));
-        holder.amount.setText(String.valueOf(shortBookList.getRateInfo()));
+        ProductList productList = productLists.get(position);
+        holder.productName.setText(productList.getProductName());
+        holder.quantity.setText(String.valueOf(productList.getIndividualProductTotalBatchQty()));
+        holder.amount.setText(String.valueOf(productList.getIndividualProductTotalBatchAmount()));
     }
 
     @Override
     public int getItemCount() {
-        return shortBookLists.size();
+        return productLists.size();
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {

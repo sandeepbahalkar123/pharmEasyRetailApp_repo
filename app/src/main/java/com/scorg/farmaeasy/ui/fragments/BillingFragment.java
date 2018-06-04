@@ -1,5 +1,6 @@
 package com.scorg.farmaeasy.ui.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
@@ -16,8 +17,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.BillingProductsListAdapter;
-import com.scorg.farmaeasy.model.responseModel.product.ProductList;
-import com.scorg.farmaeasy.model.responseModel.product.ProductResponseModel;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +28,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.HOMEDELIVERYFLAG;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.TOTALPRODUCTSLIST;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -53,6 +57,11 @@ public class BillingFragment extends Fragment {
     @BindView(R.id.transactionModeSelection)
     AppCompatSpinner transactionModeSelection;
 
+    private BillingProductsListAdapter mBillingProductsListAdapter;
+    private boolean homedeliveryFlag;
+    private ArrayList<ProductList> productLists;
+
+
     public BillingFragment() {
     }
 
@@ -70,23 +79,32 @@ public class BillingFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_billing_details, container, false);
         unbinder = ButterKnife.bind(this, rootView);
 
-        String jsonString = loadJSONFromAsset("productList.json");
-        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
-        List<ProductList> productList = productResponseModel.getData().getProductList();
+//        String jsonString = loadJSONFromAsset("productList.json");
+//        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
+//        List<ProductList> productList = productResponseModel.getData().getProductList();
+            homedeliveryFlag = getArguments().getBoolean(HOMEDELIVERYFLAG);
 
-        BillingProductsListAdapter mAdapter = new BillingProductsListAdapter(getContext(), productList);
+        mBillingProductsListAdapter = new BillingProductsListAdapter(getActivity(), productLists);
         LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         productListRecycler.setLayoutManager(linearlayoutManager);
         productListRecycler.setItemAnimator(new DefaultItemAnimator());
-        productListRecycler.setAdapter(mAdapter);
+        productListRecycler.setAdapter(mBillingProductsListAdapter);
 
         ArrayList<String> spinnerArray = new ArrayList<String>();
         spinnerArray.add("Cash");
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.mode_spinner_item, spinnerArray);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.mode_spinner_item, spinnerArray);
         transactionModeSelection.setAdapter(spinnerArrayAdapter);
+
 
         return rootView;
     }
+
+
+
+
+
+
+
 
     public String loadJSONFromAsset(String fileName) {
         String json;
@@ -109,4 +127,8 @@ public class BillingFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+
+
+
 }
