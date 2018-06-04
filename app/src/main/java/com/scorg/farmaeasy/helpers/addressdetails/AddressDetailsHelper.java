@@ -86,7 +86,7 @@ public class AddressDetailsHelper implements ConnectionListener {
 
 
     public void doPatientData(String searchString) {
-        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true, Constants.TASK_ADDRESSDETAILS_PATIENTDATA, Request.Method.POST, false);
+        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, false, Constants.TASK_ADDRESSDETAILS_PATIENTDATA, Request.Method.POST, false);
         mConnectionFactory.setHeaderParams();
         AddressDetailsRequestModel addressDetailsRequestModel = new AddressDetailsRequestModel();
         addressDetailsRequestModel.setSearchString(searchString);
@@ -106,7 +106,7 @@ public class AddressDetailsHelper implements ConnectionListener {
     }
 
     public void doDoctorData(String searchString) {
-        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, true, Constants.TASK_ADDRESSDETAILS_DOCTORDATA, Request.Method.POST, false);
+        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, false, Constants.TASK_ADDRESSDETAILS_DOCTORDATA, Request.Method.POST, false);
         mConnectionFactory.setHeaderParams();
         AddressDetailsRequestModel addressDetailsRequestModel = new AddressDetailsRequestModel();
         addressDetailsRequestModel.setSearchString(searchString);

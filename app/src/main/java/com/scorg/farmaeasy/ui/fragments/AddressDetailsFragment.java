@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -18,6 +19,10 @@ import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.DoctorAddressResponseModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.PatientAddressResponseModel;
+import com.scorg.farmaeasy.model.responseModel.addressdetailsdoctordata.DoctorDataResponseModel;
+import com.scorg.farmaeasy.model.responseModel.addressdetailsdoctordata.DoctorList;
+import com.scorg.farmaeasy.model.responseModel.addressdetailspatientdata.PatientDataResponseModel;
+import com.scorg.farmaeasy.model.responseModel.addressdetailspatientdata.PatientList;
 import com.scorg.farmaeasy.util.Constants;
 
 import butterknife.BindView;
@@ -34,7 +39,7 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
     @BindView(R.id.patientName)
     TextView patientName;
     @BindView(R.id.editTextPatientName)
-    EditText editTextPatientName;
+    AutoCompleteTextView editTextPatientName;
     @BindView(R.id.patientAddress)
     TextView patientAddress;
     @BindView(R.id.editTextPatientAddress)
@@ -50,7 +55,7 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
     @BindView(R.id.doctorName)
     TextView doctorName;
     @BindView(R.id.editTextDoctorName)
-    EditText editTextDoctorName;
+    AutoCompleteTextView editTextDoctorName;
     @BindView(R.id.doctorClinicAddress)
     TextView doctorClinicAddress;
     @BindView(R.id.editTextDoctorClinicAddress)
@@ -81,6 +86,38 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
         unbinder = ButterKnife.bind(this, rootView);
         addressDetailsHelper = new AddressDetailsHelper(getContext(), this);
 
+        editTextPatientName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() > 2)
+                    addressDetailsHelper.doPatientData(s.toString());
+
+            }
+        });
+        editTextDoctorName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() > 2)
+                    addressDetailsHelper.doPatientData(s.toString());
+
+            }
+        });
         editTextPatientAddress.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -92,12 +129,11 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!s.toString().isEmpty())
+                if (s.toString().length() > 2)
                     addressDetailsHelper.doPatientAddress(s.toString());
 
             }
         });
-
         editTextDoctorClinicAddress.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -109,12 +145,11 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!s.toString().isEmpty())
+                if (s.toString().length() > 2)
                     addressDetailsHelper.doDoctorAddress(s.toString());
 
             }
         });
-
         return rootView;
     }
 
@@ -132,12 +167,9 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
                 if (doctorAddressResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
                     // Creating the instance of ArrayAdapter containing list of fruit names
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.sorting_dropdown_item, doctorAddressResponseModel.getData().getAddressList());
-                    editTextPatientAddress.setThreshold(1);//will start working from first character
                     editTextPatientAddress.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-                    editTextPatientAddress.showDropDown();
                 }
             }
-
             break;
 
             case Constants.TASK_ADDRESSDETAILS_DOCTORADDRESS: {
@@ -145,9 +177,54 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
                 if (doctorAddressResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
                     // Creating the instance of ArrayAdapter containing list of fruit names
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.sorting_dropdown_item, doctorAddressResponseModel.getData().getAddressList());
-                    editTextDoctorClinicAddress.setThreshold(1);//will start working from first character
                     editTextDoctorClinicAddress.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-                    editTextDoctorClinicAddress.showDropDown();
+                }
+            }
+            break;
+
+            case Constants.TASK_ADDRESSDETAILS_PATIENTDATA: {
+                PatientDataResponseModel patientDataResponseModel = (PatientDataResponseModel) customResponse;
+                if (patientDataResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
+                    // Creating the instance of ArrayAdapter containing list of fruit names
+                    ArrayAdapter<PatientList> adapter = new ArrayAdapter<PatientList>(getContext(), R.layout.sorting_dropdown_item, patientDataResponseModel.getData().getPatientList());
+                    editTextPatientName.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+
+                    editTextPatientName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            PatientList patientList = patientDataResponseModel.getData().getPatientList().get(position);
+                            editTextPatientAddress.setText(patientList.getPatientAddress1());
+                            editTextDoctorMobileNo.setText(patientList.getMobileNumberForSMS());
+                            editTextPatientGstNo.setText(patientList.getPatientGSTNo());
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                        }
+                    });
+                }
+            }
+            break;
+
+            case Constants.TASK_ADDRESSDETAILS_DOCTORDATA: {
+                DoctorDataResponseModel doctorDataResponseModel = (DoctorDataResponseModel) customResponse;
+                if (doctorDataResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
+                    // Creating the instance of ArrayAdapter containing list of fruit names
+                    ArrayAdapter<DoctorList> adapter = new ArrayAdapter<DoctorList>(getContext(), R.layout.sorting_dropdown_item, doctorDataResponseModel.getData().getDoctorList());
+                    editTextDoctorName.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+
+                    editTextDoctorName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            DoctorList doctorList = doctorDataResponseModel.getData().getDoctorList().get(position);
+                            editTextDoctorClinicAddress.setText(doctorList.getDoctorAddress());
+                            editTextDoctorMobileNo.setText(doctorList.getMobileNumberForSMS());
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                        }
+                    });
                 }
             }
             break;

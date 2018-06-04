@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.SearchProductsListAdapter;
@@ -29,8 +28,6 @@ import com.scorg.farmaeasy.model.responseModel.productsearch.ProductSearchRespon
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -59,8 +56,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     ImageButton backButton;
     @BindView(R.id.noRecordsFound)
     TextView noRecordsFound;
-    private ArrayList<ProductList> productLists;
 
+    private String searchedString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +69,6 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
-
-//        String jsonString = loadJSONFromAsset("productList.json");
-//        ProductResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductResponseModel.class);
-//        List<ProductList> productList = productResponseModel.getData().getProductList();
-
         LinearLayoutManager linearlayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         productListRecycler.setLayoutManager(linearlayoutManager);
         productListRecycler.setItemAnimator(new DefaultItemAnimator());
@@ -85,6 +77,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         productSearchHelper.doProductSearch("");
 
         searchTextView.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -92,13 +85,12 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().length() > 3) {
-                    ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, ProductsActivity.this);
+                if (s.toString().length() > 3)
                     productSearchHelper.doProductSearch(s.toString());
-                } else if (s.toString().length() < 1) {
-                    ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, ProductsActivity.this);
+                else if (s.toString().length() < 1)
                     productSearchHelper.doProductSearch("");
-                }
+
+                searchedString = s.toString();
             }
 
             @Override
@@ -108,23 +100,6 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         });
 
     }
-
-    public String loadJSONFromAsset(String fileName) {
-        String json;
-        try {
-            InputStream is = getAssets().open(fileName);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
 
     @OnClick({R.id.clearButton, R.id.searchBackButton})
     public void onViewClicked(View view) {
@@ -150,29 +125,28 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
 
     @Override
-    public void onClick(String productId,String totalBatch,int position, ProductList productList) {
+    public void onClick(String productId, String totalBatch, int position, ProductList productList) {
         ArrayList<ProductList> totalProductList = new ArrayList<>();
         totalProductList.add(productList);
 
         if (getIntent().getBooleanExtra(PagerActivity.FROM_HOME_ACTIVITY, false)) {
-           if(!totalBatch.equalsIgnoreCase("0")) {
-               Intent intent = new Intent(mContext, PagerActivity.class);
-               intent.putExtra(PRODUCTID, productId);
-               intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
-               startActivity(intent);
-           }else{
-               CommonMethods.showToast(mContext, mContext.getString(R.string.nobatchavailable));
-           }
+            if (!totalBatch.equalsIgnoreCase("0")) {
+                Intent intent = new Intent(mContext, PagerActivity.class);
+                intent.putExtra(PRODUCTID, productId);
+                intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+                startActivity(intent);
+            } else
+                CommonMethods.showToast(mContext, mContext.getString(R.string.nobatchavailable));
+
         } else {
-            if(!totalBatch.equalsIgnoreCase("0")) {
+            if (!totalBatch.equalsIgnoreCase("0")) {
                 Intent intent = new Intent();
                 intent.putExtra(PRODUCTID, productId);
                 intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
-            }else{
+            } else
                 CommonMethods.showToast(mContext, mContext.getString(R.string.nobatchavailable));
-            }
         }
     }
 
@@ -205,8 +179,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             //After login user navigated to HomeActivity
             ProductSearchResponseModel receivedModel = (ProductSearchResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
-                productLists = receivedModel.getData().getProductList();
-                SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, receivedModel.getData().getProductList(), this);
+                SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, receivedModel.getData().getProductList(), this, searchedString);
                 productListRecycler.setAdapter(mAdapter);
                 productListRecycler.setVisibility(View.VISIBLE);
                 noRecordsFound.setVisibility(View.GONE);

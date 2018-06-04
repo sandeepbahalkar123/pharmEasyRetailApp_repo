@@ -166,27 +166,29 @@
                     android:textColor="@color/searchProducts_HighligtedTextColor"
                     android:textSize="@dimen/sp15" />
 
-                <EditText
-                    android:id="@+id/percentEditText"
-                    style="@style/BillDiscountStyle"
-                    android:layout_centerInParent="true"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/discountLabel"
                     android:layout_toRightOf="@+id/discountLabel"
-                    android:drawableEnd="@drawable/percentage"
-                    android:drawableRight="@drawable/percentage"
-                    android:inputType="number"
-                    android:maxLength="5"
-                    android:text="10.00" />
+                    android:orientation="vertical">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/dp1"
-                    android:layout_alignEnd="@+id/percentEditText"
-                    android:layout_alignLeft="@+id/percentEditText"
-                    android:layout_alignRight="@+id/percentEditText"
-                    android:layout_alignStart="@+id/percentEditText"
-                    android:layout_below="@+id/percentEditText"
-                    android:background="@color/searchProducts_HighligtedTextColor" />
+                    <EditText
+                        android:id="@+id/percentEditText"
+                        style="@style/BillDiscountStyle"
+                        android:drawableEnd="@drawable/percentage"
+                        android:drawableRight="@drawable/percentage"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text="10.00" />
+
+                    <View
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp1"
+                        android:background="@color/searchProducts_HighligtedTextColor" />
+
+                </LinearLayout>
 
             </RelativeLayout>
 

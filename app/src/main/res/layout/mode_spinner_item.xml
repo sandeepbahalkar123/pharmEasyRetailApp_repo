@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:fontFamily="@font/roboto_medium"
     android:paddingEnd="@dimen/dp28"
+    android:paddingLeft="@dimen/dp4"
     android:paddingRight="@dimen/dp28"
+    android:paddingStart="@dimen/dp4"
     android:textColor="@color/searchProducts_HighligtedTextColor"
-    tools:text="Cash"
-    android:textSize="@dimen/sp16" />
+    android:textSize="@dimen/sp16"
+    tools:text="Cash" />

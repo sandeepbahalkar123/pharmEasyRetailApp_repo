@@ -20,10 +20,11 @@
             android:textColor="@color/dayBookTextColor"
             android:textSize="@dimen/sp15" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/editTextPatientName"
             style="@style/AddressDetailsStyle"
             android:inputType="text"
+            android:completionThreshold="3"
             tools:text="Rohit Patil" />
 
         <View
@@ -45,6 +46,7 @@
             android:id="@+id/editTextPatientAddress"
             style="@style/AddressDetailsStyle"
             android:inputType="text"
+            android:completionThreshold="3"
             tools:text="A-401,Grrenlands,Pimple Saudagar,Pune" />
 
         <View
@@ -67,6 +69,7 @@
             style="@style/AddressDetailsStyle"
             android:inputType="number"
             tools:text="9898989898"
+            android:completionThreshold="3"
             android:maxLength="@integer/mobileNumberLength"/>
 
         <View
@@ -88,6 +91,7 @@
             android:id="@+id/editTextPatientGstNo"
             style="@style/AddressDetailsStyle"
             android:inputType="text"
+            android:completionThreshold="3"
             tools:text="27AABCBHJUT678" />
 
         <View
@@ -106,10 +110,11 @@
             android:textColor="@color/dayBookTextColor"
             android:textSize="@dimen/sp15" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/editTextDoctorName"
             style="@style/AddressDetailsStyle"
             android:inputType="text"
+            android:completionThreshold="3"
             tools:text="Dr.Parag Khare" />
 
         <View
@@ -131,6 +136,7 @@
             android:id="@+id/editTextDoctorClinicAddress"
             style="@style/AddressDetailsStyle"
             android:inputType="text"
+            android:completionThreshold="3"
             tools:text="Sai Clinic, 40/A Gangdhar lane ,Kothrud,Pune" />
 
         <View

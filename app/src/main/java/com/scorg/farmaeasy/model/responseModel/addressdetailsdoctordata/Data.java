@@ -51,5 +51,4 @@ public class Data implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
 }

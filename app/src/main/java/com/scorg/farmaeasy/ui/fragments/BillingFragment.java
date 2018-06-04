@@ -83,6 +83,7 @@ public class BillingFragment extends Fragment {
         ArrayList<String> spinnerArray = new ArrayList<String>();
         spinnerArray.add("Cash");
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.mode_spinner_item, spinnerArray);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.select_mode_spinner_item);
         transactionModeSelection.setAdapter(spinnerArrayAdapter);
 
         return rootView;
