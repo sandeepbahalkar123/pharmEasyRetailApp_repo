@@ -48,7 +48,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     @BindView(R.id.addProducts)
     ImageView addProducts;
     Unbinder unbinder;
-    private static ArrayList<ProductList> productParentList = new ArrayList<>();
+    private ArrayList<ProductList> productParentList = new ArrayList<>();
     private BatchListHelper batchListHelper;
     private ProductExpandableListAdapter expandableListAdapter;
     private OnProductFragmentInteraction onProductFragmentInteraction;
@@ -127,9 +127,6 @@ public class ProductFragment extends Fragment implements HelperResponse {
                 onProductFragmentInteraction.setTotalProducts(productParentList.size());
                 onProductFragmentInteraction.setTotalAmount(getTotalAmount());
 
-//                SaleRequestModel saleRequestModel = new SaleRequestModel();
-//                saleRequestModel.setProductParentList(productParentList);
-
             } else {
 //                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
             }
@@ -142,6 +139,10 @@ public class ProductFragment extends Fragment implements HelperResponse {
             expandableListAdapter.notifyDataSetChanged();
             onProductFragmentInteraction.setTotalAmount(getTotalAmount());
         });
+    }
+
+    public ArrayList<ProductList> getProducts() {
+        return productParentList;
     }
 
     public interface DialogInputListener {
@@ -182,7 +183,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     }
 
 
-    public static double getTotalAmount() {
+    private double getTotalAmount() {
         CommonMethods.Log(TAG, "productParentList.size():" + productParentList.size());
         double totalValue = 0.0;
         for (ProductList productList : productParentList) {
@@ -199,7 +200,6 @@ public class ProductFragment extends Fragment implements HelperResponse {
 
     public interface OnProductFragmentInteraction {
         void setTotalAmount(double amount);
-
         void setTotalProducts(int size);
     }
 

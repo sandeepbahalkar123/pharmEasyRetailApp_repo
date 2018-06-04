@@ -4,19 +4,31 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SaleRequestModel {
 
     @SerializedName("productList")
     @Expose
-    private ArrayList<ProductList> productParentList = new ArrayList<>();
+    private List<ProductList> productList = null;
+    @SerializedName("details")
+    @Expose
+    private Details details;
 
-    public ArrayList<ProductList> getProductParentList() {
-        return productParentList;
+    public List<ProductList> getProductList() {
+        return productList;
     }
 
-    public void setProductParentList(ArrayList<ProductList> productParentList) {
-        this.productParentList = productParentList;
+    public void setProductList(List<ProductList> productList) {
+        this.productList = productList;
     }
+
+    public Details getDetails() {
+        return details;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
+    }
+
 }

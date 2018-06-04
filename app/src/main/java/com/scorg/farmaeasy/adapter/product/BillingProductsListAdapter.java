@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
-import com.scorg.farmaeasy.model.responseModel.product.ProductList;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 
 import java.util.List;
 

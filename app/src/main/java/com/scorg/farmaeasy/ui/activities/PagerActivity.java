@@ -17,6 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.model.requestModel.sale.Details;
+import com.scorg.farmaeasy.model.requestModel.sale.SaleRequestModel;
+import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
@@ -29,11 +32,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction {
-    public static final String INDEX = "index";
+
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
-
 
     @BindView(R.id.fixedBottomHomeDelLayout)
     RelativeLayout fixedBottomHomeDelLayout;
@@ -53,6 +55,11 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     LinearLayout fixedBottomAmtLayout;
     @BindView(R.id.homeDeliveryCheckbBox)
     CheckBox homeDeliveryCheckbBox;
+
+    private ProductFragment productFragment;
+    private AddressDetailsFragment addressDetailsFragment;
+    private BillingFragment billingFragment;
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -75,28 +82,6 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
             "Billing"
     };
 
-   /* private MenuItem item;
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                Intent intent = new Intent(PagerActivity.this, ProductsActivity.class);
-                startActivity(intent);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search, menu);
-        item = menu.getItem(0);
-        return true;
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +93,6 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         getSupportActionBar().setTitle(titles[0]);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
-
 
         setupViewPager();
 
@@ -128,12 +112,11 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
                 if (tab.getPosition() == 2) {
                     fixedBottomAmtLayout.setVisibility(View.GONE);
                     fixedBottomHomeDelLayout.setVisibility(View.VISIBLE);
+                    callApi(productFragment.getProducts(), addressDetailsFragment.getDetails());
                 } else {
                     fixedBottomAmtLayout.setVisibility(View.VISIBLE);
                     fixedBottomHomeDelLayout.setVisibility(View.GONE);
                 }
-
-//                item.setVisible(tab.getPosition() == 0);
             }
 
             @Override
@@ -149,8 +132,15 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
 
             }
         });
+    }
 
+    private void callApi(ArrayList<ProductList> products, Details details) {
+        SaleRequestModel saleRequestModel = new SaleRequestModel();
+        saleRequestModel.setProductList(products);
+        saleRequestModel.setDetails(details);
+        // call api
 
+        billingFragment.setProducts(products);
     }
 
 
@@ -186,16 +176,18 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        ProductFragment productFragment = ProductFragment.newInstance();
+        productFragment = ProductFragment.newInstance();
         Bundle bundle = new Bundle();
         bundle.putString(PRODUCTID, getIntent().getStringExtra(PRODUCTID));
         bundle.putParcelableArrayList(COLLECTEDPRODUCTSLIST, getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
         productFragment.setArguments(bundle);
         adapter.addFragment(productFragment, "Product");
 
-        adapter.addFragment(AddressDetailsFragment.newInstance(), "Add Details");
+        addressDetailsFragment = AddressDetailsFragment.newInstance();
+        adapter.addFragment(addressDetailsFragment, "Add Details");
 
-        adapter.addFragment(BillingFragment.newInstance(), "Billing");
+        billingFragment = BillingFragment.newInstance();
+        adapter.addFragment(billingFragment, "Billing");
 
         viewPager.setAdapter(adapter);
     }

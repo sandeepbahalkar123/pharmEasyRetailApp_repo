@@ -17,6 +17,7 @@ import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.helpers.addressdetails.AddressDetailsHelper;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
+import com.scorg.farmaeasy.model.requestModel.sale.Details;
 import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.DoctorAddressResponseModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.PatientAddressResponseModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailsdoctordata.DoctorDataResponseModel;
@@ -245,5 +246,20 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
     @Override
     public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
 
+    }
+
+    public Details getDetails() {
+        Details details = new Details();
+        details.setPatientId("");
+        details.setPatientName(editTextPatientName.getText().toString());
+        details.setMobileNo(editTextPatientMobileNo.getText().toString());
+        details.setAddress(editTextPatientAddress.getText().toString());
+        details.setPatientGSTNo(editTextPatientGstNo.getText().toString());
+
+        details.setDoctorId("");
+        details.setClinicAddress(editTextDoctorClinicAddress.getText().toString());
+        details.setDoctorMobileNo(editTextDoctorMobileNo.getText().toString());
+
+        return details;
     }
 }
