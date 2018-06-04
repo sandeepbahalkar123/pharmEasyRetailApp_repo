@@ -126,7 +126,7 @@
 
 
             <TextView
-                android:id="@+id/amount"
+                android:id="@+id/totalAmountValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
@@ -220,7 +220,7 @@
 
 
             <TextView
-                android:id="@+id/amount_discount"
+                android:id="@+id/amountDiscountValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
@@ -283,7 +283,7 @@
 
 
             <TextView
-                android:id="@+id/netAmount"
+                android:id="@+id/netAmountValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"

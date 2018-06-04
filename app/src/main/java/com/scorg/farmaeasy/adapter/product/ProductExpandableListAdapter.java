@@ -105,7 +105,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
         ViewHolderParent viewHolderParent = (ViewHolderParent) convertView.getTag();
         viewHolderParent.productname.setText(productList.getProductName());
-        viewHolderParent.contentInfo.setText("XYZ");
+        viewHolderParent.contentInfo.setText(productList.getDrugInfo());
 
         return convertView;
     }

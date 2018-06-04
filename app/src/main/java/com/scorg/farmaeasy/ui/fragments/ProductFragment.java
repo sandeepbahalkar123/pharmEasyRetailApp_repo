@@ -53,6 +53,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     private ProductExpandableListAdapter expandableListAdapter;
     private OnProductFragmentInteraction onProductFragmentInteraction;
 
+
     public ProductFragment() {
     }
 
@@ -123,9 +124,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
                     productListExpand.setAdapter(expandableListAdapter);
                     productListExpand.expandGroup(0);
                 } else expandableListAdapter.notifyDataSetChanged();
-
                 onProductFragmentInteraction.setTotalProducts(productParentList.size());
-                onProductFragmentInteraction.setTotalAmount(getTotalAmount());
+                onProductFragmentInteraction.setTotalAmount(getTotalAmount(),productParentList);
 
             } else {
 //                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
@@ -137,7 +137,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
         CommonMethods.showInputDialog(getContext(), getString(R.string.enter_quantity_message), batchList, quantity -> {
             batchList.setSaleQTY(quantity);
             expandableListAdapter.notifyDataSetChanged();
-            onProductFragmentInteraction.setTotalAmount(getTotalAmount());
+            onProductFragmentInteraction.setTotalAmount(getTotalAmount(),productParentList);
         });
     }
 
@@ -148,6 +148,9 @@ public class ProductFragment extends Fragment implements HelperResponse {
     public interface DialogInputListener {
         void inputValue(int value);
     }
+
+
+
 
 
     @Override
@@ -188,10 +191,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
         double totalValue = 0.0;
         for (ProductList productList : productParentList) {
             for (BatchList batchList : productList.getBatchList()) {
-                CommonMethods.Log(TAG, "\nbatchList.getSaleRate():" + batchList.getSaleRate());
-                CommonMethods.Log(TAG, "Integer.parseInt(totalQTY):" + batchList.getSaleQTY());
                 totalValue += batchList.getSaleRate() * batchList.getSaleQTY();
-                CommonMethods.Log(TAG, "TotalValue:" + totalValue);
             }
         }
 
@@ -199,7 +199,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     }
 
     public interface OnProductFragmentInteraction {
-        void setTotalAmount(double amount);
+        void setTotalAmount(double amount,ArrayList<ProductList> productLists);
         void setTotalProducts(int size);
     }
 

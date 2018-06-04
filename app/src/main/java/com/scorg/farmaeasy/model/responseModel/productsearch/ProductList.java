@@ -36,16 +36,27 @@ public class ProductList implements Parcelable
     @SerializedName("shelfNo")
     @Expose
     private String shelfNo;
+    @SerializedName("drugInfo")
+    @Expose
+    private String drugInfo;
     @SerializedName("rateInfo")
     @Expose
     private Double rateInfo;
     @SerializedName("batchInfo")
     @Expose
     private String batchInfo;
-
     @SerializedName("batchList")
     @Expose
     private ArrayList<BatchList> batchList=new ArrayList<>();
+
+    @SerializedName("individualProductTotalBatchAmount")
+    @Expose
+    private Double individualProductTotalBatchAmount;
+
+    @SerializedName("individualProductTotalBatchQty")
+    @Expose
+    private Integer individualProductTotalBatchQty;
+
 
     public final static Parcelable.Creator<ProductList> CREATOR = new Creator<ProductList>() {
 
@@ -73,9 +84,12 @@ public class ProductList implements Parcelable
         this.totalQTY = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.prodCompShortName = ((String) in.readValue((String.class.getClassLoader())));
         this.shelfNo = ((String) in.readValue((String.class.getClassLoader())));
+        this.drugInfo = ((String) in.readValue((String.class.getClassLoader())));
         this.rateInfo = ((Double) in.readValue((Double.class.getClassLoader())));
         this.batchInfo = ((String) in.readValue((String.class.getClassLoader())));
         in.readList(this.batchList, (com.scorg.farmaeasy.model.responseModel.batchlist.BatchList.class.getClassLoader()));
+        this.individualProductTotalBatchAmount = ((Double) in.readValue((Double.class.getClassLoader())));
+        this.individualProductTotalBatchQty = ((Integer) in.readValue((Integer.class.getClassLoader())));
     }
 
     public ProductList() {
@@ -145,6 +159,14 @@ public class ProductList implements Parcelable
         this.shelfNo = shelfNo;
     }
 
+    public String getDrugInfo() {
+        return drugInfo;
+    }
+
+    public void setDrugInfo(String drugInfo) {
+        this.drugInfo = drugInfo;
+    }
+
     public Double getRateInfo() {
         return rateInfo;
     }
@@ -169,6 +191,22 @@ public class ProductList implements Parcelable
         this.batchList = batchList;
     }
 
+    public Double getIndividualProductTotalBatchAmount() {
+        return individualProductTotalBatchAmount;
+    }
+
+    public void setIndividualProductTotalBatchAmount(Double individualProductTotalBatchAmount) {
+        this.individualProductTotalBatchAmount = individualProductTotalBatchAmount;
+    }
+
+    public Integer getIndividualProductTotalBatchQty() {
+        return individualProductTotalBatchQty;
+    }
+
+    public void setIndividualProductTotalBatchQty(Integer individualProductTotalBatchQty) {
+        this.individualProductTotalBatchQty = individualProductTotalBatchQty;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(productID);
         dest.writeValue(productName);
@@ -178,9 +216,12 @@ public class ProductList implements Parcelable
         dest.writeValue(totalQTY);
         dest.writeValue(prodCompShortName);
         dest.writeValue(shelfNo);
+        dest.writeValue(drugInfo);
         dest.writeValue(rateInfo);
         dest.writeValue(batchInfo);
         dest.writeList(batchList);
+        dest.writeValue(individualProductTotalBatchAmount);
+        dest.writeValue(individualProductTotalBatchQty);
     }
 
     public int describeContents() {

@@ -17,12 +17,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.model.requestModel.sale.Billing;
 import com.scorg.farmaeasy.model.requestModel.sale.Details;
 import com.scorg.farmaeasy.model.requestModel.sale.SaleRequestModel;
+import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
+import com.scorg.farmaeasy.util.CommonMethods;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -36,6 +39,9 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
+    public static final String TOTALPRODUCTSLIST = "totalproductslist";
+    public static final String HOMEDELIVERYFLAG = "homedeliveryflag";
+    private static final String TAG = "PagerActivity";
 
     @BindView(R.id.fixedBottomHomeDelLayout)
     RelativeLayout fixedBottomHomeDelLayout;
@@ -112,7 +118,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
                 if (tab.getPosition() == 2) {
                     fixedBottomAmtLayout.setVisibility(View.GONE);
                     fixedBottomHomeDelLayout.setVisibility(View.VISIBLE);
-                    callApi(productFragment.getProducts(), addressDetailsFragment.getDetails());
+                    billingFragment.setProducts(productFragment.getProducts());
                 } else {
                     fixedBottomAmtLayout.setVisibility(View.VISIBLE);
                     fixedBottomHomeDelLayout.setVisibility(View.GONE);
@@ -134,13 +140,14 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         });
     }
 
-    private void callApi(ArrayList<ProductList> products, Details details) {
+    private void callApi(Billing billing) {
         SaleRequestModel saleRequestModel = new SaleRequestModel();
-        saleRequestModel.setProductList(products);
-        saleRequestModel.setDetails(details);
-        // call api
+        saleRequestModel.setProductList(productFragment.getProducts());
+        saleRequestModel.setDetails(addressDetailsFragment.getDetails());
+        billing.setHomeDelivery(homeDeliveryCheckbBox.isChecked());
+        saleRequestModel.setBilling(billing);
 
-        billingFragment.setProducts(products);
+        // call Api
     }
 
 
@@ -193,15 +200,35 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     }
 
     @Override
-    public void setTotalAmount(double amount) {
+    public void setTotalAmount(double amount, ArrayList<ProductList> productLists) {
         DecimalFormat precision = new DecimalFormat("#0.00");
         totalAmount.setText(getString(R.string.total_with_rs) + " " + precision.format(amount));
+        CommonMethods.Log(TAG, "productLists.size()>>>>>>" + productLists.size());
+        getIndividualProductTotalBatchDetails(productLists);
     }
 
     @Override
     public void setTotalProducts(int size) {
         totalUnits.setText(String.valueOf(size) + " " + getString(R.string.products));
+
     }
+
+    private void getIndividualProductTotalBatchDetails(ArrayList<ProductList> productList) {
+        Integer batchListqty;
+        double batchListamount;
+        for (ProductList productList1 : productList) {
+            batchListqty = 0;
+            batchListamount = 0.0;
+            for (BatchList batchList : productList1.getBatchList()) {
+                batchListqty += batchList.getSaleQTY();
+                batchListamount += batchList.getSaleRate() * batchList.getSaleQTY();
+            }
+            productList1.setIndividualProductTotalBatchQty(batchListqty);
+            productList1.setIndividualProductTotalBatchAmount(batchListamount);
+        }
+
+    }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

@@ -14,6 +14,9 @@ public class SaleRequestModel {
     @SerializedName("details")
     @Expose
     private Details details;
+    @SerializedName("billing")
+    @Expose
+    private Billing billing;
 
     public List<ProductList> getProductList() {
         return productList;
@@ -29,6 +32,14 @@ public class SaleRequestModel {
 
     public void setDetails(Details details) {
         this.details = details;
+    }
+
+    public Billing getBilling() {
+        return billing;
+    }
+
+    public void setBilling(Billing billing) {
+        this.billing = billing;
     }
 
 }
