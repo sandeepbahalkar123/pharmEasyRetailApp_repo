@@ -135,12 +135,12 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
                /* if (searchTextView.getText().toString().isEmpty())
                     onBackPressed();
-                else searchTextView.setText("");*/
+                else searchTextView.setText(""); */
 
                 break;
 
             case R.id.barcodeImg:
-                //Please set here for Barcode opening logic
+                // Please set here for Barcode opening logic
                 Intent intent = new Intent(mContext, BarcodeScannerActivity.class);
                 startActivityForResult(intent, 11);
                 break;
