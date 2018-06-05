@@ -125,7 +125,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
                     productListExpand.expandGroup(0);
                 } else expandableListAdapter.notifyDataSetChanged();
                 onProductFragmentInteraction.setTotalProducts(productParentList.size());
-                onProductFragmentInteraction.setTotalAmount(getTotalAmount(),productParentList);
+                onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
 
             } else {
 //                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
@@ -134,10 +134,10 @@ public class ProductFragment extends Fragment implements HelperResponse {
     }
 
     private void showInputDialog(BatchList batchList) {
-        CommonMethods.showInputDialog(getContext(), getString(R.string.enter_quantity_message), batchList, quantity -> {
-            batchList.setSaleQTY(quantity);
+        CommonMethods.showInputDialog(getContext(), getString(R.string.enter_quantity_message), batchList, value -> {
+            batchList.setSaleQTY(value);
             expandableListAdapter.notifyDataSetChanged();
-            onProductFragmentInteraction.setTotalAmount(getTotalAmount(),productParentList);
+            onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
         });
     }
 
@@ -148,9 +148,6 @@ public class ProductFragment extends Fragment implements HelperResponse {
     public interface DialogInputListener {
         void inputValue(int value);
     }
-
-
-
 
 
     @Override
@@ -199,7 +196,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
     }
 
     public interface OnProductFragmentInteraction {
-        void setTotalAmount(double amount,ArrayList<ProductList> productLists);
+        void setTotalAmount(double amount, ArrayList<ProductList> productLists);
+
         void setTotalProducts(int size);
     }
 

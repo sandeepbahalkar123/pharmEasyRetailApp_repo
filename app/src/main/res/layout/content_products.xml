@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible"
+        android:layout_above="@+id/barcodeScannerLayout"/>
 
     <TextView
         android:id="@+id/noRecordsFound"
@@ -26,5 +27,38 @@
         android:textSize="@dimen/sp20"
         android:visibility="gone"
         tools:visibility="visible"/>
+
+    <RelativeLayout
+        android:id="@+id/barcodeScannerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/barcode_bg">
+
+        <ImageView
+            android:id="@+id/barcodeImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginTop="@dimen/dp14"
+            android:src="@drawable/barcode"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/barcodeImg"
+            android:paddingRight="@dimen/dp30"
+            android:paddingTop="@dimen/dp25"
+            android:layout_gravity="center_vertical"
+            android:text="@string/scanBarcodeForSale"
+            android:textColor="@color/barcodeScannerSaleTextcolor"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/sp20"
+            />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
