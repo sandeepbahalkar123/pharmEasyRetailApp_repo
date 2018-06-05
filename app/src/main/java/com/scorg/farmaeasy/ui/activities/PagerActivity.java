@@ -199,7 +199,12 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
 
     @Override
     public void setTotalAmount(double amount, ArrayList<ProductList> productLists) {
-        DecimalFormat precision = new DecimalFormat("#0.00");
+        DecimalFormat precision;
+        if(amount!=0.0) {
+            precision = new DecimalFormat("##,##,###.00");
+        }else{
+            precision = new DecimalFormat("##,##,###0.00");
+        }
         totalAmount.setText(getString(R.string.total_with_rs) + " " + precision.format(amount));
         CommonMethods.Log(TAG, "productLists.size()>>>>>>" + productLists.size());
         getIndividualProductTotalBatchDetails(productLists);
