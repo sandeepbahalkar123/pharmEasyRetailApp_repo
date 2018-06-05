@@ -42,7 +42,7 @@ import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 public class ProductsActivity extends AppCompatActivity implements HelperResponse, SearchProductsListAdapter.ProductClick {
 
-
+    public static final String PRODUCT_BARCODE = "product_barcode";
     private Context mContext;
 
     @BindView(R.id.toolbar)
@@ -119,7 +119,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         });
     }
 
-    @OnClick({R.id.clearButton, R.id.searchBackButton,R.id.barcodeImg})
+    @OnClick({R.id.clearButton, R.id.searchBackButton, R.id.barcodeImg})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.clearButton:
@@ -141,10 +141,21 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
             case R.id.barcodeImg:
                 //Please set here for Barcode opening logic
+                Intent intent = new Intent(mContext, BarcodeScannerActivity.class);
+                startActivityForResult(intent, 11);
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 11) {
+                String barcodeString = data.getStringExtra(PRODUCT_BARCODE);
+                CommonMethods.showToast(mContext, barcodeString);
+            }
+        }
+    }
 
     @Override
     public void onClick(String productId, String totalBatch, int position, ProductList productList) {

@@ -1,5 +1,7 @@
 package com.scorg.farmaeasy.ui.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,10 +14,17 @@ import com.scorg.farmaeasy.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import info.androidhive.barcode.BarcodeReader;
+
+import static com.scorg.farmaeasy.ui.activities.ProductsActivity.PRODUCT_BARCODE;
 
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
     private static final String TAG = BarcodeScannerActivity.class.getSimpleName();
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private BarcodeReader barcodeReader;
 
@@ -23,8 +32,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_scanner);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
@@ -53,11 +61,11 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         Log.e(TAG, "onScanned: " + barcode.displayValue);
         barcodeReader.playBeep();
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getApplicationContext(), "Barcode: " + barcode.displayValue, Toast.LENGTH_SHORT).show();
-            }
+        runOnUiThread(() -> {
+            Intent intent = new Intent();
+            intent.putExtra(PRODUCT_BARCODE, barcode.displayValue);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
     }
 
@@ -71,11 +79,8 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         }
 
         final String finalCodes = codes.toString();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getApplicationContext(), "Barcodes: " + finalCodes, Toast.LENGTH_SHORT).show();
-            }
+        runOnUiThread(() -> {
+//                Toast.makeText(getApplicationContext(), "Barcodes: " + finalCodes, Toast.LENGTH_SHORT).show();
         });
     }
 
