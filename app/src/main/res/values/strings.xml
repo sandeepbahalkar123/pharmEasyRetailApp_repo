@@ -102,6 +102,7 @@
     <string name="enter_quantity_message">Please enter at least one quantity.</string>
     <string name="total_with_rs">Total ₹</string>
     <string name="input_sale_quantity_message">Sale quantity should be less then or equals stock value.</string>
+    <string name="scanBarcodeForSale">Scan Barcode For Sale</string>
 
     <integer name="mobileNumberLength">10</integer>
 

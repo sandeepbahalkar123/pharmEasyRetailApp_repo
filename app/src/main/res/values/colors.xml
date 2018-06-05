@@ -29,6 +29,8 @@
     <color name="dividercolor_billingdetails">#dcdcdc</color>
     <color name="qtyAmountTextColor_billingdetails">#626262</color>
     <color name="support_textcolor">#54b1bd</color>
+    <color name="barcodeScannerSaleTextcolor">#fefefe</color>
+
 
     <color name="grey_500">#9E9E9E</color>
 

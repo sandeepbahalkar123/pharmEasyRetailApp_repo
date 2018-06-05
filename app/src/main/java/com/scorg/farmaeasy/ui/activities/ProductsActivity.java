@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
@@ -41,6 +42,7 @@ import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 public class ProductsActivity extends AppCompatActivity implements HelperResponse, SearchProductsListAdapter.ProductClick {
 
+
     private Context mContext;
 
     @BindView(R.id.toolbar)
@@ -57,6 +59,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     ImageButton backButton;
     @BindView(R.id.noRecordsFound)
     TextView noRecordsFound;
+    @BindView(R.id.barcodeImg)
+    ImageView barcodeImg;
 
     private String searchedString = "";
     private ArrayList<ProductList> productList = new ArrayList<>();
@@ -115,7 +119,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         });
     }
 
-    @OnClick({R.id.clearButton, R.id.searchBackButton})
+    @OnClick({R.id.clearButton, R.id.searchBackButton,R.id.barcodeImg})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.clearButton:
@@ -133,6 +137,10 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                     onBackPressed();
                 else searchTextView.setText("");*/
 
+                break;
+
+            case R.id.barcodeImg:
+                //Please set here for Barcode opening logic
                 break;
         }
     }
@@ -222,4 +230,5 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
         CommonMethods.showToast(mContext, serverErrorMessage);
     }
+
 }
