@@ -27,6 +27,7 @@ import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductSearchResponseModel;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
+import com.scorg.farmaeasy.util.EndlessRecyclerViewScrollListener;
 
 import java.util.ArrayList;
 
@@ -58,6 +59,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     TextView noRecordsFound;
 
     private String searchedString = "";
+    private ArrayList<ProductList> productList = new ArrayList<>();
+    private SearchProductsListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,32 +76,43 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         productListRecycler.setLayoutManager(linearlayoutManager);
         productListRecycler.setItemAnimator(new DefaultItemAnimator());
 
+        mAdapter = new SearchProductsListAdapter(mContext, productList, this, searchedString);
+        productListRecycler.setAdapter(mAdapter);
+
         ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, this);
-        productSearchHelper.doProductSearch("");
+        productSearchHelper.doProductSearch("", 0);
 
         searchTextView.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().length() > 3)
-                    productSearchHelper.doProductSearch(s.toString());
-                else if (s.toString().length() < 1)
-                    productSearchHelper.doProductSearch("");
-
-                searchedString = s.toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                productList.clear();
+                mAdapter.notifyDataSetChanged();
 
+                if (s.toString().length() > 3)
+                    productSearchHelper.doProductSearch(s.toString(), 0);
+                else if (s.toString().isEmpty()) productSearchHelper.doProductSearch("", 0);
+
+                searchedString = s.toString();
             }
         });
 
+
+        productListRecycler.addOnScrollListener(new EndlessRecyclerViewScrollListener(linearlayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (searchedString.length() > 3)
+                    productSearchHelper.doProductSearch(searchedString, page);
+                else productSearchHelper.doProductSearch("", page);
+            }
+        });
     }
 
     @OnClick({R.id.clearButton, R.id.searchBackButton})
@@ -179,14 +193,15 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             //After login user navigated to HomeActivity
             ProductSearchResponseModel receivedModel = (ProductSearchResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
-                SearchProductsListAdapter mAdapter = new SearchProductsListAdapter(mContext, receivedModel.getData().getProductList(), this, searchedString);
-                productListRecycler.setAdapter(mAdapter);
+                productList.addAll(receivedModel.getData().getProductList());
+                mAdapter.notifyDataSetChanged();
                 productListRecycler.setVisibility(View.VISIBLE);
                 noRecordsFound.setVisibility(View.GONE);
             } else {
-                productListRecycler.setVisibility(View.GONE);
-                noRecordsFound.setVisibility(View.VISIBLE);
-//               CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
+                if (productList.isEmpty()) {
+                    productListRecycler.setVisibility(View.GONE);
+                    noRecordsFound.setVisibility(View.VISIBLE);
+                }
             }
         }
 

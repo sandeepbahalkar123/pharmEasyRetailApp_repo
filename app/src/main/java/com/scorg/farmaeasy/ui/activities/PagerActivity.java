@@ -39,8 +39,6 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
-    public static final String TOTALPRODUCTSLIST = "totalproductslist";
-    public static final String HOMEDELIVERYFLAG = "homedeliveryflag";
     private static final String TAG = "PagerActivity";
 
     @BindView(R.id.fixedBottomHomeDelLayout)

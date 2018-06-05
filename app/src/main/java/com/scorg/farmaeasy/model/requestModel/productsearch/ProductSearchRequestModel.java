@@ -10,6 +10,9 @@ public class ProductSearchRequestModel implements CustomResponse {
     @SerializedName("searchString")
     @Expose
     private String searchString;
+    @SerializedName("startIndex")
+    @Expose
+    private int startIndex;
 
     public String getSearchString() {
         return searchString;
@@ -17,5 +20,13 @@ public class ProductSearchRequestModel implements CustomResponse {
 
     public void setSearchString(String searchString) {
         this.searchString = searchString;
+    }
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
     }
 }
