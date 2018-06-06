@@ -115,7 +115,7 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().length() > 2)
-                    addressDetailsHelper.doPatientData(s.toString());
+                    addressDetailsHelper.doDoctorData(s.toString());
 
             }
         });
@@ -190,18 +190,14 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
                     ArrayAdapter<PatientList> adapter = new ArrayAdapter<PatientList>(getContext(), R.layout.sorting_dropdown_item, patientDataResponseModel.getData().getPatientList());
                     editTextPatientName.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
 
-                    editTextPatientName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    editTextPatientName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            PatientList patientList = patientDataResponseModel.getData().getPatientList().get(position);
-                            editTextPatientAddress.setText(patientList.getPatientAddress1());
-                            editTextDoctorMobileNo.setText(patientList.getMobileNumberForSMS());
-                            editTextPatientGstNo.setText(patientList.getPatientGSTNo());
+                        public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                            editTextPatientAddress.setText(adapter.getItem(position).getPatientAddress1());
+                            editTextPatientMobileNo.setText(adapter.getItem(position).getMobileNumberForSMS());
+                            editTextPatientGstNo.setText(adapter.getItem(position).getPatientGSTNo());
                         }
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-                        }
                     });
                 }
             }
@@ -213,18 +209,13 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
                     // Creating the instance of ArrayAdapter containing list of fruit names
                     ArrayAdapter<DoctorList> adapter = new ArrayAdapter<DoctorList>(getContext(), R.layout.sorting_dropdown_item, doctorDataResponseModel.getData().getDoctorList());
                     editTextDoctorName.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-
-                    editTextDoctorName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    editTextDoctorName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            DoctorList doctorList = doctorDataResponseModel.getData().getDoctorList().get(position);
-                            editTextDoctorClinicAddress.setText(doctorList.getDoctorAddress());
-                            editTextDoctorMobileNo.setText(doctorList.getMobileNumberForSMS());
+                        public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                            editTextDoctorClinicAddress.setText(adapter.getItem(position).getDoctorAddress());
+                            editTextDoctorMobileNo.setText(adapter.getItem(position).getMobileNumberForSMS());
                         }
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-                        }
                     });
                 }
             }
