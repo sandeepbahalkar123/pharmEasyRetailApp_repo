@@ -17,7 +17,9 @@ import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.helpers.addressdetails.AddressDetailsHelper;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
-import com.scorg.farmaeasy.model.requestModel.sale.Details;
+import com.scorg.farmaeasy.model.requestModel.sale.Doctor;
+import com.scorg.farmaeasy.model.requestModel.sale.Patient;
+import com.scorg.farmaeasy.model.requestModel.sale.SaleRequestModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.DoctorAddressResponseModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailscommonaddress.PatientAddressResponseModel;
 import com.scorg.farmaeasy.model.responseModel.addressdetailsdoctordata.DoctorDataResponseModel;
@@ -248,18 +250,23 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
 
     }
 
-    public Details getDetails() {
-        Details details = new Details();
-        details.setPatientId("");
-        details.setPatientName(editTextPatientName.getText().toString());
-        details.setMobileNo(editTextPatientMobileNo.getText().toString());
-        details.setAddress(editTextPatientAddress.getText().toString());
-        details.setPatientGSTNo(editTextPatientGstNo.getText().toString());
+    public SaleRequestModel getDetails() {
 
-        details.setDoctorId("");
-        details.setClinicAddress(editTextDoctorClinicAddress.getText().toString());
-        details.setDoctorMobileNo(editTextDoctorMobileNo.getText().toString());
+        SaleRequestModel saleRequestModel = new SaleRequestModel();
 
-        return details;
+        Patient patient = new Patient();
+        patient.setPatientID("");
+        patient.setPatientName(editTextPatientName.getText().toString());
+        patient.setMobileNumberForSMS(editTextPatientMobileNo.getText().toString());
+        patient.setPatientAddress1(editTextPatientAddress.getText().toString());
+        patient.setPatientGSTNo(editTextPatientGstNo.getText().toString());
+
+        Doctor doctor = new Doctor();
+        doctor.setDoctorID("");
+        doctor.setDoctorAddress(editTextDoctorClinicAddress.getText().toString());
+        doctor.setMobileNumberForSMS(editTextDoctorMobileNo.getText().toString());
+        doctor.setDoctorName(editTextDoctorName.getText().toString());
+
+        return saleRequestModel;
     }
 }

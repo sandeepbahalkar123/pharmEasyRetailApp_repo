@@ -1,5 +1,7 @@
 package com.scorg.farmaeasy.ui.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,15 +19,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.helpers.sale.SaleHelper;
+import com.scorg.farmaeasy.interfaces.CustomResponse;
+import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.requestModel.sale.Billing;
-import com.scorg.farmaeasy.model.requestModel.sale.Details;
 import com.scorg.farmaeasy.model.requestModel.sale.SaleRequestModel;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.model.responseModel.sale.SaleResponseModel;
 import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
 import com.scorg.farmaeasy.util.CommonMethods;
+import com.scorg.farmaeasy.util.Constants;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -34,19 +40,25 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction {
+import static com.scorg.farmaeasy.util.Constants.SUCCESS;
+
+public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction, HelperResponse {
 
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
     private static final String TAG = "PagerActivity";
 
+    private Context mContext;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     @BindView(R.id.fixedBottomHomeDelLayout)
     RelativeLayout fixedBottomHomeDelLayout;
     @BindView(R.id.fixedBottomLayout)
     LinearLayout fixedBottomLayout;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+
     @BindView(R.id.container)
     ViewPager viewPager;
     @BindView(R.id.tabs)
@@ -91,8 +103,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pager);
         ButterKnife.bind(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mContext = this;
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(titles[0]);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -139,13 +150,13 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     }
 
     private void callApi(Billing billing) {
-        SaleRequestModel saleRequestModel = new SaleRequestModel();
+        SaleRequestModel saleRequestModel = addressDetailsFragment.getDetails();
         saleRequestModel.setProductList(productFragment.getProducts());
-        saleRequestModel.setDetails(addressDetailsFragment.getDetails());
-        billing.setHomeDelivery(homeDeliveryCheckbBox.isChecked());
+        billing.setIsHomeDelivery(homeDeliveryCheckbBox.isChecked());
         saleRequestModel.setBilling(billing);
 
         // call Api
+        SaleHelper saleHelper = new SaleHelper(mContext, this);
     }
 
 
@@ -224,6 +235,35 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
             productList1.setIndividualProductTotalBatchQty(batchListqty);
             productList1.setIndividualProductTotalBatchAmount(batchListamount);
         }
+
+    }
+
+    @Override
+    public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
+        if (mOldDataTag.equals(Constants.TASK_POST_SALE)) {
+            SaleResponseModel saleResponseModel = (SaleResponseModel) customResponse;
+            if (saleResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
+                Intent intent = new Intent(mContext, HomeActivity.class);
+                startActivity(intent);
+                finishAffinity();
+            }
+
+            CommonMethods.showToast(mContext, saleResponseModel.getCommon().getStatusMessage());
+        }
+    }
+
+    @Override
+    public void onParseError(String mOldDataTag, String errorMessage) {
+
+    }
+
+    @Override
+    public void onServerError(String mOldDataTag, String serverErrorMessage) {
+
+    }
+
+    @Override
+    public void onNoConnectionError(String mOldDataTag, String serverErrorMessage) {
 
     }
 
