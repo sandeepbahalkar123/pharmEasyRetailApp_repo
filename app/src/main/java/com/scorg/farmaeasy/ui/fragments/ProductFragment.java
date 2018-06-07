@@ -70,38 +70,12 @@ public class ProductFragment extends Fragment implements HelperResponse {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_product, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-//        String jsonString = loadJSONFromAsset("productList.json");
-//        ProductSearchResponseModel productResponseModel = new Gson().fromJson(jsonString, ProductSearchResponseModel.class);
-//        List<ProductList> productChildList = productResponseModel.getData().getProductList();
-//        ArrayList<ProductList> productParentList = new ArrayList<>();
-//        productParentList.add(productChildList.get(getArguments().getInt(INDEX)));
-//
-//        ProductExpandableListAdapter listAdapter = new ProductExpandableListAdapter(getContext(),productParentList,  productChildList);
-//        // setting list adapter
-//        productListExpand.setAdapter(listAdapter);
-//        productListExpand.expandGroup(0);
 
         productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
         batchListHelper = new BatchListHelper(getActivity(), this);
         batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
 
         return rootView;
-    }
-
-    public String loadJSONFromAsset(String fileName) {
-        String json;
-        try {
-            InputStream is = getActivity().getAssets().open(fileName);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
     }
 
     @Override
@@ -119,7 +93,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
                 productParentList.get(productParentList.size() - 1).setBatchList(productChildList);
                 if (expandableListAdapter == null) {
-                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, batchList -> showInputDialog(batchList));
+                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, this::showInputDialog);
                     // setting list adapter
                     productListExpand.setAdapter(expandableListAdapter);
                     productListExpand.expandGroup(0);

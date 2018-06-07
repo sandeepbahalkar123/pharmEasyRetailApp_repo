@@ -69,6 +69,9 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
     EditText editTextDoctorMobileNo;
     Unbinder unbinder;
 
+    private String patientId = "";
+    private String doctorId = "";
+
     private AddressDetailsHelper addressDetailsHelper;
 
     public AddressDetailsFragment() {
@@ -103,6 +106,7 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
                 if (s.toString().length() > 2)
                     addressDetailsHelper.doPatientData(s.toString());
 
+                patientId = "";
             }
         });
         editTextDoctorName.addTextChangedListener(new TextWatcher() {
@@ -118,6 +122,8 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
             public void afterTextChanged(Editable s) {
                 if (s.toString().length() > 2)
                     addressDetailsHelper.doDoctorData(s.toString());
+
+                doctorId = "";
 
             }
         });
@@ -198,8 +204,8 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
                             editTextPatientAddress.setText(adapter.getItem(position).getPatientAddress1());
                             editTextPatientMobileNo.setText(adapter.getItem(position).getMobileNumberForSMS());
                             editTextPatientGstNo.setText(adapter.getItem(position).getPatientGSTNo());
+                            patientId = adapter.getItem(position).getPatientID();
                         }
-
                     });
                 }
             }
@@ -216,6 +222,7 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
                         public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                             editTextDoctorClinicAddress.setText(adapter.getItem(position).getDoctorAddress());
                             editTextDoctorMobileNo.setText(adapter.getItem(position).getMobileNumberForSMS());
+                            doctorId = adapter.getItem(position).getDoctorID();
                         }
 
                     });
@@ -246,18 +253,20 @@ public class AddressDetailsFragment extends Fragment implements HelperResponse {
         SaleRequestModel saleRequestModel = new SaleRequestModel();
 
         Patient patient = new Patient();
-        patient.setPatientID("");
+        patient.setPatientID(patientId);
         patient.setPatientName(editTextPatientName.getText().toString());
         patient.setMobileNumberForSMS(editTextPatientMobileNo.getText().toString());
         patient.setPatientAddress1(editTextPatientAddress.getText().toString());
         patient.setPatientGSTNo(editTextPatientGstNo.getText().toString());
 
         Doctor doctor = new Doctor();
-        doctor.setDoctorID("");
+        doctor.setDoctorID(doctorId);
         doctor.setDoctorAddress(editTextDoctorClinicAddress.getText().toString());
         doctor.setMobileNumberForSMS(editTextDoctorMobileNo.getText().toString());
         doctor.setDoctorName(editTextDoctorName.getText().toString());
 
+        saleRequestModel.setPatient(patient);
+        saleRequestModel.setDoctor(doctor);
         return saleRequestModel;
     }
 }

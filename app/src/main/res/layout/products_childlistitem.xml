@@ -43,7 +43,7 @@
                 android:paddingStart="@dimen/dp4"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp16"
-                tools:text="3034" />
+                tools:text="1" />
 
             <View
                 android:layout_width="wrap_content"

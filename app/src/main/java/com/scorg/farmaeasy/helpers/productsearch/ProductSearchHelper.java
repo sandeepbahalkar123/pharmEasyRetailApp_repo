@@ -65,8 +65,8 @@ public class ProductSearchHelper implements ConnectionListener {
 
     }
 
-    public void doProductSearch(String searchString, int page) {
-        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, false, Constants.TASK_PRODUCT_SEARCH, Request.Method.POST, false);
+    public void doProductSearch(String searchString, int page, boolean isProgress) {
+        ConnectionFactory mConnectionFactory = new ConnectionFactory(mContext, this, null, isProgress, Constants.TASK_PRODUCT_SEARCH, Request.Method.POST, false);
         mConnectionFactory.setHeaderParams();
         ProductSearchRequestModel productSearchRequestModel = new ProductSearchRequestModel();
         productSearchRequestModel.setStartIndex(page);

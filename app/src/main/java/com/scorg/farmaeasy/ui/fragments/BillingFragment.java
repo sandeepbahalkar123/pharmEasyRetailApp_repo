@@ -146,7 +146,7 @@ public class BillingFragment extends Fragment {
     private void callApi(String billingType) {
         Billing billing = new Billing();
         billing.setBillingType(billingType);
-        billing.setDiscount(amountDiscountValue.getText().toString());
+        billing.setDiscount(percentEditText.getText().toString());
         billing.setTotal(totalAmountValue.getText().toString());
         billing.setNetAmt(netAmountValue.getText().toString());
         billing.setTrasactionMode((String) transactionModeSelection.getSelectedItem());

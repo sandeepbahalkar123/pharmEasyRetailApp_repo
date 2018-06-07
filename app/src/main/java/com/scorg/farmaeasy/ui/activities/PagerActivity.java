@@ -3,6 +3,7 @@ package com.scorg.farmaeasy.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -42,7 +43,7 @@ import butterknife.ButterKnife;
 
 import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
-public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction, HelperResponse {
+public class PagerActivity extends AppCompatActivity implements ProductFragment.OnProductFragmentInteraction, BillingFragment.PagerActivityInteraction, HelperResponse {
 
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
@@ -128,6 +129,22 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
                     fixedBottomAmtLayout.setVisibility(View.GONE);
                     fixedBottomHomeDelLayout.setVisibility(View.VISIBLE);
                     billingFragment.setProducts(productFragment.getProducts());
+                    CommonMethods.hideKeyboard(PagerActivity.this);
+
+                    if (addressDetailsFragment.getDetails().getPatient().getPatientName() == null) {
+                        CommonMethods.showToast(mContext, "Please enter Patient Name.");
+                        setPagerPosition(1);
+                    } else if (addressDetailsFragment.getDetails().getPatient().getPatientName().equals("")) {
+                        CommonMethods.showToast(mContext, "Please enter Patient Name.");
+                        setPagerPosition(1);
+                    } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName() == null) {
+                        CommonMethods.showToast(mContext, "Please enter Doctor Name.");
+                        setPagerPosition(1);
+                    } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName().equals("")) {
+                        CommonMethods.showToast(mContext, "Please enter Doctor Name.");
+                        setPagerPosition(1);
+                    }
+
                 } else {
                     fixedBottomAmtLayout.setVisibility(View.VISIBLE);
                     fixedBottomHomeDelLayout.setVisibility(View.GONE);
@@ -149,7 +166,17 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         });
     }
 
-    private void callApi(Billing billing) {
+    private void setPagerPosition(int position) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewPager.setCurrentItem(position);
+            }
+        }, 50);
+    }
+
+    @Override
+    public void callApi(Billing billing) {
         SaleRequestModel saleRequestModel = addressDetailsFragment.getDetails();
         saleRequestModel.setProductList(productFragment.getProducts());
         billing.setIsHomeDelivery(homeDeliveryCheckbBox.isChecked());
@@ -157,6 +184,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
 
         // call Api
         SaleHelper saleHelper = new SaleHelper(mContext, this);
+        saleHelper.doPostSaleData(saleRequestModel);
     }
 
 
@@ -211,9 +239,9 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     @Override
     public void setTotalAmount(double amount, ArrayList<ProductList> productLists) {
         DecimalFormat precision;
-        if(amount!=0.0) {
+        if (amount != 0.0) {
             precision = new DecimalFormat("##,##,###.00");
-        }else{
+        } else {
             precision = new DecimalFormat("##,##,###0.00");
         }
         totalAmount.setText(getString(R.string.total_with_rs) + " " + precision.format(amount));

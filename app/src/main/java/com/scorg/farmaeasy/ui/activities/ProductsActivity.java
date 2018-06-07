@@ -84,7 +84,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         productListRecycler.setAdapter(mAdapter);
 
         ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, this);
-        productSearchHelper.doProductSearch("", 0);
+        productSearchHelper.doProductSearch("", 0, true);
 
         searchTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,8 +101,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                 mAdapter.notifyDataSetChanged();
 
                 if (s.toString().length() > 3)
-                    productSearchHelper.doProductSearch(s.toString(), 0);
-                else if (s.toString().isEmpty()) productSearchHelper.doProductSearch("", 0);
+                    productSearchHelper.doProductSearch(s.toString(), 0, false);
+                else if (s.toString().isEmpty()) productSearchHelper.doProductSearch("", 0, false);
 
                 searchedString = s.toString();
             }
@@ -113,8 +113,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 if (searchedString.length() > 3)
-                    productSearchHelper.doProductSearch(searchedString, page);
-                else productSearchHelper.doProductSearch("", page);
+                    productSearchHelper.doProductSearch(searchedString, page, false);
+                else productSearchHelper.doProductSearch("", page, false);
             }
         });
     }

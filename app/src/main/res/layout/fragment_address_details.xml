@@ -47,6 +47,7 @@
             style="@style/AddressDetailsStyle"
             android:inputType="text"
             android:completionThreshold="3"
+            android:maxLength="100"
             tools:text="A-401,Grrenlands,Pimple Saudagar,Pune" />
 
         <View
@@ -136,6 +137,7 @@
             android:id="@+id/editTextDoctorClinicAddress"
             style="@style/AddressDetailsStyle"
             android:inputType="text"
+            android:maxLength="100"
             android:completionThreshold="3"
             tools:text="Sai Clinic, 40/A Gangdhar lane ,Kothrud,Pune" />
 
