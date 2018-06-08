@@ -84,8 +84,8 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Li
                 holder.menuBottomIcon.setColorFilter(ContextCompat.getColor(holder.menuBottomIcon.getContext(), R.color.tagColor), PorterDuff.Mode.MULTIPLY);
             } else {
                 holder.bottomMenuTab.setVisibility(View.INVISIBLE);
-                holder.bottomMenuName.setTextColor(holder.bottomMenuName.getContext().getResources().getColor(R.color.grey));
-                holder.menuBottomIcon.setColorFilter(ContextCompat.getColor(holder.menuBottomIcon.getContext(), R.color.grey), PorterDuff.Mode.MULTIPLY);
+                holder.bottomMenuName.setTextColor(holder.bottomMenuName.getContext().getResources().getColor(R.color.white));
+                holder.menuBottomIcon.setColorFilter(ContextCompat.getColor(holder.menuBottomIcon.getContext(), R.color.white), PorterDuff.Mode.MULTIPLY);
             }
         }
 

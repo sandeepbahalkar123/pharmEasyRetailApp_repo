@@ -19,12 +19,11 @@ import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.ui.activities.ProductsActivity;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -43,11 +42,15 @@ public class ProductFragment extends Fragment implements HelperResponse {
 
 
     private static final String TAG = "ProductFragment";
+    public static final String PRODUCT_LIST = "product_list";
+
     @BindView(R.id.productList)
     ExpandableListView productListExpand;
     @BindView(R.id.addProducts)
     ImageView addProducts;
+
     Unbinder unbinder;
+
     private ArrayList<ProductList> productParentList = new ArrayList<>();
     private BatchListHelper batchListHelper;
     private ProductExpandableListAdapter expandableListAdapter;
@@ -91,6 +94,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
             BatchListResponseModel receivedModel = (BatchListResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
+                PreferencesManager.putString(Constants.DISCOUNT_LIMIT, receivedModel.getData().getMaxDiscPercetage(), getContext());
+
                 productParentList.get(productParentList.size() - 1).setBatchList(productChildList);
                 if (expandableListAdapter == null) {
                     expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, this::showInputDialog);
@@ -143,6 +148,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     public void onViewClicked() {
         CommonMethods.Log(TAG, "addProducts clicked");
         Intent intent = new Intent(getActivity(), ProductsActivity.class);
+        intent.putExtra(PRODUCT_LIST, productParentList);
         startActivityForResult(intent, 100);
     }
 
@@ -162,7 +168,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
         double totalValue = 0.0;
         for (ProductList productList : productParentList) {
             for (BatchList batchList : productList.getBatchList()) {
-                totalValue += batchList.getSaleRate() * batchList.getSaleQTY();
+                totalValue += batchList.getSaleRate() * ((double) batchList.getSaleQTY() / (double)productList.getProdLoosePack());
             }
         }
 

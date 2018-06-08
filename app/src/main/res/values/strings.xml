@@ -103,6 +103,10 @@
     <string name="total_with_rs">Total ₹</string>
     <string name="input_sale_quantity_message">Sale quantity should be less than or equal to stock value.</string>
     <string name="scanBarcodeForSale">Scan Barcode For Sale</string>
+    <string name="product_already_exist">Product already exist in list</string>
+    <string name="please_enter_patient_name">Please enter Patient Name.</string>
+    <string name="please_enter_doctor_name">Please enter Doctor Name.</string>
+    <string name="please_select_atleast_single_product_quantity">Please select at least single product quantity.</string>
 
     <integer name="mobileNumberLength">10</integer>
 

@@ -28,6 +28,7 @@ import com.scorg.farmaeasy.model.requestModel.sale.SaleRequestModel;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 import com.scorg.farmaeasy.model.responseModel.sale.SaleResponseModel;
+import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.ui.fragments.AddressDetailsFragment;
 import com.scorg.farmaeasy.ui.fragments.BillingFragment;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
@@ -130,21 +131,21 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
                     fixedBottomHomeDelLayout.setVisibility(View.VISIBLE);
                     billingFragment.setProducts(productFragment.getProducts());
                     CommonMethods.hideKeyboard(PagerActivity.this);
-
-                    if (addressDetailsFragment.getDetails().getPatient().getPatientName() == null) {
-                        CommonMethods.showToast(mContext, "Please enter Patient Name.");
-                        setPagerPosition(1);
-                    } else if (addressDetailsFragment.getDetails().getPatient().getPatientName().equals("")) {
-                        CommonMethods.showToast(mContext, "Please enter Patient Name.");
-                        setPagerPosition(1);
-                    } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName() == null) {
-                        CommonMethods.showToast(mContext, "Please enter Doctor Name.");
-                        setPagerPosition(1);
-                    } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName().equals("")) {
-                        CommonMethods.showToast(mContext, "Please enter Doctor Name.");
-                        setPagerPosition(1);
+                    if (isProductQTYValid())
+                        addressDetailsValidation();
+                    else {
+                        setPagerPosition(0);
+                        CommonMethods.showToast(mContext, mContext.getString(R.string.please_select_atleast_single_product_quantity));
                     }
+                } else if (tab.getPosition() == 1) {
 
+                    fixedBottomAmtLayout.setVisibility(View.VISIBLE);
+                    fixedBottomHomeDelLayout.setVisibility(View.GONE);
+
+                    if (!isProductQTYValid()) {
+                        setPagerPosition(0);
+                        CommonMethods.showToast(mContext, mContext.getString(R.string.please_select_atleast_single_product_quantity));
+                    }
                 } else {
                     fixedBottomAmtLayout.setVisibility(View.VISIBLE);
                     fixedBottomHomeDelLayout.setVisibility(View.GONE);
@@ -166,6 +167,33 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         });
     }
 
+    private boolean isProductQTYValid() {
+        boolean isValid = false;
+        for (ProductList productList : productFragment.getProducts()) {
+            for (BatchList batchList : productList.getBatchList()) {
+                if (batchList.getSaleQTY() > 0)
+                    isValid = true;
+            }
+        }
+        return isValid;
+    }
+
+    private void addressDetailsValidation() {
+        if (addressDetailsFragment.getDetails().getPatient().getPatientName() == null) {
+            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
+            setPagerPosition(1);
+        } else if (addressDetailsFragment.getDetails().getPatient().getPatientName().equals("")) {
+            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
+            setPagerPosition(1);
+        } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName() == null) {
+            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
+            setPagerPosition(1);
+        } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName().equals("")) {
+            CommonMethods.showToast(mContext,  mContext.getString(R.string.please_enter_doctor_name));
+            setPagerPosition(1);
+        }
+    }
+
     private void setPagerPosition(int position) {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -177,14 +205,19 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
 
     @Override
     public void callApi(Billing billing) {
-        SaleRequestModel saleRequestModel = addressDetailsFragment.getDetails();
-        saleRequestModel.setProductList(productFragment.getProducts());
-        billing.setIsHomeDelivery(homeDeliveryCheckbBox.isChecked());
-        saleRequestModel.setBilling(billing);
+        double maxDiscountLimit = Double.parseDouble(PreferencesManager.getString(Constants.DISCOUNT_LIMIT, mContext));
 
-        // call Api
-        SaleHelper saleHelper = new SaleHelper(mContext, this);
-        saleHelper.doPostSaleData(saleRequestModel);
+        if (billingFragment.getDiscountValue() <= maxDiscountLimit) {
+            SaleRequestModel saleRequestModel = addressDetailsFragment.getDetails();
+            saleRequestModel.setProductList(productFragment.getProducts());
+            billing.setIsHomeDelivery(homeDeliveryCheckbBox.isChecked());
+            saleRequestModel.setBilling(billing);
+
+            // call Api
+            SaleHelper saleHelper = new SaleHelper(mContext, this);
+            saleHelper.doPostSaleData(saleRequestModel);
+        } else
+            CommonMethods.showToast(mContext, "Discount should not greater than " + maxDiscountLimit);
     }
 
 
@@ -263,7 +296,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
             batchListamount = 0.0;
             for (BatchList batchList : productList1.getBatchList()) {
                 batchListqty += batchList.getSaleQTY();
-                batchListamount += batchList.getSaleRate() * batchList.getSaleQTY();
+                batchListamount += batchList.getSaleRate() * ((double) batchList.getSaleQTY() / (double) productList1.getProdLoosePack());
             }
             productList1.setIndividualProductTotalBatchQty(batchListqty);
             productList1.setIndividualProductTotalBatchAmount(batchListamount);

@@ -32,7 +32,7 @@ public class BatchList implements Parcelable {
     private String prodpack;
     @SerializedName("saleQuantity")
     @Expose
-    private int saleQTY = 1;
+    private int saleQTY;
     public final static Parcelable.Creator<BatchList> CREATOR = new Creator<BatchList>() {
 
 

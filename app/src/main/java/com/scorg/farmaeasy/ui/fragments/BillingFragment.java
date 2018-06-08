@@ -162,6 +162,12 @@ public class BillingFragment extends Fragment {
         }
     }
 
+    public double getDiscountValue() {
+        if (percentEditText.getText().toString().isEmpty())
+            return 0.0;
+        else return Double.parseDouble(percentEditText.getText().toString());
+    }
+
     public interface PagerActivityInteraction {
         void callApi(Billing billing);
     }
