@@ -217,7 +217,8 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
             SaleHelper saleHelper = new SaleHelper(mContext, this);
             saleHelper.doPostSaleData(saleRequestModel);
         } else
-            CommonMethods.showToast(mContext, "Discount should not greater than " + maxDiscountLimit);
+            CommonMethods.showToast(mContext, mContext.getString(R.string.dicountValidation)+ maxDiscountLimit);
+
     }
 
 
