@@ -44,6 +44,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
     private static final String TAG = "ProductFragment";
     public static final String PRODUCT_LIST = "product_list";
 
+    public static boolean isLongPress = false;
+
     @BindView(R.id.productList)
     ExpandableListView productListExpand;
     @BindView(R.id.addProducts)
@@ -55,7 +57,6 @@ public class ProductFragment extends Fragment implements HelperResponse {
     private BatchListHelper batchListHelper;
     private ProductExpandableListAdapter expandableListAdapter;
     private OnProductFragmentInteraction onProductFragmentInteraction;
-
 
     public ProductFragment() {
     }
@@ -94,8 +95,6 @@ public class ProductFragment extends Fragment implements HelperResponse {
             BatchListResponseModel receivedModel = (BatchListResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
-                PreferencesManager.putString(Constants.DISCOUNT_LIMIT, receivedModel.getData().getMaxDiscPercetage(), getContext());
-
                 productParentList.get(productParentList.size() - 1).setBatchList(productChildList);
                 if (expandableListAdapter == null) {
                     expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, this::showInputDialog);

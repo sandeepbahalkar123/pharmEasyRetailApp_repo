@@ -7,13 +7,15 @@
     android:background="@drawable/rectangle_5"
     android:orientation="vertical"
     android:paddingBottom="@dimen/dp10"
-    android:paddingEnd="@dimen/dp15"
-    android:paddingStart="@dimen/dp15"
+    android:paddingEnd="@dimen/dp10"
+    android:paddingStart="@dimen/dp10"
     android:paddingTop="@dimen/dp10">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp5">
 
         <TextView
             android:id="@+id/productname"
@@ -32,19 +34,32 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/productname"
             android:layout_toEndOf="@+id/productname"
+            android:layout_toLeftOf="@+id/deleteButton"
             android:layout_toRightOf="@+id/productname"
+            android:layout_toStartOf="@+id/deleteButton"
             android:fontFamily="@font/roboto_bold"
             android:paddingLeft="@dimen/dp5"
             android:textColor="@color/productsList_unitTextColor"
             android:textSize="@dimen/sp12"
             tools:text="20's Tab - Strip" />
 
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/transparent"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/delete_icon" />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dp6">
+        android:layout_marginEnd="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp5">
 
         <TextView
             android:id="@+id/contentInfo"

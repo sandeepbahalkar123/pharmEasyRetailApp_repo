@@ -26,6 +26,7 @@ import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductSearchResponseModel;
+import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 import com.scorg.farmaeasy.util.EndlessRecyclerViewScrollListener;
@@ -226,6 +227,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             //After login user navigated to HomeActivity
             ProductSearchResponseModel receivedModel = (ProductSearchResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
+                PreferencesManager.putString(Constants.DISCOUNT_LIMIT, receivedModel.getData().getMaxDiscPercetage(), mContext);
                 productList.addAll(receivedModel.getData().getProductList());
                 mAdapter.notifyDataSetChanged();
                 productListRecycler.setVisibility(View.VISIBLE);

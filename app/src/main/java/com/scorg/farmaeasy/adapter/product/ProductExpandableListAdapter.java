@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.ui.fragments.ProductFragment;
 
 import java.util.ArrayList;
 
@@ -102,10 +104,30 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             ViewHolderParent viewHolderParent = new ViewHolderParent(convertView);
             convertView.setTag(viewHolderParent);
         }
-
         ViewHolderParent viewHolderParent = (ViewHolderParent) convertView.getTag();
+
+        viewHolderParent.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productParentList.remove(groupPosition);
+                notifyDataSetChanged();
+            }
+        });
+
+        if (ProductFragment.isLongPress)
+            viewHolderParent.deleteButton.setVisibility(View.VISIBLE);
+        else viewHolderParent.deleteButton.setVisibility(View.GONE);
+
         viewHolderParent.productname.setText(productList.getProductName());
         viewHolderParent.contentInfo.setText(productList.getDrugInfo());
+        viewHolderParent.view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                ProductFragment.isLongPress = !ProductFragment.isLongPress;
+                notifyDataSetChanged();
+                return false;
+            }
+        });
 
         return convertView;
     }
@@ -121,6 +143,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     static class ViewHolderParent {
+        private final View view;
         @BindView(R.id.productname)
         TextView productname;
         @BindView(R.id.unit)
@@ -131,9 +154,12 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         TextView qty;
         @BindView(R.id.stock)
         TextView stock;
+        @BindView(R.id.deleteButton)
+        ImageButton deleteButton;
 
         ViewHolderParent(View view) {
             ButterKnife.bind(this, view);
+            this.view = view;
         }
     }
 

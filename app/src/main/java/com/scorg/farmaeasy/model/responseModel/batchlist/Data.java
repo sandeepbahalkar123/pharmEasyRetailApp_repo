@@ -10,14 +10,10 @@ import java.util.ArrayList;
 
 public class Data implements Parcelable {
 
-    @SerializedName("maxDiscPercetage")
-    @Expose
-    private String maxDiscPercetage;
     @SerializedName("batchList")
     @Expose
     private ArrayList<BatchList> batchList = null;
     public final static Parcelable.Creator<Data> CREATOR = new Creator<Data>() {
-
 
         @SuppressWarnings({
                 "unchecked"
@@ -33,19 +29,10 @@ public class Data implements Parcelable {
     };
 
     protected Data(Parcel in) {
-        this.maxDiscPercetage = ((String) in.readValue((String.class.getClassLoader())));
         in.readList(this.batchList, (BatchList.class.getClassLoader()));
     }
 
     public Data() {
-    }
-
-    public String getMaxDiscPercetage() {
-        return maxDiscPercetage;
-    }
-
-    public void setMaxDiscPercetage(String maxDiscPercetage) {
-        this.maxDiscPercetage = maxDiscPercetage;
     }
 
     public ArrayList<BatchList> getBatchList() {
@@ -57,7 +44,6 @@ public class Data implements Parcelable {
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(maxDiscPercetage);
         dest.writeList(batchList);
     }
 
