@@ -22,4 +22,15 @@
         android:src="@drawable/add_product"
         android:layout_marginRight="@dimen/dp15"/>
 
+    <TextView
+        android:id="@+id/noRecordsFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/norecordsfound"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:textColor="@color/dayBookTextColor"
+        android:textSize="@dimen/sp19" />
+
 </RelativeLayout>

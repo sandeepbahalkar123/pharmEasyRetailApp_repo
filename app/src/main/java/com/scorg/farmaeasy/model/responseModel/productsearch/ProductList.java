@@ -57,6 +57,7 @@ public class ProductList implements Parcelable
     @Expose
     private Integer individualProductTotalBatchQty;
 
+    private boolean isLongPressed;
 
     public final static Parcelable.Creator<ProductList> CREATOR = new Creator<ProductList>() {
 
@@ -205,6 +206,14 @@ public class ProductList implements Parcelable
 
     public void setIndividualProductTotalBatchQty(Integer individualProductTotalBatchQty) {
         this.individualProductTotalBatchQty = individualProductTotalBatchQty;
+    }
+
+    public boolean isLongPressed() {
+        return isLongPressed;
+    }
+
+    public void setLongPressed(boolean longPressed) {
+        isLongPressed = longPressed;
     }
 
     public void writeToParcel(Parcel dest, int flags) {

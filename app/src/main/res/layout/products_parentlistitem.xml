@@ -50,7 +50,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@color/transparent"
-            android:padding="@dimen/dp5"
+            android:paddingStart="@dimen/dp8"
+            android:paddingEnd="@dimen/dp8"
+            android:paddingBottom="@dimen/dp6"
             android:src="@drawable/delete_icon" />
 
     </RelativeLayout>

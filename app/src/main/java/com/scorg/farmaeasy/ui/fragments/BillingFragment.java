@@ -21,6 +21,8 @@ import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.BillingProductsListAdapter;
 import com.scorg.farmaeasy.model.requestModel.sale.Billing;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
+import com.scorg.farmaeasy.preference.PreferencesManager;
+import com.scorg.farmaeasy.util.Constants;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -114,6 +116,9 @@ public class BillingFragment extends Fragment {
 
 
     public void setProducts(ArrayList<ProductList> productList) {
+//        double maxDiscountLimit = Double.parseDouble(PreferencesManager.getString(Constants.DISCOUNT_LIMIT, getContext()));
+//        percentEditText.setText(precision.format(maxDiscountLimit));
+
         totalAmount = 0;
         BillingProductsListAdapter mAdapter = new BillingProductsListAdapter(getContext(), productList);
         productListRecycler.setAdapter(mAdapter);

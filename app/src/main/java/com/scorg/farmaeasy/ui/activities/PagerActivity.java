@@ -1,7 +1,10 @@
 package com.scorg.farmaeasy.ui.activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
@@ -13,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +64,9 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     RelativeLayout fixedBottomHomeDelLayout;
     @BindView(R.id.fixedBottomLayout)
     LinearLayout fixedBottomLayout;
+
+    @BindView(R.id.coachmark)
+    ImageView coachmark;
 
     @BindView(R.id.container)
     ViewPager viewPager;
@@ -110,7 +117,6 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         getSupportActionBar().setTitle(titles[0]);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
-
         setupViewPager();
 
         viewPager.setOffscreenPageLimit(3);
@@ -165,6 +171,16 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
 
             }
         });
+
+        coachmarkFun();
+    }
+
+    private void coachmarkFun() {
+        if (!PreferencesManager.getBoolean(Constants.COACHMARK_SAVE, mContext)) {
+            coachmark.setVisibility(View.VISIBLE);
+            PreferencesManager.putBoolean(Constants.COACHMARK_SAVE, true, mContext);
+        } else coachmark.setVisibility(View.GONE);
+        coachmark.setOnClickListener(v -> coachmark.setVisibility(View.GONE));
     }
 
     private boolean isProductQTYValid() {
@@ -189,7 +205,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
             CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
             setPagerPosition(1);
         } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName().equals("")) {
-            CommonMethods.showToast(mContext,  mContext.getString(R.string.please_enter_doctor_name));
+            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
             setPagerPosition(1);
         }
     }
@@ -217,7 +233,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
             SaleHelper saleHelper = new SaleHelper(mContext, this);
             saleHelper.doPostSaleData(saleRequestModel);
         } else
-            CommonMethods.showToast(mContext, mContext.getString(R.string.dicountValidation)+ maxDiscountLimit);
+            CommonMethods.showToast(mContext, mContext.getString(R.string.dicountValidation) + maxDiscountLimit);
 
     }
 
@@ -309,14 +325,33 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
         if (mOldDataTag.equals(Constants.TASK_POST_SALE)) {
             SaleResponseModel saleResponseModel = (SaleResponseModel) customResponse;
-            if (saleResponseModel.getCommon().getStatusCode().equals(SUCCESS)) {
-                Intent intent = new Intent(mContext, HomeActivity.class);
-                startActivity(intent);
-                finishAffinity();
-            }
-
-            CommonMethods.showToast(mContext, saleResponseModel.getCommon().getStatusMessage());
+            if (saleResponseModel.getCommon().getStatusCode().equals(SUCCESS))
+                showInputDialog(saleResponseModel.getCommon().getStatusMessage());
+            else
+                CommonMethods.showToast(mContext, saleResponseModel.getCommon().getStatusMessage());
         }
+    }
+
+    public void showInputDialog(String message) {
+        final Dialog dialog = new Dialog(mContext);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.message_dialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        TextView messageText = ((TextView) dialog.findViewById(R.id.textViewDialogMessage));
+        messageText.setText("Bill Status\n\n" + message);
+
+        dialog.findViewById(R.id.button_ok).setOnClickListener(v -> {
+            dialog.dismiss();
+            Intent intent = new Intent(mContext, HomeActivity.class);
+            startActivity(intent);
+            finishAffinity();
+        });
+
+        dialog.show();
+
     }
 
     @Override

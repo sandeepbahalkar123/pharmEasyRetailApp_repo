@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.adapter.product.ProductExpandableListAdapter;
@@ -19,7 +20,6 @@ import com.scorg.farmaeasy.interfaces.HelperResponse;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchListResponseModel;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
-import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.ui.activities.ProductsActivity;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
@@ -44,12 +44,12 @@ public class ProductFragment extends Fragment implements HelperResponse {
     private static final String TAG = "ProductFragment";
     public static final String PRODUCT_LIST = "product_list";
 
-    public static boolean isLongPress = false;
-
     @BindView(R.id.productList)
     ExpandableListView productListExpand;
     @BindView(R.id.addProducts)
     ImageView addProducts;
+    @BindView(R.id.noRecordsFound)
+    TextView noRecordsFound;
 
     Unbinder unbinder;
 
@@ -97,7 +97,26 @@ public class ProductFragment extends Fragment implements HelperResponse {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
                 productParentList.get(productParentList.size() - 1).setBatchList(productChildList);
                 if (expandableListAdapter == null) {
-                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, this::showInputDialog);
+                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, new ProductExpandableListAdapter.OnItemClickListener() {
+                        @Override
+                        public void onQuantityClick(BatchList batchList) {
+                            showInputDialog(batchList);
+                        }
+
+                        @Override
+                        public void expand(int index) {
+                            if (productListExpand.isGroupExpanded(index))
+                                productListExpand.collapseGroup(index);
+                            else productListExpand.expandGroup(index);
+                        }
+
+                        @Override
+                        public void removeItem(int index) {
+                            productParentList.remove(index);
+                            expandableListAdapter.notifyDataSetChanged();
+                            setRecordsMessage();
+                        }
+                    });
                     // setting list adapter
                     productListExpand.setAdapter(expandableListAdapter);
                     productListExpand.expandGroup(0);
@@ -105,9 +124,17 @@ public class ProductFragment extends Fragment implements HelperResponse {
                 onProductFragmentInteraction.setTotalProducts(productParentList.size());
                 onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
 
-            } else {
-//                CommonMethods.showToast(getActivity(), receivedModel.getCommon().getStatusMessage());
             }
+        }
+    }
+
+    private void setRecordsMessage() {
+        if (productParentList.isEmpty()) {
+            productListExpand.setVisibility(View.GONE);
+            noRecordsFound.setVisibility(View.VISIBLE);
+        } else {
+            noRecordsFound.setVisibility(View.GONE);
+            productListExpand.setVisibility(View.VISIBLE);
         }
     }
 
@@ -157,6 +184,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
             if (requestCode == 100) {
                 productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
                 batchListHelper.doBatchList(data.getStringExtra(PRODUCTID));
+                setRecordsMessage();
             }
         }
     }
@@ -167,7 +195,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
         double totalValue = 0.0;
         for (ProductList productList : productParentList) {
             for (BatchList batchList : productList.getBatchList()) {
-                totalValue += batchList.getSaleRate() * ((double) batchList.getSaleQTY() / (double)productList.getProdLoosePack());
+                totalValue += batchList.getSaleRate() * ((double) batchList.getSaleQTY() / (double) productList.getProdLoosePack());
             }
         }
 

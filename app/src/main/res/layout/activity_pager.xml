@@ -76,9 +76,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    tools:text="6 Products"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp16"
+                    tools:text="6 Products" />
 
             </LinearLayout>
 
@@ -101,9 +101,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    tools:text="Total ₹ 00,76,676.00"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp16"
+                    tools:text="Total ₹ 00,76,676.00" />
 
             </LinearLayout>
 
@@ -113,19 +113,27 @@
             android:id="@+id/fixedBottomHomeDelLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp48"
-            android:visibility="gone"
             android:background="@color/lightgreycolor_billingdetails"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <CheckBox
                 android:id="@+id/homeDeliveryCheckbBox"
                 android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="@string/home_delivery" />
 
         </RelativeLayout>
 
     </LinearLayout>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/coachmark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/dp8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/coachmark" />
 
 </RelativeLayout>

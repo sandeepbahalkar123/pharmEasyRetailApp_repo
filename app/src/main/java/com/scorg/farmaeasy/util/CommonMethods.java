@@ -121,7 +121,7 @@ public class CommonMethods {
         dialog.setCancelable(false);
         EditText inputBox = ((EditText) dialog.findViewById(R.id.editTextQuantity));
         //Forcefully to open soft keyborad
-        ((InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         if (batchList.getSaleQTY() != 0) {
             inputBox.setText(String.valueOf(batchList.getSaleQTY()));
@@ -135,7 +135,7 @@ public class CommonMethods {
                     CommonMethods.showToast(context, context.getString(R.string.input_sale_quantity_message));
                 else {
                     //Forcefully to close soft keyborad
-                    ((InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
+                    ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
                     dialogInputListener.inputValue(saleQuantity);
                     dialog.dismiss();
 
@@ -145,7 +145,7 @@ public class CommonMethods {
         });
         dialog.findViewById(R.id.button_cancel).setOnClickListener(v -> {
             //Forcefully to close soft keyborad
-            ((InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
+            ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
             dialog.dismiss();
         });
         dialog.show();
