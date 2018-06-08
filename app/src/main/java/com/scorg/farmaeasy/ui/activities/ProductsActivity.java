@@ -38,6 +38,7 @@ import butterknife.OnClick;
 
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.COLLECTEDPRODUCTSLIST;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
+import static com.scorg.farmaeasy.ui.fragments.ProductFragment.PRODUCT_LIST;
 import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 public class ProductsActivity extends AppCompatActivity implements HelperResponse, SearchProductsListAdapter.ProductClick {
@@ -64,6 +65,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
     private String searchedString = "";
     private ArrayList<ProductList> productList = new ArrayList<>();
+    private ArrayList<ProductList> existingProductList;
     private SearchProductsListAdapter mAdapter;
 
     @Override
@@ -75,12 +77,13 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
+        existingProductList = getIntent().getParcelableArrayListExtra(PRODUCT_LIST);
 
         LinearLayoutManager linearlayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         productListRecycler.setLayoutManager(linearlayoutManager);
         productListRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        mAdapter = new SearchProductsListAdapter(mContext, productList, this, searchedString);
+        mAdapter = new SearchProductsListAdapter(mContext, this.productList, this, searchedString);
         productListRecycler.setAdapter(mAdapter);
 
         ProductSearchHelper productSearchHelper = new ProductSearchHelper(mContext, this);
@@ -97,7 +100,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
             @Override
             public void afterTextChanged(Editable s) {
-                productList.clear();
+                ProductsActivity.this.productList.clear();
                 mAdapter.notifyDataSetChanged();
 
                 if (s.toString().length() > 3)
@@ -173,14 +176,25 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
         } else {
             if (!totalBatch.equalsIgnoreCase("0")) {
-                Intent intent = new Intent();
-                intent.putExtra(PRODUCTID, productId);
-                intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                if (!isAvailable(productList)) {
+                    Intent intent = new Intent();
+                    intent.putExtra(PRODUCTID, productId);
+                    intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                } else CommonMethods.showToast(mContext, mContext.getString(R.string.product_already_exist));
             } else
                 CommonMethods.showToast(mContext, mContext.getString(R.string.nobatchavailable));
         }
+    }
+
+    private boolean isAvailable(ProductList productList) {
+        boolean isAvailable = false;
+        for (ProductList productList1 : existingProductList) {
+            if (productList.getProductID().equals(productList1.getProductID()))
+                isAvailable = true;
+        }
+        return isAvailable;
     }
 
 
@@ -223,8 +237,6 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                 }
             }
         }
-
-
     }
 
     @Override
