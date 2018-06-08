@@ -9,7 +9,9 @@
         android:groupIndicator="@null"
         android:childDivider="@null"
         android:divider="@null"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/addProducts"
+        android:layout_marginBottom="@dimen/dp5"/>
 
     <ImageView
         android:id="@+id/addProducts"
