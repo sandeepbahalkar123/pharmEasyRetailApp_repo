@@ -241,6 +241,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                 PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mServerPath, mContext);
                 CommonMethods.Log("mServerPath=>",mServerPath);
                 Intent intentObj = new Intent(mContext, ProductsActivity.class);
+                intentObj.putExtra(PagerActivity.FROM_HOME_ACTIVITY, true);
                 startActivity(intentObj);
                 mDialog.dismiss();
             }else{
