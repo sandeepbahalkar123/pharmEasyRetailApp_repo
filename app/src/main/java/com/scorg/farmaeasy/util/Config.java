@@ -20,8 +20,8 @@ public class Config {
     public static final String URL_SALE_POST = "SaveData";
 
 
-    public static String BASE_URL = "http://172.16.100.221"+SERVICE_NAME;
-//    public static String BASE_URL = "http://172.16.100.221:35560" + SERVICE_NAME;
+//    public static String BASE_URL = "http://172.16.100.221"+SERVICE_NAME;  //QA server
+    public static String BASE_URL = "http://125.99.46.208" + SERVICE_NAME;  //LIVE server
 
 }
 
