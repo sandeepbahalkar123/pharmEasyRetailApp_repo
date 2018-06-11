@@ -92,7 +92,7 @@
 
     <string name="error_in_ip">Please enter valid IP address</string>
     <string name="norecordsfound">No Records Found</string>
-    <string name="enteripaddress">Enter System IP Address \n e.g.172.16.100.221:84</string>
+    <string name="enteripaddress">Enter System IP Address \n e.g.172.16.100.221:35560</string>
     <string name="title_barcode_scanner_activity">Barcode Scanner</string>
     <string name="company">Company</string>
     <string name="supplier">Supplier</string>

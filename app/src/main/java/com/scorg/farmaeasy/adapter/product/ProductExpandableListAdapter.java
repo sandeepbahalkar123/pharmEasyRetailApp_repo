@@ -62,7 +62,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderChild.packingType.setText(batchList.getProdpack());
         viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
         viewHolderChild.editTextQty.setText(String.valueOf(batchList.getSaleQTY()));
-        viewHolderChild.editTextQty.setOnClickListener(new View.OnClickListener() {
+        viewHolderChild.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemClickListener.onQuantityClick(batchList);
@@ -185,6 +185,9 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         TextView estimatedPrice;
         @BindView(R.id.estimatedPriceValue)
         TextView estimatedPriceValue;
+        @BindView(R.id.mainLayout)
+        LinearLayout mainLayout;
+
 
         ViewHolderChild(View view) {
             ButterKnife.bind(this, view);
