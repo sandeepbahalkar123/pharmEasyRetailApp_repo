@@ -57,6 +57,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     private BatchListHelper batchListHelper;
     private ProductExpandableListAdapter expandableListAdapter;
     private OnProductFragmentInteraction onProductFragmentInteraction;
+    private int lastExpanded = 0;
 
     public ProductFragment() {
     }
@@ -107,7 +108,12 @@ public class ProductFragment extends Fragment implements HelperResponse {
                         public void expand(int index) {
                             if (productListExpand.isGroupExpanded(index))
                                 productListExpand.collapseGroup(index);
-                            else productListExpand.expandGroup(index);
+                            else {
+                                if (lastExpanded != index)
+                                    productListExpand.collapseGroup(lastExpanded);
+                                productListExpand.expandGroup(index);
+                                lastExpanded = index;
+                            }
                         }
 
                         @Override

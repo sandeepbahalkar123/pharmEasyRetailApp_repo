@@ -80,6 +80,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     private int year, month, dayOfMonth;
     private String selected = "";
     private PopupWindow popup;
+    private int lastExpanded = -1;
 
     public ShortBookFragment() {
     }
@@ -107,8 +108,17 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
         toDateValue.setText(formatedDate);
 
         getProducts("");
-
         createSortMenu();
+
+        shortBookList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (lastExpanded == -1 || lastExpanded != groupPosition) {
+                    shortBookList.collapseGroup(lastExpanded);
+                }
+                lastExpanded = groupPosition;
+            }
+        });
 
         return rootView;
     }
@@ -163,9 +173,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     }
 
     private void getProducts(String sortBy) {
-
 //        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
-
         ShortBookHelper shortBookHelper = new ShortBookHelper(getActivity(), this);
         shortBookHelper.doShortBook(month + "/" + dayOfMonth + "/" + year, month + "/" + dayOfMonth + "/" + year, sortBy);
     }
