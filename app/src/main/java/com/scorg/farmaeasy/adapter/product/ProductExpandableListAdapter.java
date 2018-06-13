@@ -61,7 +61,6 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName() + " - " + batchList.getExpiry() + " - ");
         viewHolderChild.packingType.setText(batchList.getProdpack());
         viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
-        viewHolderChild.editTextQty.setText(String.valueOf(batchList.getSaleQTY()));
         viewHolderChild.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -18,6 +18,7 @@ public class Config {
     public static final String URL_PRODUCT_SEARCH = "GetProductList";
     public static final String URL_GET_BATCHLIST = "GetBatchList";
     public static final String URL_SALE_POST = "SaveData";
+    public static final String URL_PRODUCT_SEARCH_USING_BARCODE = "GetProductDetailByBarcode";
 
 
 //    public static String BASE_URL = "http://172.16.100.221"+SERVICE_NAME;  //QA server

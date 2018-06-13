@@ -39,6 +39,7 @@ import com.scorg.farmaeasy.model.responseModel.daybook.DayBookResponseModel;
 import com.scorg.farmaeasy.model.responseModel.intranetcheckconnection.IntranetCheckConnectionResponseModel;
 import com.scorg.farmaeasy.model.responseModel.login.LoginResponseModel;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductSearchResponseModel;
+import com.scorg.farmaeasy.model.responseModel.productsearchusingbarcode.ProductSearchUsingBarcodeResponseModel;
 import com.scorg.farmaeasy.model.responseModel.sale.SaleResponseModel;
 import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookResponseModel;
 import com.scorg.farmaeasy.ui.customesViews.CustomProgressDialog;
@@ -490,6 +491,11 @@ public class RequestManager extends ConnectRequest implements Connector, Request
                     case Constants.TASK_POST_SALE: //This is for get archived list
                         SaleResponseModel saleResponseModel = gson.fromJson(data, SaleResponseModel.class);
                         this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, saleResponseModel, mOldDataTag);
+                        break;
+
+                    case Constants.TASK_PRODUCT_SEARCH_USING_BARCODE: //This is for get archived list
+                        ProductSearchUsingBarcodeResponseModel productSearchUsingBarcodeResponseModel = gson.fromJson(data, ProductSearchUsingBarcodeResponseModel.class);
+                        this.mConnectionListener.onResponse(ConnectionListener.RESPONSE_OK, productSearchUsingBarcodeResponseModel, mOldDataTag);
                         break;
                 }
             }

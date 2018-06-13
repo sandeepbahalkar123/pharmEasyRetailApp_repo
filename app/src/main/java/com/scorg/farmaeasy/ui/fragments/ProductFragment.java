@@ -32,6 +32,8 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.COLLECTEDPRODUCTSLIST;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.FROM_BARCODE;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.IS_ALREADYEXISTS;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
 import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
@@ -77,10 +79,52 @@ public class ProductFragment extends Fragment implements HelperResponse {
         unbinder = ButterKnife.bind(this, rootView);
 
         productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
-        batchListHelper = new BatchListHelper(getActivity(), this);
-        batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
+        if(!getArguments().getBoolean(FROM_BARCODE)){
+            batchListHelper = new BatchListHelper(getActivity(), this);
+            batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
+        }else{
+            setProductExpandableListToAdapter(productParentList);
+        }
+
+
 
         return rootView;
+    }
+
+    private void setProductExpandableListToAdapter(ArrayList<ProductList> productParentList) {
+        if (expandableListAdapter == null) {
+            expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, new ProductExpandableListAdapter.OnItemClickListener() {
+                @Override
+                public void onQuantityClick(BatchList batchList) {
+                    showInputDialog(batchList);
+                }
+
+                @Override
+                public void expand(int index) {
+                    if (productListExpand.isGroupExpanded(index))
+                        productListExpand.collapseGroup(index);
+                    else {
+                        if (lastExpanded != index)
+                            productListExpand.collapseGroup(lastExpanded);
+                        productListExpand.expandGroup(index);
+                        lastExpanded = index;
+                    }
+                }
+
+                @Override
+                public void removeItem(int index) {
+                    productParentList.remove(index);
+                    expandableListAdapter.notifyDataSetChanged();
+                    setRecordsMessage();
+                }
+            });
+            // setting list adapter
+            productListExpand.setAdapter(expandableListAdapter);
+            productListExpand.expandGroup(0);
+        } else expandableListAdapter.notifyDataSetChanged();
+        onProductFragmentInteraction.setTotalProducts(productParentList.size());
+        onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
+
     }
 
     @Override
@@ -188,8 +232,19 @@ public class ProductFragment extends Fragment implements HelperResponse {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 100) {
-                productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
-                batchListHelper.doBatchList(data.getStringExtra(PRODUCTID));
+                if(!getArguments().getBoolean(FROM_BARCODE)) {
+                    productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
+                    batchListHelper.doBatchList(data.getStringExtra(PRODUCTID));
+                }else{
+                    if(data.getBooleanExtra(IS_ALREADYEXISTS,false)) {
+                        ArrayList<ProductList> productLists = new ArrayList<>();
+                        productLists.addAll(data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
+                        setProductExpandableListToAdapter(productLists);
+                    }else{
+                        productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
+                        setProductExpandableListToAdapter(productParentList);
+                    }
+                }
                 setRecordsMessage();
             }
         }

@@ -12,7 +12,7 @@ public class Data implements Parcelable {
 
     @SerializedName("batchList")
     @Expose
-    private ArrayList<BatchList> batchList = null;
+    private ArrayList<BatchList> batchList = new ArrayList<>();
     public final static Parcelable.Creator<Data> CREATOR = new Creator<Data>() {
 
         @SuppressWarnings({

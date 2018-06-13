@@ -53,6 +53,8 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     public static final String PRODUCTID = "productid";
     public static final String COLLECTEDPRODUCTSLIST = "collectedproductslist";
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
+    public static final String FROM_BARCODE = "from_barcode";
+    public static final String IS_ALREADYEXISTS = "is_alreadyexists";
     private static final String TAG = "PagerActivity";
 
     private Context mContext;
@@ -273,6 +275,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         productFragment = ProductFragment.newInstance();
         Bundle bundle = new Bundle();
         bundle.putString(PRODUCTID, getIntent().getStringExtra(PRODUCTID));
+        bundle.putBoolean(FROM_BARCODE,getIntent().getBooleanExtra(FROM_BARCODE,false));
         bundle.putParcelableArrayList(COLLECTEDPRODUCTSLIST, getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
         productFragment.setArguments(bundle);
         adapter.addFragment(productFragment, "Product");

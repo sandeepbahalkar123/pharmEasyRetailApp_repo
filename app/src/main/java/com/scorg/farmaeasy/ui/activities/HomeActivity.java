@@ -141,8 +141,8 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
     @Override
     public void onBottomMenuClick(BottomMenu bottomMenu) {
         if (bottomMenu.getMenuName().equalsIgnoreCase("Home")) {
-            Intent intent = new Intent(mContext, BarcodeScannerActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(mContext, BarcodeScannerActivity.class);
+//            startActivity(intent);
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Book")) {
             Intent intentObj = new Intent(mContext, BooksActivity.class);
             startActivity(intentObj);

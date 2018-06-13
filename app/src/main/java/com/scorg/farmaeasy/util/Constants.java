@@ -69,6 +69,7 @@ public class Constants {
     public static final String TASK_PRODUCT_SEARCH = Constants.BLANK + 10;
     public static final String TASK_BATCHLIST = Constants.BLANK + 11;
     public static final String TASK_POST_SALE = Constants.BLANK + 12;
+    public static final String TASK_PRODUCT_SEARCH_USING_BARCODE = Constants.BLANK + 13;
 
 
     public static final String DATA = "DATA";
