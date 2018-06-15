@@ -13,37 +13,42 @@ import android.support.v7.widget.Toolbar;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.preference.PreferencesManager;
 import com.scorg.farmaeasy.ui.fragments.DayBookFragment;
+import com.scorg.farmaeasy.ui.fragments.SaleBookFragment;
 import com.scorg.farmaeasy.ui.fragments.ShortBookFragment;
 import com.scorg.farmaeasy.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class BooksActivity extends AppCompatActivity {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tabs)
+    TabLayout tabLayout;
+    @BindView(R.id.container)
+    ViewPager viewPager;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+
     private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
+        ButterKnife.bind(this);
         mContext = this;
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, mContext));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
-
-        viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -53,6 +58,7 @@ public class BooksActivity extends AppCompatActivity {
         if (Constants.USER_TYPE.Owner.equals(userType))
             adapter.addFragment(DayBookFragment.newInstance(), "DAY BOOK");
         adapter.addFragment(ShortBookFragment.newInstance(), "SHORT BOOK");
+        adapter.addFragment(SaleBookFragment.newInstance(), "SALE BOOK");
         viewPager.setAdapter(adapter);
     }
 

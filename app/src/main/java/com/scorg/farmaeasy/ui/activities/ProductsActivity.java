@@ -144,10 +144,6 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                     CommonMethods.hideKeyboard(this);
                 } else searchTextView.setText("");
 
-               /* if (searchTextView.getText().toString().isEmpty())
-                    onBackPressed();
-                else searchTextView.setText(""); */
-
                 break;
 
             case R.id.barcodeImg:
@@ -254,8 +250,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             ProductSearchUsingBarcodeResponseModel receivedModel = (ProductSearchUsingBarcodeResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 PreferencesManager.putString(Constants.DISCOUNT_LIMIT, PreferencesManager.getString(Constants.DISCOUNT_LIMIT, mContext), mContext);
-                ArrayList<ProductList> totalProductList = new ArrayList<>();
-                totalProductList.addAll(receivedModel.getData().getProductLists());
+                ArrayList<ProductList> totalProductList = receivedModel.getData().getProductLists();
 
                 if (getIntent().getBooleanExtra(PagerActivity.FROM_HOME_ACTIVITY, false)) {
                     Intent intent = new Intent(mContext, PagerActivity.class);
@@ -263,7 +258,6 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                     intent.putExtra(IS_ALREADYEXISTS, false);
                     intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
                     startActivity(intent);
-
                 } else {
                     if (!isAvailable(totalProductList.get(0))) {
                         Intent intent = new Intent();

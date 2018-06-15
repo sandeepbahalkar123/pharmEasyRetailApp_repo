@@ -85,8 +85,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
         unbinder = ButterKnife.bind(this, rootView);
 
         productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
-
         batchListHelper = new BatchListHelper(getActivity(), this);
+
         if (!getArguments().getBoolean(FROM_BARCODE))
             batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
          else

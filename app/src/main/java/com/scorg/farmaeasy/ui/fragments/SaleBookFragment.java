@@ -12,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ExpandableListView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -28,12 +27,8 @@ import com.scorg.farmaeasy.model.responseModel.shortbook.ShortBookResponseModel;
 import com.scorg.farmaeasy.util.CommonMethods;
 import com.scorg.farmaeasy.util.Constants;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 import butterknife.BindView;
@@ -47,12 +42,18 @@ import static com.scorg.farmaeasy.util.Constants.SUCCESS;
  * A placeholder fragment containing a simple view.
  */
 
-public class ShortBookFragment extends Fragment implements HelperResponse, DatePickerDialog.OnDateSetListener {
+public class SaleBookFragment extends Fragment implements HelperResponse, DatePickerDialog.OnDateSetListener {
 
     @BindView(R.id.fromDateValue)
     TextView fromDateValue;
     @BindView(R.id.fromDateMainLayout)
     LinearLayout fromDateMainLayout;
+    @BindView(R.id.toDateValue)
+    TextView toDateValue;
+    @BindView(R.id.toDateMainLayout)
+    LinearLayout toDateMainLayout;
+    @BindView(R.id.selectDatelayout)
+    LinearLayout selectDatelayout;
 
     @BindView(R.id.sortByButton)
     Button sortByButton;
@@ -66,55 +67,42 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     @BindView(R.id.noRecordsFound)
     TextView noRecordsFound;
 
-    @BindView(R.id.leftButton)
-    ImageButton leftButton;
-    @BindView(R.id.rightButton)
-    ImageButton rightButton;
-
     Unbinder unbinder;
 
-    private ArrayList<ShortBookList> mShortBookList = new ArrayList<>();
+    //    private ShortBookProductsListAdapter mAdapter;
     private int year, month, dayOfMonth;
     private String selected = "";
     private PopupWindow popup;
     private int lastExpanded = -1;
+    private boolean isFrom;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-    private String dateSelected = "";
-    private String dateCurrent = "";
-
-    public ShortBookFragment() {
+    public SaleBookFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static ShortBookFragment newInstance() {
-        return new ShortBookFragment();
+    public static SaleBookFragment newInstance() {
+        return new SaleBookFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_shortbook, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_salebook, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        init();
-        return rootView;
-    }
 
-    private void init() {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH) + 1;
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",  " + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
+        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
         fromDateValue.setText(formatedDate);
+        toDateValue.setText(formatedDate);
+
         getProducts("");
         createSortMenu();
-
-        dateSelected = dayOfMonth + "-" + month + "-" + year;
-        dateCurrent = dayOfMonth + "-" + month + "-" + year;
 
         shortBookList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
@@ -126,24 +114,7 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
             }
         });
 
-        setButtonVisibility();
-    }
-
-    private void setButtonVisibility() {
-        if (dateCurrent.equalsIgnoreCase(dateSelected))
-            rightButton.setVisibility(View.INVISIBLE);
-        else rightButton.setVisibility(View.VISIBLE);
-    }
-
-    private Calendar getAddedDateResult(int days) {
-        Calendar calendar = Calendar.getInstance();
-        try {
-            calendar.setTime(sdf.parse(dateSelected));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        calendar.add(Calendar.DAY_OF_MONTH, days);
-        return calendar;
+        return rootView;
     }
 
     private void createSortMenu() {
@@ -196,7 +167,6 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     }
 
     private void getProducts(String sortBy) {
-//        Integer shopId = PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, getActivity());
         ShortBookHelper shortBookHelper = new ShortBookHelper(getActivity(), this);
         shortBookHelper.doShortBook(month + "/" + dayOfMonth + "/" + year, month + "/" + dayOfMonth + "/" + year, sortBy);
     }
@@ -213,13 +183,14 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
         this.month = month + 1;
         this.dayOfMonth = dayOfMonth;
 
-        dateSelected = dayOfMonth + "-" + this.month + "-" + year;
+        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",\n" + CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
 
-        String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",  " + CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
-        fromDateValue.setText(formatedDate);
+        if (isFrom)
+            fromDateValue.setText(formatedDate);
+        else
+            toDateValue.setText(formatedDate);
+
         getProducts(selected.isEmpty() ? "" : selected);
-
-        setButtonVisibility();
     }
 
     @Override
@@ -231,11 +202,12 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
                 if (shortBookResponseModel.getData().getShortBookList().size() > 0) {
                     shortBookList.setVisibility(View.VISIBLE);
                     noRecordsFound.setVisibility(View.GONE);
-                    mShortBookList = shortBookResponseModel.getData().getShortBookList();
+                    ArrayList<ShortBookList> mShortBookList = shortBookResponseModel.getData().getShortBookList();
 
                     ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), mShortBookList);
                     // setting list adapter
                     shortBookList.setAdapter(listAdapter);
+
                 } else {
                     shortBookList.setVisibility(View.GONE);
                     noRecordsFound.setVisibility(View.VISIBLE);
@@ -244,7 +216,6 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
             } else {
                 shortBookList.setVisibility(View.GONE);
                 noRecordsFound.setVisibility(View.VISIBLE);
-//                CommonMethods.showToast(getActivity(), shortBookResponseModel.getCommon().getStatusMessage());
             }
         }
     }
@@ -265,15 +236,24 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     }
 
     @SuppressLint("RestrictedApi")
-    @OnClick({R.id.fromDateMainLayout, R.id.sortByButton, R.id.leftButton, R.id.rightButton})
+    @OnClick({R.id.fromDateMainLayout, R.id.toDateMainLayout, R.id.sortByButton})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fromDateMainLayout: {
-                Calendar calendar = getAddedDateResult(0);
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                 DatePickerDialog dialog = new DatePickerDialog(getContext(), this,
                         calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH));
-                dialog.getDatePicker().setMaxDate(new Date().getTime());
+                isFrom = true;
+                dialog.show();
+            }
+            break;
+            case R.id.toDateMainLayout: {
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), this,
+                        calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH));
+                isFrom = false;
                 dialog.show();
             }
             break;
@@ -287,47 +267,6 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
                     popup.showAsDropDown(sortLayout);
                 }
                 break;
-
-            case R.id.leftButton: {
-                Calendar calendar = getAddedDateResult(-1);
-
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int year = calendar.get(Calendar.YEAR);
-                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
-                this.year = year;
-                this.month = month;
-                this.dayOfMonth = dayOfMonth;
-
-                dateSelected = dayOfMonth + "-" + month + "-" + year;
-
-                String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",  " + CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
-                fromDateValue.setText(formatedDate);
-                getProducts(selected.isEmpty() ? "" : selected);
-
-                setButtonVisibility();
-            }
-            break;
-            case R.id.rightButton: {
-                Calendar calendar = getAddedDateResult(1);
-
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int year = calendar.get(Calendar.YEAR);
-                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
-                this.year = year;
-                this.month = month;
-                this.dayOfMonth = dayOfMonth;
-
-                dateSelected = dayOfMonth + "-" + month + "-" + year;
-
-                String formatedDate = CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.EEEE) + ",  " + CommonMethods.getFormattedDate(dayOfMonth + "-" + this.month + "-" + year, Constants.DATE_PATTERN.DD_MM_YYYY, Constants.DATE_PATTERN.DD_MMM_YY);
-                fromDateValue.setText(formatedDate);
-                getProducts(selected.isEmpty() ? "" : selected);
-
-                setButtonVisibility();
-            }
-            break;
         }
     }
 }

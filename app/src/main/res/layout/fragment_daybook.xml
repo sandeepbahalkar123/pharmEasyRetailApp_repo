@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/daybooklightgreycolor">
 
     <LinearLayout
@@ -21,29 +22,52 @@
             android:fontFamily="@font/roboto_regular"
             android:text="@string/select_date"
             android:textColor="@color/dayBookTextColor"
-            android:textSize="@dimen/sp15" />
+            android:textSize="@dimen/sp15"
+            android:visibility="gone" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/selectDatelayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp56"
-            android:layout_marginLeft="@dimen/dp14"
-            android:layout_marginStart="@dimen/dp14"
+            android:layout_height="@dimen/dp45"
             android:layout_marginTop="@dimen/dp14"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/dp14"
+            android:paddingStart="@dimen/dp14">
+
+            <ImageButton
+                android:id="@+id/leftButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:padding="@dimen/dp8"
+                app:srcCompat="@drawable/ic_chevron_left" />
+
+            <ImageButton
+                android:id="@+id/rightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:padding="@dimen/dp8"
+                app:srcCompat="@drawable/ic_chevron_right" />
+
 
             <LinearLayout
                 android:id="@+id/fromDateMainLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp8"
+                android:layout_toEndOf="@+id/leftButton"
+                android:layout_toLeftOf="@+id/rightButton"
+                android:layout_toRightOf="@+id/leftButton"
+                android:layout_toStartOf="@+id/rightButton"
+                android:background="@color/white"
                 android:clickable="true"
-                android:background="@color/white">
-
-                <View
-                    android:layout_width="@dimen/dp6"
-                    android:layout_height="wrap_content"
-                    android:background="@color/themecolor" />
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -62,45 +86,22 @@
                     android:paddingEnd="@dimen/dp16"
                     android:paddingRight="@dimen/dp16"
                     android:paddingTop="@dimen/dp10"
-                    tools:text="Tuesday, \n17 May 18"
                     android:textColor="@color/themecolor"
-                    android:textSize="@dimen/sp13" />
-
+                    android:textSize="@dimen/sp13"
+                    tools:text="Tuesday, 17 May 18" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/toDateMainLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp14"
-                android:layout_marginRight="@dimen/dp14"
-                android:layout_weight="1.0"
-                android:background="@color/white">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp4"
+                android:layout_alignEnd="@+id/fromDateMainLayout"
+                android:layout_alignLeft="@+id/fromDateMainLayout"
+                android:layout_alignRight="@+id/fromDateMainLayout"
+                android:layout_alignStart="@+id/fromDateMainLayout"
+                android:layout_alignParentBottom="true"
+                android:background="@color/themecolor" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp13"
-                    android:src="@drawable/calendar" />
-
-                <TextView
-                    android:id="@+id/toDateValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/roboto_medium"
-                    android:paddingBottom="@dimen/dp13"
-                    android:paddingEnd="@dimen/dp16"
-                    android:paddingRight="@dimen/dp16"
-                    android:paddingTop="@dimen/dp10"
-                    tools:text="Tuesday, \n17 May 18"
-                    android:textColor="@color/themecolor"
-                    android:textSize="@dimen/sp13" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -207,14 +208,14 @@
 
     <TextView
         android:id="@+id/noRecordsFound"
-        android:layout_above="@+id/bottomLayout"
-        android:layout_below="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomLayout"
+        android:layout_below="@+id/topLayout"
         android:fontFamily="@font/roboto_medium"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/norecordsfound"
         android:textColor="@color/dayBookTextColor"
-        android:gravity="center_horizontal|center_vertical"
         android:textSize="@dimen/sp19" />
 
     <LinearLayout

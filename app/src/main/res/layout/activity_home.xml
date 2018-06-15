@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/first"
+                android:background="@drawable/four"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="@dimen/dp8">
@@ -324,7 +324,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/four"
+                android:background="@drawable/first"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="@dimen/dp8">
