@@ -181,7 +181,7 @@
                         android:drawableRight="@drawable/percentage"
                         android:inputType="numberDecimal"
                         android:maxLength="5"
-                        android:text="00.00" />
+                        android:hint="00.00" />
 
                     <View
                         android:layout_width="@dimen/dp50"
@@ -310,7 +310,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp10"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/transactionMode"

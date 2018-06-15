@@ -124,8 +124,10 @@ public class BillingFragment extends Fragment {
         productListRecycler.setAdapter(mAdapter);
         for (ProductList productL : productList)
             totalAmount += productL.getIndividualProductTotalBatchAmount();
-
-        calculateDiscount(Double.parseDouble(percentEditText.getText().toString()));
+        if(!percentEditText.getText().toString().equals(""))
+            calculateDiscount(Double.parseDouble(percentEditText.getText().toString()));
+        else
+            calculateDiscount(00.00);
     }
 
     private void calculateDiscount(double discountValue) {

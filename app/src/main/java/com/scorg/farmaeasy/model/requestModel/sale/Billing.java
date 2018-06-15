@@ -20,9 +20,9 @@ public class Billing implements Parcelable {
     @SerializedName("trasactionMode")
     @Expose
     private String trasactionMode;
-    @SerializedName("isHomeDelivery")
-    @Expose
-    private Boolean isHomeDelivery;
+//    @SerializedName("isHomeDelivery")
+//    @Expose
+//    private Boolean isHomeDelivery;
     @SerializedName("billingType")
     @Expose
     private String billingType;
@@ -47,7 +47,7 @@ public class Billing implements Parcelable {
         this.discount = ((String) in.readValue((String.class.getClassLoader())));
         this.netAmt = ((String) in.readValue((String.class.getClassLoader())));
         this.trasactionMode = ((String) in.readValue((String.class.getClassLoader())));
-        this.isHomeDelivery = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+//        this.isHomeDelivery = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
         this.billingType = ((String) in.readValue((String.class.getClassLoader())));
     }
 
@@ -86,13 +86,13 @@ public class Billing implements Parcelable {
         this.trasactionMode = trasactionMode;
     }
 
-    public Boolean getIsHomeDelivery() {
-        return isHomeDelivery;
-    }
-
-    public void setIsHomeDelivery(Boolean isHomeDelivery) {
-        this.isHomeDelivery = isHomeDelivery;
-    }
+//    public Boolean getIsHomeDelivery() {
+//        return isHomeDelivery;
+//    }
+//
+//    public void setIsHomeDelivery(Boolean isHomeDelivery) {
+//        this.isHomeDelivery = isHomeDelivery;
+//    }
 
     public String getBillingType() {
         return billingType;
@@ -107,7 +107,7 @@ public class Billing implements Parcelable {
         dest.writeValue(discount);
         dest.writeValue(netAmt);
         dest.writeValue(trasactionMode);
-        dest.writeValue(isHomeDelivery);
+//        dest.writeValue(isHomeDelivery);
         dest.writeValue(billingType);
     }
 

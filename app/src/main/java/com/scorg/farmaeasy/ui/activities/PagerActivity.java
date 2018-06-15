@@ -136,7 +136,8 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
 
                 if (tab.getPosition() == 2) {
                     fixedBottomAmtLayout.setVisibility(View.GONE);
-                    fixedBottomHomeDelLayout.setVisibility(View.VISIBLE);
+//                    fixedBottomHomeDelLayout.setVisibility(View.VISIBLE);
+                    fixedBottomHomeDelLayout.setVisibility(View.GONE);
                     billingFragment.setProducts(productFragment.getProducts());
                     CommonMethods.hideKeyboard(PagerActivity.this);
                     if (isProductQTYValid())
@@ -197,17 +198,11 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     }
 
     private void addressDetailsValidation() {
-        if (addressDetailsFragment.getDetails().getPatient().getPatientName() == null) {
-            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
-            setPagerPosition(1);
-        } else if (addressDetailsFragment.getDetails().getPatient().getPatientName().equals("")) {
-            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
-            setPagerPosition(1);
-        } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName() == null) {
+         if (!addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty() && addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty()) {
             CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
             setPagerPosition(1);
-        } else if (addressDetailsFragment.getDetails().getDoctor().getDoctorName().equals("")) {
-            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
+        }else if (!addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty() && addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty()) {
+            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
             setPagerPosition(1);
         }
     }
@@ -228,7 +223,14 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         if (billingFragment.getDiscountValue() <= maxDiscountLimit) {
             SaleRequestModel saleRequestModel = addressDetailsFragment.getDetails();
             saleRequestModel.setProductList(productFragment.getProducts());
-            billing.setIsHomeDelivery(homeDeliveryCheckbBox.isChecked());
+//            billing.setIsHomeDelivery(homeDeliveryCheckbBox.isChecked());//sandeep commented
+            if(saleRequestModel.getPatient().getPatientName().isEmpty() && saleRequestModel.getDoctor().getDoctorName().isEmpty())
+                billing.setTrasactionMode(Constants.VOUCHER);
+            else
+                billing.setTrasactionMode(Constants.CASH);
+            if(billing.getDiscount().isEmpty())
+                billing.setDiscount("0");
+
             saleRequestModel.setBilling(billing);
 
             // call Api
