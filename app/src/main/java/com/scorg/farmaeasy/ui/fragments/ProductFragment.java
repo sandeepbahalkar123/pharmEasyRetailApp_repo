@@ -68,8 +68,14 @@ public class ProductFragment extends Fragment implements HelperResponse {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static ProductFragment newInstance() {
-        return new ProductFragment();
+    public static ProductFragment newInstance(String productId, boolean isFromBarcode, ArrayList<ProductList> productLists) {
+        ProductFragment productFragment = new ProductFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(PRODUCTID, productId);
+        bundle.putBoolean(FROM_BARCODE, isFromBarcode);
+        bundle.putParcelableArrayList(COLLECTEDPRODUCTSLIST, productLists);
+        productFragment.setArguments(bundle);
+        return productFragment;
     }
 
     @Override
@@ -79,19 +85,17 @@ public class ProductFragment extends Fragment implements HelperResponse {
         unbinder = ButterKnife.bind(this, rootView);
 
         productParentList = getArguments().getParcelableArrayList(COLLECTEDPRODUCTSLIST);
-        if(!getArguments().getBoolean(FROM_BARCODE)){
-            batchListHelper = new BatchListHelper(getActivity(), this);
+
+        batchListHelper = new BatchListHelper(getActivity(), this);
+        if (!getArguments().getBoolean(FROM_BARCODE))
             batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
-        }else{
-            setProductExpandableListToAdapter(productParentList);
-        }
-
-
+         else
+            setProductExpandableListToAdapter();
 
         return rootView;
     }
 
-    private void setProductExpandableListToAdapter(ArrayList<ProductList> productParentList) {
+    private void setProductExpandableListToAdapter() {
         if (expandableListAdapter == null) {
             expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, new ProductExpandableListAdapter.OnItemClickListener() {
                 @Override
@@ -124,7 +128,6 @@ public class ProductFragment extends Fragment implements HelperResponse {
         } else expandableListAdapter.notifyDataSetChanged();
         onProductFragmentInteraction.setTotalProducts(productParentList.size());
         onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
-
     }
 
     @Override
@@ -136,44 +139,12 @@ public class ProductFragment extends Fragment implements HelperResponse {
     @Override
     public void onSuccess(String mOldDataTag, CustomResponse customResponse) {
         if (mOldDataTag.equalsIgnoreCase(Constants.TASK_BATCHLIST)) {
-            //After login user navigated to HomeActivity
+            // After login user navigated to HomeActivity
             BatchListResponseModel receivedModel = (BatchListResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 ArrayList<BatchList> productChildList = receivedModel.getData().getBatchList();
                 productParentList.get(productParentList.size() - 1).setBatchList(productChildList);
-                if (expandableListAdapter == null) {
-                    expandableListAdapter = new ProductExpandableListAdapter(getContext(), productParentList, new ProductExpandableListAdapter.OnItemClickListener() {
-                        @Override
-                        public void onQuantityClick(BatchList batchList) {
-                            showInputDialog(batchList);
-                        }
-
-                        @Override
-                        public void expand(int index) {
-                            if (productListExpand.isGroupExpanded(index))
-                                productListExpand.collapseGroup(index);
-                            else {
-                                if (lastExpanded != index)
-                                    productListExpand.collapseGroup(lastExpanded);
-                                productListExpand.expandGroup(index);
-                                lastExpanded = index;
-                            }
-                        }
-
-                        @Override
-                        public void removeItem(int index) {
-                            productParentList.remove(index);
-                            expandableListAdapter.notifyDataSetChanged();
-                            setRecordsMessage();
-                        }
-                    });
-                    // setting list adapter
-                    productListExpand.setAdapter(expandableListAdapter);
-                    productListExpand.expandGroup(0);
-                } else expandableListAdapter.notifyDataSetChanged();
-                onProductFragmentInteraction.setTotalProducts(productParentList.size());
-                onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
-
+                setProductExpandableListToAdapter();
             }
         }
     }
@@ -232,19 +203,20 @@ public class ProductFragment extends Fragment implements HelperResponse {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 100) {
-                if(!getArguments().getBoolean(FROM_BARCODE)) {
+                if (!data.getBooleanExtra(FROM_BARCODE, false)) {
                     productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
                     batchListHelper.doBatchList(data.getStringExtra(PRODUCTID));
-                }else{
-                    if(data.getBooleanExtra(IS_ALREADYEXISTS,false)) {
-                        ArrayList<ProductList> productLists = new ArrayList<>();
-                        productLists.addAll(data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
-                        setProductExpandableListToAdapter(productLists);
-                    }else{
+                } else {
+
+                    if (data.getBooleanExtra(IS_ALREADYEXISTS, false)) {
+                        productParentList.clear();
+                        productParentList.addAll(data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
+                    } else
                         productParentList.add((ProductList) data.getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST).get(0));
-                        setProductExpandableListToAdapter(productParentList);
-                    }
+
+                    setProductExpandableListToAdapter();
                 }
+
                 setRecordsMessage();
             }
         }

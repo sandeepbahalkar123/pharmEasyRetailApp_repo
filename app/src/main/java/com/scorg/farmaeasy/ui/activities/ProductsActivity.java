@@ -49,7 +49,7 @@ import static com.scorg.farmaeasy.util.Constants.SUCCESS;
 
 public class ProductsActivity extends AppCompatActivity implements HelperResponse, SearchProductsListAdapter.ProductClick {
 
-    private static final String TAG="ProductActivity";
+    private static final String TAG = "ProductActivity";
     public static final String PRODUCT_BARCODE = "product_barcode";
     private Context mContext;
 
@@ -167,7 +167,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 //                barcodeString="1127551037"; //CHEAT
                 //Call API for productsearchusingbarcode to get productDetails and response will send to productfragment
                 ProductSearchUsingBarcodeHelper productSearchUsingBarcodeHelper = new ProductSearchUsingBarcodeHelper(mContext, this);
-                productSearchUsingBarcodeHelper.doProductSearchUsingBarcode(""+barcodeString, false);
+                productSearchUsingBarcodeHelper.doProductSearchUsingBarcode("" + barcodeString, false);
             }
         }
     }
@@ -181,7 +181,6 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             if (!totalBatch.equalsIgnoreCase("0")) {
                 Intent intent = new Intent(mContext, PagerActivity.class);
                 intent.putExtra(PRODUCTID, productId);
-                intent.putExtra(FROM_BARCODE,false);
                 intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
                 startActivity(intent);
             } else
@@ -192,11 +191,11 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                 if (!isAvailable(productList)) {
                     Intent intent = new Intent();
                     intent.putExtra(PRODUCTID, productId);
-                    intent.putExtra(FROM_BARCODE,false);
                     intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
                     setResult(Activity.RESULT_OK, intent);
                     finish();
-                } else CommonMethods.showToast(mContext, mContext.getString(R.string.product_already_exist));
+                } else
+                    CommonMethods.showToast(mContext, mContext.getString(R.string.product_already_exist));
             } else
                 CommonMethods.showToast(mContext, mContext.getString(R.string.nobatchavailable));
         }
@@ -251,54 +250,52 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                     noRecordsFound.setVisibility(View.VISIBLE);
                 }
             }
-        }else if(mOldDataTag.equalsIgnoreCase(Constants.TASK_PRODUCT_SEARCH_USING_BARCODE)){
+        } else if (mOldDataTag.equalsIgnoreCase(Constants.TASK_PRODUCT_SEARCH_USING_BARCODE)) {
             ProductSearchUsingBarcodeResponseModel receivedModel = (ProductSearchUsingBarcodeResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
-                PreferencesManager.putString(Constants.DISCOUNT_LIMIT, PreferencesManager.getString(Constants.DISCOUNT_LIMIT,mContext), mContext);
+                PreferencesManager.putString(Constants.DISCOUNT_LIMIT, PreferencesManager.getString(Constants.DISCOUNT_LIMIT, mContext), mContext);
                 ArrayList<ProductList> totalProductList = new ArrayList<>();
                 totalProductList.addAll(receivedModel.getData().getProductLists());
 
                 if (getIntent().getBooleanExtra(PagerActivity.FROM_HOME_ACTIVITY, false)) {
-                        Intent intent = new Intent(mContext, PagerActivity.class);
-                        intent.putExtra(FROM_BARCODE,true);
-                        intent.putExtra(IS_ALREADYEXISTS,false);
-                        intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
-                        startActivity(intent);
+                    Intent intent = new Intent(mContext, PagerActivity.class);
+                    intent.putExtra(FROM_BARCODE, true);
+                    intent.putExtra(IS_ALREADYEXISTS, false);
+                    intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+                    startActivity(intent);
 
                 } else {
-                        if (!isAvailable(totalProductList.get(0))) {
-                            Intent intent = new Intent();
-                            intent.putExtra(FROM_BARCODE,true);
-                            intent.putExtra(IS_ALREADYEXISTS,false);
-                            intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
-                            setResult(Activity.RESULT_OK, intent);
-                            finish();
-                        } else {
-//                            CommonMethods.showToast(mContext, mContext.getString(R.string.product_already_exist));
-
-                            int saleQuantity=0;
-                            saleQuantity=setCurrentSaleQuantity(saleQuantity,totalProductList);
-                            setAdditionalSaleQuantity(saleQuantity,existingProductList);
-                            Intent intent = new Intent();
-                            intent.putExtra(FROM_BARCODE,true);
-                            intent.putExtra(IS_ALREADYEXISTS,true);
-                            intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, existingProductList);
-                            setResult(Activity.RESULT_OK, intent);
-                            finish();
-                        }
+                    if (!isAvailable(totalProductList.get(0))) {
+                        Intent intent = new Intent();
+                        intent.putExtra(FROM_BARCODE, true);
+                        intent.putExtra(IS_ALREADYEXISTS, false);
+                        intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    } else {
+                        int saleQuantity = 0;
+                        saleQuantity = setCurrentSaleQuantity(saleQuantity, totalProductList);
+                        setAdditionalSaleQuantity(saleQuantity, existingProductList);
+                        Intent intent = new Intent();
+                        intent.putExtra(FROM_BARCODE, true);
+                        intent.putExtra(IS_ALREADYEXISTS, true);
+                        intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, existingProductList);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
                 }
 
-            }else{
+            } else {
                 CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
             }
         }
     }
 
 
-    private int setCurrentSaleQuantity(int saleQuantity,ArrayList<ProductList> productList) {
-        for(ProductList productList1:productList){
-            for(BatchList batchList:productList1.getBatchList()){
-                saleQuantity=batchList.getSaleQTY();
+    private int setCurrentSaleQuantity(int saleQuantity, ArrayList<ProductList> productList) {
+        for (ProductList productList1 : productList) {
+            for (BatchList batchList : productList1.getBatchList()) {
+                saleQuantity = batchList.getSaleQTY();
             }
         }
         return saleQuantity;
@@ -306,11 +303,11 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
     private void setAdditionalSaleQuantity(int saleQuantity, ArrayList<ProductList> existingProductList) {
         for (ProductList existingproductList1 : existingProductList) {
-            for(BatchList batchList:existingproductList1.getBatchList()){
-                saleQuantity+=batchList.getSaleQTY();
-                if(saleQuantity>batchList.getClosingStock()) {
+            for (BatchList batchList : existingproductList1.getBatchList()) {
+                saleQuantity += batchList.getSaleQTY();
+                if (saleQuantity > batchList.getClosingStock()) {
                     batchList.setSaleQTY(batchList.getClosingStock());
-                }else {
+                } else {
                     batchList.setSaleQTY(saleQuantity);
                 }
             }

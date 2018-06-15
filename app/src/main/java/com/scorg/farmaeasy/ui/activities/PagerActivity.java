@@ -272,12 +272,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        productFragment = ProductFragment.newInstance();
-        Bundle bundle = new Bundle();
-        bundle.putString(PRODUCTID, getIntent().getStringExtra(PRODUCTID));
-        bundle.putBoolean(FROM_BARCODE,getIntent().getBooleanExtra(FROM_BARCODE,false));
-        bundle.putParcelableArrayList(COLLECTEDPRODUCTSLIST, getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
-        productFragment.setArguments(bundle);
+        productFragment = ProductFragment.newInstance(getIntent().getStringExtra(PRODUCTID), getIntent().getBooleanExtra(FROM_BARCODE,false), getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
         adapter.addFragment(productFragment, "Product");
 
         addressDetailsFragment = AddressDetailsFragment.newInstance();
