@@ -23,8 +23,8 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:paddingEnd="@dimen/dp30"
-        android:paddingStart="@dimen/dp30"
+        android:paddingEnd="@dimen/dp32"
+        android:paddingStart="@dimen/dp32"
         android:text="Products"
         android:background="@color/dividercolor_billingdetails"
         android:textColor="@color/dividercolor_billingdetails"
@@ -48,8 +48,8 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:paddingEnd="@dimen/dp30"
-        android:paddingStart="@dimen/dp30"
+        android:paddingEnd="@dimen/dp32"
+        android:paddingStart="@dimen/dp32"
         android:text="Products"
         android:background="@color/dividercolor_billingdetails"
         android:textColor="@color/dividercolor_billingdetails"
@@ -62,7 +62,7 @@
         android:text="@string/supplier"
         android:paddingStart="@dimen/dp16"
         android:paddingEnd="@dimen/dp16"
-        android:drawablePadding="@dimen/dp18"
+        android:drawablePadding="@dimen/dp25"
         android:drawableEnd="@drawable/sort"
         android:textAllCaps="false"
         android:background="@color/transparent"
@@ -73,7 +73,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:paddingEnd="@dimen/dp30"
+        android:paddingEnd="@dimen/dp32"
         android:paddingStart="@dimen/dp30"
         android:text="Products"
         android:background="@color/dividercolor_billingdetails"
@@ -87,7 +87,7 @@
         android:text="@string/quantity_menu"
         android:paddingStart="@dimen/dp16"
         android:paddingEnd="@dimen/dp16"
-        android:drawablePadding="@dimen/dp18"
+        android:drawablePadding="@dimen/dp25"
         android:drawableEnd="@drawable/sort"
         android:textAllCaps="false"
         android:fontFamily="@font/roboto_medium"
