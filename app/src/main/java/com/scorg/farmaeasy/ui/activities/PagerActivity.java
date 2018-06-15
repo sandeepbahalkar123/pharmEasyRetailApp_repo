@@ -125,6 +125,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         tabs.setupWithViewPager(viewPager);
         setupTabIcons();
 
+
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -277,6 +278,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         productFragment = ProductFragment.newInstance(getIntent().getStringExtra(PRODUCTID), getIntent().getBooleanExtra(FROM_BARCODE,false), getIntent().getParcelableArrayListExtra(COLLECTEDPRODUCTSLIST));
         adapter.addFragment(productFragment, "Product");
 
+
         addressDetailsFragment = AddressDetailsFragment.newInstance();
         adapter.addFragment(addressDetailsFragment, "Add Details");
 
@@ -395,6 +397,15 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         public CharSequence getPageTitle(int position) {
             return null;
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (viewPager.getCurrentItem() == 2 || viewPager.getCurrentItem() == 1)
+            viewPager.setCurrentItem(0);
+        else
+        super.onBackPressed();
+
     }
 
 

@@ -9,12 +9,14 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -141,7 +143,9 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                     searchView.setVisibility(View.GONE);
                     toolbar.setVisibility(View.VISIBLE);
                     searchTextView.setEnabled(false);
-                    CommonMethods.hideKeyboard(this);
+//                    CommonMethods.hideKeyboard(this);
+                    ((InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(searchTextView.getWindowToken(), 0);
+
                 } else searchTextView.setText("");
 
                /* if (searchTextView.getText().toString().isEmpty())
@@ -174,6 +178,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
 
     @Override
     public void onClick(String productId, String totalBatch, int position, ProductList productList) {
+        ((InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(searchTextView.getWindowToken(), 0);
+
         ArrayList<ProductList> totalProductList = new ArrayList<>();
         totalProductList.add(productList);
 
@@ -218,7 +224,14 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
             case R.id.action_search:
                 toolbar.setVisibility(View.GONE);
                 searchView.setVisibility(View.VISIBLE);
+                ((InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
                 searchTextView.setEnabled(true);
+                searchTextView.setCursorVisible(true);
+                searchTextView.setFocusable(true);
+                searchTextView.setClickable(true);
+
+
+
                 return true;
 
             default:
@@ -229,6 +242,7 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
+
         return true;
     }
 
