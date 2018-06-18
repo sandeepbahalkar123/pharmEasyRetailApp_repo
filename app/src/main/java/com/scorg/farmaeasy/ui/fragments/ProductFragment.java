@@ -168,13 +168,11 @@ public class ProductFragment extends Fragment implements HelperResponse {
             @Override
             public void inputValue(int value) {
                 batchList.setSaleQTY(value);
-
                 for (ProductList productList : productParentList) {
                     for (BatchList batchList1 : productList.getBatchList()) {
                         batchList1.setMrp(batchList1.getSaleRate() / (double) productList.getProdLoosePack() * (double) value);
                     }
                 }
-
                 expandableListAdapter.notifyDataSetChanged();
                 onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
             }

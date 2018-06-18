@@ -14,6 +14,7 @@ import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
 import com.scorg.farmaeasy.ui.fragments.ProductFragment;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -61,7 +62,21 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName() + " - " + batchList.getExpiry() + " - ");
         viewHolderChild.packingType.setText(batchList.getProdpack());
         viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
-        viewHolderChild.mrp.setText(String.valueOf(batchList.getMrp())); // hardcoded
+        if(batchList.getSaleQTY()>0 && batchList.getMrp()< 1.0){
+            for (ProductList productList : productParentList) {
+                for (BatchList batchList1 : productList.getBatchList()) {
+                    batchList1.setMrp((batchList1.getSaleRate() / (double) productList.getProdLoosePack()) * (double) batchList.getSaleQTY());
+                }
+            }
+        }
+
+        DecimalFormat precision;
+        if (batchList.getMrp() != 0.0) {
+            precision = new DecimalFormat("##,##,###.00");
+        } else {
+            precision = new DecimalFormat("##,##,###0.00");
+        }
+        viewHolderChild.mrp.setText(""+precision.format(batchList.getMrp())); // hardcoded
 
         viewHolderChild.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
