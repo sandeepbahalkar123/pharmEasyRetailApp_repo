@@ -75,8 +75,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     private ArrayList<ProductList> productList = new ArrayList<>();
     private ArrayList<ProductList> existingProductList;
     private SearchProductsListAdapter mAdapter;
-    private ArrayList<Integer> currentSaleQuantity;
-    private ArrayList<String> currentStockId;
+    private ArrayList<Integer> currentSaleQuantity=new ArrayList<>();
+    private ArrayList<String> currentStockId=new ArrayList<>();
 
 
     @Override
@@ -300,8 +300,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                         setResult(Activity.RESULT_OK, intent);
                         finish();
                     } else {
-                        currentSaleQuantity = new ArrayList<>();
-                        currentStockId=new ArrayList<>();
+                        currentSaleQuantity.clear();
+                        currentStockId.clear();
                         setCurrentSaleQuantity(totalProductList);
                         setAdditionalSaleQuantity(currentSaleQuantity,currentStockId, existingProductList);
                         Intent intent = new Intent();
