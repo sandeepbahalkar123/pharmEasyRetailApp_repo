@@ -119,6 +119,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
                 public void removeItem(int index) {
                     productParentList.remove(index);
                     expandableListAdapter.notifyDataSetChanged();
+                    onProductFragmentInteraction.setTotalProducts(productParentList.size());
+                    onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
                     setRecordsMessage();
                 }
             });
