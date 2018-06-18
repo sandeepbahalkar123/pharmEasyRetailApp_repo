@@ -58,7 +58,7 @@ public class BooksActivity extends AppCompatActivity {
         if (Constants.USER_TYPE.Owner.equals(userType))
             adapter.addFragment(DayBookFragment.newInstance(), "DAY BOOK");
         adapter.addFragment(ShortBookFragment.newInstance(), "SHORT BOOK");
-        adapter.addFragment(SaleBookFragment.newInstance(), "SALE BOOK");
+//        adapter.addFragment(SaleBookFragment.newInstance(), "SALE BOOK");
         viewPager.setAdapter(adapter);
     }
 
