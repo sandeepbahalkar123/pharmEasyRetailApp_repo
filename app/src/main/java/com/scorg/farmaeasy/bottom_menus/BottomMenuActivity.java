@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.scorg.farmaeasy.R;
@@ -66,7 +65,7 @@ public class BottomMenuActivity extends AppCompatActivity implements BottomMenuA
 
         BottomMenu logoMenu = new BottomMenu();
         logoMenu.setAppIcon(true);
-        logoMenu.setMenuIcon(ContextCompat.getDrawable(mContext, R.drawable.logo_menu));
+        logoMenu.setMenuIcon(ContextCompat.getDrawable(mContext, R.drawable.app_icon));
         logoMenu.setSelected(false);
         logoMenu.setMenuName("AppLogo");
 

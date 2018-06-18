@@ -39,11 +39,32 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/shopSelection"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_drop_down_normal" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/firstLatter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/sp18"
+                    android:paddingBottom="@dimen/dp3"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/roboto_bold"
+                    android:background="@drawable/rounded_white"
+                    tools:text="M" />
+
+                <com.scorg.farmaeasy.ui.customesViews.searchablespinner.SearchableSpinner
+                    android:id="@+id/shopSelection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_drop_down_normal" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/shopDetailsText"
@@ -93,7 +114,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -124,7 +145,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/menu_color"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -163,7 +184,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/menu_color"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,7 +215,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -235,7 +256,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -266,7 +287,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/menu_color"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -306,7 +327,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/menu_color"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -337,7 +358,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:text="0"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="wrap_content"

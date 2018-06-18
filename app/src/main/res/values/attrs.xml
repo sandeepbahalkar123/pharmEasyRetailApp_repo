@@ -111,4 +111,8 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="SearchableSpinner">
+        <attr name="hintTextSpinner" format="string"/>
+    </declare-styleable>
+
 </resources>

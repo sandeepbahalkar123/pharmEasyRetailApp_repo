@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.util.CommonMethods;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,6 @@ import butterknife.ButterKnife;
 
 public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.ListViewHolder> {
 
-    private static final String DRAWABLE = "drawable";
     private OnBottomMenuClickListener mBottomMenuListClickListener;
     private ArrayList<BottomMenu> bottomMenus;
 
@@ -66,6 +66,8 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Li
 
 //for app logo
         if (bottomMenu.isAppIcon()) {
+
+//            setMargins(holder.menuBottomIcon, 0, CommonMethods.convertDpToPixel(1), 0, 0);
             holder.bottomMenuName.setVisibility(View.GONE);
             holder.bottomMenuTab.setVisibility(View.GONE);
 
@@ -77,6 +79,7 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Li
 
         } else {
 
+            setMargins(holder.menuBottomIcon, 0, CommonMethods.convertDpToPixel(8), 0, 0);
             holder.showCountTextView.setVisibility(View.GONE);
             if (bottomMenu.isSelected()) {
                 holder.bottomMenuTab.setVisibility(View.VISIBLE);
@@ -89,6 +92,14 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Li
             }
         }
 
+    }
+
+    private void setMargins(View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            view.requestLayout();
+        }
     }
 
     @Override

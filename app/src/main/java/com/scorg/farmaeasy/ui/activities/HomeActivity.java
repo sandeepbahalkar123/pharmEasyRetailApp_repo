@@ -22,7 +22,6 @@ import com.scorg.farmaeasy.bottom_menus.BottomMenu;
 import com.scorg.farmaeasy.bottom_menus.BottomMenuActivity;
 import com.scorg.farmaeasy.helpers.IntranetCheckConnection.IntranetCheckConnectionHelper;
 import com.scorg.farmaeasy.helpers.dashboard.DashboardHelper;
-import com.scorg.farmaeasy.helpers.login.LoginHelper;
 import com.scorg.farmaeasy.interfaces.CheckIpConnection;
 import com.scorg.farmaeasy.interfaces.CustomResponse;
 import com.scorg.farmaeasy.interfaces.HelperResponse;
@@ -72,35 +71,28 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
     LinearLayout nearExpiry2;
     @BindView(R.id.menuLayout)
     LinearLayout menuLayout;
-
     @BindView(R.id.shopSelection)
     AppCompatSpinner shopSelection;
-
     @BindView(R.id.shopDetailsText)
     TextView shopDetailsText;
-
     @BindView(R.id.expiredProductText)
     TextView expiredProductText;
-
     @BindView(R.id.nearExpiryText)
     TextView nearExpiryText;
-
     @BindView(R.id.todaysChequeText)
     TextView todaysChequeText;
-
     @BindView(R.id.depositChequeText)
     TextView depositChequeText;
-
     @BindView(R.id.pendingOnlinePurchaseText)
     TextView pendingOnlinePurchaseText;
-
     @BindView(R.id.pendingOrdersText)
     TextView pendingOrdersText;
-
     @BindView(R.id.visitingPatientsText)
     TextView visitingPatientsText;
     @BindView(R.id.todaysBirthdayText)
     TextView todaysBirthdayText;
+    @BindView(R.id.firstLatter)
+    TextView firstLatter;
 
     private Context mContext;
     private DashboardHelper dashboardHelper;
@@ -149,11 +141,10 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
         } else if (bottomMenu.getMenuName().equalsIgnoreCase("Sale")) {
             if (PreferencesManager.getString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mContext).equals("")) {
                 CommonMethods.showIPAlertDialog(mContext, mContext.getString(R.string.enteripaddress), new CheckIpConnection() {
-
                     @Override
                     public void onOkButtonClickListner(String serverPath, Context context, Dialog dialog) {
-                        mDialog=dialog;
-                        mServerPath=serverPath;
+                        mDialog = dialog;
+                        mServerPath = serverPath;
                         IntranetCheckConnectionHelper intranetCheckConnectionHelper = new IntranetCheckConnectionHelper(mContext, HomeActivity.this);
                         intranetCheckConnectionHelper.doIntranetCheckConnectionHelper(mServerPath);
                     }
@@ -170,7 +161,6 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
 
         super.onBottomMenuClick(bottomMenu);
     }
-
 
 
     @Override
@@ -204,6 +194,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                             aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
                             //Setting the ArrayAdapter data on the Spinner
                             shopSelection.setAdapter(aa);
+                            firstLatter.setText(String.valueOf(shopList.get(0).getShopName().charAt(0)));
 
                             int selectedPosition = 0;
                             for (ShopList shopL : shopList) {
@@ -221,6 +212,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                                     shopDetailsText.setText(dashboardData.getShopAddress());
                                     PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, shopList.get(position).getShopId(), mContext);
                                     PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, shopList.get(position).getShopName(), mContext);
+                                    firstLatter.setText(String.valueOf(shopList.get(position).getShopName().charAt(0)));
                                 }
 
                                 @Override
@@ -235,16 +227,16 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
             } else {
                 CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
             }
-        }else if(mOldDataTag.equalsIgnoreCase(Constants.TASK_INTRANET_CHECKCONNECTION)){
+        } else if (mOldDataTag.equalsIgnoreCase(Constants.TASK_INTRANET_CHECKCONNECTION)) {
             IntranetCheckConnectionResponseModel receivedModel = (IntranetCheckConnectionResponseModel) customResponse;
             if (receivedModel.getCommon().getStatusCode().equals(SUCCESS)) {
                 PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, mServerPath, mContext);
-                CommonMethods.Log("mServerPath=>",mServerPath);
+                CommonMethods.Log("mServerPath=>", mServerPath);
                 Intent intentObj = new Intent(mContext, ProductsActivity.class);
                 intentObj.putExtra(PagerActivity.FROM_HOME_ACTIVITY, true);
                 startActivity(intentObj);
                 mDialog.dismiss();
-            }else{
+            } else {
                 CommonMethods.showToast(mContext, receivedModel.getCommon().getStatusMessage());
             }
 

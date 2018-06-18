@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/itemIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp8"
+        android:layout_centerVertical="true"
+        tools:text="M"
+        android:gravity="center"
+        android:textSize="@dimen/sp12"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:paddingBottom="@dimen/dp3"
+        android:fontFamily="@font/roboto_bold"
+        android:background="@drawable/dialog_item_icon"/>
+
+    <TextView
+        android:id="@+id/itemText"
+        android:layout_width="match_parent"
+        android:layout_toRightOf="@+id/itemIcon"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        tools:text="@string/products"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="@dimen/sp16"
+        android:layout_toEndOf="@+id/itemIcon" />
+
+</RelativeLayout>
