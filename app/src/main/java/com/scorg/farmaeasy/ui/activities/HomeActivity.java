@@ -204,6 +204,7 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                             }
 
                             shopSelection.setSelection(selectedPosition, false);
+                            firstLatter.setText(String.valueOf(shopList.get(selectedPosition).getShopName().charAt(0)));
 
                             shopSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 @Override
