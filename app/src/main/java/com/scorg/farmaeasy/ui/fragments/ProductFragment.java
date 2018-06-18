@@ -132,8 +132,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
             productListExpand.expandGroup(0);
         } else {
             expandableListAdapter.notifyDataSetChanged();
-            productListExpand.collapseGroup(lastExpanded);
             if (indexOfLastUpdated != -1) {
+                productListExpand.collapseGroup(lastExpanded);
                 productListExpand.expandGroup(indexOfLastUpdated);
                 productListExpand.smoothScrollToPosition(indexOfLastUpdated);
             }
