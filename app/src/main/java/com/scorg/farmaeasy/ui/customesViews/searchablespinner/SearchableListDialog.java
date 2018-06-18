@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,11 +20,12 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
+import com.scorg.farmaeasy.model.responseModel.dashboard.ShopList;
 
 import java.io.Serializable;
 import java.util.List;
@@ -152,6 +154,7 @@ public class SearchableListDialog extends DialogFragment implements
                 .SEARCH_SERVICE);
 
         _searchView = (SearchView) rootView.findViewById(R.id.search);
+        ((EditText) _searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)).setTextColor(getResources().getColor(R.color.white));
 
         _searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         _searchView.setIconifiedByDefault(false);
@@ -237,6 +240,7 @@ public class SearchableListDialog extends DialogFragment implements
         private class ViewHolder {
             TextView itemText;
             TextView itemIcon;
+            TextView itemTextAddress;
         }
 
         public CustomAdapter(List<Object> data, Context context) {
@@ -247,7 +251,7 @@ public class SearchableListDialog extends DialogFragment implements
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // Get the data item for this position
-            Object dataModel = getItem(position);
+            ShopList dataModel = (ShopList) getItem(position);
             // Check if an existing view is being reused, otherwise inflate the view
             ViewHolder viewHolder; // view lookup cache stored in tag
 
@@ -258,6 +262,7 @@ public class SearchableListDialog extends DialogFragment implements
                 convertView = inflater.inflate(R.layout.spinner_dialog_row_item, parent, false);
                 viewHolder.itemText = (TextView) convertView.findViewById(R.id.itemText);
                 viewHolder.itemIcon = (TextView) convertView.findViewById(R.id.itemIcon);
+                viewHolder.itemTextAddress = (TextView) convertView.findViewById(R.id.itemTextAddress);
 
                 convertView.setTag(viewHolder);
             } else {
@@ -265,6 +270,7 @@ public class SearchableListDialog extends DialogFragment implements
             }
 
             viewHolder.itemText.setText(dataModel.toString());
+            viewHolder.itemTextAddress.setText(dataModel.getShopAddress());
             viewHolder.itemIcon.setText(String.valueOf(dataModel.toString().charAt(0)));
             viewHolder.itemIcon.setOnClickListener(this);
             viewHolder.itemIcon.setTag(position);

@@ -131,7 +131,7 @@ public class CommonMethods {
 
         dialog.findViewById(R.id.button_ok).setOnClickListener(v -> {
             if (!inputBox.getText().toString().isEmpty()) {
-                Integer saleQuantity = Integer.getInteger(inputBox.getText().toString());
+                int saleQuantity = Integer.parseInt(inputBox.getText().toString());
                 if (batchList.getClosingStock() < saleQuantity)
                     CommonMethods.showToast(context, context.getString(R.string.input_sale_quantity_message));
                 else {

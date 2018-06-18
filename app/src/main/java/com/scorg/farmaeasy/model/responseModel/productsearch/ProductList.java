@@ -20,7 +20,7 @@ public class ProductList implements Parcelable
     private String productName;
     @SerializedName("prodLoosePack")
     @Expose
-    private Integer prodLoosePack;
+    private int prodLoosePack;
     @SerializedName("prodPack")
     @Expose
     private String prodPack;
@@ -29,7 +29,7 @@ public class ProductList implements Parcelable
     private String prodPackType;
     @SerializedName("totalQTY")
     @Expose
-    private Integer totalQTY;
+    private int totalQTY;
     @SerializedName("prodCompShortName")
     @Expose
     private String prodCompShortName;
@@ -55,7 +55,7 @@ public class ProductList implements Parcelable
 
     @SerializedName("individualProductTotalBatchQty")
     @Expose
-    private Integer individualProductTotalBatchQty;
+    private int individualProductTotalBatchQty;
 
     private boolean isLongPressed;
 
@@ -79,10 +79,10 @@ public class ProductList implements Parcelable
     protected ProductList(Parcel in) {
         this.productID = ((String) in.readValue((String.class.getClassLoader())));
         this.productName = ((String) in.readValue((String.class.getClassLoader())));
-        this.prodLoosePack = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.prodLoosePack = ((int) in.readValue((int.class.getClassLoader())));
         this.prodPack = ((String) in.readValue((String.class.getClassLoader())));
         this.prodPackType = ((String) in.readValue((String.class.getClassLoader())));
-        this.totalQTY = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.totalQTY = ((int) in.readValue((int.class.getClassLoader())));
         this.prodCompShortName = ((String) in.readValue((String.class.getClassLoader())));
         this.shelfNo = ((String) in.readValue((String.class.getClassLoader())));
         this.drugInfo = ((String) in.readValue((String.class.getClassLoader())));
@@ -90,7 +90,7 @@ public class ProductList implements Parcelable
         this.batchInfo = ((String) in.readValue((String.class.getClassLoader())));
         in.readList(this.batchList, (com.scorg.farmaeasy.model.responseModel.batchlist.BatchList.class.getClassLoader()));
         this.individualProductTotalBatchAmount = ((Double) in.readValue((Double.class.getClassLoader())));
-        this.individualProductTotalBatchQty = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.individualProductTotalBatchQty = ((int) in.readValue((int.class.getClassLoader())));
     }
 
     public ProductList() {
@@ -112,11 +112,11 @@ public class ProductList implements Parcelable
         this.productName = productName;
     }
 
-    public Integer getProdLoosePack() {
+    public int getProdLoosePack() {
         return prodLoosePack;
     }
 
-    public void setProdLoosePack(Integer prodLoosePack) {
+    public void setProdLoosePack(int prodLoosePack) {
         this.prodLoosePack = prodLoosePack;
     }
 
@@ -136,11 +136,11 @@ public class ProductList implements Parcelable
         this.prodPackType = prodPackType;
     }
 
-    public Integer getTotalQTY() {
+    public int getTotalQTY() {
         return totalQTY;
     }
 
-    public void setTotalQTY(Integer totalQTY) {
+    public void setTotalQTY(int totalQTY) {
         this.totalQTY = totalQTY;
     }
 
@@ -200,11 +200,11 @@ public class ProductList implements Parcelable
         this.individualProductTotalBatchAmount = individualProductTotalBatchAmount;
     }
 
-    public Integer getIndividualProductTotalBatchQty() {
+    public int getIndividualProductTotalBatchQty() {
         return individualProductTotalBatchQty;
     }
 
-    public void setIndividualProductTotalBatchQty(Integer individualProductTotalBatchQty) {
+    public void setIndividualProductTotalBatchQty(int individualProductTotalBatchQty) {
         this.individualProductTotalBatchQty = individualProductTotalBatchQty;
     }
 

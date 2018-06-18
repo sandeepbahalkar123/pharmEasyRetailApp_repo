@@ -13,15 +13,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/search"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp34"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp8"
             android:layout_marginTop="@dimen/dp8"
-            android:iconifiedByDefault="false"
-            app:closeIcon="@drawable/close_btn"
-            app:searchIcon="@drawable/search" />
+            android:orientation="vertical">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp34"
+                android:iconifiedByDefault="false"
+                app:closeIcon="@drawable/close_btn"
+                app:queryBackground="@color/transparent"
+                app:searchIcon="@drawable/search" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_marginStart="@dimen/dp10"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
 
         <ListView
             android:id="@+id/listItems"

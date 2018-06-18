@@ -17,10 +17,10 @@ public class BatchList implements Parcelable {
     private String batchNumber;
     @SerializedName("closingStock")
     @Expose
-    private Integer closingStock;
+    private int closingStock;
     @SerializedName("saleRate")
     @Expose
-    private Double saleRate;
+    private double saleRate;
     @SerializedName("expiry")
     @Expose
     private String expiry;
@@ -32,12 +32,10 @@ public class BatchList implements Parcelable {
     private String prodpack;
     @SerializedName("saleQuantity")
     @Expose
-    private Integer saleQTY;
+    private int saleQTY;
     @SerializedName("mrp")
     @Expose
-    private Double mrp;
-
-
+    private double mrp;
 
     public final static Parcelable.Creator<BatchList> CREATOR = new Creator<BatchList>() {
 
@@ -58,13 +56,13 @@ public class BatchList implements Parcelable {
     protected BatchList(Parcel in) {
         this.stockID = ((String) in.readValue((String.class.getClassLoader())));
         this.batchNumber = ((String) in.readValue((String.class.getClassLoader())));
-        this.closingStock = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.saleRate = ((Double) in.readValue((Double.class.getClassLoader())));
+        this.closingStock = ((int) in.readValue((int.class.getClassLoader())));
+        this.saleRate = ((double) in.readValue((double.class.getClassLoader())));
         this.expiry = ((String) in.readValue((String.class.getClassLoader())));
         this.prodCompShortName = ((String) in.readValue((String.class.getClassLoader())));
         this.prodpack = ((String) in.readValue((String.class.getClassLoader())));
-        this.saleQTY = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.mrp = ((Double) in.readValue((Double.class.getClassLoader())));
+        this.saleQTY = ((int) in.readValue((int.class.getClassLoader())));
+        this.mrp = ((double) in.readValue((double.class.getClassLoader())));
 
     }
 
@@ -87,19 +85,19 @@ public class BatchList implements Parcelable {
         this.batchNumber = batchNumber;
     }
 
-    public Integer getClosingStock() {
+    public int getClosingStock() {
         return closingStock;
     }
 
-    public void setClosingStock(Integer closingStock) {
+    public void setClosingStock(int closingStock) {
         this.closingStock = closingStock;
     }
 
-    public Double getSaleRate() {
+    public double getSaleRate() {
         return saleRate;
     }
 
-    public void setSaleRate(Double saleRate) {
+    public void setSaleRate(double saleRate) {
         this.saleRate = saleRate;
     }
 
@@ -127,19 +125,19 @@ public class BatchList implements Parcelable {
         this.prodpack = prodpack;
     }
 
-    public Integer getSaleQTY() {
+    public int getSaleQTY() {
         return saleQTY;
     }
 
-    public void setSaleQTY(Integer saleQTY) {
+    public void setSaleQTY(int saleQTY) {
         this.saleQTY = saleQTY;
     }
 
-    public Double getMrp() {
+    public double getMrp() {
         return mrp;
     }
 
-    public void setMrp(Double mrp) {
+    public void setMrp(double mrp) {
         this.mrp = mrp;
     }
 

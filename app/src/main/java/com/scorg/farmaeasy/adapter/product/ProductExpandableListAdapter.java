@@ -55,7 +55,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             convertView.setTag(viewHolderChild);
         }
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
-        viewHolderChild.batchInfo.setText("Batch No : " + batchList.getBatchNumber());
+        viewHolderChild.batchInfo.setText("Bt No : " + batchList.getBatchNumber());
         viewHolderChild.editTextQty.setText(String.valueOf(batchList.getSaleQTY()));
         viewHolderChild.estimatedPriceValue.setText(" Rs " + String.valueOf(batchList.getSaleRate()));
         viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName() + " - " + batchList.getExpiry() + " - ");

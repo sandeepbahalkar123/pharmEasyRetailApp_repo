@@ -89,7 +89,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
 
         if (!getArguments().getBoolean(FROM_BARCODE))
             batchListHelper.doBatchList(getArguments().getString(PRODUCTID));
-         else
+        else
             setProductExpandableListToAdapter();
 
         return rootView;
@@ -112,6 +112,8 @@ public class ProductFragment extends Fragment implements HelperResponse {
                             productListExpand.collapseGroup(lastExpanded);
                         productListExpand.expandGroup(index);
                         lastExpanded = index;
+
+                        // add ∑
                     }
                 }
 
@@ -162,13 +164,22 @@ public class ProductFragment extends Fragment implements HelperResponse {
     }
 
     private void showInputDialog(BatchList batchList) {
-        CommonMethods.showInputDialog(getContext(), getString(R.string.enter_quantity_message), batchList, value -> {
-            batchList.setSaleQTY(value);
-            expandableListAdapter.notifyDataSetChanged();
-            onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
+        CommonMethods.showInputDialog(getContext(), getString(R.string.enter_quantity_message), batchList, new DialogInputListener() {
+            @Override
+            public void inputValue(int value) {
+                batchList.setSaleQTY(value);
+
+                for (ProductList productList : productParentList) {
+                    for (BatchList batchList1 : productList.getBatchList()) {
+                        batchList1.setMrp(batchList1.getSaleRate() / (double) productList.getProdLoosePack() * (double) value);
+                    }
+                }
+
+                expandableListAdapter.notifyDataSetChanged();
+                onProductFragmentInteraction.setTotalAmount(getTotalAmount(), productParentList);
+            }
         });
     }
-
 
 
     public ArrayList<ProductList> getProducts() {
@@ -176,7 +187,7 @@ public class ProductFragment extends Fragment implements HelperResponse {
     }
 
     public interface DialogInputListener {
-        void inputValue(Integer value);
+        void inputValue(int value);
     }
 
 

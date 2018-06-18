@@ -1,33 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:paddingTop="@dimen/dp5"
+    android:paddingBottom="@dimen/dp5">
 
     <TextView
         android:id="@+id/itemIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp8"
         android:layout_centerVertical="true"
-        tools:text="M"
+        android:layout_margin="@dimen/dp8"
+        android:background="@drawable/dialog_item_icon"
+        android:fontFamily="@font/roboto_bold"
         android:gravity="center"
-        android:textSize="@dimen/sp12"
+        android:paddingBottom="@dimen/dp3"
         android:textAllCaps="true"
         android:textColor="@color/white"
-        android:paddingBottom="@dimen/dp3"
-        android:fontFamily="@font/roboto_bold"
-        android:background="@drawable/dialog_item_icon"/>
+        android:textSize="@dimen/sp12"
+        tools:text="M" />
 
-    <TextView
-        android:id="@+id/itemText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_toRightOf="@+id/itemIcon"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        tools:text="@string/products"
-        android:fontFamily="@font/roboto_bold"
-        android:textSize="@dimen/sp16"
-        android:layout_toEndOf="@+id/itemIcon" />
+        android:layout_marginEnd="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp8"
+        android:layout_toEndOf="@+id/itemIcon"
+        android:layout_toRightOf="@+id/itemIcon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/itemText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/sp16"
+            tools:text="@string/products" />
+
+        <TextView
+            android:id="@+id/itemTextAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:maxLines="1"
+            android:textSize="@dimen/sp12"
+            tools:text="@string/products" />
+
+    </LinearLayout>
 
 </RelativeLayout>
