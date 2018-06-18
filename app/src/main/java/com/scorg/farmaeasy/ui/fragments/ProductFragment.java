@@ -169,12 +169,14 @@ public class ProductFragment extends Fragment implements HelperResponse {
         });
     }
 
+
+
     public ArrayList<ProductList> getProducts() {
         return productParentList;
     }
 
     public interface DialogInputListener {
-        void inputValue(int value);
+        void inputValue(Integer value);
     }
 
 

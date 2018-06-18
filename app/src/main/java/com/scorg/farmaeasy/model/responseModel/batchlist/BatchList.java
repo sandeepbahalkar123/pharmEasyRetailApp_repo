@@ -32,7 +32,11 @@ public class BatchList implements Parcelable {
     private String prodpack;
     @SerializedName("saleQuantity")
     @Expose
-    private int saleQTY;
+    private Integer saleQTY;
+    @SerializedName("mrp")
+    @Expose
+    private Double mrp;
+
 
 
     public final static Parcelable.Creator<BatchList> CREATOR = new Creator<BatchList>() {
@@ -55,11 +59,12 @@ public class BatchList implements Parcelable {
         this.stockID = ((String) in.readValue((String.class.getClassLoader())));
         this.batchNumber = ((String) in.readValue((String.class.getClassLoader())));
         this.closingStock = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.saleRate = ((Double) in.readValue((Integer.class.getClassLoader())));
+        this.saleRate = ((Double) in.readValue((Double.class.getClassLoader())));
         this.expiry = ((String) in.readValue((String.class.getClassLoader())));
         this.prodCompShortName = ((String) in.readValue((String.class.getClassLoader())));
         this.prodpack = ((String) in.readValue((String.class.getClassLoader())));
-        this.saleQTY = ((int) in.readValue((String.class.getClassLoader())));
+        this.saleQTY = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.mrp = ((Double) in.readValue((Double.class.getClassLoader())));
 
     }
 
@@ -122,12 +127,20 @@ public class BatchList implements Parcelable {
         this.prodpack = prodpack;
     }
 
-    public int getSaleQTY() {
+    public Integer getSaleQTY() {
         return saleQTY;
     }
 
-    public void setSaleQTY(int saleQTY) {
+    public void setSaleQTY(Integer saleQTY) {
         this.saleQTY = saleQTY;
+    }
+
+    public Double getMrp() {
+        return mrp;
+    }
+
+    public void setMrp(Double mrp) {
+        this.mrp = mrp;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
@@ -139,6 +152,7 @@ public class BatchList implements Parcelable {
         dest.writeValue(prodCompShortName);
         dest.writeValue(prodpack);
         dest.writeValue(saleQTY);
+        dest.writeValue(mrp);
     }
 
     public int describeContents() {

@@ -51,6 +51,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -130,7 +131,7 @@ public class CommonMethods {
 
         dialog.findViewById(R.id.button_ok).setOnClickListener(v -> {
             if (!inputBox.getText().toString().isEmpty()) {
-                int saleQuantity = Integer.parseInt(inputBox.getText().toString());
+                Integer saleQuantity = Integer.getInteger(inputBox.getText().toString());
                 if (batchList.getClosingStock() < saleQuantity)
                     CommonMethods.showToast(context, context.getString(R.string.input_sale_quantity_message));
                 else {
@@ -151,6 +152,13 @@ public class CommonMethods {
         dialog.show();
 
     }
+
+//    public static Double getMRP(BatchList batchList,int quantity) {
+//        Double mrp=0.0;
+//
+//        batchList.getSaleRate();
+//        return mrp;
+//    }
 
     public static String toCamelCase(String input) {
         if (input == null)

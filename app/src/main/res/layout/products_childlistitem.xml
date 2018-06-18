@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@+id/stock"
-                android:layout_toStartOf="@+id/stock"
+                android:layout_toLeftOf="@+id/mrp"
+                android:layout_toStartOf="@+id/mrp"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp16"
@@ -59,7 +59,7 @@
 
             <TextView
                 android:id="@+id/stock"
-                android:layout_width="@dimen/dp80"
+                android:layout_width="@dimen/dp75"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/batchInfo"
                 android:layout_toLeftOf="@+id/editTextQty"
@@ -70,7 +70,22 @@
                 android:paddingStart="@dimen/dp14"
                 android:textColor="@color/searchProducts_HighligtedTextColor"
                 android:textSize="@dimen/sp16"
-                tools:text="6000" />
+                tools:text="60000" />
+
+            <TextView
+                android:id="@+id/mrp"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/batchInfo"
+                android:layout_toLeftOf="@+id/stock"
+                android:layout_toStartOf="@+id/stock"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="end"
+                android:paddingEnd="@dimen/dp5"
+                android:paddingStart="@dimen/dp5"
+                android:textColor="@color/searchProducts_HighligtedTextColor"
+                android:textSize="@dimen/sp16"
+                tools:text="600000.99" />
 
 
         </RelativeLayout>

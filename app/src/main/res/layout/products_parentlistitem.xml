@@ -21,6 +21,8 @@
             android:id="@+id/productname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:fontFamily="@font/roboto_bold"
@@ -67,6 +69,10 @@
             android:id="@+id/contentInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxLength="20"
+            android:singleLine="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:fontFamily="@font/roboto_regular"
@@ -94,6 +100,18 @@
             android:fontFamily="@font/roboto_bold"
             android:paddingRight="@dimen/dp40"
             android:text="@string/stock"
+            android:textColor="@color/searchProducts_HighligtedTextColor"
+            android:textSize="@dimen/sp13" />
+
+        <TextView
+            android:id="@+id/mrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/stock"
+            android:layout_toStartOf="@+id/stock"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingRight="@dimen/dp40"
+            android:text="@string/mrp"
             android:textColor="@color/searchProducts_HighligtedTextColor"
             android:textSize="@dimen/sp13" />
 

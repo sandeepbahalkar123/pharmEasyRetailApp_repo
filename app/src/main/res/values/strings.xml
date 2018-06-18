@@ -109,6 +109,7 @@
     <string name="please_select_atleast_single_product_quantity">Please select at least single product with single batch quantity.</string>
 
     <string name="dicountValidation">Discount percentage should not be greater than&#160;</string>
+    <string name="mrp">MRP</string>
     <integer name="mobileNumberLength">10</integer>
 
 
