@@ -55,6 +55,7 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
     public static final String FROM_HOME_ACTIVITY = "from_home_activity";
     public static final String FROM_BARCODE = "from_barcode";
     public static final String IS_ALREADYEXISTS = "is_alreadyexists";
+    public static final String EXISTING_BARCODE_INDEX = "existing_barcode_index";
     private static final String TAG = "PagerActivity";
 
     private Context mContext;

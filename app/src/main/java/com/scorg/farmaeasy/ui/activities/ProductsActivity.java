@@ -42,6 +42,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.COLLECTEDPRODUCTSLIST;
+import static com.scorg.farmaeasy.ui.activities.PagerActivity.EXISTING_BARCODE_INDEX;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.FROM_BARCODE;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.IS_ALREADYEXISTS;
 import static com.scorg.farmaeasy.ui.activities.PagerActivity.PRODUCTID;
@@ -75,8 +76,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     private ArrayList<ProductList> productList = new ArrayList<>();
     private ArrayList<ProductList> existingProductList;
     private SearchProductsListAdapter mAdapter;
-    private ArrayList<Integer> currentSaleQuantity=new ArrayList<>();
-    private ArrayList<String> currentStockId=new ArrayList<>();
+//    private ArrayList<Integer> currentSaleQuantity = new ArrayList<>();
+//    private ArrayList<String> currentStockId = new ArrayList<>();
 
 
     @Override
@@ -213,17 +214,18 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         return isAvailable;
     }
 
-    private boolean isAvailableProductIDStockID(ProductList productList) {
-        boolean isAvailable = false;
-        String currentStockid="";
-        for(BatchList batchList:productList.getBatchList()){
-            currentStockid=batchList.getStockID();
+    private int isAvailableProductIDStockID(ProductList productList) {
+        int isAvailable = -1;
+        String currentStockid = "";
+        for (BatchList batchList : productList.getBatchList()) {
+            currentStockid = batchList.getStockID();
         }
         for (ProductList existingproductList1 : existingProductList) {
-            if (productList.getProductID().equals(existingproductList1.getProductID())){
-                for(BatchList batchList:existingproductList1.getBatchList()){
-                    if(currentStockid.equals(batchList.getStockID())){
-                        isAvailable = true;
+            if (productList.getProductID().equals(existingproductList1.getProductID())) {
+                for (BatchList batchList : existingproductList1.getBatchList()) {
+                    if (currentStockid.equals(batchList.getStockID())) {
+                        isAvailable = existingProductList.indexOf(existingproductList1);
+                        break;
                     }
                 }
             }
@@ -244,7 +246,6 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                 searchTextView.setCursorVisible(true);
                 searchTextView.setFocusable(true);
                 searchTextView.setClickable(true);
-
 
 
                 return true;
@@ -285,32 +286,26 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                 PreferencesManager.putString(Constants.DISCOUNT_LIMIT, PreferencesManager.getString(Constants.DISCOUNT_LIMIT, mContext), mContext);
                 ArrayList<ProductList> totalProductList = receivedModel.getData().getProductLists();
 
+                Intent intent = new Intent(mContext, PagerActivity.class);
+                intent.putExtra(FROM_BARCODE, true);
+
                 if (getIntent().getBooleanExtra(PagerActivity.FROM_HOME_ACTIVITY, false)) {
-                    Intent intent = new Intent(mContext, PagerActivity.class);
-                    intent.putExtra(FROM_BARCODE, true);
                     intent.putExtra(IS_ALREADYEXISTS, false);
                     intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
                     startActivity(intent);
                 } else {
-                    if (!isAvailableProductIDStockID(totalProductList.get(0))) {
-                        Intent intent = new Intent();
-                        intent.putExtra(FROM_BARCODE, true);
+                    int availableIndex = isAvailableProductIDStockID(totalProductList.get(0));
+                    if (availableIndex == -1) {
                         intent.putExtra(IS_ALREADYEXISTS, false);
                         intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, totalProductList);
-                        setResult(Activity.RESULT_OK, intent);
-                        finish();
                     } else {
-                        currentSaleQuantity.clear();
-                        currentStockId.clear();
-                        setCurrentSaleQuantity(totalProductList);
-                        setAdditionalSaleQuantity(currentSaleQuantity,currentStockId, existingProductList);
-                        Intent intent = new Intent();
-                        intent.putExtra(FROM_BARCODE, true);
+                        setAdditionalSaleQuantity(totalProductList.get(0), existingProductList.get(availableIndex));
                         intent.putExtra(IS_ALREADYEXISTS, true);
+                        intent.putExtra(EXISTING_BARCODE_INDEX, availableIndex);
                         intent.putParcelableArrayListExtra(COLLECTEDPRODUCTSLIST, existingProductList);
-                        setResult(Activity.RESULT_OK, intent);
-                        finish();
                     }
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
                 }
 
             } else {
@@ -319,29 +314,18 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
         }
     }
 
-
-    private void setCurrentSaleQuantity(ArrayList<ProductList> productList) {
-        for (ProductList productList1 : productList) {
-            for (BatchList batchList : productList1.getBatchList()) {
-                currentSaleQuantity.add(batchList.getSaleQTY());
-                currentStockId.add(batchList.getStockID());
-            }
-        }
-
-    }
-
-    private void setAdditionalSaleQuantity(ArrayList<Integer> saleQuantity,ArrayList<String> stockID, ArrayList<ProductList> existingProductList) {
-        for (ProductList existingproductList1 : existingProductList) {
-            for (BatchList batchList : existingproductList1.getBatchList()) {
-                for(String currentStockID:stockID){
-                    if(currentStockID.equals(batchList.getStockID())){
-                        for(Integer currentSaleQty:saleQuantity){
-                            currentSaleQty+=batchList.getSaleQTY();
-                            if (currentSaleQty > batchList.getClosingStock()) {
-                                batchList.setSaleQTY(batchList.getClosingStock());
-                            } else {
-                                batchList.setSaleQTY(currentSaleQty);
-                            }
+    private void setAdditionalSaleQuantity(ProductList singleProduct, ProductList existingProduct) {
+        for (BatchList batchListExisting : existingProduct.getBatchList()) {
+            for (BatchList batchListCurrent : singleProduct.getBatchList()) {
+                if (batchListCurrent.getStockID().equals(batchListExisting.getStockID())) {
+                    if (batchListExisting.getSaleQTY() > batchListExisting.getClosingStock()) {
+                        batchListExisting.setSaleQTY(batchListExisting.getClosingStock());
+                        break;
+                    } else {
+                        batchListExisting.setSaleQTY(batchListCurrent.getSaleQTY() + batchListExisting.getSaleQTY());
+                        if (batchListExisting.getSaleQTY() > batchListExisting.getClosingStock()) {
+                            batchListExisting.setSaleQTY(batchListExisting.getClosingStock());
+                            break;
                         }
                     }
                 }

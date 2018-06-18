@@ -61,13 +61,6 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName() + " - " + batchList.getExpiry() + " - ");
         viewHolderChild.packingType.setText(batchList.getProdpack());
         viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
-        if(batchList.getSaleQTY()>0 && batchList.getMrp()< 1.0){
-            for (ProductList productList : productParentList) {
-                for (BatchList batchList1 : productList.getBatchList()) {
-                    batchList1.setMrp((batchList1.getSaleRate() / (double) productList.getProdLoosePack()) * (double) batchList.getSaleQTY());
-                }
-            }
-        }
 
         DecimalFormat precision;
         if (batchList.getMrp() != 0.0) {
@@ -80,7 +73,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderChild.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onQuantityClick(batchList);
+                onItemClickListener.onQuantityClick(productParentList.get(groupPosition), batchList);
             }
         });
 
@@ -157,7 +150,15 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             viewHolderParent.qty.setText("QTY");
         } else {
             viewHolderParent.stock.setVisibility(View.GONE);
-            viewHolderParent.mrp.setText("∑ MRP: " + productList.getIndividualProductTotalBatchAmount());
+
+            DecimalFormat precision;
+            if (productList.getIndividualProductTotalBatchAmount() != 0.0) {
+                precision = new DecimalFormat("##,##,###.00");
+            } else {
+                precision = new DecimalFormat("##,##,###0.00");
+            }
+
+            viewHolderParent.mrp.setText("∑ MRP: " + precision.format(productList.getIndividualProductTotalBatchAmount()));
             viewHolderParent.qty.setText("∑ QTY: " + productList.getIndividualProductTotalBatchQty());
         }
 
@@ -236,7 +237,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     public interface OnItemClickListener {
-        void onQuantityClick(BatchList batchList);
+        void onQuantityClick(ProductList productList, BatchList batchList);
 
         void expand(int index);
 
