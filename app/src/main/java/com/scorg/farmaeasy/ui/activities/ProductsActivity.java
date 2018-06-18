@@ -75,8 +75,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     private ArrayList<ProductList> productList = new ArrayList<>();
     private ArrayList<ProductList> existingProductList;
     private SearchProductsListAdapter mAdapter;
-    int currentSaleQuantity =0;
-    String currentStockId="";
+    private ArrayList<Integer> currentSaleQuantity;
+    private ArrayList<String> currentStockId;
 
 
     @Override
@@ -300,8 +300,8 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
                         setResult(Activity.RESULT_OK, intent);
                         finish();
                     } else {
-                        currentSaleQuantity = 0;
-                        currentStockId="";
+                        currentSaleQuantity = new ArrayList<>();
+                        currentStockId=new ArrayList<>();
                         setCurrentSaleQuantity(totalProductList);
                         setAdditionalSaleQuantity(currentSaleQuantity,currentStockId, existingProductList);
                         Intent intent = new Intent();
@@ -323,22 +323,26 @@ public class ProductsActivity extends AppCompatActivity implements HelperRespons
     private void setCurrentSaleQuantity(ArrayList<ProductList> productList) {
         for (ProductList productList1 : productList) {
             for (BatchList batchList : productList1.getBatchList()) {
-                currentSaleQuantity = batchList.getSaleQTY();
-                currentStockId=batchList.getStockID();
+                currentSaleQuantity.add(batchList.getSaleQTY());
+                currentStockId.add(batchList.getStockID());
             }
         }
 
     }
 
-    private void setAdditionalSaleQuantity(int saleQuantity,String stockID, ArrayList<ProductList> existingProductList) {
+    private void setAdditionalSaleQuantity(ArrayList<Integer> saleQuantity,ArrayList<String> stockID, ArrayList<ProductList> existingProductList) {
         for (ProductList existingproductList1 : existingProductList) {
             for (BatchList batchList : existingproductList1.getBatchList()) {
-                if(stockID.equals(batchList.getStockID())) {
-                    saleQuantity += batchList.getSaleQTY();
-                    if (saleQuantity > batchList.getClosingStock()) {
-                        batchList.setSaleQTY(batchList.getClosingStock());
-                    } else {
-                        batchList.setSaleQTY(saleQuantity);
+                for(String currentStockID:stockID){
+                    if(currentStockID.equals(batchList.getStockID())){
+                        for(Integer currentSaleQty:saleQuantity){
+                            currentSaleQty+=batchList.getSaleQTY();
+                            if (currentSaleQty > batchList.getClosingStock()) {
+                                batchList.setSaleQTY(batchList.getClosingStock());
+                            } else {
+                                batchList.setSaleQTY(currentSaleQty);
+                            }
+                        }
                     }
                 }
             }
