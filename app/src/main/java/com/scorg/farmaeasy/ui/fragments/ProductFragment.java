@@ -112,8 +112,6 @@ public class ProductFragment extends Fragment implements HelperResponse {
                             productListExpand.collapseGroup(lastExpanded);
                         productListExpand.expandGroup(index);
                         lastExpanded = index;
-
-                        // add ∑
                     }
                 }
 

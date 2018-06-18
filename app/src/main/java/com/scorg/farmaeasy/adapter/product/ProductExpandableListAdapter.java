@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.scorg.farmaeasy.R;
 import com.scorg.farmaeasy.model.responseModel.batchlist.BatchList;
 import com.scorg.farmaeasy.model.responseModel.productsearch.ProductList;
-import com.scorg.farmaeasy.ui.fragments.ProductFragment;
 
 import java.util.ArrayList;
 
@@ -106,8 +105,8 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             ViewHolderParent viewHolderParent = new ViewHolderParent(convertView);
             convertView.setTag(viewHolderParent);
         }
-        ViewHolderParent viewHolderParent = (ViewHolderParent) convertView.getTag();
 
+        ViewHolderParent viewHolderParent = (ViewHolderParent) convertView.getTag();
         viewHolderParent.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +120,6 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
         viewHolderParent.productname.setText(productList.getProductName());
         viewHolderParent.contentInfo.setText(productList.getDrugInfo());
-//        viewHolderParent.mrp.setText(productList.);
         viewHolderParent.view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -138,7 +136,29 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             }
         });
 
+        if (isExpanded) {
+            viewHolderParent.stock.setVisibility(View.VISIBLE);
+            viewHolderParent.mrp.setText("MRP");
+            viewHolderParent.qty.setText("QTY");
+        } else {
+            viewHolderParent.stock.setVisibility(View.GONE);
+            viewHolderParent.mrp.setText("∑ MRP: " + productList.getIndividualProductTotalBatchAmount());
+            viewHolderParent.qty.setText("∑ QTY: " + productList.getIndividualProductTotalBatchQty());
+        }
+
         return convertView;
+    }
+
+    @Override
+    public void onGroupCollapsed(int groupPosition) {
+        super.onGroupCollapsed(groupPosition);
+    }
+
+    @Override
+    public void onGroupExpanded(int groupPosition) {
+        super.onGroupExpanded(groupPosition);
+
+
     }
 
     @Override
@@ -202,7 +222,9 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
     public interface OnItemClickListener {
         void onQuantityClick(BatchList batchList);
+
         void expand(int index);
+
         void removeItem(int index);
     }
 

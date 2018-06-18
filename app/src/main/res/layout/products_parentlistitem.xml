@@ -101,7 +101,7 @@
             android:layout_toLeftOf="@+id/qty"
             android:layout_toStartOf="@+id/qty"
             android:fontFamily="@font/roboto_bold"
-            android:paddingRight="@dimen/dp40"
+            android:paddingRight="@dimen/dp38"
             android:text="@string/stock"
             android:textColor="@color/searchProducts_HighligtedTextColor"
             android:textSize="@dimen/sp13" />
@@ -113,7 +113,7 @@
             android:layout_toLeftOf="@+id/stock"
             android:layout_toStartOf="@+id/stock"
             android:fontFamily="@font/roboto_bold"
-            android:paddingRight="@dimen/dp25"
+            android:paddingRight="@dimen/dp22"
             android:text="@string/mrp"
             android:textColor="@color/searchProducts_HighligtedTextColor"
             android:textSize="@dimen/sp13" />
