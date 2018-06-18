@@ -55,12 +55,14 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
             convertView.setTag(viewHolderChild);
         }
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
-        viewHolderChild.batchInfo.setText("B No : " + batchList.getBatchNumber());
+        viewHolderChild.batchInfo.setText("Batch No : " + batchList.getBatchNumber());
         viewHolderChild.editTextQty.setText(String.valueOf(batchList.getSaleQTY()));
         viewHolderChild.estimatedPriceValue.setText(" Rs " + String.valueOf(batchList.getSaleRate()));
         viewHolderChild.expiryDateInfo.setText(batchList.getProdCompShortName() + " - " + batchList.getExpiry() + " - ");
         viewHolderChild.packingType.setText(batchList.getProdpack());
         viewHolderChild.stock.setText(String.valueOf(batchList.getClosingStock())); // hardcoded
+        viewHolderChild.mrp.setText(String.valueOf(batchList.getMrp())); // hardcoded
+
         viewHolderChild.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +121,7 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
         viewHolderParent.productname.setText(productList.getProductName());
         viewHolderParent.contentInfo.setText(productList.getDrugInfo());
+//        viewHolderParent.mrp.setText(productList.);
         viewHolderParent.view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -159,6 +162,8 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
         TextView qty;
         @BindView(R.id.stock)
         TextView stock;
+        @BindView(R.id.mrp)
+        TextView mrp;
         @BindView(R.id.deleteButton)
         ImageButton deleteButton;
         View view;
@@ -172,6 +177,8 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
     static class ViewHolderChild {
         @BindView(R.id.batchInfo)
         TextView batchInfo;
+        @BindView(R.id.mrp)
+        TextView mrp;
         @BindView(R.id.editTextQty)
         TextView editTextQty;
         @BindView(R.id.stock)
