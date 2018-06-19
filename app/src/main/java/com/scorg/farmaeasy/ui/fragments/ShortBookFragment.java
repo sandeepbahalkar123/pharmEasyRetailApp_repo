@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -149,6 +150,17 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
     private void createSortMenu() {
         View popupContent = getLayoutInflater().inflate(R.layout.popup, null);
 
+        LinearLayout mainLayout = popupContent.findViewById(R.id.mainLayout);
+        sortLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                sortLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                ViewGroup.LayoutParams layoutParams = mainLayout.getLayoutParams();
+                layoutParams.width = sortLayout.getWidth();
+                mainLayout.setLayoutParams(layoutParams);
+            }
+        });
+
         Button productButton = popupContent.findViewById(R.id.productButton);
         productButton.setOnClickListener(v -> {
             selected = productButton.getText().toString();
@@ -233,7 +245,12 @@ public class ShortBookFragment extends Fragment implements HelperResponse, DateP
                     noRecordsFound.setVisibility(View.GONE);
                     mShortBookList = shortBookResponseModel.getData().getShortBookList();
 
-                    ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), mShortBookList);
+                    ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), new ShortBookExpandableListAdapter.OnChildClickListener() {
+                        @Override
+                        public void onClick(int groupPosition) {
+                            shortBookList.collapseGroup(groupPosition);
+                        }
+                    }, mShortBookList);
                     // setting list adapter
                     shortBookList.setAdapter(listAdapter);
                 } else {

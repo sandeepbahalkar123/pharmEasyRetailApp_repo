@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
@@ -20,10 +21,12 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<ShortBookList> shortBookList;
+    private OnChildClickListener onChildClickListener;
 
-    public ShortBookExpandableListAdapter(Context context, List<ShortBookList> shortBookList) {
+    public ShortBookExpandableListAdapter(Context context, OnChildClickListener onChildClickListener, List<ShortBookList> shortBookList) {
         this._context = context;
         this.shortBookList = shortBookList;
+        this.onChildClickListener = onChildClickListener;
     }
 
     @Override
@@ -54,16 +57,23 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderChild.productname.setText(shortBookList.getProdName());
         viewHolderChild.compShortName.setText(shortBookList.getProdCompShortName());
 
-        viewHolderChild.noOfQtyTabs.setText(shortBookList.getProdLoosePack() + " " +shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
-//        viewHolderChild.avlStockStrips.setText();
+        viewHolderChild.noOfQtyTabs.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
+        viewHolderChild.totalQTY.setText(String.valueOf(shortBookList.getOrderQuantity()));
 
-        if(!shortBookList.getAccShortName().isEmpty())
+        if (!shortBookList.getAccShortName().isEmpty())
             viewHolderChild.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype() + " Supl:" + shortBookList.getAccShortName());
         else
             viewHolderChild.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
 
-        viewHolderChild.avlStock.setText(" [ Avl.Stk:" + shortBookList.getAvailableStock()+" ]");
+        viewHolderChild.avlStock.setText(" [ Avl.Stk:" + shortBookList.getAvailableStock() + " ]");
 
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onChildClickListener.onClick(groupPosition);
+            }
+        });
         return convertView;
     }
 
@@ -106,12 +116,16 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
         viewHolderParent.productname.setText(shortBookList.getProdName());
         viewHolderParent.totalQTY.setText(String.valueOf(shortBookList.getOrderQuantity()));
         viewHolderParent.compShortName.setText(shortBookList.getProdCompShortName());
-        if(!shortBookList.getAccShortName().isEmpty())
+        if (!shortBookList.getAccShortName().isEmpty())
             viewHolderParent.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype() + " Supl:" + shortBookList.getAccShortName());
         else
             viewHolderParent.noOfQty.setText(shortBookList.getProdLoosePack() + " " + shortBookList.getProdPack() + "-" + shortBookList.getProdpacktype());
 
 //        viewHolderParent.avlStock.setText(" [ Avl.Stk:" + shortBookList.getAvailableStock()+" ]");
+
+        if (isExpanded)
+            viewHolderParent.mainlayout.setVisibility(View.GONE);
+        else viewHolderParent.mainlayout.setVisibility(View.VISIBLE);
 
         return convertView;
     }
@@ -127,6 +141,10 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     static class ViewHolderParent {
+
+        @BindView(R.id.mainlayout)
+        LinearLayout mainlayout;
+
         @BindView(R.id.productname)
         TextView productname;
         @BindView(R.id.unit)
@@ -168,5 +186,9 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
         ViewHolderChild(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    public interface OnChildClickListener {
+        void onClick(int groupPosition);
     }
 }

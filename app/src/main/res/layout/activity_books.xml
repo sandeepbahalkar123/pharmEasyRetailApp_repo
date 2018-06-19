@@ -33,7 +33,7 @@
             app:tabMode="fixed"
             app:tabTextAppearance="@style/tabLayout"
             app:tabIndicatorColor="@color/white"
-            app:tabGravity="center"/>
+            app:tabGravity="fill"/>
 
     </android.support.design.widget.AppBarLayout>
 

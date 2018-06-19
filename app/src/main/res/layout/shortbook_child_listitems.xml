@@ -57,9 +57,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="@dimen/dp45"
                 android:layout_marginRight="@dimen/dp45"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/shortBookTextColor"
-                android:textSize="@dimen/sp12"
+                android:textSize="@dimen/sp15"
                 tools:text="50" />
         </RelativeLayout>
 

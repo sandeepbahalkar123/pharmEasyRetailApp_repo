@@ -204,7 +204,12 @@ public class SaleBookFragment extends Fragment implements HelperResponse, DatePi
                     noRecordsFound.setVisibility(View.GONE);
                     ArrayList<ShortBookList> mShortBookList = shortBookResponseModel.getData().getShortBookList();
 
-                    ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), mShortBookList);
+                    ShortBookExpandableListAdapter listAdapter = new ShortBookExpandableListAdapter(getContext(), new ShortBookExpandableListAdapter.OnChildClickListener() {
+                        @Override
+                        public void onClick(int groupPosition) {
+
+                        }
+                    }, mShortBookList);
                     // setting list adapter
                     shortBookList.setAdapter(listAdapter);
 

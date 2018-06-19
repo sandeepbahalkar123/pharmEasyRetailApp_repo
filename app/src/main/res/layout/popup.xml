@@ -1,99 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/menu_back"
     android:orientation="vertical">
-    
-    <Button
-        android:id="@+id/productButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/products"
-        android:paddingStart="@dimen/dp16"
-        android:paddingEnd="@dimen/dp16"
-        android:background="@color/transparent"
-        android:drawablePadding="@dimen/dp18"
-        android:drawableEnd="@drawable/sort"
-        android:textAllCaps="false"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="@dimen/sp14"
-        android:textColor="@color/menu_color"
-        android:drawableRight="@drawable/sort" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:paddingEnd="@dimen/dp32"
-        android:paddingStart="@dimen/dp32"
-        android:text="Products"
-        android:background="@color/dividercolor_billingdetails"
-        android:textColor="@color/dividercolor_billingdetails"
-        android:layout_height="@dimen/dp1" />
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/companyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/company"
-        android:paddingStart="@dimen/dp16"
-        android:paddingEnd="@dimen/dp16"
-        android:background="@color/transparent"
-        android:drawablePadding="@dimen/dp18"
-        android:drawableEnd="@drawable/sort"
-        android:textAllCaps="false"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="@dimen/sp14"
-        android:textColor="@color/menu_color"
-        android:drawableRight="@drawable/sort" />
+        <Button
+            android:id="@+id/productButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/sort"
+            android:drawablePadding="@dimen/dp18"
+            android:drawableRight="@drawable/sort"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingEnd="@dimen/dp16"
+            android:paddingStart="@dimen/dp16"
+            android:text="@string/products"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/sp14" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:paddingEnd="@dimen/dp32"
-        android:paddingStart="@dimen/dp32"
-        android:text="Products"
-        android:background="@color/dividercolor_billingdetails"
-        android:textColor="@color/dividercolor_billingdetails"
-        android:layout_height="@dimen/dp1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/dividercolor_billingdetails"
+            android:paddingEnd="@dimen/dp32"
+            android:paddingStart="@dimen/dp32"
+            android:text="Products"
+            android:textColor="@color/dividercolor_billingdetails" />
 
-    <Button
-        android:id="@+id/supplierButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/supplier"
-        android:paddingStart="@dimen/dp16"
-        android:paddingEnd="@dimen/dp16"
-        android:drawablePadding="@dimen/dp25"
-        android:drawableEnd="@drawable/sort"
-        android:textAllCaps="false"
-        android:background="@color/transparent"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="@dimen/sp14"
-        android:textColor="@color/menu_color"
-        android:drawableRight="@drawable/sort" />
+        <Button
+            android:id="@+id/companyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/sort"
+            android:drawablePadding="@dimen/dp18"
+            android:drawableRight="@drawable/sort"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingEnd="@dimen/dp16"
+            android:paddingStart="@dimen/dp16"
+            android:text="@string/company"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/sp14" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:paddingEnd="@dimen/dp32"
-        android:paddingStart="@dimen/dp30"
-        android:text="Products"
-        android:background="@color/dividercolor_billingdetails"
-        android:textColor="@color/dividercolor_billingdetails"
-        android:layout_height="@dimen/dp1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/dividercolor_billingdetails"
+            android:paddingEnd="@dimen/dp32"
+            android:paddingStart="@dimen/dp32"
+            android:text="Products"
+            android:textColor="@color/dividercolor_billingdetails" />
 
-    <Button
-        android:id="@+id/quantityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/quantity_menu"
-        android:paddingStart="@dimen/dp16"
-        android:paddingEnd="@dimen/dp16"
-        android:drawablePadding="@dimen/dp25"
-        android:drawableEnd="@drawable/sort"
-        android:textAllCaps="false"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="@dimen/sp14"
-        android:background="@color/transparent"
-        android:textColor="@color/menu_color"
-        android:drawableRight="@drawable/sort" />
+        <Button
+            android:id="@+id/supplierButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/sort"
+            android:drawablePadding="@dimen/dp25"
+            android:drawableRight="@drawable/sort"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingEnd="@dimen/dp16"
+            android:paddingStart="@dimen/dp16"
+            android:text="@string/supplier"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/sp14" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/dividercolor_billingdetails"
+            android:paddingEnd="@dimen/dp32"
+            android:paddingStart="@dimen/dp30"
+            android:text="Products"
+            android:textColor="@color/dividercolor_billingdetails" />
+
+        <Button
+            android:id="@+id/quantityButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/sort"
+            android:drawablePadding="@dimen/dp25"
+            android:drawableRight="@drawable/sort"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingEnd="@dimen/dp16"
+            android:paddingStart="@dimen/dp16"
+            android:text="@string/quantity_menu"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/sp14" />
+
+    </LinearLayout>
 </LinearLayout>

@@ -111,7 +111,7 @@ public class SearchableListDialog extends DialogFragment implements
             alertDialog.setTitle(_strTitle);
         else dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
                 .SOFT_INPUT_STATE_HIDDEN);
 

@@ -194,7 +194,6 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                             aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
                             //Setting the ArrayAdapter data on the Spinner
                             shopSelection.setAdapter(aa);
-                            firstLatter.setText(String.valueOf(shopList.get(0).getShopName().charAt(0)));
 
                             int selectedPosition = 0;
                             for (ShopList shopL : shopList) {
@@ -206,14 +205,21 @@ public class HomeActivity extends BottomMenuActivity implements HelperResponse, 
                             shopSelection.setSelection(selectedPosition, false);
                             firstLatter.setText(String.valueOf(shopList.get(selectedPosition).getShopName().charAt(0)));
 
+                            PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, shopList.get(selectedPosition).getShopId(), mContext);
+                            PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, shopList.get(selectedPosition).getShopName(), mContext);
+
                             shopSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 @Override
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    dashboardHelper.doGetDashboardData(shopList.get(position).getShopId());
-                                    shopDetailsText.setText(dashboardData.getShopAddress());
-                                    PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, shopList.get(position).getShopId(), mContext);
-                                    PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, shopList.get(position).getShopName(), mContext);
-                                    firstLatter.setText(String.valueOf(shopList.get(position).getShopName().charAt(0)));
+
+                                    if (PreferencesManager.getInt(PreferencesManager.PREFERENCES_KEY.SHOPID, mContext) != shopList.get(position).getShopId()) {
+                                        dashboardHelper.doGetDashboardData(shopList.get(position).getShopId());
+                                        shopDetailsText.setText(dashboardData.getShopAddress());
+                                        PreferencesManager.putInt(PreferencesManager.PREFERENCES_KEY.SHOPID, shopList.get(position).getShopId(), mContext);
+                                        PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SHOPNAME, shopList.get(position).getShopName(), mContext);
+                                        firstLatter.setText(String.valueOf(shopList.get(position).getShopName().charAt(0)));
+                                        PreferencesManager.putString(PreferencesManager.PREFERENCES_KEY.SERVER_PATH, "", mContext);
+                                    }
                                 }
 
                                 @Override

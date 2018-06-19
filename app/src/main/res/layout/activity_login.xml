@@ -89,6 +89,7 @@
                 android:drawableRight="@drawable/enter"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/using_otp"
+                android:visibility="invisible"
                 android:textColor="@color/themecolor"
                 android:textSize="@dimen/sp15" />
 
