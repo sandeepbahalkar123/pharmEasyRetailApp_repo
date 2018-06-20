@@ -96,9 +96,9 @@
                 android:layout_height="@dimen/dp4"
                 android:layout_alignEnd="@+id/fromDateMainLayout"
                 android:layout_alignLeft="@+id/fromDateMainLayout"
+                android:layout_alignParentBottom="true"
                 android:layout_alignRight="@+id/fromDateMainLayout"
                 android:layout_alignStart="@+id/fromDateMainLayout"
-                android:layout_alignParentBottom="true"
                 android:background="@color/themecolor" />
 
         </RelativeLayout>
@@ -197,14 +197,57 @@
         </LinearLayout>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp245"
         android:layout_above="@+id/bottomLayout"
         android:layout_below="@+id/topLayout">
 
-    </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:id="@+id/backLines"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/daybooklightgreycolor"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Space
+                android:id="@+id/particularName"
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp23"
+                android:layout_weight="0.4" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="match_parent"
+                android:background="@color/dividercolor" />
+
+            <Space
+                android:id="@+id/debitValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_weight="0.6" />
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="match_parent"
+                android:background="@color/dividercolor" />
+
+            <Space
+                android:id="@+id/creditValue"
+                android:layout_width="@dimen/dp44"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/noRecordsFound"

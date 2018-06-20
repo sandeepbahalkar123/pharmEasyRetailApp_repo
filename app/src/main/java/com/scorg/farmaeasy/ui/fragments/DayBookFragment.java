@@ -62,6 +62,10 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
     LinearLayout topLayout;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
+    @BindView(R.id.backLines)
+    LinearLayout backLines;
+
     @BindView(R.id.totalDebitValue)
     TextView totalDebitValue;
     @BindView(R.id.totalCreditValue)
@@ -169,6 +173,7 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
                 if (dayBookResponseModel.getData().getDayBookList().size() > 0) {
                     recyclerView.setVisibility(View.VISIBLE);
                     noRecordsFound.setVisibility(View.GONE);
+                    backLines.setVisibility(View.VISIBLE);
                     ArrayList<DayBookList> mDayBookList = dayBookResponseModel.getData().getDayBookList();
                     DayBookParticularListAdapter mAdapter = new DayBookParticularListAdapter(getActivity(), mDayBookList);
                     LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -177,12 +182,14 @@ public class DayBookFragment extends Fragment implements HelperResponse, DatePic
                     recyclerView.setAdapter(mAdapter);
                 } else {
                     recyclerView.setVisibility(View.GONE);
+                    backLines.setVisibility(View.GONE);
                     noRecordsFound.setVisibility(View.VISIBLE);
                 }
 
             } else {
                 recyclerView.setVisibility(View.GONE);
                 noRecordsFound.setVisibility(View.VISIBLE);
+                backLines.setVisibility(View.GONE);
                 openingbalnaceDebitValue.setText("0.00");
                 totalDebitValue.setText("0.00");
                 totalCreditValue.setText("0.00");
