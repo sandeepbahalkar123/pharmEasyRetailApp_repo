@@ -90,7 +90,7 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
                 imageId=R.drawable.drop;
                 break;
             case "powder":
-                imageId=R.drawable.default_icon;
+                imageId=R.drawable.powder;
                 break;
             case "cap":
                 imageId=R.drawable.capsule_icon;
@@ -99,13 +99,19 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
                 imageId=R.drawable.syrup_icon;
                 break;
             case "liquid":
-                imageId=R.drawable.default_icon;
+                imageId=R.drawable.liquid;
+                break;
+            case "soap":
+                imageId=R.drawable.soap;
+                break;
+            case "inj":
+                imageId=R.drawable.injection;
+                break;
+            case "cream":
+                imageId=R.drawable.cream_icon;
                 break;
             case "lotion":
                 imageId=R.drawable.lotion_icon;
-                break;
-            case "soap":
-                imageId=R.drawable.default_icon;
                 break;
 
             default:
