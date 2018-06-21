@@ -6,19 +6,19 @@
     android:background="@color/white">
 
     <ImageView
-        android:id="@+id/tabletIcon"
+        android:id="@+id/medicineIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:padding="@dimen/dp15"
-        android:src="@drawable/tablet_icon" />
+        android:src="@drawable/default_icon" />
 
     <LinearLayout
         android:id="@+id/mainlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/tabletIcon"
-        android:layout_toRightOf="@id/tabletIcon"
+        android:layout_toEndOf="@id/medicineIcon"
+        android:layout_toRightOf="@id/medicineIcon"
         android:orientation="vertical">
 
         <RelativeLayout

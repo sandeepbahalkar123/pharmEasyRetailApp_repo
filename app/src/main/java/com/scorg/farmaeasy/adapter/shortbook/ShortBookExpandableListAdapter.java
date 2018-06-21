@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.scorg.farmaeasy.R;
@@ -54,6 +55,7 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         ViewHolderChild viewHolderChild = (ViewHolderChild) convertView.getTag();
+        viewHolderChild.medicineIcon.setImageDrawable(_context.getResources().getDrawable(setImage(shortBookList.getProdPack().toLowerCase())));
         viewHolderChild.productname.setText(shortBookList.getProdName());
         viewHolderChild.compShortName.setText(shortBookList.getProdCompShortName());
 
@@ -75,6 +77,43 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
             }
         });
         return convertView;
+    }
+
+    private int setImage(String medicineType) {
+
+        int imageId=-1;
+        switch(medicineType){
+            case "tab":
+                imageId=R.drawable.tablet_icon;
+                break;
+            case "drop":
+                imageId=R.drawable.drop;
+                break;
+            case "powder":
+                imageId=R.drawable.default_icon;
+                break;
+            case "cap":
+                imageId=R.drawable.capsule_icon;
+                break;
+            case "syp":
+                imageId=R.drawable.syrup_icon;
+                break;
+            case "liquid":
+                imageId=R.drawable.default_icon;
+                break;
+            case "lotion":
+                imageId=R.drawable.lotion_icon;
+                break;
+            case "soap":
+                imageId=R.drawable.default_icon;
+                break;
+
+            default:
+                imageId=R.drawable.default_icon;
+                break;
+
+        }
+        return imageId;
     }
 
     @Override
@@ -164,8 +203,8 @@ public class ShortBookExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     static class ViewHolderChild {
-        @BindView(R.id.tabletIcon)
-        ImageView tabletIcon;
+        @BindView(R.id.medicineIcon)
+        ImageView medicineIcon;
         @BindView(R.id.productname)
         TextView productname;
         @BindView(R.id.unit)
