@@ -114,7 +114,7 @@
             android:layout_toStartOf="@+id/stock"
             android:fontFamily="@font/roboto_bold"
             android:paddingRight="@dimen/dp22"
-            android:text="@string/mrp"
+            android:text="@string/amt"
             android:textColor="@color/searchProducts_HighligtedTextColor"
             android:textSize="@dimen/sp13" />
 

@@ -146,8 +146,8 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
 
         if (isExpanded) {
             viewHolderParent.stock.setVisibility(View.VISIBLE);
-            viewHolderParent.mrp.setText("MRP");
-            viewHolderParent.qty.setText("QTY");
+            viewHolderParent.mrp.setText(_context.getString(R.string.amt));
+            viewHolderParent.qty.setText(_context.getString(R.string.quantity));
         } else {
             viewHolderParent.stock.setVisibility(View.GONE);
 
@@ -158,8 +158,8 @@ public class ProductExpandableListAdapter extends BaseExpandableListAdapter {
                 precision = new DecimalFormat("##,##,###0.00");
             }
 
-            viewHolderParent.mrp.setText("∑ MRP: " + precision.format(productList.getIndividualProductTotalBatchAmount()));
-            viewHolderParent.qty.setText("∑ QTY: " + productList.getIndividualProductTotalBatchQty());
+            viewHolderParent.mrp.setText("∑ "+_context.getString(R.string.amt)+": " + precision.format(productList.getIndividualProductTotalBatchAmount()));
+            viewHolderParent.qty.setText("∑ "+_context.getString(R.string.quantity)+": " + productList.getIndividualProductTotalBatchQty());
         }
 
         return convertView;

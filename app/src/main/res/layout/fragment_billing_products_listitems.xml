@@ -37,11 +37,14 @@
             android:layout_gravity="center_horizontal|center"
             android:layout_weight="0.4"
             android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="@dimen/dp25"
-            android:paddingStart="@dimen/dp25"
+            android:paddingLeft="@dimen/dp5"
+            android:paddingStart="@dimen/dp5"
+            android:gravity="end"
+            android:paddingEnd="@dimen/dp25"
+            android:paddingRight="@dimen/dp25"
             android:textColor="@color/qtyAmountTextColor_billingdetails"
             android:textSize="@dimen/sp13"
-            tools:text="1130" />
+            tools:text="11300" />
 
         <View
             android:layout_width="@dimen/dp1"
@@ -56,8 +59,11 @@
             android:layout_gravity="center_horizontal|center"
             android:layout_weight="0.5"
             android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="@dimen/dp10"
-            android:paddingStart="@dimen/dp10"
+            android:gravity="end"
+            android:paddingEnd="@dimen/dp8"
+            android:paddingRight="@dimen/dp8"
+            android:paddingStart="@dimen/dp8"
+            android:paddingLeft="@dimen/dp8"
             android:textColor="@color/qtyAmountTextColor_billingdetails"
             android:textSize="@dimen/sp13"
             tools:text="32440.00" />
