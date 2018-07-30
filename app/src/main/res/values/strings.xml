@@ -106,6 +106,7 @@
     <string name="product_already_exist">Product already exist in cartlist, please choose another product.</string>
     <string name="please_enter_patient_name">Please enter patient name.</string>
     <string name="please_enter_doctor_name">Please enter doctor name.</string>
+    <string name="please_enter_patient_doctor_name">Please enter patient and doctor name.</string>
     <string name="please_select_atleast_single_product_quantity">Please select at least single product with single batch quantity.</string>
 
     <string name="dicountValidation">Discount percentage should not be greater than&#160;</string>

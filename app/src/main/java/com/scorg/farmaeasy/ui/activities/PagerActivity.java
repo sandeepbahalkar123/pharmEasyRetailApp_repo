@@ -199,13 +199,39 @@ public class PagerActivity extends AppCompatActivity implements ProductFragment.
         return isValid;
     }
 
+    private boolean isProductContainH1(){
+        boolean isValid = false;
+        for (ProductList productList : productFragment.getProducts()) {
+                if(productList.getProdScheduleDrugCode().equalsIgnoreCase("h1"))
+                    isValid = true;
+        }
+        return isValid;
+    }
+
     private void addressDetailsValidation() {
-         if (!addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty() && addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty()) {
-            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
-            setPagerPosition(1);
-        }else if (!addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty() && addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty()) {
-            CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
-            setPagerPosition(1);
+
+        if(isProductContainH1()){
+            if (addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty() && addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty()) {
+                CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_doctor_name));
+                setPagerPosition(1);
+            }else{
+                if (!addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty() && addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty()) {
+                    CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
+                    setPagerPosition(1);
+                }else if (!addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty() && addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty()) {
+                    CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
+                    setPagerPosition(1);
+                }
+            }
+
+         }else{
+            if (!addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty() && addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty()) {
+                CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_doctor_name));
+                setPagerPosition(1);
+            }else if (!addressDetailsFragment.getDetails().getDoctor().getDoctorName().isEmpty() && addressDetailsFragment.getDetails().getPatient().getPatientName().isEmpty()) {
+                CommonMethods.showToast(mContext, mContext.getString(R.string.please_enter_patient_name));
+                setPagerPosition(1);
+            }
         }
     }
 

@@ -33,6 +33,9 @@ public class ProductList implements Parcelable
     @SerializedName("prodCompShortName")
     @Expose
     private String prodCompShortName;
+    @SerializedName("prodScheduleDrugCode")
+    @Expose
+    private String prodScheduleDrugCode;
     @SerializedName("shelfNo")
     @Expose
     private String shelfNo;
@@ -84,6 +87,7 @@ public class ProductList implements Parcelable
         this.prodPackType = ((String) in.readValue((String.class.getClassLoader())));
         this.totalQTY = ((int) in.readValue((int.class.getClassLoader())));
         this.prodCompShortName = ((String) in.readValue((String.class.getClassLoader())));
+        this.prodScheduleDrugCode = ((String) in.readValue((String.class.getClassLoader())));
         this.shelfNo = ((String) in.readValue((String.class.getClassLoader())));
         this.drugInfo = ((String) in.readValue((String.class.getClassLoader())));
         this.rateInfo = ((Double) in.readValue((Double.class.getClassLoader())));
@@ -150,6 +154,14 @@ public class ProductList implements Parcelable
 
     public void setProdCompShortName(String prodCompShortName) {
         this.prodCompShortName = prodCompShortName;
+    }
+
+    public String getProdScheduleDrugCode() {
+        return prodScheduleDrugCode;
+    }
+
+    public void setProdScheduleDrugCode(String prodScheduleDrugCode) {
+        this.prodScheduleDrugCode = prodScheduleDrugCode;
     }
 
     public String getShelfNo() {
@@ -224,6 +236,7 @@ public class ProductList implements Parcelable
         dest.writeValue(prodPackType);
         dest.writeValue(totalQTY);
         dest.writeValue(prodCompShortName);
+        dest.writeValue(prodScheduleDrugCode);
         dest.writeValue(shelfNo);
         dest.writeValue(drugInfo);
         dest.writeValue(rateInfo);
